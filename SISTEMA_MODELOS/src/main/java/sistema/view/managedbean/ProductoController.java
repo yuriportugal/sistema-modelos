@@ -1,5 +1,6 @@
 package sistema.view.managedbean;
 
+import java.io.IOException;
 import sistema.server.entity.producto.Producto;
 import sistema.view.managedbean.util.JsfUtil;
 import sistema.view.managedbean.util.PaginationHelper;
@@ -65,7 +66,8 @@ public class ProductoController implements Serializable {
         recreateModel();
         return "List";
     }
-
+    
+ 
     public String prepareView() {
         current = (Producto) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
