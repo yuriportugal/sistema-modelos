@@ -19,8 +19,11 @@ public class RedirectionerController {
     public RedirectionerController() {
     }
     
+    public String insumo(){
+        return "/EMPRESA/INSUMO/INSUMO";
+    }
+    
     public String Listarproducto(){
-       System.out.println("Imprimiendo");
         return "/producto/List";
     }
     
