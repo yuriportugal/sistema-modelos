@@ -10,6 +10,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -36,6 +38,10 @@ public class Insumo implements Serializable{
     @Column(name = "CODIGO")
     private String codigo;
 
+    @ManyToOne
+    @JoinColumn(name="ID_UNIDAD")
+    private Unidad unidad;
+    
     public void setIdInsumo(Long idInsumo) {
         this.idInsumo = idInsumo;
     }
@@ -66,6 +72,14 @@ public class Insumo implements Serializable{
 
     public String getNombre() {
         return nombre;
+    }
+
+    public Unidad getUnidad() {
+        return unidad;
+    }
+
+    public void setUnidad(Unidad unidad) {
+        this.unidad = unidad;
     }
 
     
