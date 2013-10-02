@@ -4,14 +4,15 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
-    <ui:composition template="/template.xhtml"> 
+    <ui:composition template="/templatecrud.xhtml"> 
     
          <ui:define name="title">
            
         </ui:define>
        
-       <ui:define name="body">
-           <h:form>  
+       <ui:define name="Left">
+           <h:form>
+               <p:commandButton value="Agregar"></p:commandButton>
                <p:dataTable var="insumo" value="#{insumoControlador.lstInsumos}">  
                     <p:column headerText="CODIGO">  
                         <h:outputText value="#{insumo.codigo}" />  
@@ -34,7 +35,15 @@
             </h:form> 
            
        </ui:define>
-       
+       <ui:define name="Right">
+           <h:panelGrid columns="2" >  
+               <h:form>
+               <p:commandButton value="Salvar"></p:commandButton>
+            <p:commandButton value="Cancelar"></p:commandButton>
+            </h:form>
+           </h:panelGrid> 
+           
+       </ui:define>
    </ui:composition>
 </html>
 
