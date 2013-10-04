@@ -10,7 +10,9 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import sistema.modelos.server.entidades.empresa.Insumo;
+import sistema.modelos.server.entidades.empresa.Unidad;
 import sistema.modelos.server.entidades.empresa.facade.InsumoFacade;
+import sistema.modelos.server.entidades.empresa.facade.UnidadFacade;
 
 /**
  *
@@ -19,10 +21,17 @@ import sistema.modelos.server.entidades.empresa.facade.InsumoFacade;
 @ManagedBean(name = "insumoControlador")
 @SessionScoped
 public class InsumoControlador implements Serializable {
+    
+    
+    @EJB
+    private UnidadFacade unidadFacade;
+    
     @EJB
     private InsumoFacade insumoFacade;
 
-    List<Insumo> lstInsumos;
+    public List<Unidad> listaUnidad;
+    
+    List<Insumo> lstInsumo;
     
     public InsumoControlador() {
         System.out.println("A VER INSTANCIANDOOOWW");
@@ -30,11 +39,19 @@ public class InsumoControlador implements Serializable {
     }
     
     public List<Insumo> getLstInsumos() {
-        System.out.println("Antes del findAll");
-        List<Insumo> lstInsumo = insumoFacade.findAll();
-        System.out.println(lstInsumo.size()+"TAMANOO");
+        lstInsumo = insumoFacade.findAll();
         
         return lstInsumo;
+    }
+    
+    public List<Unidad> getLstUnidad() {
+        listaUnidad = unidadFacade.findAll();
+        
+        return listaUnidad;
+    }
+
+    public List<Unidad> getListaUnidad() {
+        return listaUnidad;
     }
     
     

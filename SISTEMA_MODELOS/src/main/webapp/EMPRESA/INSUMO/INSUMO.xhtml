@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
     <ui:composition template="/templatecrud.xhtml"> 
     
          <ui:define name="title">
@@ -13,7 +14,7 @@
        <ui:define name="Left">
            <h:form>
                <p:commandButton value="Agregar"></p:commandButton>
-               <p:dataTable var="insumo" value="#{insumoControlador.lstInsumos}">  
+               <p:dataTable var="insumo"  selectionMode="single" rowKey="#{insumo.idInsumo}" value="#{insumoControlador.lstInsumos}">  
                     <p:column headerText="CODIGO">  
                         <h:outputText value="#{insumo.codigo}" />  
                     </p:column>  
@@ -29,20 +30,58 @@
                    
                     <p:column headerText="UNIDAD">  
                         <h:outputText value="#{insumo.unidad.nombre}" />  
+                        <p:commandButton id="selectButton" style="height:10px; width:20px;"  icon="ui-icon-update" title="View"></p:commandButton> 
                     </p:column>  
                    
                 </p:dataTable>  
             </h:form> 
            
        </ui:define>
-       <ui:define name="Right">
-           <h:panelGrid columns="2" >  
-               <h:form>
-               <p:commandButton value="Salvar"></p:commandButton>
-            <p:commandButton value="Cancelar"></p:commandButton>
-            </h:form>
+       <ui:define  name="Right">
+           <h:form>
+               <h:panelGrid  columns="2"  cellspacing="15" border="0" width="100%">  
+                
+                <p:row >   
+                    <p:column ><p:commandButton  value="Salvar"></p:commandButton></p:column>
+                </p:row>
+                <p:row>   
+                    <p:column ><p:commandButton value="Cancelar"></p:commandButton></p:column>
+                </p:row>
+                   
+                <p:row>   
+                    <p:column><h:outputLabel value="Código : *" for="txt_codigo"></h:outputLabel></p:column>  
+                </p:row> 
+                <p:row> 
+                    <p:column><p:inputText size="30"></p:inputText></p:column>
+                </p:row>
+                
+                <p:row>   
+                    <p:column><h:outputLabel value="Nombre : *" for="txt_nombre"></h:outputLabel></p:column>  
+                </p:row>
+                <p:row>
+                    <p:column colspan="2"><p:inputText size="30"></p:inputText></p:column>
+                </p:row>
+                
+                   <p:row>    
+                    <p:column><h:outputLabel value="Unidad : *" for="cbo_unidad"></h:outputLabel></p:column>  
+                </p:row>
+                <p:row>     
+                    <p:column colspan="2">
+                        <p:selectOneMenu style="width:160px" value="#{insumoControlador.listaUnidad}">
+                            <f:selectItems value="#{insumoControlador.lstInsumos}" var="insumo" itemValue="#{insumo.codigo}" itemLabel="#{insumo.nombre}" />
+                        </p:selectOneMenu>
+                        
+                    </p:column>
+                </p:row>
+                
+                <p:row>    
+                   <p:column><h:outputLabel value="Descripción : *" for="txt_descripcion"></h:outputLabel></p:column>
+                </p:row>
+                <p:row>
+                   <p:column colspan="2"><p:inputTextarea rows="8" cols="50" ></p:inputTextarea></p:column>
+                </p:row>
            </h:panelGrid> 
-           
+           </h:form>
        </ui:define>
    </ui:composition>
 </html>
