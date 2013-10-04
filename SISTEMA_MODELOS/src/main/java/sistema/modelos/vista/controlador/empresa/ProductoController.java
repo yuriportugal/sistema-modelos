@@ -1,10 +1,10 @@
-package sistema.view.managedbean;
+package sistema.modelos.vista.controlador.empresa;
 
 import java.io.IOException;
-import sistema.server.entity.producto.Producto;
+import sistema.modelos.server.entidades.empresa.Producto;
 import sistema.view.managedbean.util.JsfUtil;
 import sistema.view.managedbean.util.PaginationHelper;
-import sistema.view.sessionbean.ProductoFacade;
+import sistema.modelos.server.entidades.empresa.facade.ProductoFacade;
 
 import java.io.Serializable;
 import java.util.ResourceBundle;
@@ -26,7 +26,7 @@ public class ProductoController implements Serializable {
     private Producto current;
     private DataModel items = null;
     @EJB
-    private sistema.view.sessionbean.ProductoFacade ejbFacade;
+    private sistema.modelos.server.entidades.empresa.facade.ProductoFacade ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
 
