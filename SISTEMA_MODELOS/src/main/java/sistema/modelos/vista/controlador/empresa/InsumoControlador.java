@@ -9,6 +9,7 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import org.primefaces.context.RequestContext;
 import sistema.modelos.server.entidades.empresa.Insumo;
 import sistema.modelos.server.entidades.empresa.Unidad;
 import sistema.modelos.server.entidades.empresa.facade.InsumoFacade;
@@ -33,6 +34,8 @@ public class InsumoControlador implements Serializable {
     
     List<Insumo> lstInsumo;
     
+    public Insumo currentInsumo;
+    
     public InsumoControlador() {
         System.out.println("A VER INSTANCIANDOOOWW");
       
@@ -46,7 +49,7 @@ public class InsumoControlador implements Serializable {
     
     public List<Unidad> getLstUnidad() {
         listaUnidad = unidadFacade.findAll();
-        
+        System.out.print("tamano:::"+listaUnidad.size());
         return listaUnidad;
     }
 
@@ -54,6 +57,25 @@ public class InsumoControlador implements Serializable {
         return listaUnidad;
     }
     
+    public Insumo getInsumo(){
+        if (currentInsumo == null){
+            currentInsumo = new Insumo();
+        }
+        return currentInsumo;
+    }
     
-    
+    public void persist(){
+        System.out.println(currentInsumo.getNombre());
+        insumoFacade.create(currentInsumo);
+      
+        RequestContext context = RequestContext.getCurrentInstance();  
+
+        lstInsumo = getLstInsumos();
+        
+        context.update("miform:tablaInsumo");
+        context.scrollTo("miform:tablaInsumo");
+       System.out.println("RENDERIZA PLISS T.,T"+lstInsumo.size());
+        currentInsumo = new Insumo();
+    }
+
 }

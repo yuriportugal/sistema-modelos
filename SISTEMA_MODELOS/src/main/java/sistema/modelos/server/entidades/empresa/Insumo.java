@@ -12,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 /**
@@ -22,10 +23,9 @@ import javax.persistence.Table;
 @Table(name = "INSUMO")
 public class Insumo implements Serializable{
    
-    private static final long serialVersionUID = 1L;
-    
     @Id
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="INSUMO_ID_INSUMO_SEQ")
+    @SequenceGenerator(name = "INSUMO_ID_INSUMO_SEQ", sequenceName = "INSUMO_ID_INSUMO_SEQ",allocationSize = 1)
     @Column(name="ID_INSUMO")
     private Long idInsumo;
     
@@ -47,6 +47,10 @@ public class Insumo implements Serializable{
     }
 
     public Long getIdInsumo() {
+        
+        if (idInsumo == null)
+            idInsumo = -1L;
+        
         return idInsumo;
     }
 
@@ -75,6 +79,9 @@ public class Insumo implements Serializable{
     }
 
     public Unidad getUnidad() {
+        
+        if (unidad == null)
+            unidad = new Unidad();
         return unidad;
     }
 

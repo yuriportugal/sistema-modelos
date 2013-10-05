@@ -22,7 +22,7 @@ public class Unidad implements Serializable{
     
     @Id
     @Column(name="ID_UNIDAD")
-    private Long idInsumo;
+    private Long idUnidad;
     
     @Column(name = "NOMBRE")
     private String nombre;
@@ -30,12 +30,15 @@ public class Unidad implements Serializable{
     @Column(name = "NOMBRE_ABREV")
     private String nombreAbrev;
 
-    public Long getIdInsumo() {
-        return idInsumo;
+    public Long getIdUnidad() {
+       if (idUnidad == null){
+           idUnidad = -1L;
+       } 
+        return idUnidad;
     }
 
-    public void setIdInsumo(Long idInsumo) {
-        this.idInsumo = idInsumo;
+    public void setIdUnidad(Long idUnidad) {
+        this.idUnidad = idUnidad;
     }
 
     public String getNombre() {

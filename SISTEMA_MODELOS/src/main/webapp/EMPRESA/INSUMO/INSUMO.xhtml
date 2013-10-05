@@ -6,15 +6,15 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://java.sun.com/jsf/core">
     <ui:composition template="/templatecrud.xhtml"> 
-    
+     
          <ui:define name="title">
            
         </ui:define>
        
        <ui:define name="Left">
-           <h:form>
+           <h:form id="miform">
                <p:commandButton value="Agregar"></p:commandButton>
-               <p:dataTable var="insumo"  selectionMode="single" rowKey="#{insumo.idInsumo}" value="#{insumoControlador.lstInsumos}">  
+               <p:dataTable rendered="true" id="tablaInsumo" var="insumo"  selectionMode="single" rowKey="#{insumo.idInsumo}" value="#{insumoControlador.lstInsumos}">  
                     <p:column headerText="CODIGO">  
                         <h:outputText value="#{insumo.codigo}" />  
                     </p:column>  
@@ -34,32 +34,32 @@
                     </p:column>  
                    
                 </p:dataTable>  
-            </h:form> 
-           
+            </h:form>
        </ui:define>
+        
        <ui:define  name="Right">
-           <h:form>
+           <h:form id="cruForm">
                <h:panelGrid  columns="2"  cellspacing="15" border="0" width="100%">  
                 
                 <p:row >   
-                    <p:column ><p:commandButton  value="Salvar"></p:commandButton></p:column>
+                    <p:column ><p:commandButton action="#{insumoControlador.persist()}" value="Salvar"></p:commandButton></p:column>
                 </p:row>
                 <p:row>   
                     <p:column ><p:commandButton value="Cancelar"></p:commandButton></p:column>
                 </p:row>
                    
                 <p:row>   
-                    <p:column><h:outputLabel value="Código : *" for="txt_codigo"></h:outputLabel></p:column>  
+                    <p:column><h:outputLabel  value="Código : *" for="txt_codigo"></h:outputLabel></p:column>  
                 </p:row> 
                 <p:row> 
-                    <p:column><p:inputText size="30"></p:inputText></p:column>
+                    <p:column><p:inputText value="#{insumoControlador.insumo.codigo}" size="30" ></p:inputText></p:column>
                 </p:row>
                 
                 <p:row>   
                     <p:column><h:outputLabel value="Nombre : *" for="txt_nombre"></h:outputLabel></p:column>  
                 </p:row>
                 <p:row>
-                    <p:column colspan="2"><p:inputText size="30"></p:inputText></p:column>
+                    <p:column colspan="2"><p:inputText value="#{insumoControlador.insumo.nombre}" size="30"></p:inputText></p:column>
                 </p:row>
                 
                    <p:row>    
@@ -67,8 +67,8 @@
                 </p:row>
                 <p:row>     
                     <p:column colspan="2">
-                        <p:selectOneMenu style="width:160px" value="#{insumoControlador.listaUnidad}">
-                            <f:selectItems value="#{insumoControlador.lstInsumos}" var="insumo" itemValue="#{insumo.codigo}" itemLabel="#{insumo.nombre}" />
+                        <p:selectOneMenu style="width:160px" value="#{insumoControlador.insumo.unidad.idUnidad}">
+                            <f:selectItems value="#{insumoControlador.lstUnidad}" var="unidad" itemValue="#{unidad.idUnidad}" itemLabel="#{unidad.nombre}" />
                         </p:selectOneMenu>
                         
                     </p:column>
@@ -78,11 +78,12 @@
                    <p:column><h:outputLabel value="Descripción : *" for="txt_descripcion"></h:outputLabel></p:column>
                 </p:row>
                 <p:row>
-                   <p:column colspan="2"><p:inputTextarea rows="8" cols="50" ></p:inputTextarea></p:column>
+                    <p:column colspan="2"><p:inputTextarea value="#{insumoControlador.insumo.descripcion}" rows="8" cols="50" ></p:inputTextarea></p:column>
                 </p:row>
            </h:panelGrid> 
-           </h:form>
+         </h:form>
        </ui:define>
-   </ui:composition>
+   
+    </ui:composition>
 </html>
 
