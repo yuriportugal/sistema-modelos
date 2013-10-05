@@ -104,9 +104,9 @@ public class Producto implements Serializable {
         return true;
     }
 
-    @Override
-    public String toString() {
-        return "sistema.server.entity.producto.Producto[ idproducto=" + idproducto + " ]";
-    }
+ //   @Override
+ //   public String toString() {
+ //       return "sistema.server.entity.producto.Producto[ idproducto=" + idproducto + " ]";
+   // }
     
 }
