@@ -9,7 +9,10 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
+import javax.faces.event.ActionEvent;
 import org.primefaces.context.RequestContext;
+import org.primefaces.event.RowEditEvent;
 import sistema.modelos.server.entidades.empresa.Insumo;
 import sistema.modelos.server.entidades.empresa.Unidad;
 import sistema.modelos.server.entidades.empresa.facade.InsumoFacade;
@@ -31,7 +34,7 @@ public class InsumoControlador implements Serializable {
     private InsumoFacade insumoFacade;
 
     public List<Unidad> listaUnidad;
-    
+    Long idInsumo;
     List<Insumo> lstInsumo;
     
     public Insumo currentInsumo;
@@ -39,6 +42,14 @@ public class InsumoControlador implements Serializable {
     public InsumoControlador() {
         System.out.println("A VER INSTANCIANDOOOWW");
       
+    }
+
+    public Insumo getCurrentInsumo() {
+        return currentInsumo;
+    }
+
+    public void setCurrentInsumo(Insumo currentInsumo) {
+        this.currentInsumo = currentInsumo;
     }
     
     public List<Insumo> getLstInsumos() {
@@ -66,16 +77,46 @@ public class InsumoControlador implements Serializable {
     
     public void persist(){
         System.out.println(currentInsumo.getNombre());
-        insumoFacade.create(currentInsumo);
-      
+        if (currentInsumo.getIdInsumo() == null) {
+            insumoFacade.create(currentInsumo);
+        }
+        else {
+            insumoFacade.edit(currentInsumo);
+        }
         RequestContext context = RequestContext.getCurrentInstance();  
 
         lstInsumo = getLstInsumos();
-        
-        context.update("miform:tablaInsumo");
-        context.scrollTo("miform:tablaInsumo");
-       System.out.println("RENDERIZA PLISS T.,T"+lstInsumo.size());
         currentInsumo = new Insumo();
+        context.update("miform:tablaInsumo");
+        context.update("cruForm:panelcrud");
+        
+    } 
+    
+    public void getEditarInsumo(){
+        System.out.println("ID:::xx "+idInsumo);
+        currentInsumo = insumoFacade.find(idInsumo);
+        RequestContext context = RequestContext.getCurrentInstance();  
+        context.update("cruForm:panelcrud");
+        
     }
 
+    public void setIdInsumo(Long idInsumo) {
+        this.idInsumo = idInsumo;
+    }
+
+    public Long getIdInsumo() {
+        return idInsumo;
+    }
+    
+    public void editar(){
+        currentInsumo = insumoFacade.find(currentInsumo.getIdInsumo());
+        RequestContext context = RequestContext.getCurrentInstance();  
+        context.update("cruForm:panelcrud");
+        
+    }
+    
+   
+    
+
+    
 }
