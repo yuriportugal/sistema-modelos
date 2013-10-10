@@ -4,7 +4,7 @@ import java.io.IOException;
 import sistema.modelos.server.entidades.empresa.Producto;
 import sistema.view.managedbean.util.JsfUtil;
 import sistema.view.managedbean.util.PaginationHelper;
-import sistema.modelos.server.entidades.empresa.facade.ProductoFacade;
+import sistema.modelos.server.facade.empresa.ProductoFacade;
 
 import java.io.Serializable;
 import java.util.ResourceBundle;
@@ -22,11 +22,16 @@ import javax.faces.model.SelectItem;
 @ManagedBean(name = "productoController")
 @SessionScoped
 public class ProductoController implements Serializable {
+    
+    
+    @EJB
+    private ProductoFacade ejbFacade;
 
     private Producto current;
     private DataModel items = null;
-    @EJB
-    private sistema.modelos.server.entidades.empresa.facade.ProductoFacade ejbFacade;
+    
+    
+    
     private PaginationHelper pagination;
     private int selectedItemIndex;
 

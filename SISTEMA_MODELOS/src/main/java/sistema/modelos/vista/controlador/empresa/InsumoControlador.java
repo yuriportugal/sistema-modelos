@@ -15,8 +15,8 @@ import org.primefaces.context.RequestContext;
 import org.primefaces.event.RowEditEvent;
 import sistema.modelos.server.entidades.empresa.Insumo;
 import sistema.modelos.server.entidades.empresa.Unidad;
-import sistema.modelos.server.entidades.empresa.facade.InsumoFacade;
-import sistema.modelos.server.entidades.empresa.facade.UnidadFacade;
+import sistema.modelos.server.facade.empresa.InsumoFacade;
+import sistema.modelos.server.facade.empresa.UnidadFacade;
 
 /**
  *
@@ -25,14 +25,13 @@ import sistema.modelos.server.entidades.empresa.facade.UnidadFacade;
 @ManagedBean(name = "insumoControlador")
 @SessionScoped
 public class InsumoControlador implements Serializable {
-    
-    
     @EJB
     private UnidadFacade unidadFacade;
-    
     @EJB
     private InsumoFacade insumoFacade;
-
+    
+    
+    
     public List<Unidad> listaUnidad;
     Long idInsumo;
     List<Insumo> lstInsumo;
