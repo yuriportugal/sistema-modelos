@@ -5,10 +5,11 @@
 package sistema.modelos.server.entidades.empresa;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -23,48 +24,40 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Entity
 @Table(name = "PRODUCTO")
-@XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "Producto.findAll", query = "SELECT p FROM Producto p"),
-    @NamedQuery(name = "Producto.findByIdproducto", query = "SELECT p FROM Producto p WHERE p.idproducto = :idproducto"),
-    @NamedQuery(name = "Producto.findByDescripcion", query = "SELECT p FROM Producto p WHERE p.descripcion = :descripcion"),
-    @NamedQuery(name = "Producto.findByPrecio", query = "SELECT p FROM Producto p WHERE p.precio = :precio")})
 public class Producto implements Serializable {
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
-    @Basic(optional = false)
-    @NotNull
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="PRODUCTO_ID_PRODUCTO_SEQ")
     @Column(name = "IDPRODUCTO")
-    private BigDecimal idproducto;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 20)
+    private Long idproducto;
+    
     @Column(name = "DESCRIPCION")
     private String descripcion;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "PRECIO")
-    private long precio;
+    
+    @Column(name = "CODIGO")
+    private String codigo;
+  
+    @Column(name = "NOMBRE")
+    private String nombre;
+      
+//    public Producto() {
+//    }
+//
+//    public Producto(Long idproducto) {
+//        this.idproducto = idproducto;
+//    }
 
-    public Producto() {
-    }
+//    public Producto(Long idproducto, String descripcion, long precio) {
+//        this.idproducto = idproducto;
+//        this.descripcion = descripcion;
+//    }
 
-    public Producto(BigDecimal idproducto) {
-        this.idproducto = idproducto;
-    }
-
-    public Producto(BigDecimal idproducto, String descripcion, long precio) {
-        this.idproducto = idproducto;
-        this.descripcion = descripcion;
-        this.precio = precio;
-    }
-
-    public BigDecimal getIdproducto() {
+    public Long getIdproducto() {
         return idproducto;
     }
 
-    public void setIdproducto(BigDecimal idproducto) {
+    public void setIdproducto(Long idproducto) {
         this.idproducto = idproducto;
     }
 
@@ -76,14 +69,24 @@ public class Producto implements Serializable {
         this.descripcion = descripcion;
     }
 
-    public long getPrecio() {
-        return precio;
+    public String getCodigo() {
+        return codigo;
     }
 
-    public void setPrecio(long precio) {
-        this.precio = precio;
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
     }
 
+    public String getNOMBRE() {
+        return nombre;
+    }
+
+    public void setNOMBRE(String nombre) {
+        this.nombre = nombre;
+    }
+
+    
+    
     @Override
     public int hashCode() {
         int hash = 0;
@@ -104,9 +107,5 @@ public class Producto implements Serializable {
         return true;
     }
 
- //   @Override
- //   public String toString() {
- //       return "sistema.server.entity.producto.Producto[ idproducto=" + idproducto + " ]";
-   // }
-    
+   
 }
