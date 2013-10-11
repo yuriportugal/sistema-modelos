@@ -23,11 +23,7 @@ public class RedirectionerController {
         return "/EMPRESA/INSUMO/INSUMO";
     }
     
-    public String Listarproducto(){
-        return "/producto/List";
-    }
-    
-    public String crearProducto(){
-        return "/producto/Create";
+    public String producto(){
+        return "/EMPRESA/PRODUCTO/PRODUCTO";
     }
 }
