@@ -25,15 +25,10 @@
                         <h:outputText value="#{insumo.nombre}" />  
                     </p:column>  
 
-                    <p:column headerText="DESCRIPCION" style="width:10%">  
+                    <p:column headerText="DESCR2IPCION" style="width:10%">  
                         <h:outputText value="#{insumo.descripcion}" />  
                     </p:column>  
                     
-                   
-                    <p:column headerText="UNIDAD" style="width:4%">  
-                        <h:outputText value="#{insumo.unidad.nombre}" />  
-                        
-                    </p:column>  
                     <p:column style="width:6%">  
                         <p:commandButton action="#{insumoControlador.editar()}" value="Salvar">
                             <f:setPropertyActionListener value="#{insumo}" target="#{insumoControlador.currentInsumo}" />  
@@ -67,18 +62,6 @@
                 </p:row>
                 <p:row>
                     <p:column colspan="2"><p:inputText value="#{insumoControlador.insumo.nombre}" size="30"></p:inputText></p:column>
-                </p:row>
-                
-                   <p:row>    
-                    <p:column><h:outputLabel value="Unidad : *" for="cbo_unidad"></h:outputLabel></p:column>  
-                </p:row>
-                <p:row>     
-                    <p:column colspan="2">
-                        <p:selectOneMenu style="width:160px" value="#{insumoControlador.insumo.unidad.idUnidad}">
-                            <f:selectItems value="#{insumoControlador.lstUnidad}" var="unidad" itemValue="#{unidad.idUnidad}" itemLabel="#{unidad.nombre}" />
-                        </p:selectOneMenu>
-                        
-                    </p:column>
                 </p:row>
                 
                 <p:row>    

@@ -14,6 +14,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.validation.constraints.Null;
 
 /**
  *
@@ -24,8 +25,8 @@ import javax.persistence.Table;
 public class Insumo implements Serializable{
    
     @Id
-    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="INSUMO_ID_INSUMO_SEQ")
-    @SequenceGenerator(name = "INSUMO_ID_INSUMO_SEQ", sequenceName = "INSUMO_ID_INSUMO_SEQ",allocationSize = 1)
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="INSUMO_SEQ")
+    @SequenceGenerator(name = "INSUMO_SEQ", sequenceName = "INSUMO_SEQ",allocationSize = 1)
     @Column(name="ID_INSUMO")
     private Long idInsumo;
     
@@ -39,18 +40,15 @@ public class Insumo implements Serializable{
     private String codigo;
 
     @ManyToOne
-    @JoinColumn(name="ID_UNIDAD")
-    private Unidad unidad;
+    @Null
+    @JoinColumn(name="ID_EMPRESA")
+    private Empresa empresa;
     
     public void setIdInsumo(Long idInsumo) {
         this.idInsumo = idInsumo;
     }
 
     public Long getIdInsumo() {
-        
-        if (idInsumo == null)
-            idInsumo = -1L;
-        
         return idInsumo;
     }
 
@@ -78,18 +76,18 @@ public class Insumo implements Serializable{
         return nombre;
     }
 
-    public Unidad getUnidad() {
+    public Empresa getEmpresa() {
         
-        if (unidad == null)
-            unidad = new Unidad();
-        return unidad;
+        if (empresa == null){
+            empresa = new Empresa();
+        }
+        
+        return empresa;
     }
 
-    public void setUnidad(Unidad unidad) {
-        this.unidad = unidad;
+    public void setEmpresa(Empresa empresa) {
+        this.empresa = empresa;
     }
-
     
-    
-    
+   
 }

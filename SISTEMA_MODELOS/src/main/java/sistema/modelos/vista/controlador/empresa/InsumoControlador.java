@@ -9,14 +9,9 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.faces.context.FacesContext;
-import javax.faces.event.ActionEvent;
 import org.primefaces.context.RequestContext;
-import org.primefaces.event.RowEditEvent;
 import sistema.modelos.server.entidades.empresa.Insumo;
-import sistema.modelos.server.entidades.empresa.Unidad;
 import sistema.modelos.server.facade.empresa.InsumoFacade;
-import sistema.modelos.server.facade.empresa.UnidadFacade;
 
 /**
  *
@@ -26,13 +21,8 @@ import sistema.modelos.server.facade.empresa.UnidadFacade;
 @SessionScoped
 public class InsumoControlador implements Serializable {
     @EJB
-    private UnidadFacade unidadFacade;
-    @EJB
     private InsumoFacade insumoFacade;
     
-    
-    
-    public List<Unidad> listaUnidad;
     Long idInsumo;
     List<Insumo> lstInsumo;
     
@@ -57,16 +47,6 @@ public class InsumoControlador implements Serializable {
         return lstInsumo;
     }
     
-    public List<Unidad> getLstUnidad() {
-        listaUnidad = unidadFacade.findAll();
-        System.out.print("tamano:::"+listaUnidad.size());
-        return listaUnidad;
-    }
-
-    public List<Unidad> getListaUnidad() {
-        return listaUnidad;
-    }
-    
     public Insumo getInsumo(){
         if (currentInsumo == null){
             currentInsumo = new Insumo();
@@ -76,7 +56,7 @@ public class InsumoControlador implements Serializable {
     
     public void persist(){
         System.out.println(currentInsumo.getNombre());
-        if (currentInsumo.getIdInsumo() == null) {
+        if (currentInsumo.getIdInsumo().equals(-1L)) {
             insumoFacade.create(currentInsumo);
         }
         else {
@@ -113,9 +93,4 @@ public class InsumoControlador implements Serializable {
         context.update("cruForm:panelcrud");
         
     }
-    
-   
-    
-
-    
 }
