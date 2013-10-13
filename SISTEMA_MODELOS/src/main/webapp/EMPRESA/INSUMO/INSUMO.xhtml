@@ -13,10 +13,9 @@
        
        <ui:define name="Left">
            <h:form id="miform">
-               <p:commandButton value="Agregar"></p:commandButton>
+               <p:commandButton value="Agregar" action="#{insumoControlador.agregar()}"></p:commandButton>
                <p:dataTable rendered="true"  id="tablaInsumo" var="insumo"  selectionMode="single" rowKey="#{insumo.idInsumo}" value="#{insumoControlador.lstInsumos}">  
-                   <p:ajax event="rowEdit" listener="#{insumoControlador.onEdit}"  />  
-        
+                   
                    <p:column headerText="CODIGO" style="width:10%">  
                         <h:outputText value="#{insumo.codigo}" />  
                     </p:column>  
@@ -30,11 +29,17 @@
                     </p:column>  
                     
                     <p:column style="width:6%">  
-                        <p:commandButton action="#{insumoControlador.editar()}" value="Salvar">
+                        <p:commandButton icon="ui-icon-pencil" action="#{insumoControlador.editar()}" >
                             <f:setPropertyActionListener value="#{insumo}" target="#{insumoControlador.currentInsumo}" />  
                         </p:commandButton>
                     </p:column>  
-                     
+                    
+                   <p:column style="width:6%">  
+                        <p:commandButton icon="ui-icon-close" action="#{insumoControlador.eliminar()}" >
+                            <f:setPropertyActionListener value="#{insumo}" target="#{insumoControlador.currentInsumo}" />  
+                        </p:commandButton>
+                    </p:column>  
+                   
                 </p:dataTable>  
             </h:form>
        </ui:define>

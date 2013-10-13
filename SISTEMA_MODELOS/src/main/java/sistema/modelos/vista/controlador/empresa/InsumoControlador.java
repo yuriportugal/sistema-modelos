@@ -29,7 +29,7 @@ public class InsumoControlador implements Serializable {
     public Insumo currentInsumo;
     
     public InsumoControlador() {
-        System.out.println("A VER INSTANCIANDOOOWW");
+        
       
     }
 
@@ -56,7 +56,7 @@ public class InsumoControlador implements Serializable {
     
     public void persist(){
         System.out.println(currentInsumo.getNombre());
-        if (currentInsumo.getIdInsumo().equals(-1L)) {
+        if (currentInsumo.getIdInsumo()==null) {
             insumoFacade.create(currentInsumo);
         }
         else {
@@ -87,10 +87,26 @@ public class InsumoControlador implements Serializable {
         return idInsumo;
     }
     
+    public void agregar(){
+        currentInsumo = new Insumo();
+        RequestContext context = RequestContext.getCurrentInstance();  
+        context.update("miform:tablaInsumo");
+        context.update("cruForm:panelcrud");
+    }
+    
     public void editar(){
         currentInsumo = insumoFacade.find(currentInsumo.getIdInsumo());
         RequestContext context = RequestContext.getCurrentInstance();  
+        context.update("miform:tablaInsumo");
         context.update("cruForm:panelcrud");
         
+    }
+    
+    public void eliminar(){
+        insumoFacade.remove(currentInsumo);
+        RequestContext context = RequestContext.getCurrentInstance();  
+        context.update("miform:tablaInsumo");
+        context.update("cruForm:panelcrud");
+        agregar();
     }
 }
