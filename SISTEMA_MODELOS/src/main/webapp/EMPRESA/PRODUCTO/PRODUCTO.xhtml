@@ -6,34 +6,37 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://java.sun.com/jsf/core">
     <ui:composition template="/templatecrud.xhtml"> 
-     
-              
-        
+             
         <ui:define name="title"></ui:define>
        
        <ui:define name="Left">
            <h:form id="miform">
-               <p:commandButton value="Agregar"></p:commandButton>
-               <p:dataTable rendered="true"  id="tablaInsumo" var="insumo"  selectionMode="single" rowKey="#{insumo.idInsumo}" value="#{insumoControlador.lstInsumos}">  
-                   <p:ajax event="rowEdit" listener="#{insumoControlador.onEdit}"  />  
-        
+               <p:commandButton value="Agregar" action="#{productoControlador.agregar()}"></p:commandButton>
+               <p:dataTable rendered="true"  id="tablaProducto" var="producto"  selectionMode="single" rowKey="#{producto.idproducto}" value="#{productoControlador.lstProductos}">  
+                   
                    <p:column headerText="CODIGO" style="width:10%">  
-                        <h:outputText value="#{insumo.codigo}" />  
+                        <h:outputText value="#{producto.codigo}" />  
                     </p:column>  
 
                     <p:column headerText="NOMBRE" style="width:10%">  
-                        <h:outputText value="#{insumo.nombre}" />  
+                        <h:outputText value="#{producto.nombre}" />  
                     </p:column>  
 
-                    <p:column headerText="DESCR2IPCION" style="width:10%">  
-                        <h:outputText value="#{insumo.descripcion}" />  
+                    <p:column headerText="DESCRIPCION" style="width:10%">  
+                        <h:outputText value="#{producto.descripcion}" />  
                     </p:column>  
                     
-                    <p:column style="width:6%">  
-                        <p:commandButton action="#{insumoControlador.editar()}" value="Salvar">
-                            <f:setPropertyActionListener value="#{insumo}" target="#{insumoControlador.currentInsumo}" />  
+                   <p:column style="width:6%">  
+                       <p:commandButton icon="ui-icon-pencil" action="#{productoControlador.editar()}" >
+                            <f:setPropertyActionListener value="#{producto}" target="#{productoControlador.currentProducto}" />  
                         </p:commandButton>
                     </p:column>  
+                    
+                   <p:column style="width:6%">  
+                        <p:commandButton icon="ui-icon-close" action="#{productoControlador.eliminar()}" >
+                            <f:setPropertyActionListener value="#{producto}" target="#{productoControlador.currentProducto}" />  
+                        </p:commandButton>
+                    </p:column>          
                      
                 </p:dataTable>  
             </h:form>
@@ -44,7 +47,7 @@
                <h:panelGrid id="panelcrud" columns="2"  cellspacing="15" border="0" width="100%">  
                 
                 <p:row >   
-                    <p:column ><p:commandButton action="#{insumoControlador.persist()}" value="Salvar"></p:commandButton></p:column>
+                    <p:column ><p:commandButton action="#{productoControlador.persist()}" value="Salvar"></p:commandButton></p:column>
                 </p:row>
                 <p:row>   
                     <p:column ><p:commandButton value="Cancelar"></p:commandButton></p:column>
@@ -54,21 +57,21 @@
                     <p:column><h:outputLabel  value="Código : *" for="txt_codigo"></h:outputLabel></p:column>  
                 </p:row> 
                 <p:row> 
-                    <p:column><p:inputText value="#{insumoControlador.insumo.codigo}" size="30" ></p:inputText></p:column>
+                    <p:column><p:inputText value="#{productoControlador.producto.codigo}" size="30" ></p:inputText></p:column>
                 </p:row>
                 
                 <p:row>   
                     <p:column><h:outputLabel value="Nombre : *" for="txt_nombre"></h:outputLabel></p:column>  
                 </p:row>
                 <p:row>
-                    <p:column colspan="2"><p:inputText value="#{insumoControlador.insumo.nombre}" size="30"></p:inputText></p:column>
+                    <p:column colspan="2"><p:inputText value="#{productoControlador.producto.nombre}" size="30"></p:inputText></p:column>
                 </p:row>
                 
                 <p:row>    
                    <p:column><h:outputLabel value="Descripción : *" for="txt_descripcion"></h:outputLabel></p:column>
                 </p:row>
                 <p:row>
-                    <p:column colspan="2"><p:inputTextarea value="#{insumoControlador.insumo.descripcion}" rows="8" cols="50" ></p:inputTextarea></p:column>
+                    <p:column colspan="2"><p:inputTextarea value="#{productoControlador.producto.descripcion}" rows="8" cols="50" ></p:inputTextarea></p:column>
                 </p:row>
                      
            </h:panelGrid> 
