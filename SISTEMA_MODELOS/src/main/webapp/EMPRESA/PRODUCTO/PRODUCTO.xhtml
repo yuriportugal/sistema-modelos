@@ -1,0 +1,80 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <ui:composition template="/templatecrud.xhtml"> 
+     
+              
+        
+        <ui:define name="title"></ui:define>
+       
+       <ui:define name="Left">
+           <h:form id="miform">
+               <p:commandButton value="Agregar"></p:commandButton>
+               <p:dataTable rendered="true"  id="tablaInsumo" var="insumo"  selectionMode="single" rowKey="#{insumo.idInsumo}" value="#{insumoControlador.lstInsumos}">  
+                   <p:ajax event="rowEdit" listener="#{insumoControlador.onEdit}"  />  
+        
+                   <p:column headerText="CODIGO" style="width:10%">  
+                        <h:outputText value="#{insumo.codigo}" />  
+                    </p:column>  
+
+                    <p:column headerText="NOMBRE" style="width:10%">  
+                        <h:outputText value="#{insumo.nombre}" />  
+                    </p:column>  
+
+                    <p:column headerText="DESCR2IPCION" style="width:10%">  
+                        <h:outputText value="#{insumo.descripcion}" />  
+                    </p:column>  
+                    
+                    <p:column style="width:6%">  
+                        <p:commandButton action="#{insumoControlador.editar()}" value="Salvar">
+                            <f:setPropertyActionListener value="#{insumo}" target="#{insumoControlador.currentInsumo}" />  
+                        </p:commandButton>
+                    </p:column>  
+                     
+                </p:dataTable>  
+            </h:form>
+       </ui:define>
+        
+       <ui:define  name="Right">
+           <h:form id="cruForm">
+               <h:panelGrid id="panelcrud" columns="2"  cellspacing="15" border="0" width="100%">  
+                
+                <p:row >   
+                    <p:column ><p:commandButton action="#{insumoControlador.persist()}" value="Salvar"></p:commandButton></p:column>
+                </p:row>
+                <p:row>   
+                    <p:column ><p:commandButton value="Cancelar"></p:commandButton></p:column>
+                </p:row>
+                   
+                <p:row>   
+                    <p:column><h:outputLabel  value="Código : *" for="txt_codigo"></h:outputLabel></p:column>  
+                </p:row> 
+                <p:row> 
+                    <p:column><p:inputText value="#{insumoControlador.insumo.codigo}" size="30" ></p:inputText></p:column>
+                </p:row>
+                
+                <p:row>   
+                    <p:column><h:outputLabel value="Nombre : *" for="txt_nombre"></h:outputLabel></p:column>  
+                </p:row>
+                <p:row>
+                    <p:column colspan="2"><p:inputText value="#{insumoControlador.insumo.nombre}" size="30"></p:inputText></p:column>
+                </p:row>
+                
+                <p:row>    
+                   <p:column><h:outputLabel value="Descripción : *" for="txt_descripcion"></h:outputLabel></p:column>
+                </p:row>
+                <p:row>
+                    <p:column colspan="2"><p:inputTextarea value="#{insumoControlador.insumo.descripcion}" rows="8" cols="50" ></p:inputTextarea></p:column>
+                </p:row>
+                     
+           </h:panelGrid> 
+         </h:form>
+       </ui:define>
+   
+    </ui:composition>
+</html>
+
