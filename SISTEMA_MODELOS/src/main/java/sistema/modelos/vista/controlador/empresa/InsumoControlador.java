@@ -72,11 +72,10 @@ public class InsumoControlador implements Serializable {
         currentInsumo = new Insumo();
         context.update("miform:tablaInsumo");
         context.update("cruForm:panelcrud");
+             
         
-          FacesContext fcontext = FacesContext.getCurrentInstance();  
-                  
-        fcontext.addMessage(null, new FacesMessage("Successful",  "Insumo "+(isEdit?"editado":"grabado")+" correctamente"));  
-        
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Insumo grabado correctamente",""));  
+    
     } 
     
     public void getEditarInsumo(){
@@ -114,8 +113,6 @@ public class InsumoControlador implements Serializable {
     public void eliminar(){
         insumoFacade.remove(currentInsumo);
         agregar();
-        FacesContext fcontext = FacesContext.getCurrentInstance();  
-                  
-        fcontext.addMessage(null, new FacesMessage("Successful", "Eliminado Correctamente "));  
-            }
+             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Insumo eliminado correctamente",""));  
+      }
 }
