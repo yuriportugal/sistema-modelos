@@ -7,8 +7,10 @@ package sistema.modelos.vista.controlador.empresa;
 import java.io.Serializable;
 import java.util.List;
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import org.primefaces.context.RequestContext;
 import sistema.modelos.server.entidades.empresa.Insumo;
 import sistema.modelos.server.facade.empresa.InsumoFacade;
@@ -55,11 +57,13 @@ public class InsumoControlador implements Serializable {
     }
     
     public void persist(){
-        System.out.println(currentInsumo.getNombre());
+        boolean isEdit = false;
         if (currentInsumo.getIdInsumo()==null) {
+            isEdit = false;
             insumoFacade.create(currentInsumo);
         }
         else {
+            isEdit = true;
             insumoFacade.edit(currentInsumo);
         }
         RequestContext context = RequestContext.getCurrentInstance();  
@@ -68,6 +72,10 @@ public class InsumoControlador implements Serializable {
         currentInsumo = new Insumo();
         context.update("miform:tablaInsumo");
         context.update("cruForm:panelcrud");
+        
+          FacesContext fcontext = FacesContext.getCurrentInstance();  
+                  
+        fcontext.addMessage(null, new FacesMessage("Successful",  "Insumo "+(isEdit?"editado":"grabado")+" correctamente"));  
         
     } 
     
@@ -92,6 +100,7 @@ public class InsumoControlador implements Serializable {
         RequestContext context = RequestContext.getCurrentInstance();  
         context.update("miform:tablaInsumo");
         context.update("cruForm:panelcrud");
+    
     }
     
     public void editar(){
@@ -104,9 +113,9 @@ public class InsumoControlador implements Serializable {
     
     public void eliminar(){
         insumoFacade.remove(currentInsumo);
-        RequestContext context = RequestContext.getCurrentInstance();  
-        context.update("miform:tablaInsumo");
-        context.update("cruForm:panelcrud");
         agregar();
-    }
+        FacesContext fcontext = FacesContext.getCurrentInstance();  
+                  
+        fcontext.addMessage(null, new FacesMessage("Successful", "Eliminado Correctamente "));  
+            }
 }

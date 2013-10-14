@@ -55,7 +55,7 @@ public class ProductoControlador implements Serializable {
     
     public void persist(){
         System.out.println(currentProducto.getNombre());
-        if (currentProducto.getIdproducto().equals(-1L)) {
+        if (currentProducto.getIdproducto()==null) {
             productoFacade.create(currentProducto);
         }
         else {
