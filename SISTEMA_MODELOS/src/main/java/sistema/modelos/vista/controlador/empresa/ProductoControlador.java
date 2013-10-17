@@ -7,8 +7,10 @@ package sistema.modelos.vista.controlador.empresa;
 import java.io.Serializable;
 import java.util.List;
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import org.primefaces.context.RequestContext;
 import sistema.modelos.server.entidades.empresa.Insumo;
 import sistema.modelos.server.entidades.empresa.Producto;
@@ -67,7 +69,8 @@ public class ProductoControlador implements Serializable {
         currentProducto = new Producto();
         context.update("miform:tablaProducto");
         context.update("cruForm:panelcrud");
-        
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Producto grabado correctamente",""));  
+
     } 
     
     public void getEditarInsumo(){
@@ -106,9 +109,7 @@ public class ProductoControlador implements Serializable {
     public void eliminar(){
         System.out.println(" ENTRO A ELIMINAR PRODUCTO");
         productoFacade.remove(currentProducto);
-        RequestContext context = RequestContext.getCurrentInstance();  
-        context.update("miform:tablaInsumo");
-        context.update("cruForm:panelcrud");
         agregar();
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Producto eliminado correctamente","")); 
     }
 }

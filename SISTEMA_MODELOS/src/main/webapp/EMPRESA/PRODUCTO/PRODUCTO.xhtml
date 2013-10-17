@@ -44,38 +44,36 @@
         
        <ui:define  name="Right">
            <h:form id="cruForm">
-               <h:panelGrid id="panelcrud" columns="2"  cellspacing="15" border="0" width="100%">  
-                
-                <p:row >   
-                    <p:column ><p:commandButton action="#{productoControlador.persist()}" value="Salvar"></p:commandButton></p:column>
-                </p:row>
-                <p:row>   
-                    <p:column ><p:commandButton value="Cancelar"></p:commandButton></p:column>
-                </p:row>
+             <p:panelGrid  style="width:100%;border:0px;"   id="panelcrud"    >  
+                 <p:row>   
+                     <p:column  colspan="3" style="width:100%" >
+                         <p:messages id="messages"/>
+                     </p:column>
+                 </p:row>
                    
                 <p:row>   
-                    <p:column><h:outputLabel  value="Código : *" for="txt_codigo"></h:outputLabel></p:column>  
-                </p:row> 
-                <p:row> 
-                    <p:column><p:inputText value="#{productoControlador.producto.codigo}" size="30" ></p:inputText></p:column>
+                    <p:column colspan="2" style="width:20%" ><p:commandButton action="#{productoControlador.persist()}" value="Salvar"></p:commandButton></p:column>
+                    <p:column style="width:80%"><p:commandButton value="Cancelar"></p:commandButton></p:column>
                 </p:row>
-                
+                                
                 <p:row>   
-                    <p:column><h:outputLabel value="Nombre : *" for="txt_nombre"></h:outputLabel></p:column>  
+                    <p:column style="width:15%"><h:outputLabel  value="Código : *" for="txt_codigo"></h:outputLabel></p:column>  
+                    <p:column style="width:5%"><p:message for="codigo" display="icon" /></p:column>
+                    <p:column style="width:80%"><p:inputText required="true" id="codigo" value="#{productoControlador.producto.codigo}" size="30" requiredMessage="El campo es obligatorio" ></p:inputText></p:column>
+                </p:row> 
+                <p:row>   
+                    <p:column style="width:15%"><h:outputLabel value="Nombre : *" for="txt_nombre"></h:outputLabel></p:column>  
+                    <p:column style="width:5%"><p:message for="nombre" display="icon" /></p:column>
+                    <p:column style="width:80%"><p:inputText id="nombre" required="true" requiredMessage="El nombre es obligatorio" value="#{productoControlador.producto.nombre}" size="30"></p:inputText></p:column>
                 </p:row>
-                <p:row>
-                    <p:column colspan="2"><p:inputText value="#{productoControlador.producto.nombre}" size="30"></p:inputText></p:column>
-                </p:row>
-                
                 <p:row>    
-                   <p:column><h:outputLabel value="Descripción : *" for="txt_descripcion"></h:outputLabel></p:column>
-                </p:row>
-                <p:row>
-                    <p:column colspan="2"><p:inputTextarea value="#{productoControlador.producto.descripcion}" rows="8" cols="50" ></p:inputTextarea></p:column>
+                   <p:column style="width:15%"><h:outputLabel value="Descripción : *" for="txt_descripcion"></h:outputLabel></p:column>
+                   <p:column style="width:5%"><p:message for="descripcion" display="icon" /></p:column>
+                   <p:column style="width:80%"><p:inputTextarea id="descripcion" required="true" requiredMessage="La descripcion es obligatoria" value="#{productoControlador.producto.descripcion}" rows="8" cols="50" ></p:inputTextarea></p:column>
                 </p:row>
                      
-           </h:panelGrid> 
-         </h:form>
+             </p:panelGrid> 
+          </h:form>
        </ui:define>
    
     </ui:composition>
