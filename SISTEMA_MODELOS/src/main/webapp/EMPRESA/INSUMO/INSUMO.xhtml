@@ -24,7 +24,7 @@
                         <h:outputText value="#{insumo.nombre}" />  
                     </p:column>  
 
-                    <p:column headerText="DESCR2IPCION" style="width:10%">  
+                    <p:column headerText="DESCRIPCION" style="width:10%">  
                         <h:outputText value="#{insumo.descripcion}" />  
                     </p:column>  
                     
@@ -61,7 +61,7 @@
                 <p:row>   
                     <p:column style="width:15%"><h:outputLabel  value="Código : *"></h:outputLabel></p:column>  
                     <p:column style="width:5%"><p:message for="codigo" display="icon" /></p:column>
-                    <p:column style="width:80%"><p:inputText required="true" id="codigo" value="#{insumoControlador.insumo.codigo}" size="30" requiredMessage="El campo es obligatorio" ></p:inputText></p:column>
+                    <p:column style="width:80%"><p:inputText required="true" id="codigo" value="#{insumoControlador.insumo.codigo}" size="30" requiredMessage="El código es obligatorio" ></p:inputText></p:column>
                 </p:row>
                 
                 <p:row>   
