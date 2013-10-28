@@ -26,4 +26,8 @@ public class RedirectionerController {
     public String producto(){
         return "/EMPRESA/PRODUCTO/PRODUCTO";
     }
+    
+     public String activo(){
+        return "/EMPRESA/ACTIVO/ACTIVO";
+    }
 }

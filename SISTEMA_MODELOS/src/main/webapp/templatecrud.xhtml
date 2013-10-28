@@ -16,7 +16,7 @@
         <p:menubar>  
         <p:submenu label="Empresa">  
             <p:submenu label="ACTIVO" icon="ui-icon-contact">  
-                <p:menuitem value="Registrar" url="#" />  
+                <p:menuitem value="Registrar" action="#{redirectionerController.activo()}" />  
                 <p:menuitem value="Listar" url="#" />  
             </p:submenu>  
             <p:submenu label="PRODUCTO" icon="ui-icon-contact">  
@@ -44,11 +44,11 @@
                
         </h:form>
         
-        <p:panel header="Mantenimiento de insumos">
-            <h:panelGrid columns="2" width="100%" >
-                <p:panel header="Listado de Insumos" styleClass="width=50%;"><ui:insert name="Left"></ui:insert></p:panel>
+        <p:panel header="Mantenimiento">
+            <h:panelGrid columns="1" width="100%" >
+                <p:panel header="Listado" styleClass="width=50%;"><ui:insert name="Left"></ui:insert></p:panel>
                 
-                <p:panel header="Insumo" styleClass="width=50%;"><ui:insert name="Right"></ui:insert></p:panel>
+                <p:panel header="Edición/Creación" styleClass="width=50%;"><ui:insert name="Right"></ui:insert></p:panel>
             </h:panelGrid>
             
         </p:panel>       

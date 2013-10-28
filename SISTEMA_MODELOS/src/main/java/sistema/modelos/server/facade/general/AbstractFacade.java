@@ -15,7 +15,6 @@ public abstract class AbstractFacade<T> {
     private Class<T> entityClass;
 
     public AbstractFacade(Class<T> entityClass) {
-        System.out.println("ABSTRACTFACADEE");
         this.entityClass = entityClass;
     }
 
@@ -38,7 +37,6 @@ public abstract class AbstractFacade<T> {
     }
 
     public List<T> findAll() {
-        System.out.println("FINDSEANDO");
         javax.persistence.criteria.CriteriaQuery cq = getEntityManager().getCriteriaBuilder().createQuery();
         cq.select(cq.from(entityClass));
         return getEntityManager().createQuery(cq).getResultList();

@@ -1,0 +1,102 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <ui:composition template="/templatecrud.xhtml"> 
+     
+        <ui:define name="title">
+           
+        </ui:define>
+       
+       <ui:define name="Left">
+           <h:form id="miform">
+               <p:commandButton value="Agregar" action="#{activoControlador.agregar()}"></p:commandButton>
+               <p:dataTable rendered="true"  id="tablaActivo" var="activo"  selectionMode="single" rowKey="#{activo.idActivo}" value="#{activoControlador.lstActivo}">  
+                   
+                   <p:column headerText="CODIGO" style="width:10%">  
+                       <h:outputText value="#{activo.codigo}" />  
+                    </p:column>  
+
+                    <p:column headerText="NOMBRE" style="width:10%">  
+                        <h:outputText value="#{activo.nombre}" />  
+                    </p:column>  
+
+                    <p:column headerText="Tipo Activo" style="width:10%">  
+                        <h:outputText value="#{activo.tipoActivo.nombre}" />  
+                    </p:column>  
+                    
+                    <p:column headerText="Area" style="width:10%">  
+                        <h:outputText value="#{activo.area.nombre}" />  
+                    </p:column>  
+                   
+                    <p:column style="width:6%">  
+                        <p:commandButton icon="ui-icon-pencil" action="#{activoControlador.editar()}" >
+                            <f:setPropertyActionListener value="#{activo}" target="#{activoControlador.currentActivo}" />  
+                        </p:commandButton>
+                    </p:column>  
+                    
+                   <p:column style="width:6%">  
+                        <p:commandButton icon="ui-icon-close" action="#{activoControlador.eliminar()}" >
+                            <f:setPropertyActionListener value="#{activo}" target="#{activoControlador.currentActivo}" />  
+                        </p:commandButton>
+                    </p:column>  
+                   
+                </p:dataTable>  
+            </h:form>
+       </ui:define>
+        
+       <ui:define  name="Right">
+          <h:form id="cruForm">
+               <p:panelGrid  style="width:100%;border:0px;"   id="panelcrud"    >  
+                   <p:row   >   
+                       <p:column  colspan="3" style="width:100%" >
+                           <p:messages id="messages"/>
+                       </p:column>
+                   </p:row>
+                    
+                <p:row  >   
+                    <p:column colspan="2" style="width:20%" ><p:commandButton  value="Salvar" action="#{activoControlador.persist()}" update="panelcrud"></p:commandButton></p:column>
+                    <p:column style="width:80%"><p:commandButton value="Cancelar"></p:commandButton></p:column>
+                </p:row>
+                   
+                <p:row>   
+                    <p:column style="width:15%"><h:outputLabel  value="Nombre : *"></h:outputLabel></p:column>  
+                    <p:column style="width:5%"><p:message for="nombre" display="icon" /></p:column>
+                    <p:column style="width:80%"><p:inputText required="true" id="nombre" value="#{activoControlador.currentActivo.nombre}" size="30" requiredMessage="El nombre es obligatorio" ></p:inputText></p:column>
+                </p:row>
+                
+                <p:row>   
+                        <p:column style="width:15%"><h:outputLabel value="Código : *" ></h:outputLabel></p:column>  
+                        <p:column style="width:5%"><p:message for="codigo" display="icon" /></p:column>  
+                        <p:column style="width:80%"><p:inputText id="codigo" required="true" requiredMessage="El codigo es obligatorio" value="#{activoControlador.currentActivo.codigo}" size="30"></p:inputText></p:column>
+                </p:row>
+                
+                <p:row>    
+                   <p:column style="width:15%"><h:outputLabel value="Tipo : *" ></h:outputLabel></p:column>
+                   <p:column style="width:5%"><p:message for="tipo" display="icon" /> </p:column>
+                   <p:column style="width:80%"><p:selectOneMenu requiredMessage="El Tipo de Activo es obligatorio" id="tipo" value="#{activoControlador.currentActivo.tipoActivo.idTipoActivo}">
+                            <f:selectItem  itemLabel="Seleccione un Tipo de Activo" itemValue="#{null}"></f:selectItem>
+                            <f:selectItems value="#{activoControlador.lstTipoActivo}" var="tipoActivo" itemLabel="#{tipoActivo.nombre}" itemValue="#{tipoActivo.idTipoActivo}"></f:selectItems>
+                       </p:selectOneMenu></p:column>
+                </p:row>
+                
+                <p:row>    
+                   <p:column style="width:15%"><h:outputLabel value="Area : *" ></h:outputLabel></p:column>
+                   <p:column style="width:5%"><p:message for="area" display="icon"  /> </p:column>
+                   <p:column style="width:80%"><p:selectOneMenu id="area" requiredMessage="El Area es obligatorio" value="#{activoControlador.currentActivo.area.idArea}">
+                           <f:selectItem  itemLabel="Seleccione un area" itemValue="#{null}"></f:selectItem>
+                           <f:selectItems value="#{activoControlador.lstArea}" var="area" itemLabel="#{area.nombre}" itemValue="#{area.idArea}"></f:selectItems>
+                       </p:selectOneMenu></p:column>
+                </p:row>   
+                   
+           </p:panelGrid> 
+         </h:form>
+
+       </ui:define>
+   
+    </ui:composition>
+</html>
+

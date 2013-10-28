@@ -6,7 +6,10 @@
     <class>sistema.modelos.server.entidades.empresa.Insumo</class>
     <class>sistema.modelos.server.entidades.empresa.Rubro</class>
     <class>sistema.modelos.server.entidades.empresa.Producto</class>
-    <exclude-unlisted-classes>true</exclude-unlisted-classes>
+    <class>sistema.modelos.server.entidades.empresa.Activo</class>
+    <class>sistema.modelos.server.entidades.empresa.Area</class>
+    <class>sistema.modelos.server.entidades.empresa.TipoActivo</class>
+    <exclude-unlisted-classes>true</exclude-unlisted-classes> 
     <properties/>
   </persistence-unit>
 </persistence>
