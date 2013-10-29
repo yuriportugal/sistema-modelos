@@ -72,7 +72,19 @@ public class ActivoControlador implements Serializable {
     }
     
      public void persist(){
-        if (currentActivo.getIdActivo()==null) {
+        if (currentActivo.getArea().getIdArea() == null || currentActivo.getTipoActivo().getIdTipoActivo() == null){
+            String mensaje = "";
+            if (currentActivo.getArea().getIdArea() == null)
+                mensaje += "Debe seleccionar un Area";
+            
+            if (currentActivo.getTipoActivo().getIdTipoActivo() == null)
+                mensaje += "\n Debe seleccionar un Tipo de Activo";
+            
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,mensaje,""));  
+    
+            return;
+        }
+         if (currentActivo.getIdActivo()==null) {
             System.out.print("Area "+currentActivo.getArea().getIdArea()+"Tipo "+currentActivo.getTipoActivo().getIdTipoActivo());
             activoFacade.create(currentActivo);
         }
