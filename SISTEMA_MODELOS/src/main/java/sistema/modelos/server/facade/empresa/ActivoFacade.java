@@ -7,6 +7,9 @@ package sistema.modelos.server.facade.empresa;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
 import sistema.modelos.server.entidades.empresa.Activo;
 import sistema.modelos.server.facade.general.AbstractFacade;
 
@@ -27,6 +30,14 @@ public class ActivoFacade extends AbstractFacade<Activo> {
     @Override
     protected EntityManager getEntityManager() {
         return em;
+    }
+
+    public int countActivoByCode(String codigo) {
+        Query q = getEntityManager().createQuery("Select a from Activo a where a.codigo = :cod ");
+        q.setParameter("cod", codigo);
+        int i = q.getResultList().size();
+        System.out.println("tamano:"+i+codigo);
+        return i;
     }
     
 }

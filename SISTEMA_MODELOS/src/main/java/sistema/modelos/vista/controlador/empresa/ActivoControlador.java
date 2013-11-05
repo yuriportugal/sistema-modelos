@@ -1,4 +1,4 @@
-/*
+    /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
@@ -6,6 +6,7 @@ package sistema.modelos.vista.controlador.empresa;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Map;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -38,11 +39,14 @@ public class ActivoControlador implements Serializable {
     private AreaFacade areaFacade;
     
     
+    
     Long idActivo;
     List<Activo> lstActivo;
     List<Area> lstArea;
     
     public Activo currentActivo;
+    public Area currentArea;
+    public TipoActivo currentTipoActivo;
     
     public ActivoControlador() {
         
@@ -55,6 +59,49 @@ public class ActivoControlador implements Serializable {
         }
         return currentActivo;
     }
+
+    public Area getCurrentArea() {
+        if (currentArea == null)
+            currentArea = new Area();
+        return currentArea;
+    }
+
+    public TipoActivo getCurrentTipoActivo() {
+        
+        if (currentTipoActivo == null)
+            currentTipoActivo = new TipoActivo();
+        return currentTipoActivo;
+    }
+
+    public void setCurrentTipoActivo(TipoActivo currentTipoActivo) {
+        this.currentTipoActivo = currentTipoActivo;
+    }
+    
+    
+    
+        public void persistArea(){
+        System.out.print("Persistiendo el área");
+        areaFacade.create(currentArea);
+        lstArea = getLstArea();
+        RequestContext context = RequestContext.getCurrentInstance();  
+        context.update("cruForm:panelcrud");
+        currentArea = new Area();
+        RequestContext.getCurrentInstance().execute("AreaDlg.hide()");
+    }
+        
+        
+    
+     public void persistTipoActivo(){
+        System.out.print("Persistiendo el TipoActivo");
+        System.out.println("NOMBRE: "+currentTipoActivo.getNombre()+" VIDA UTIL:"+currentTipoActivo.getVidaUtil());
+        tipoActivoFacade.create(currentTipoActivo);
+        
+        RequestContext context = RequestContext.getCurrentInstance();  
+        context.update("cruForm:panelcrud");
+        currentTipoActivo = new TipoActivo();
+        RequestContext.getCurrentInstance().execute("TipoActivoDlg.hide()");
+    }    
+        
 
     public void setCurrentActivo(Activo currentActivo) {
         this.currentActivo = currentActivo;
@@ -72,18 +119,31 @@ public class ActivoControlador implements Serializable {
     }
     
      public void persist(){
-        if (currentActivo.getArea().getIdArea() == null || currentActivo.getTipoActivo().getIdTipoActivo() == null){
-            String mensaje = "";
+             String mensaje = "";
+            
+            if (currentActivo.getNombre().equals(""))
+                mensaje += "Debe ingresar el nombre del Area <br/>";
+            if (currentActivo.getCodigo().equals(""))
+                mensaje += "Debe ingresar el código del Area<br/>";
+            
             if (currentActivo.getArea().getIdArea() == null)
-                mensaje += "Debe seleccionar un Area";
-            
+                mensaje += "Debe seleccionar un Area<br/>";
             if (currentActivo.getTipoActivo().getIdTipoActivo() == null)
-                mensaje += "\n Debe seleccionar un Tipo de Activo";
-            
+                mensaje += " Debe seleccionar un Tipo de Activo";
+        if (!mensaje.equals("")){    
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,mensaje,""));  
     
             return;
         }
+        
+        if (activoFacade.countActivoByCode(currentActivo.getCodigo())>0){
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Ya se encuentra registrado un activo con el mismo código",""));  
+    
+            return;
+            
+        }
+            
+        
          if (currentActivo.getIdActivo()==null) {
             System.out.print("Area "+currentActivo.getArea().getIdArea()+"Tipo "+currentActivo.getTipoActivo().getIdTipoActivo());
             activoFacade.create(currentActivo);

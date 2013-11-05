@@ -7,7 +7,10 @@ package sistema.modelos.server.entidades.empresa;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 /**
@@ -19,6 +22,8 @@ import javax.persistence.Table;
 public class TipoActivo implements Serializable{
    
     @Id
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="TIPO_ACTIVO_SEQ")
+    @SequenceGenerator(name = "TIPO_ACTIVO_SEQ", sequenceName = "TIPO_ACTIVO_SEQ",allocationSize = 1)
     @Column(name="ID_TIPO_ACTIVO")
     private Long idTipoActivo;
     
