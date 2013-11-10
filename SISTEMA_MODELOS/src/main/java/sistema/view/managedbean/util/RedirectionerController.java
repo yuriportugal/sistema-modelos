@@ -30,4 +30,8 @@ public class RedirectionerController {
      public String activo(){
         return "/EMPRESA/ACTIVO/ACTIVO";
     }
+     
+    public String servicio(){
+        return "/EMPRESA/SERVICIO/SERVICIO";
+    }
 }

@@ -1,0 +1,112 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <ui:composition template="/templatecrud.xhtml"> 
+     
+        <ui:define name="title">
+           
+        </ui:define>
+       
+       <ui:define name="Left">
+           <h:form id="miform">
+               <p:commandButton value="Agregar" action="#{servicioControlador.agregar()}"></p:commandButton>
+               <p:dataTable rendered="true"  id="tablaServicio" var="servicio"  selectionMode="single" rowKey="#{servicio.idServicio}" value="#{servicioControlador.lstServicio}">  
+                   
+                   <p:column headerText="CODIGO" style="width:10%">  
+                       <h:outputText value="#{servicio.codigo}" />  
+                    </p:column>  
+
+                    <p:column headerText="NOMBRE" style="width:10%">  
+                        <h:outputText value="#{servicio.nombre}" />  
+                    </p:column>  
+                    
+                    <p:column headerText="Area" style="width:10%">  
+                        <h:outputText value="#{servicio.area.nombre}" />  
+                    </p:column>  
+                   
+                    <p:column style="width:6%">  
+                        <p:commandButton icon="ui-icon-pencil" action="#{servicioControlador.editar()}" >
+                            <f:setPropertyActionListener value="#{servicio}" target="#{servicioControlador.currentServicio}" />  
+                        </p:commandButton>
+                    </p:column>  
+                    
+                   <p:column style="width:6%">  
+                        <p:commandButton icon="ui-icon-close" action="#{servicioControlador.eliminar()}" >
+                            <f:setPropertyActionListener value="#{servicio}" target="#{servicioControlador.currentServicio}" />  
+                        </p:commandButton>
+                    </p:column>  
+                   
+                </p:dataTable>  
+            </h:form>
+       </ui:define>
+        
+       <ui:define  name="Right">
+          <h:form id="cruForm">
+               <p:panelGrid  style="width:100%;border:0px;"   id="panelcrud"    >  
+                   <p:row   >   
+                       <p:column  colspan="4" style="width:100%" >
+                           <p:messages id="messages"/>
+                       </p:column>
+                   </p:row>
+                    
+                <p:row  >   
+                    <p:column colspan="2" style="width:20%" ><p:commandButton id="save"  value="Salvar" action="#{servicioControlador.persist()}" update="panelcrud"></p:commandButton></p:column>
+                    <p:column colspan="2" style="width:80%"><p:commandButton value="Cancelar"></p:commandButton></p:column>
+                </p:row>
+                   
+                <p:row>   
+                    <p:column style="width:15%"><h:outputLabel  value="Nombre : *"></h:outputLabel></p:column>  
+                    <p:column style="width:5%"></p:column>
+                    <p:column style="width:80%" colspan="2"><p:inputText  id="nombre" value="#{servicioControlador.currentServicio.nombre}" size="30"  ></p:inputText></p:column>
+                </p:row>
+                
+                <p:row>   
+                        <p:column style="width:15%"><h:outputLabel value="Código : *" ></h:outputLabel></p:column>  
+                        <p:column style="width:5%"></p:column>  
+                        <p:column style="width:80%" colspan="2"><p:inputText id="codigo"  value="#{servicioControlador.currentServicio.codigo}" size="30"></p:inputText></p:column>
+                </p:row>
+                
+                <p:row>    
+                   <p:column style="width:15%"><h:outputLabel value="Area : *" ></h:outputLabel></p:column>
+                   <p:column style="width:5%"><p:message for="area" display="icon"  /> </p:column>
+                   <p:column style="width:20%"><p:selectOneMenu id="area" requiredMessage="El Area es obligatorio" value="#{servicioControlador.currentServicio.area.idArea}">
+                           <f:selectItem  itemLabel="Seleccione un area" itemValue="#{null}"></f:selectItem>
+                           <f:selectItems value="#{servicioControlador.lstArea}" var="area" itemLabel="#{area.nombre}" itemValue="#{area.idArea}"></f:selectItems>
+                       </p:selectOneMenu>
+                   </p:column>  
+                    <p:column style="width:60%;" >    
+                        <p:commandButton icon="ui-icon-pencil" oncomplete="AreaDlg.show()" />
+                   </p:column>
+                </p:row>   
+                   
+           </p:panelGrid> 
+             
+              
+           <p:dialog header="Area"  resizable="false" widgetVar="AreaDlg"  
+                showEffect="fade" hideEffect="explode" modal="true">  
+  
+               <p:panelGrid columns="2">
+                   <p:column><h:outputLabel value="Nombre : *" /></p:column>
+                   <p:column><p:inputText id="nombreArea"  value="#{servicioControlador.currentArea.nombre}" size="20"/></p:column>
+                   <p:column ><p:commandButton  value="Salvar" action="#{servicioControlador.persistArea()}" ></p:commandButton></p:column>
+                   <p:column ><p:commandButton value="Cancelar"></p:commandButton></p:column>
+  
+               </p:panelGrid>
+            </p:dialog> 
+              
+              
+         </h:form>
+
+       </ui:define>
+        
+        
+        
+        
+   
+    </ui:composition>
+</html>
+
