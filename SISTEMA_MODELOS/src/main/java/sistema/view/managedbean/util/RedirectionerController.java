@@ -38,4 +38,8 @@ public class RedirectionerController {
     public String servicio(){
         return "/EMPRESA/SERVICIO/SERVICIO";
     }
+    
+     public String crearModelo(){
+        return "/MODELO/CREARMODELO";
+    }
 }

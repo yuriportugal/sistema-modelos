@@ -10,6 +10,12 @@
     <class>sistema.modelos.server.entidades.empresa.Area</class>
     <class>sistema.modelos.server.entidades.empresa.TipoActivo</class>
     <class>sistema.modelos.server.entidades.empresa.Servicio</class>
+    <class>sistema.modelos.server.entidades.empresa.Cargo</class>
+    <class>sistema.modelos.server.entidades.modelo.Ano</class>
+    <class>sistema.modelos.server.entidades.modelo.Mes</class>
+    <class>sistema.modelos.server.entidades.modelo.Modelo</class>
+    <class>sistema.modelos.server.entidades.modelo.TipoModelo</class>
+    <class>sistema.modelos.server.entidades.modelo.TipoPeriodo</class>
     <exclude-unlisted-classes>true</exclude-unlisted-classes>
     <properties/>
   </persistence-unit>

@@ -1,0 +1,78 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <ui:composition template="/templatemodel.xhtml"> 
+        
+        <ui:define name="parametros">
+            
+                  <p:panelGrid   style="width:100%;border:0px;"   id="panelParametrosTiempo"    >  
+            <p:row>   
+                 <p:column  colspan="4" style="width:100%" >
+                    <p:messages id="messages"/>
+                 </p:column>
+            </p:row>
+            
+            <p:row>   
+                 <p:column   style="width:25%" >
+                    <h:outputLabel value="Tipo de Periodo : *" />
+                 </p:column>
+                
+                 <p:column   style="width:25%" >
+                     <p:selectOneMenu id="tipoPeriodo" >
+                            <f:selectItem  itemLabel="Seleccione un Tipo de Periodo" itemValue="#{null}"></f:selectItem>
+                            <f:selectItems value="#{modeloControlador.lstTipoPeriodo}" var="tipoPeriodo" itemLabel="#{tipoPeriodo.descripcion}" itemValue="#{tipoPeriodo.idTipoPeriodo}"></f:selectItems>
+                       </p:selectOneMenu>
+                 </p:column>
+                 <p:column   style="width:25%" >
+                    <h:outputLabel value="Año : *" />
+                 </p:column>
+                 <p:column   style="width:25%" >
+                 <p:selectOneMenu id="ano" >
+                            <f:selectItem  itemLabel="Seleccione un Año" itemValue="#{null}"></f:selectItem>
+                            <f:selectItems value="#{modeloControlador.lstAno}" var="ano" itemLabel="#{ano.descripcion}" itemValue="#{ano.idAno}"></f:selectItems>
+                 </p:selectOneMenu>
+                 </p:column>
+            </p:row>    
+            
+            <p:row>   
+                 <p:column   style="width:25%" >
+                    <h:outputLabel value="Horizonte : *" />
+                 </p:column>
+                
+                 <p:column   style="width:25%" >
+                     <p:inputText  id="horizonte"  size="30"  />
+                 </p:column>
+                 <p:column   style="width:25%" >
+                    <h:outputLabel value="Dias trabajados : *" />
+                 </p:column>
+                 <p:column   style="width:25%" >
+                     <p:inputText  id="diasTrabajo"  size="30"  />
+                 </p:column>
+            </p:row>
+            
+            <p:row>   
+                 <p:column   style="width:25%" >
+                 <h:outputLabel value="Tipo de cambio : *" />
+                 </p:column>
+                 <p:column colspan="3"  style="width:75%" >
+                 </p:column>
+            </p:row>    
+            
+            <p:row>   
+                 <p:column   style="width:25%" >
+                 <h:outputLabel value="% de venta : *" />
+                 </p:column>
+                 <p:column colspan="3"  style="width:75%" >
+                 </p:column>
+            </p:row>    
+                
+            </p:panelGrid>          
+ 
+        </ui:define>
+   </ui:composition>
+</html>
+
