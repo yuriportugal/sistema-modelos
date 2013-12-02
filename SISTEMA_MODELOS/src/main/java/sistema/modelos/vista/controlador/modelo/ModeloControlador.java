@@ -13,12 +13,14 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.event.AjaxBehaviorEvent;
 import org.primefaces.context.RequestContext;
 import sistema.modelos.server.entidades.empresa.Activo;
 import sistema.modelos.server.entidades.empresa.Area;
 import sistema.modelos.server.entidades.empresa.Insumo;
 import sistema.modelos.server.entidades.empresa.TipoActivo;
 import sistema.modelos.server.entidades.modelo.Ano;
+import sistema.modelos.server.entidades.modelo.Modelo;
 import sistema.modelos.server.entidades.modelo.TipoPeriodo;
 import sistema.modelos.server.facade.empresa.ActivoFacade;
 import sistema.modelos.server.facade.empresa.AreaFacade;
@@ -40,6 +42,15 @@ public class ModeloControlador implements Serializable {
     
     @EJB
     private AnoFacade anoFacade;
+    
+    private Modelo currentModelo;
+    
+    public void crearTablaTC() {
+        Long size = currentModelo.getHorizonte();
+       
+       System.out.println(size+"TAMA{{ÑO");
+    }
+    
     
     public List<TipoPeriodo> getLstTipoPeriodo(){
         return tipoPeriodoFacade.findAll();
@@ -65,6 +76,16 @@ public class ModeloControlador implements Serializable {
 
     public void setAnoFacade(AnoFacade anoFacade) {
         this.anoFacade = anoFacade;
+    }
+
+    public Modelo getCurrentModelo() {
+       if (currentModelo == null)
+           currentModelo = new Modelo();
+        return currentModelo;
+    }
+
+    public void setCurrentModelo(Modelo currentModelo) {
+        this.currentModelo = currentModelo;
     }
     
     

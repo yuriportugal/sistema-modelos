@@ -16,6 +16,7 @@
     <class>sistema.modelos.server.entidades.modelo.Modelo</class>
     <class>sistema.modelos.server.entidades.modelo.TipoModelo</class>
     <class>sistema.modelos.server.entidades.modelo.TipoPeriodo</class>
+    <class>sistema.modelos.server.entidades.modelo.TipoCambioDetalle</class>
     <exclude-unlisted-classes>true</exclude-unlisted-classes>
     <properties/>
   </persistence-unit>

@@ -5,6 +5,7 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://java.sun.com/jsf/core">
+    
     <ui:composition template="/templatemodel.xhtml"> 
         
         <ui:define name="parametros">
@@ -22,7 +23,7 @@
                  </p:column>
                 
                  <p:column   style="width:25%" >
-                     <p:selectOneMenu id="tipoPeriodo" >
+                     <p:selectOneMenu id="tipoPeriodo" value="#{modeloControlador.currentModelo.tipoPeriodo.idTipoPeriodo}" >
                             <f:selectItem  itemLabel="Seleccione un Tipo de Periodo" itemValue="#{null}"></f:selectItem>
                             <f:selectItems value="#{modeloControlador.lstTipoPeriodo}" var="tipoPeriodo" itemLabel="#{tipoPeriodo.descripcion}" itemValue="#{tipoPeriodo.idTipoPeriodo}"></f:selectItems>
                        </p:selectOneMenu>
@@ -44,7 +45,8 @@
                  </p:column>
                 
                  <p:column   style="width:25%" >
-                     <p:inputText  id="horizonte"  size="30"  />
+                     <p:inputText  id="horizonte" onblur="#{modeloControlador.crearTablaTC()}"  size="30" value="#{modeloControlador.currentModelo.horizonte}">
+                      </p:inputText>
                  </p:column>
                  <p:column   style="width:25%" >
                     <h:outputLabel value="Dias trabajados : *" />
@@ -73,6 +75,57 @@
             </p:panelGrid>          
  
         </ui:define>
-   </ui:composition>
+   
+    
+        <ui:define name="producto">
+         
+            <p:panel >
+            <h:panelGrid columns="1" width="100%" >
+                <p:panel header="Edición/Creación" styleClass="width=50%;">
+                     <p:panelGrid   style="width:100%;border:0px;"   id="panelProducto"    >  
+                       <p:row>   
+                            <p:column   style="width:25%" >
+                            <h:outputLabel value="Producto: " />
+                            </p:column>
+                            <p:column   style="width:25%" >
+                                
+                            </p:column>
+                            <p:column   style="width:25%" >
+                            <h:outputLabel value="Precio venta: " />
+                            </p:column>
+                            <p:column   style="width:25%" >
+                                <p:inputText/>
+                            </p:column>
+                       </p:row> 
+                         <p:row>   
+                            <p:column   style="width:25%" >
+                            <h:outputLabel value="Stock inicial: " />
+                            </p:column>
+                            <p:column   style="width:25%" >
+                                
+                            </p:column>
+                            <p:column   style="width:25%" >
+                            <h:outputLabel value="Vol venta: " />
+                            </p:column>
+                            <p:column   style="width:25%" >
+                                <p:inputText/>
+                            </p:column>
+                       </p:row> 
+                     </p:panelGrid>
+                    
+                </p:panel>
+                
+                <p:panel header="Listado" styleClass="width=50%;">
+                    
+                    
+                </p:panel>
+            </h:panelGrid>
+            
+        </p:panel>
+            
+            
+        </ui:define>   
+        
+    </ui:composition>
 </html>
 
