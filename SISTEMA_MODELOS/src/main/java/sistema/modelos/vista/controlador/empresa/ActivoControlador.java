@@ -120,7 +120,7 @@ public class ActivoControlador implements Serializable {
     
      public void persist(){
              String mensaje = "";
-            
+             System.out.print("MIRA SI SALIO");
             if (currentActivo.getNombre().equals(""))
                 mensaje += "Debe ingresar el nombre del Area <br/>";
             if (currentActivo.getCodigo().equals(""))
