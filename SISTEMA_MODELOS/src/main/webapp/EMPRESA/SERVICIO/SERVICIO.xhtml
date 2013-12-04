@@ -14,21 +14,21 @@
        <ui:define name="Left">
            <h:form id="miform">
                <p:commandButton value="Agregar" action="#{servicioControlador.agregar()}"></p:commandButton>
-               <p:dataTable rendered="true"  id="tablaServicio" var="servicio"  selectionMode="single" rowKey="#{servicio.idServicio}" value="#{servicioControlador.lstServicio}">  
+               <p:dataTable rendered="true"  id="tablaServicio" var="servicio"  selectionMode="single" rowKey="#{servicio.idServicio}" value="#{servicioControlador.lstServicio}" style="width:1100px" scrollable="true" scrollHeight="200">  
                    
-                   <p:column headerText="CODIGO" style="width:10%">  
+                   <p:column headerText="CODIGO" style="width:10%;word-break:break-all;">  
                        <h:outputText value="#{servicio.codigo}" />  
                     </p:column>  
 
-                    <p:column headerText="NOMBRE" style="width:10%">  
+                    <p:column headerText="NOMBRE" style="width:10%;word-break:break-all;">  
                         <h:outputText value="#{servicio.nombre}" />  
                     </p:column>  
                     
-                    <p:column headerText="Area" style="width:10%">  
+                    <p:column headerText="Area" style="width:10%;word-break:break-all;">  
                         <h:outputText value="#{servicio.area.nombre}" />  
                     </p:column>  
                    
-                    <p:column style="width:6%">  
+                    <p:column style="width:6%;word-break:break-all;">  
                         <p:commandButton icon="ui-icon-pencil" action="#{servicioControlador.editar()}" >
                             <f:setPropertyActionListener value="#{servicio}" target="#{servicioControlador.currentServicio}" />  
                         </p:commandButton>

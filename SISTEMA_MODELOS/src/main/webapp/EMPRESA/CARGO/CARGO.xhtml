@@ -14,27 +14,27 @@
        <ui:define name="Left">
            <h:form id="miform">
                <p:commandButton value="Agregar" action="#{cargoControlador.agregar()}"></p:commandButton>
-               <p:dataTable rendered="true"  id="tablaCargo" var="cargo"  selectionMode="single" rowKey="#{cargo.idCargo}" value="#{cargoControlador.lstCargo}">  
+               <p:dataTable rendered="true"  id="tablaCargo" var="cargo"  selectionMode="single" rowKey="#{cargo.idCargo}" value="#{cargoControlador.lstCargo}" style="width:1100px" scrollable="true" scrollHeight="200">  
                    
-                   <p:column headerText="CODIGO" style="width:10%">  
+                   <p:column headerText="CODIGO" style="width:10%;word-break:break-all;">  
                        <h:outputText value="#{cargo.codigo}" />  
                     </p:column>  
 
-                    <p:column headerText="NOMBRE" style="width:10%">  
+                    <p:column headerText="NOMBRE" style="width:10%;word-break:break-all;">  
                         <h:outputText value="#{cargo.nombre}" />  
                     </p:column>  
 
-                    <p:column headerText="AREA" style="width:10%">  
+                    <p:column headerText="AREA" style="width:10%;word-break:break-all;">  
                         <h:outputText value="#{cargo.area.nombre}" />  
                     </p:column>  
                    
-                    <p:column style="width:6%">  
+                    <p:column style="width:6%;word-break:break-all;">  
                         <p:commandButton icon="ui-icon-pencil" action="#{cargoControlador.editar()}" >
                             <f:setPropertyActionListener value="#{cargo}" target="#{cargoControlador.currentCargo}" />  
                         </p:commandButton>
                     </p:column>  
                     
-                   <p:column style="width:6%">  
+                   <p:column style="width:6%;word-break:break-all;">  
                         <p:commandButton icon="ui-icon-close" action="#{cargoControlador.eliminar()}" >
                             <f:setPropertyActionListener value="#{cargo}" target="#{cargoControlador.currentCargo}" />  
                         </p:commandButton>

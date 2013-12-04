@@ -12,17 +12,17 @@
        <ui:define name="Left">
            <h:form id="miform">
                <p:commandButton value="Agregar" action="#{productoControlador.agregar()}"></p:commandButton>
-               <p:dataTable rendered="true"  id="tablaProducto" var="producto"  selectionMode="single" rowKey="#{producto.idproducto}" value="#{productoControlador.lstProductos}">  
+               <p:dataTable rendered="true"  id="tablaProducto" var="producto"  selectionMode="single" rowKey="#{producto.idproducto}" value="#{productoControlador.lstProductos}" style="width:1100px" scrollable="true" scrollHeight="200">  
                    
-                   <p:column headerText="CODIGO" style="width:10%">  
+                   <p:column headerText="CODIGO" style="width:10%;word-break:break-all;">  
                         <h:outputText value="#{producto.codigo}" />  
                     </p:column>  
 
-                    <p:column headerText="NOMBRE" style="width:10%">  
+                    <p:column headerText="NOMBRE" style="width:10%;word-break:break-all;">  
                         <h:outputText value="#{producto.nombre}" />  
                     </p:column>  
 
-                    <p:column headerText="DESCRIPCION" style="width:10%">  
+                    <p:column headerText="DESCRIPCION" style="width:10%;word-break:break-all;">  
                         <h:outputText value="#{producto.descripcion}" />  
                     </p:column>  
                     
