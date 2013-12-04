@@ -57,24 +57,41 @@ public class InsumoControlador implements Serializable {
     }
     
     public void persist(){
-        boolean isEdit = false;
-        if (currentInsumo.getIdInsumo()==null) {
-            isEdit = false;
-            insumoFacade.create(currentInsumo);
-        }
-        else {
-            isEdit = true;
-            insumoFacade.edit(currentInsumo);
-        }
-        RequestContext context = RequestContext.getCurrentInstance();  
-
-        lstInsumo = getLstInsumos();
-        currentInsumo = new Insumo();
-        context.update("miform:tablaInsumo");
-        context.update("cruForm:panelcrud");
-             
         
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Insumo grabado correctamente",""));  
+        String mensaje = "";
+             System.out.println(currentInsumo.getNombre());
+             
+             if (currentInsumo.getCodigo().equals(""))
+                mensaje += "Debe ingresar el código del Insumo <br/>";
+             if (currentInsumo.getNombre().equals(""))
+                mensaje += "Debe ingresar el nombre del Insumo <br/>";
+             if (currentInsumo.getDescripcion().equals(""))
+                mensaje += "Debe ingresar la descripcion del Insumo <br/>";
+             
+             if (!mensaje.equals("")){    
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,mensaje,""));  
+                return;
+             }
+             
+             if (insumoFacade.countActivoByCode(currentInsumo.getCodigo())>0){
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Ya se encuentra registrado un insumo con el mismo código",""));  
+                return;
+             }
+            
+            if (currentInsumo.getIdInsumo()==null) {
+                insumoFacade.create(currentInsumo);
+            }
+            else {
+                insumoFacade.edit(currentInsumo);
+            }
+            RequestContext context = RequestContext.getCurrentInstance();  
+
+            lstInsumo = getLstInsumos();
+            currentInsumo = new Insumo();
+            context.update("miform:tablaInsumo");
+            context.update("cruForm:panelcrud");
+          
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Insumo grabado correctamente",""));  
     
     } 
     

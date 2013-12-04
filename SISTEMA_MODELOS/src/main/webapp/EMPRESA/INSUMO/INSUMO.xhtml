@@ -48,32 +48,32 @@
            <h:form id="cruForm">
                <p:panelGrid  style="width:100%;border:0px;"   id="panelcrud"    >  
                    <p:row   >   
-                       <p:column  colspan="3" style="width:100%" >
+                       <p:column  colspan="4" style="width:100%" >
                            <p:messages id="messages"/>
                        </p:column>
                    </p:row>
                     
                 <p:row  >   
-                    <p:column colspan="2" style="width:20%" ><p:commandButton action="#{insumoControlador.persist()}" value="Salvar"  update="panelcrud"></p:commandButton></p:column>
-                    <p:column style="width:80%"><p:commandButton value="Cancelar"></p:commandButton></p:column>
+                    <p:column colspan="2" style="width:20%" ><p:commandButton action="#{insumoControlador.persist()}" value="Salvar" id="save"  update="panelcrud"></p:commandButton></p:column>
+                    <p:column colspan="2" style="width:80%"><p:commandButton value="Cancelar"></p:commandButton></p:column>
                 </p:row>
                    
                 <p:row>   
                     <p:column style="width:15%"><h:outputLabel  value="Código : *"></h:outputLabel></p:column>  
-                    <p:column style="width:5%"><p:message for="codigo" display="icon" /></p:column>
-                    <p:column style="width:80%"><p:inputText required="true" id="codigo" value="#{insumoControlador.insumo.codigo}" size="30" requiredMessage="El código es obligatorio" ></p:inputText></p:column>
+                    <p:column style="width:5%"></p:column>
+                    <p:column style="width:80%"><p:inputText  id="codigo" value="#{insumoControlador.insumo.codigo}" size="30"  ></p:inputText></p:column>
                 </p:row>
                 
                 <p:row>   
-                        <p:column style="width:15%"><h:outputLabel value="Nombre : *" ></h:outputLabel></p:column>  
-                        <p:column style="width:5%"><p:message for="nombre" display="icon" /></p:column>  
-                    <p:column style="width:80%"><p:inputText id="nombre" required="true" requiredMessage="El nombre es obligatorio" value="#{insumoControlador.insumo.nombre}" size="30"></p:inputText></p:column>
+                    <p:column style="width:15%"><h:outputLabel value="Nombre : *" ></h:outputLabel></p:column>  
+                    <p:column style="width:5%"></p:column>  
+                    <p:column style="width:80%"><p:inputText id="nombre"  value="#{insumoControlador.insumo.nombre}" size="30"></p:inputText></p:column>
                 </p:row>
                 
                 <p:row>    
-                   <p:column style="width:15%"><h:outputLabel value="Descripción : *" for="txt_descripcion"></h:outputLabel></p:column>
-                   <p:column style="width:5%"><p:message for="descripcion" display="icon" /> </p:column>
-                   <p:column style="width:80%"><p:inputTextarea id="descripcion" required="true" requiredMessage="La descripcion es obligatoria" value="#{insumoControlador.insumo.descripcion}" rows="8" cols="50" ></p:inputTextarea></p:column>
+                   <p:column style="width:15%"><h:outputLabel value="Descripción : *" ></h:outputLabel></p:column>
+                   <p:column style="width:5%"> </p:column>
+                   <p:column style="width:80%"><p:inputTextarea id="descripcion"  value="#{insumoControlador.insumo.descripcion}" rows="8" cols="50" ></p:inputTextarea></p:column>
                 </p:row>
                      
            </p:panelGrid> 

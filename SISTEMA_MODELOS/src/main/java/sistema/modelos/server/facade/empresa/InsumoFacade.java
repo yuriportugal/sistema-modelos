@@ -7,6 +7,7 @@ package sistema.modelos.server.facade.empresa;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import sistema.modelos.server.entidades.empresa.Insumo;
 import sistema.modelos.server.facade.general.AbstractFacade;
 
@@ -29,6 +30,12 @@ public class InsumoFacade extends AbstractFacade<Insumo> {
         return em;
     }
     
-   
+   public int countActivoByCode(String codigo) {
+        Query q = getEntityManager().createQuery("Select i from Insumo i where i.codigo = :cod ");
+        q.setParameter("cod", codigo);
+        int i = q.getResultList().size();
+        System.out.println("tamano:"+i+codigo);
+        return i;
+    }
     
 }

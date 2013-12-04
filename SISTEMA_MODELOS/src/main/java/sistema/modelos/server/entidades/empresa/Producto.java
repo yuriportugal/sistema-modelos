@@ -94,27 +94,4 @@ public class Producto implements Serializable {
         this.empresa = empresa;
     }
   
-       
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (idproducto != null ? idproducto.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Producto)) {
-            return false;
-        }
-        Producto other = (Producto) object;
-        if ((this.idproducto == null && other.idproducto != null) || (this.idproducto != null && !this.idproducto.equals(other.idproducto))) {
-            return false;
-        }
-        return true;
-    }
-
-   
 }

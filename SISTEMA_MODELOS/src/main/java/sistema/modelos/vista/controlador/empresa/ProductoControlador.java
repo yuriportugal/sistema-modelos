@@ -56,13 +56,33 @@ public class ProductoControlador implements Serializable {
     }
     
     public void persist(){
-        System.out.println(currentProducto.getNombre());
-        if (currentProducto.getIdproducto()==null) {
-            productoFacade.create(currentProducto);
-        }
-        else {
-            productoFacade.edit(currentProducto);
-        }
+        
+             String mensaje = "";
+             System.out.println(currentProducto.getNombre());
+             
+             if (currentProducto.getNombre().equals(""))
+                mensaje += "Debe ingresar el nombre del Producto <br/>";
+             if (currentProducto.getCodigo().equals(""))
+                mensaje += "Debe ingresar el código del Producto <br/>";
+             if (currentProducto.getDescripcion().equals(""))
+                mensaje += "Debe ingresar la descripcion del Producto <br/>";
+             
+             if (!mensaje.equals("")){    
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,mensaje,""));  
+                return;
+             }
+             
+             if (productoFacade.countActivoByCode(currentProducto.getCodigo())>0){
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Ya se encuentra registrado un producto con el mismo código",""));  
+                return;
+             }
+                                      
+            if (currentProducto.getIdproducto()==null) {
+                productoFacade.create(currentProducto);
+            }
+            else {
+                productoFacade.edit(currentProducto);
+            }
         RequestContext context = RequestContext.getCurrentInstance();  
 
         lstProducto = getLstProductos();
