@@ -128,8 +128,29 @@ public class InsumoControlador implements Serializable {
     }
     
     public void eliminar(){
+        currentInsumo = insumoFacade.find(currentInsumo.getIdInsumo());
         insumoFacade.remove(currentInsumo);
+        RequestContext.getCurrentInstance().execute("ConfirmDlg.hide()");
         agregar();
-             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Insumo eliminado correctamente",""));  
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Insumo eliminado correctamente",""));  
       }
+    
+    public void showConfirm(){
+       RequestContext.getCurrentInstance().execute("ConfirmDlg.show()");
+      }
+    
+    
+    public void closeConfirm(){
+       RequestContext.getCurrentInstance().execute("ConfirmDlg.hide()");
+    }
+
+    public InsumoFacade getInsumoFacade() {
+        return insumoFacade;
+    }
+
+    public void setInsumoFacade(InsumoFacade insumoFacade) {
+        this.insumoFacade = insumoFacade;
+    }
+    
+    
 }

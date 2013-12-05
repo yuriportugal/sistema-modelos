@@ -12,28 +12,28 @@
        <ui:define name="Left">
            <h:form id="miform">
                <p:commandButton value="Agregar" action="#{productoControlador.agregar()}"></p:commandButton>
-               <p:dataTable rendered="true"  id="tablaProducto" var="producto"  selectionMode="single" rowKey="#{producto.idproducto}" value="#{productoControlador.lstProductos}" style="width:1100px" scrollable="true" scrollHeight="200">  
+               <p:dataTable rendered="true"  id="tablaProducto" var="producto"  selectionMode="single" rowKey="#{producto.idproducto}" value="#{productoControlador.lstProductos}" style="width:1260px" scrollable="true" scrollHeight="200">  
                    
                    <p:column headerText="CODIGO" style="width:10%;word-break:break-all;">  
                         <h:outputText value="#{producto.codigo}" />  
                     </p:column>  
 
-                    <p:column headerText="NOMBRE" style="width:10%;word-break:break-all;">  
+                    <p:column headerText="NOMBRE" style="width:20%;word-break:break-all;">  
                         <h:outputText value="#{producto.nombre}" />  
-                    </p:column>  
+                    </p:column>   
 
-                    <p:column headerText="DESCRIPCION" style="width:10%;word-break:break-all;">  
+                    <p:column headerText="DESCRIPCION" style="width:58%;word-break:break-all;">  
                         <h:outputText value="#{producto.descripcion}" />  
                     </p:column>  
                     
-                   <p:column style="width:6%">  
-                       <p:commandButton icon="ui-icon-pencil" action="#{productoControlador.editar()}" >
+                   <p:column style="width:6%;" >  
+                       <p:commandButton  icon="ui-icon-pencil" action="#{productoControlador.editar()}" >
                             <f:setPropertyActionListener value="#{producto}" target="#{productoControlador.currentProducto}" />  
                         </p:commandButton>
                     </p:column>  
                     
                    <p:column style="width:6%">  
-                        <p:commandButton icon="ui-icon-close" action="#{productoControlador.eliminar()}" >
+                        <p:commandButton icon="ui-icon-close" action="#{insumoControlador.showConfirm()}" >
                             <f:setPropertyActionListener value="#{producto}" target="#{productoControlador.currentProducto}" />  
                         </p:commandButton>
                     </p:column>          
@@ -73,6 +73,24 @@
                 </p:row>
                      
              </p:panelGrid> 
+               
+                <p:dialog header="Eliminación"  resizable="false" widgetVar="ConfirmDlg"  
+                showEffect="fade" hideEffect="explode" modal="true">  
+  
+               <p:panelGrid >
+                   <p:row >  
+                       <p:column colspan="2"><h:outputLabel value="¿Esta seguro que desea eliminar el activo?" /></p:column>
+                   </p:row>
+                   
+                   <p:row >  
+                       <p:column ><p:commandButton value="Ok" action="#{productoControlador.eliminar()}" /></p:column>
+                       <p:column ><p:commandButton value="cancel" action="#{productoControlador.closeConfirm()}" /></p:column>
+                   </p:row>
+               </p:panelGrid>
+            </p:dialog>   
+               
+               
+               
           </h:form>
        </ui:define>
    

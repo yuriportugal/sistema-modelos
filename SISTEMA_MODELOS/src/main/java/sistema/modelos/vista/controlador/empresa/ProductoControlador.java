@@ -128,8 +128,29 @@ public class ProductoControlador implements Serializable {
     
     public void eliminar(){
         System.out.println(" ENTRO A ELIMINAR PRODUCTO");
+        currentProducto = productoFacade.find(currentProducto.getIdproducto());
         productoFacade.remove(currentProducto);
+        RequestContext.getCurrentInstance().execute("ConfirmDlg.hide()");
         agregar();
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Producto eliminado correctamente","")); 
     }
+    
+    public void showConfirm(){
+       RequestContext.getCurrentInstance().execute("ConfirmDlg.show()");
+      }
+    
+    
+    public void closeConfirm(){
+       RequestContext.getCurrentInstance().execute("ConfirmDlg.hide()");
+    }
+
+    public ProductoFacade getProductoFacade() {
+        return productoFacade;
+    }
+
+    public void setProductoFacade(ProductoFacade productoFacade) {
+        this.productoFacade = productoFacade;
+    }
+    
+    
 }

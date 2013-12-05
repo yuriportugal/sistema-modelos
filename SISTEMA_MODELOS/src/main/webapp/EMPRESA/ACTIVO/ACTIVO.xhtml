@@ -14,21 +14,21 @@
        <ui:define name="Left">
            <h:form id="miform">
                <p:commandButton value="Agregar" action="#{activoControlador.agregar()}"></p:commandButton>
-               <p:dataTable style="width:1100px"  rendered="true"  id="tablaActivo" var="activo"  selectionMode="single" rowKey="#{activo.idActivo}" value="#{activoControlador.lstActivo}" scrollable="true" scrollHeight="200" >  
+               <p:dataTable style="width:1260px"  rendered="true"  id="tablaActivo" var="activo"  selectionMode="single" rowKey="#{activo.idActivo}" value="#{activoControlador.lstActivo}" scrollable="true" scrollHeight="150" >  
                    
                    <p:column  headerText="CODIGO" style="width:10%;word-break:break-all;">  
                        <h:outputText  value="#{activo.codigo}" />  
                     </p:column>  
 
-                    <p:column headerText="NOMBRE" style="width:10%;word-break:break-all;">  
+                    <p:column headerText="NOMBRE" style="width:38%;word-break:break-all;">  
                         <h:outputText  value="#{activo.nombre}" />  
                     </p:column>  
 
-                    <p:column headerText="Tipo Activo" style="width:10%">  
+                    <p:column headerText="Tipo Activo" style="width:20%">  
                         <h:outputText value="#{activo.tipoActivo.nombre}" />  
                     </p:column>  
                     
-                    <p:column headerText="Area" style="width:10%">  
+                    <p:column headerText="Area" style="width:20%">  
                         <h:outputText value="#{activo.area.nombre}" />  
                     </p:column>  
                    

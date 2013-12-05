@@ -14,17 +14,17 @@
        <ui:define name="Left">
            <h:form id="miform">
                <p:commandButton value="Agregar" action="#{cargoControlador.agregar()}"></p:commandButton>
-               <p:dataTable rendered="true"  id="tablaCargo" var="cargo"  selectionMode="single" rowKey="#{cargo.idCargo}" value="#{cargoControlador.lstCargo}" style="width:1100px" scrollable="true" scrollHeight="200">  
+               <p:dataTable rendered="true"  id="tablaCargo" var="cargo"  selectionMode="single" rowKey="#{cargo.idCargo}" value="#{cargoControlador.lstCargo}" style="width:1260px" scrollable="true" scrollHeight="200">  
                    
                    <p:column headerText="CODIGO" style="width:10%;word-break:break-all;">  
                        <h:outputText value="#{cargo.codigo}" />  
                     </p:column>  
 
-                    <p:column headerText="NOMBRE" style="width:10%;word-break:break-all;">  
+                    <p:column headerText="NOMBRE" style="width:50%;word-break:break-all;">  
                         <h:outputText value="#{cargo.nombre}" />  
                     </p:column>  
 
-                    <p:column headerText="AREA" style="width:10%;word-break:break-all;">  
+                    <p:column headerText="AREA" style="width:28%;word-break:break-all;">  
                         <h:outputText value="#{cargo.area.nombre}" />  
                     </p:column>  
                    
@@ -35,7 +35,7 @@
                     </p:column>  
                     
                    <p:column style="width:6%;word-break:break-all;">  
-                        <p:commandButton icon="ui-icon-close" action="#{cargoControlador.eliminar()}" >
+                        <p:commandButton icon="ui-icon-close" action="#{insumoControlador.showConfirm()}" >
                             <f:setPropertyActionListener value="#{cargo}" target="#{cargoControlador.currentCargo}" />  
                         </p:commandButton>
                     </p:column>  
@@ -46,7 +46,7 @@
         
        <ui:define  name="Right">
           <h:form id="cruForm">
-               <p:panelGrid  style="width:100%;border:0px;"   id="panelcrud"    >  
+               <p:panelGrid  style="width:100%;border:0px;"   id="panelcrud">  
                    <p:row>   
                        <p:column  colspan="4" style="width:100%" >
                            <p:messages id="messages"/>
@@ -54,20 +54,18 @@
                    </p:row>
                     
                 <p:row>   
-                    <p:column colspan="2" style="width:20%"><p:commandButton value="Salvar" action="#{cargoControlador.persist()}" update="panelcrud"></p:commandButton></p:column>
+                    <p:column colspan="2" style="width:20%"><p:commandButton id="save" value="Salvar"  action="#{cargoControlador.persist()}" update="panelcrud" ></p:commandButton></p:column>
                     <p:column colspan="2" style="width:80%"><p:commandButton value="Cancelar"></p:commandButton></p:column>
                 </p:row>
-                   
                 <p:row>   
-                    <p:column style="width:15%"><h:outputLabel value="Nombre : *"></h:outputLabel></p:column>  
+                    <p:column style="width:15%"><h:outputLabel value="Nombre : *" ></h:outputLabel></p:column>  
                     <p:column style="width:5%"></p:column>
                     <p:column style="width:80%" colspan="2"><p:inputText  id="nombre" value="#{cargoControlador.currentCargo.nombre}" size="30" ></p:inputText></p:column>
                 </p:row>
-                
                 <p:row>   
                     <p:column style="width:15%"><h:outputLabel value="Código : *" ></h:outputLabel></p:column>  
                     <p:column style="width:5%"></p:column>  
-                    <p:column style="width:80%" colspan="2"><p:inputText id="codigo"  value="#{cargoControlador.currentCargo.codigo}" size="30"></p:inputText></p:column>
+                    <p:column style="width:80%" colspan="2"><p:inputText id="codigo"  value="#{cargoControlador.currentCargo.codigo}" size="30" ></p:inputText></p:column>
                 </p:row>
                                              
                 <p:row>    
@@ -95,7 +93,22 @@
                    <p:column ><p:commandButton value="Cancelar"></p:commandButton></p:column>
   
                </p:panelGrid>
-            </p:dialog>    
+            </p:dialog>  
+              
+               <p:dialog header="Eliminación"  resizable="false" widgetVar="ConfirmDlg"  
+                showEffect="fade" hideEffect="explode" modal="true">  
+  
+               <p:panelGrid >
+                   <p:row >  
+                       <p:column colspan="2"><h:outputLabel value="¿Esta seguro que desea eliminar el activo?" /></p:column>
+                   </p:row>
+                   
+                   <p:row >  
+                       <p:column ><p:commandButton value="Ok" action="#{cargoControlador.eliminar()}" /></p:column>
+                       <p:column ><p:commandButton value="cancel" action="#{cargoControlador.closeConfirm()}" /></p:column>
+                   </p:row>
+               </p:panelGrid>
+            </p:dialog>      
          
          </h:form>
 

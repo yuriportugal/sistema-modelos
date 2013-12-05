@@ -79,7 +79,7 @@ public class CargoControlador implements Serializable {
     
      public void persist(){
          String mensaje = "";
-         
+                 
          if (currentCargo.getNombre().equals(""))
                 mensaje += "Debe ingresar el nombre del Cargo <br/>";
                 System.out.println(mensaje);
@@ -135,10 +135,19 @@ public class CargoControlador implements Serializable {
     } 
     
     public void eliminar(){
+        currentCargo = cargoFacade.find(currentCargo.getIdCargo());
         cargoFacade.remove(currentCargo);
+        RequestContext.getCurrentInstance().execute("ConfirmDlg.hide()");
         agregar();
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Cargo eliminado correctamente",""));  
       }
+    public void showConfirm(){
+       RequestContext.getCurrentInstance().execute("ConfirmDlg.show()");
+      }
     
+    
+    public void closeConfirm(){
+       RequestContext.getCurrentInstance().execute("ConfirmDlg.hide()");
+    }
     
 }

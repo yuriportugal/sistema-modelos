@@ -14,17 +14,17 @@
        <ui:define name="Left">
            <h:form id="miform">
                <p:commandButton value="Agregar" action="#{insumoControlador.agregar()}"></p:commandButton>
-               <p:dataTable rendered="true"  id="tablaInsumo" var="insumo"  selectionMode="single" rowKey="#{insumo.idInsumo}" value="#{insumoControlador.lstInsumos}">  
+               <p:dataTable rendered="true"  id="tablaInsumo" var="insumo"  selectionMode="single" rowKey="#{insumo.idInsumo}" value="#{insumoControlador.lstInsumos}" style="width:1260px" scrollable="true" scrollHeight="200">  
                    
                    <p:column headerText="CODIGO" style="width:10%">  
                         <h:outputText value="#{insumo.codigo}" />  
                     </p:column>  
 
-                    <p:column headerText="NOMBRE" style="width:10%">  
+                    <p:column headerText="NOMBRE" style="width:20%">  
                         <h:outputText value="#{insumo.nombre}" />  
                     </p:column>  
 
-                    <p:column headerText="DESCRIPCION" style="width:10%">  
+                    <p:column headerText="DESCRIPCION" style="width:58%">  
                         <h:outputText value="#{insumo.descripcion}" />  
                     </p:column>  
                     
@@ -35,7 +35,7 @@
                     </p:column>  
                     
                    <p:column style="width:6%">  
-                        <p:commandButton icon="ui-icon-close" action="#{insumoControlador.eliminar()}" >
+                        <p:commandButton icon="ui-icon-close" action="#{insumoControlador.showConfirm()}" >
                             <f:setPropertyActionListener value="#{insumo}" target="#{insumoControlador.currentInsumo}" />  
                         </p:commandButton>
                     </p:column>  
@@ -77,6 +77,23 @@
                 </p:row>
                      
            </p:panelGrid> 
+               
+          <p:dialog header="Eliminación"  resizable="false" widgetVar="ConfirmDlg"  
+                showEffect="fade" hideEffect="explode" modal="true">  
+  
+               <p:panelGrid >
+                   <p:row >  
+                       <p:column colspan="2"><h:outputLabel value="¿Esta seguro que desea eliminar el activo?" /></p:column>
+                   </p:row>
+                   
+                   <p:row >  
+                       <p:column ><p:commandButton value="Ok" action="#{insumoControlador.eliminar()}" /></p:column>
+                       <p:column ><p:commandButton value="cancel" action="#{insumoControlador.closeConfirm()}" /></p:column>
+                   </p:row>
+               </p:panelGrid>
+            </p:dialog>        
+               
+               
          </h:form>
        </ui:define>
    
