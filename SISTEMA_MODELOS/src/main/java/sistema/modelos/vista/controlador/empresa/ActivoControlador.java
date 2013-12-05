@@ -183,10 +183,22 @@ public class ActivoControlador implements Serializable {
     } 
     
     public void eliminar(){
+        currentActivo = activoFacade.find(currentActivo.getIdActivo());
         activoFacade.remove(currentActivo);
-        agregar();
-             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Activo eliminado correctamente",""));  
+        RequestContext.getCurrentInstance().execute("ConfirmDlg.hide()");
+       agregar();
+         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Activo eliminado correctamente",""));  
+        
+    }
+    
+    public void showConfirm(){
+       RequestContext.getCurrentInstance().execute("ConfirmDlg.show()");
       }
+    
+    
+    public void closeConfirm(){
+       RequestContext.getCurrentInstance().execute("ConfirmDlg.hide()");
+    }
     
     public ActivoFacade getActivoFacade() {
         return activoFacade;

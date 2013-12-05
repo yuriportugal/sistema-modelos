@@ -33,13 +33,13 @@
                     </p:column>  
                    
                     <p:column style="width:6%">  
-                        <p:commandButton icon="ui-icon-pencil" action="#{activoControlador.editar()}" >
+                        <p:commandButton icon="ui-icon-pencil" action="#{activoControlador.editar()}"  >
                             <f:setPropertyActionListener value="#{activo}" target="#{activoControlador.currentActivo}" />  
                         </p:commandButton>
                     </p:column>  
                     
                    <p:column style="width:6%">  
-                        <p:commandButton icon="ui-icon-close" action="#{activoControlador.eliminar()}" >
+                        <p:commandButton icon="ui-icon-close" action="#{activoControlador.showConfirm()}"  >
                             <f:setPropertyActionListener value="#{activo}" target="#{activoControlador.currentActivo}" />  
                         </p:commandButton>
                     </p:column>  
@@ -129,7 +129,21 @@
                </p:panelGrid>
             </p:dialog>   
               
-    
+            <p:dialog header="Eliminación"  resizable="false" widgetVar="ConfirmDlg"  
+                showEffect="fade" hideEffect="explode" modal="true">  
+  
+               <p:panelGrid >
+                   <p:row >  
+                       <p:column colspan="2"><h:outputLabel value="¿Esta seguro que desea eliminar el activo?" /></p:column>
+                   </p:row>
+                   
+                   <p:row >  
+                       <p:column ><p:commandButton value="Ok" action="#{activoControlador.eliminar()}" /></p:column>
+                       <p:column ><p:commandButton value="cancel" action="#{activoControlador.closeConfirm()}" /></p:column>
+                   </p:row>
+               </p:panelGrid>
+            </p:dialog>   
+              
               
          </h:form>
 
