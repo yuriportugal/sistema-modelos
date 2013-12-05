@@ -72,7 +72,7 @@ public class ProductoControlador implements Serializable {
                 return;
              }
              
-             if (productoFacade.countActivoByCode(currentProducto.getCodigo())>0){
+             if (productoFacade.countActivoByCode(currentProducto.getCodigo(),currentProducto.getIdproducto())>0){
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Ya se encuentra registrado un producto con el mismo código",""));  
                 return;
              }

@@ -107,7 +107,7 @@ public class ServicioControlador implements Serializable {
             return;
         }
         
-        if (currentServicio.getIdServicio() == null && servicioFacade.countActivoByCode(currentServicio.getCodigo())>0){
+        if (servicioFacade.countActivoByCode(currentServicio.getCodigo(),currentServicio.getIdServicio())>0){
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Ya se encuentra registrado un servicio con el mismo código",""));  
             return;
         }

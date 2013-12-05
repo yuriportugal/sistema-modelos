@@ -95,7 +95,7 @@ public class CargoControlador implements Serializable {
             return;
          }
          
-         if (currentCargo.getIdCargo()== null && cargoFacade.countActivoByCode(currentCargo.getCodigo())>0){
+         if (cargoFacade.countActivoByCode(currentCargo.getCodigo(),currentCargo.getIdCargo())>0){
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Ya se encuentra registrado un cargo con el mismo código",""));  
             return;
         }

@@ -73,7 +73,7 @@ public class InsumoControlador implements Serializable {
                 return;
              }
              
-             if (insumoFacade.countActivoByCode(currentInsumo.getCodigo())>0){
+             if (insumoFacade.countActivoByCode(currentInsumo.getCodigo(),currentInsumo.getIdInsumo())>0){
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Ya se encuentra registrado un insumo con el mismo código",""));  
                 return;
              }

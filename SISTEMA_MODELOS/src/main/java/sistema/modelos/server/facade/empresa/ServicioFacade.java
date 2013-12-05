@@ -31,9 +31,10 @@ public class ServicioFacade extends AbstractFacade<Servicio> {
         return em;
     }
 
-    public int countActivoByCode(String codigo) {
-        Query q = getEntityManager().createQuery("Select s from Servicio s where s.codigo = :cod ");
+    public int countActivoByCode(String codigo,Long id) {
+        Query q = getEntityManager().createQuery("Select s from Servicio s where s.codigo = :cod and s.idServicio <> :id");
         q.setParameter("cod", codigo);
+   q.setParameter("id", id);
         int i = q.getResultList().size();
         System.out.println("tamano:"+i+codigo);
         return i;

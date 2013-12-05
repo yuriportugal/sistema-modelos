@@ -136,7 +136,7 @@ public class ActivoControlador implements Serializable {
             return;
         }
         
-        if (activoFacade.countActivoByCode(currentActivo.getCodigo())>0){
+        if (activoFacade.countActivoByCode(currentActivo.getCodigo(),currentActivo.getIdActivo())>0){
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Ya se encuentra registrado un activo con el mismo código",""));  
     
             return;
