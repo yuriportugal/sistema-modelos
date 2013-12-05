@@ -31,8 +31,9 @@ public class CargoFacade extends AbstractFacade<Cargo> {
     }
     
     public int countActivoByCode(String codigo,Long id) {
-        Query q = getEntityManager().createQuery("Select c from Cargo c where c.codigo = :cod and c.idCargo <> :id");
+        Query q = getEntityManager().createQuery("Select c from Cargo c where c.codigo = :cod"+(id!=null?" and c.idCargo <> :id":""));
         q.setParameter("cod", codigo);
+        if (id != null)
         q.setParameter("id", id);
         int i = q.getResultList().size();
         System.out.println("tamano:"+i+codigo);

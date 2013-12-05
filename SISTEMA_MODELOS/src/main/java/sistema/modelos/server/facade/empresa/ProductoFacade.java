@@ -31,8 +31,9 @@ public class ProductoFacade extends AbstractFacade<Producto> {
     }
     
    public int countActivoByCode(String codigo,Long id) {
-        Query q = getEntityManager().createQuery("Select p from Producto p where p.codigo = :cod and p.idproducto <> :id ");
+        Query q = getEntityManager().createQuery("Select p from Producto p where p.codigo = :cod"+(id!=null?" and p.idproducto <> :id ":""));
         q.setParameter("cod", codigo);
+        if (id != null)
         q.setParameter("id", id);
         int i = q.getResultList().size();
         System.out.println("tamano:"+i+codigo);

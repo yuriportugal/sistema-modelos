@@ -31,8 +31,9 @@ public class InsumoFacade extends AbstractFacade<Insumo> {
     }
     
    public int countActivoByCode(String codigo, Long id) {
-        Query q = getEntityManager().createQuery("Select i from Insumo i where i.codigo = :cod and i.idInsumo <> :id");
+        Query q = getEntityManager().createQuery("Select i from Insumo i where i.codigo = :cod"+(id!=null?" and i.idInsumo <> :id":""));
         q.setParameter("cod", codigo);
+        if (id != null)
         q.setParameter("id", id);
         
         int i = q.getResultList().size();

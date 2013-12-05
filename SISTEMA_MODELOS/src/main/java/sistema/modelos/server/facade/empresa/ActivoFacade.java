@@ -33,11 +33,12 @@ public class ActivoFacade extends AbstractFacade<Activo> {
     }
 
     public int countActivoByCode(String codigo,Long id) {
-        Query q = getEntityManager().createQuery("Select a from Activo a where a.codigo = :cod and a.idActivo <> :id");
+        Query q = getEntityManager().createQuery("Select a from Activo a where a.codigo = :cod"+(id!=null?"and a.idActivo <> :id":""));
         q.setParameter("cod", codigo);
+        if (id != null)
         q.setParameter("id", id);
         int i = q.getResultList().size();
-        System.out.println("tamano:"+i+codigo);
+        System.out.println("tamano:"+i+codigo+id+"111");
         return i;
     }
     
