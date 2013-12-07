@@ -82,12 +82,18 @@ public class Modelo implements Serializable{
     @JoinColumn(name="ID_MES")
     private Mes mes;
     
-    
-        @OneToMany(cascade = CascadeType.ALL, mappedBy = "modelo",orphanRemoval=true)
+     @OneToMany(cascade = CascadeType.ALL, mappedBy = "modelo",orphanRemoval=true)
      private List<TipoCambioDetalle> lstTcDetalle;
     
     
+     @OneToMany(cascade = CascadeType.ALL, mappedBy = "modelo",orphanRemoval=true)
+     private List<PorcentajeVentaDetalle> lstPcVenta;
     
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "modelo",orphanRemoval=true)
+     private List<ProductoModeloDetalle> lstProductoModeloDetalle;
+    
+     
+     
     public Long getIdModelo() {
         return idModelo;
     }
@@ -192,6 +198,22 @@ public class Modelo implements Serializable{
 
     public void setLstTcDetalle(List<TipoCambioDetalle> lstTcDetalle) {
         this.lstTcDetalle = lstTcDetalle;
+    }
+
+    public List<PorcentajeVentaDetalle> getLstPcVenta() {
+        return lstPcVenta;
+    }
+
+    public void setLstPcVenta(List<PorcentajeVentaDetalle> lstPcVenta) {
+        this.lstPcVenta = lstPcVenta;
+    }
+
+    public List<ProductoModeloDetalle> getLstProductoModeloDetalle() {
+        return lstProductoModeloDetalle;
+    }
+
+    public void setLstProductoModeloDetalle(List<ProductoModeloDetalle> lstProductoModeloDetalle) {
+        this.lstProductoModeloDetalle = lstProductoModeloDetalle;
     }
     
     
