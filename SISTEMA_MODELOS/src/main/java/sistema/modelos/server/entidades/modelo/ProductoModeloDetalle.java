@@ -17,6 +17,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.MapsId;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import sistema.modelos.server.entidades.empresa.Producto;
@@ -35,12 +36,12 @@ public class ProductoModeloDetalle implements Serializable{
     @Column(name="ID_MODELO_PRODUCTO")
     private Long idProductoModelo;
     
-    @ManyToOne
-    @JoinColumn(name = "ID_MODELO", referencedColumnName = "ID_MODELO", insertable = false, updatable = false)
+    @ManyToOne 
+    @JoinColumn(name = "ID_MODELO",referencedColumnName="ID_MODELO")
     private Modelo modelo;
     
     @ManyToOne
-    @JoinColumn(name = "ID_PRODUCTO", referencedColumnName = "ID_PRODUCTO", insertable = false, updatable = false)
+    @JoinColumn(name = "ID_PRODUCTO", referencedColumnName = "ID_PRODUCTO")
     private Producto producto;
 
     @Column(name = "PRECIO_VENTA")

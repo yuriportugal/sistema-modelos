@@ -134,24 +134,28 @@ public class ModeloControlador implements Serializable {
         System.out.println("Nombre: "+currentModelo.getNombre());
         System.out.println("Codigo: "+currentModelo.getCodigo());
         System.out.println("Descripsao: "+currentModelo.getDescripcion());
-        //        System.out.println("Lista de productos:--");
-//        
-//        for (int i = 0; i < getCurrentModelo().getLstProductoModeloDetalle().size();i++){
-//            System.out.println("Número : "+(i+1));
-//            System.out.println("Producto: "+getCurrentModelo().getLstProductoModeloDetalle().get(i).getProducto().getIdproducto());
-//            System.out.println("Precio Venta: "+getCurrentModelo().getLstProductoModeloDetalle().get(i).getPrecioVenta());
-//            System.out.println("Stock Inicial: "+getCurrentModelo().getLstProductoModeloDetalle().get(i).getStockInicial());
-//            System.out.println("Vol. Venta: "+getCurrentModelo().getLstProductoModeloDetalle().get(i).getVolumenVenta());
-//        }
+                System.out.println("Lista de productos:--");
         
-     try{   
+        for (int i = 0; i < getCurrentModelo().getLstProductoModeloDetalle().size();i++){
+            System.out.println("Número : "+(i+1));
+            System.out.println("Producto: "+getCurrentModelo().getLstProductoModeloDetalle().get(i).getProducto().getIdproducto());
+            System.out.println("Precio Venta: "+getCurrentModelo().getLstProductoModeloDetalle().get(i).getPrecioVenta());
+            System.out.println("Stock Inicial: "+getCurrentModelo().getLstProductoModeloDetalle().get(i).getStockInicial());
+            System.out.println("Vol. Venta: "+getCurrentModelo().getLstProductoModeloDetalle().get(i).getVolumenVenta());
+            System.out.println("Días (Póliticas): "+getCurrentModelo().getLstProductoModeloDetalle().get(i).getPoliticaDias());
+            System.out.println("Stock Minimo (Póliticas) "+getCurrentModelo().getLstProductoModeloDetalle().get(i).getPoliticaStockMin());
+            
+            	
+        
+        }
+        
       System.out.println("Antes de grabarsh");
         modeloFacade.create(currentModelo);
       System.out.println("Despues de grabarsh");  
-     }catch(ConstraintViolationException ex){
-         System.out.println(ex.getLocalizedMessage());
-     }
-     
+    
+      currentModelo = new Modelo();
+      RequestContext context = RequestContext.getCurrentInstance();  
+        context.update("modeloForm");
      }
 
     public ProductoModeloDetalle getCurrentProdMod() {
@@ -198,7 +202,7 @@ public class ModeloControlador implements Serializable {
     } 
     
     public void agregarProductoModelo(){
-   
+   getCurrentProdMod().setModelo(getCurrentModelo());
         if (!isEditProdMod){
             getCurrentProdMod().setProducto(productoFacade.find(getCurrentProdMod().getProducto().getIdproducto()));
             getCurrentModelo().getLstProductoModeloDetalle().add(currentProdMod);
