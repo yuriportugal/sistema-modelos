@@ -12,9 +12,12 @@ import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import sistema.modelos.server.entidades.empresa.Producto;
 
@@ -25,10 +28,12 @@ import sistema.modelos.server.entidades.empresa.Producto;
 @Entity
 @Table(name = "MODELO_PRODUCTO")
 public class ProductoModeloDetalle implements Serializable{
-   
-    @EmbeddedId
-    private ProductoModeloPK productoModeloPK;
-    
+
+    @Id
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="MODELO_PRODUCTO_SEQ")
+    @SequenceGenerator(name = "MODELO_PRODUCTO_SEQ", sequenceName = "MODELO_PRODUCTO_SEQ",allocationSize = 1)
+    @Column(name="ID_MODELO_PRODUCTO")
+    private Long idProductoModelo;
     
     @ManyToOne
     @JoinColumn(name = "ID_MODELO", referencedColumnName = "ID_MODELO", insertable = false, updatable = false)
@@ -57,15 +62,11 @@ public class ProductoModeloDetalle implements Serializable{
     @JoinColumn(name="UNIDAD")
     private Unidad unidad;
     
-    public ProductoModeloPK getProductoModeloPK() {
-        return productoModeloPK;
-    }
-
-    public void setProductoModeloPK(ProductoModeloPK productoModeloPK) {
-        this.productoModeloPK = productoModeloPK;
-    }
 
     public Producto getProducto() {
+        if (producto == null){
+            producto = new Producto();
+        }
         return producto;
     }
 
@@ -82,6 +83,9 @@ public class ProductoModeloDetalle implements Serializable{
     }
 
     public Unidad getUnidad() {
+        if (unidad == null){
+            unidad = new Unidad();
+        }
         return unidad;
     }
 
@@ -128,6 +132,15 @@ public class ProductoModeloDetalle implements Serializable{
     public void setVolumenVenta(Long volumenVenta) {
         this.volumenVenta = volumenVenta;
     }
+
+    public Long getIdProductoModelo() {
+        return idProductoModelo;
+    }
+
+    public void setIdProductoModelo(Long idProductoModelo) {
+        this.idProductoModelo = idProductoModelo;
+    }
+    
     
     
 }

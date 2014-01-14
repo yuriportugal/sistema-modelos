@@ -20,6 +20,8 @@
     <class>sistema.modelos.server.entidades.modelo.PorcentajeVentaDetalle</class>
     <class>sistema.modelos.server.entidades.modelo.ProductoModeloDetalle</class>
     <class>sistema.modelos.server.entidades.modelo.Unidad</class>
+    <class>sistema.modelos.server.entidades.modelo.InsumoModeloDetalle</class>
+    <class>sistema.modelos.server.entidades.modelo.ActivoModeloDetalle</class>
     <exclude-unlisted-classes>true</exclude-unlisted-classes>
     <properties/>
   </persistence-unit>

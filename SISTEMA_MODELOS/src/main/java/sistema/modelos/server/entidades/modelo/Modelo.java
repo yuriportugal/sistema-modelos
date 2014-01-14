@@ -7,17 +7,15 @@ package sistema.modelos.server.entidades.modelo;
 import sistema.modelos.server.entidades.empresa.*;
 import java.io.Serializable;
 import java.sql.Date;
-import java.util.Collection;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
@@ -39,6 +37,7 @@ public class Modelo implements Serializable{
     private Long idModelo;
 
     @Column(name="CODIGO")
+    @Null 
     private String codigo;
 
     @ManyToOne
@@ -52,12 +51,15 @@ public class Modelo implements Serializable{
     private TipoModelo tipoModelo;
     
     @Column(name="NOMBRE")
+    @Null 
     private String nombre;
     
     @Column(name="DESCRIPCION")
+    @Null 
     private String descripcion;   
     
     @Column(name="FECHA_CREACION")
+    @Null 
     private Date fechaCreacion;
     
     @ManyToOne
@@ -66,9 +68,11 @@ public class Modelo implements Serializable{
     private TipoPeriodo tipoPeriodo;
     
     @Column(name="HORIZONTE")
+    @Null 
     private Long horizonte;
     
     @Column(name="DIAS_TRABAJO")
+    @Null 
     private Long diasTrabajo;
     
     @ManyToOne
@@ -82,18 +86,25 @@ public class Modelo implements Serializable{
     @JoinColumn(name="ID_MES")
     private Mes mes;
     
-     @OneToMany(cascade = CascadeType.ALL, mappedBy = "modelo",orphanRemoval=true)
-     private List<TipoCambioDetalle> lstTcDetalle;
-    
-    
-     @OneToMany(cascade = CascadeType.ALL, mappedBy = "modelo",orphanRemoval=true)
-     private List<PorcentajeVentaDetalle> lstPcVenta;
-    
+//     @OneToMany(cascade = CascadeType.ALL, mappedBy = "modelo",orphanRemoval=true)
+//     private List<TipoCambioDetalle> lstTcDetalle;
+//    
+//    
+//     @OneToMany(cascade = CascadeType.ALL, mappedBy = "modelo",orphanRemoval=true)
+//     private List<PorcentajeVentaDetalle> lstPcVenta;
+//    
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "modelo",orphanRemoval=true)
      private List<ProductoModeloDetalle> lstProductoModeloDetalle;
-    
-     
-     
+//    
+//     @OneToMany(cascade = CascadeType.ALL, mappedBy = "modelo",orphanRemoval=true)
+//     private List<InsumoModeloDetalle> lstInsumoModeloDetalle;
+//
+//     @OneToMany(cascade = CascadeType.ALL, mappedBy = "modelo",orphanRemoval=true)
+//     private List<ActivoModeloDetalle> lstActivoModeloDetalle;
+//
+//     @OneToMany(cascade = CascadeType.ALL, mappedBy = "modelo",orphanRemoval=true)
+//     private List<CargoModeloDetalle> lstCargoModeloDetalle;
+// 
     public Long getIdModelo() {
         return idModelo;
     }
@@ -177,6 +188,9 @@ public class Modelo implements Serializable{
     }
 
     public Ano getAno() {
+        if (ano == null){
+            ano = new Ano();
+        }
         return ano;
     }
 
@@ -192,29 +206,58 @@ public class Modelo implements Serializable{
         this.mes = mes;
     }
 
-    public List<TipoCambioDetalle> getLstTcDetalle() {
-        return lstTcDetalle;
-    }
-
-    public void setLstTcDetalle(List<TipoCambioDetalle> lstTcDetalle) {
-        this.lstTcDetalle = lstTcDetalle;
-    }
-
-    public List<PorcentajeVentaDetalle> getLstPcVenta() {
-        return lstPcVenta;
-    }
-
-    public void setLstPcVenta(List<PorcentajeVentaDetalle> lstPcVenta) {
-        this.lstPcVenta = lstPcVenta;
-    }
-
+//    public List<TipoCambioDetalle> getLstTcDetalle() {
+//        return lstTcDetalle;
+//    }
+//
+//    public void setLstTcDetalle(List<TipoCambioDetalle> lstTcDetalle) {
+//        this.lstTcDetalle = lstTcDetalle;
+//    }
+//
+//    public List<PorcentajeVentaDetalle> getLstPcVenta() {
+//        return lstPcVenta;
+//    }
+//
+//    public void setLstPcVenta(List<PorcentajeVentaDetalle> lstPcVenta) {
+//        this.lstPcVenta = lstPcVenta;
+//    }
+//
     public List<ProductoModeloDetalle> getLstProductoModeloDetalle() {
+        
+       if (lstProductoModeloDetalle == null){
+           lstProductoModeloDetalle = new ArrayList<ProductoModeloDetalle>();
+       } 
         return lstProductoModeloDetalle;
     }
 
     public void setLstProductoModeloDetalle(List<ProductoModeloDetalle> lstProductoModeloDetalle) {
         this.lstProductoModeloDetalle = lstProductoModeloDetalle;
     }
-    
+//
+//    public List<ActivoModeloDetalle> getLstActivoModeloDetalle() {
+//        return lstActivoModeloDetalle;
+//    }
+//
+//    public List<InsumoModeloDetalle> getLstInsumoModeloDetalle() {
+//        return lstInsumoModeloDetalle;
+//    }
+//
+//    public void setLstActivoModeloDetalle(List<ActivoModeloDetalle> lstActivoModeloDetalle) {
+//        this.lstActivoModeloDetalle = lstActivoModeloDetalle;
+//    }
+//
+//    public void setLstInsumoModeloDetalle(List<InsumoModeloDetalle> lstInsumoModeloDetalle) {
+//        this.lstInsumoModeloDetalle = lstInsumoModeloDetalle;
+//    }
+//
+//    public List<CargoModeloDetalle> getLstCargoModeloDetalle() {
+//        return lstCargoModeloDetalle;
+//    }
+//
+//    public void setLstCargoModeloDetalle(List<CargoModeloDetalle> lstCargoModeloDetalle) {
+//        this.lstCargoModeloDetalle = lstCargoModeloDetalle;
+//    }
+//    
+//    
     
 }

@@ -11,7 +11,7 @@
     </h:head>
 
     <h:body>
-        <h:form>
+        <h:form id="modeloForm">
             <h:graphicImage value="/resources/imagenes/fireball.jpg" height="100" width="100%"></h:graphicImage>
           <p:menubar>  
         <p:submenu label="Empresa">  
@@ -51,9 +51,24 @@
        
     </p:menubar>  
                
-        </h:form>
-        
-        <p:tabView  style="height:354px"  orientation="left">  
+      <p:panelGrid   style="width:100%;border:0px;"       >  
+            <p:row>   
+                <p:column style=""   >
+                    <p:commandButton value="Agregar" action="#{modeloControlador.grabarModelo()}"/>
+                 </p:column>
+                 <p:column   >
+                     <p:commandButton value="Limpiar" action="#{modeloControlador.grabarModelo()}"/>
+                 </p:column>   
+            </p:row>  
+        <p:row>   
+            <p:column colspan="2"  >
+                    
+          
+          <p:tabView  style="height:354px" id="tabViewModelo"  orientation="left">  
+            <p:tab title="DATOS GENERALES">  
+                <ui:insert name="datosGenerales"></ui:insert>
+            </p:tab>
+            
             <p:tab title="PARAMETROS DE TIEMPO">  
                 <ui:insert name="parametros"></ui:insert>
             </p:tab>  
@@ -78,9 +93,20 @@
             <p:tab title="BALANCE INICIAL">
             </p:tab>
          </p:tabView>  
-        
+            </p:column>
+            </p:row>  
+        <p:row>   
+                 <p:column   >
+                     <p:commandButton value="Agregar" action="#{modeloControlador.grabarModelo()}"/>
+                 </p:column>
+                 <p:column   >
+                     <p:commandButton value="Limpiar" action="#{modeloControlador.grabarModelo()}"/>
+                 </p:column>   
+            </p:row>  
+      </p:panelGrid>´
+              </h:form>  
+
     </h:body>
 
-    
     
 </html>

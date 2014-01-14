@@ -27,7 +27,8 @@ public class ProductoControlador implements Serializable {
     private ProductoFacade productoFacade;
     
     Long idProducto;
-    List<Producto> lstProducto;
+    
+    List<Producto> lstProductos;
     
     public Producto currentProducto;
     
@@ -43,9 +44,11 @@ public class ProductoControlador implements Serializable {
         this.currentProducto = currentProducto;
     }
     
+    
+    
     public List<Producto> getLstProductos() {
-        lstProducto = productoFacade.findAll();
-        return lstProducto;
+        lstProductos = productoFacade.findAll();
+        return lstProductos;
     }
     
     public Producto getProducto(){
@@ -85,7 +88,7 @@ public class ProductoControlador implements Serializable {
             }
         RequestContext context = RequestContext.getCurrentInstance();  
 
-        lstProducto = getLstProductos();
+        lstProductos = getLstProductos();
         currentProducto = new Producto();
         context.update("miform:tablaProducto");
         context.update("cruForm:panelcrud");
