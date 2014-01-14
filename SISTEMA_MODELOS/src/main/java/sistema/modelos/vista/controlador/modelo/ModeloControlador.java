@@ -15,6 +15,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.AjaxBehaviorEvent;
+import javax.validation.ConstraintViolationException;
 import org.primefaces.context.RequestContext;
 import sistema.modelos.server.entidades.empresa.Activo;
 import sistema.modelos.server.entidades.empresa.Area;
@@ -126,11 +127,14 @@ public class ModeloControlador implements Serializable {
     
     public void grabarModelo(){
         System.out.println("Prueba inutil ");
-//        System.out.println("Periodo: "+currentModelo.getTipoPeriodo().getIdTipoPeriodo());
-//        System.out.println("Año: "+currentModelo.getAno().getIdAno());
-//        System.out.println("Horizonte: "+currentModelo.getHorizonte());
-//        System.out.println("Dias Trabajados: "+currentModelo.getDiasTrabajo());
-//        System.out.println("Lista de productos:--");
+        System.out.println("Periodo: "+currentModelo.getTipoPeriodo().getIdTipoPeriodo());
+        System.out.println("Año: "+currentModelo.getAno().getIdAno());
+        System.out.println("Horizonte: "+currentModelo.getHorizonte());
+        System.out.println("Dias Trabajados: "+currentModelo.getDiasTrabajo());
+        System.out.println("Nombre: "+currentModelo.getNombre());
+        System.out.println("Codigo: "+currentModelo.getCodigo());
+        System.out.println("Descripsao: "+currentModelo.getDescripcion());
+        //        System.out.println("Lista de productos:--");
 //        
 //        for (int i = 0; i < getCurrentModelo().getLstProductoModeloDetalle().size();i++){
 //            System.out.println("Número : "+(i+1));
@@ -140,11 +144,15 @@ public class ModeloControlador implements Serializable {
 //            System.out.println("Vol. Venta: "+getCurrentModelo().getLstProductoModeloDetalle().get(i).getVolumenVenta());
 //        }
         
-        
-//      System.out.println("Antes de grabarsh");
-//        modeloFacade.create(currentModelo);
-//      System.out.println("Despues de grabarsh");  
-    }
+     try{   
+      System.out.println("Antes de grabarsh");
+        modeloFacade.create(currentModelo);
+      System.out.println("Despues de grabarsh");  
+     }catch(ConstraintViolationException ex){
+         System.out.println(ex.getLocalizedMessage());
+     }
+     
+     }
 
     public ProductoModeloDetalle getCurrentProdMod() {
         if (currentProdMod == null){

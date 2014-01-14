@@ -37,7 +37,6 @@ public class Modelo implements Serializable{
     private Long idModelo;
 
     @Column(name="CODIGO")
-    @Null 
     private String codigo;
 
     @ManyToOne
@@ -51,11 +50,9 @@ public class Modelo implements Serializable{
     private TipoModelo tipoModelo;
     
     @Column(name="NOMBRE")
-    @Null 
     private String nombre;
     
     @Column(name="DESCRIPCION")
-    @Null 
     private String descripcion;   
     
     @Column(name="FECHA_CREACION")
@@ -63,20 +60,16 @@ public class Modelo implements Serializable{
     private Date fechaCreacion;
     
     @ManyToOne
-    @Null 
     @JoinColumn(name="ID_TIPO_PERIODO")
     private TipoPeriodo tipoPeriodo;
     
     @Column(name="HORIZONTE")
-    @Null 
     private Long horizonte;
     
     @Column(name="DIAS_TRABAJO")
-    @Null 
     private Long diasTrabajo;
     
-    @ManyToOne
-    @Null 
+    @ManyToOne 
     @JoinColumn(name="ID_ANO")
     private Ano ano;
     

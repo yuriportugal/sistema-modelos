@@ -4,5 +4,35 @@
     xmlns:h="http://java.sun.com/jsf/html"
     xmlns:ui="http://java.sun.com/jsf/facelets"
     xmlns:p="http://primefaces.org/ui">
- 
+       <p:panelGrid   style="width:100%;border:0px;"   id="gridDatosGenerales"    >  
+           <p:row>   
+                 <p:column   style="width:25%" >
+                    <h:outputLabel value="Nombre : *" />
+                 </p:column>
+                
+                 <p:column   style="width:75%" >
+                     <p:inputText  id="nombreModelo"   size="30" value="#{modeloControlador.currentModelo.nombre}"/> 
+                 </p:column>
+            </p:row>    
+           <p:row>   
+                 <p:column   style="width:25%" >
+                    <h:outputLabel value="Codigo : *" />
+                 </p:column>
+                
+                 <p:column   style="width:75%" >
+                     <p:inputText  id="codigoModelo"   size="30" value="#{modeloControlador.currentModelo.codigo}"/> 
+                 </p:column>
+            </p:row> 
+                
+            <p:row>   
+                 <p:column   style="width:25%" >
+                    <h:outputLabel value="Descripción : *" />
+                 </p:column>
+                
+                 <p:column   style="width:75%" >
+                     <p:inputTextarea id="modeloDescripcion"  value="#{modeloControlador.currentModelo.descripcion}" rows="8" cols="50" />
+                 </p:column>
+            </p:row>
+          
+            </p:panelGrid>   
 </ui:composition>
