@@ -14,15 +14,15 @@
                             <h:outputLabel value="Producto: " />
                             </p:column>
                             <p:column   style="width:25%" >
-                             <p:selectOneMenu id="productoModel"  value="#{modeloControlador.currentProdMod.producto.idproducto}">
+                                <p:selectOneMenu id="productoModel"  value="#{productoModeloControlador.currentProductoModeloDetalle.producto.idproducto}">
                                 <f:selectItem  itemLabel="Seleccione un producto" itemValue="#{null}"></f:selectItem>
-                                <f:selectItems value="#{modeloControlador.lstProducto}" var="producto" itemLabel="#{producto.nombre}" itemValue="#{producto.idproducto}"></f:selectItems>
+                                <f:selectItems value="#{productoModeloControlador.lstProducto}" var="producto" itemLabel="#{producto.nombre}" itemValue="#{producto.idproducto}"></f:selectItems>
                             </p:selectOneMenu></p:column>
                             <p:column   style="width:25%" >
                             <h:outputLabel value="Precio venta: " />
                             </p:column>
                             <p:column   style="width:25%" >
-                                <p:inputText  id="precioVenta"   size="30" value="#{modeloControlador.currentProdMod.precioVenta}"/>
+                                <p:inputText  id="precioVenta"   size="30" value="#{productoModeloControlador.currentProductoModeloDetalle.precioVenta}"/>
                             </p:column>
                        </p:row> 
                          
@@ -32,13 +32,13 @@
                             <h:outputLabel value="Stock inicial: " />
                             </p:column>
                             <p:column   style="width:25%" >
-                                <p:inputText id="stockInicial"   size="30" value="#{modeloControlador.currentProdMod.stockInicial}"/>
+                                <p:inputText id="stockInicial"   size="30" value="#{productoModeloControlador.currentProductoModeloDetalle.stockInicial}"/>
                             </p:column>
                             <p:column   style="width:25%" >
                             <h:outputLabel value="Vol venta: " />
                             </p:column>
                             <p:column   style="width:25%" >
-                                <p:inputText id="volVenta"   size="30" value="#{modeloControlador.currentProdMod.volumenVenta}" />
+                                <p:inputText id="volVenta"   size="30" value="#{productoModeloControlador.currentProductoModeloDetalle.volumenVenta}" />
                             </p:column>
                        </p:row> 
                          
@@ -47,13 +47,13 @@
                             <h:outputLabel value="Días (Póliticas): " />
                             </p:column>
                             <p:column   style="width:25%" >
-                                <p:inputText id="politicasDias"   size="30" value="#{modeloControlador.currentProdMod.politicaDias}"/>
+                                <p:inputText id="politicasDias"   size="30" value="#{productoModeloControlador.currentProductoModeloDetalle.politicaDias}"/>
                             </p:column>
                             <p:column   style="width:25%" >
                             <h:outputLabel value="Stock Minimo (Póliticas) " />
                             </p:column>
                             <p:column   style="width:25%" >
-                                <p:inputText id="politicasStock"   size="30" value="#{modeloControlador.currentProdMod.politicaStockMin}" />
+                                <p:inputText id="politicasStock"   size="30" value="#{productoModeloControlador.currentProductoModeloDetalle.politicaStockMin}" />
                             </p:column>
                        </p:row>   
                        
@@ -62,9 +62,9 @@
                             <h:outputLabel value="Unidad: " />
                             </p:column>
                            <p:column colspan="3"   style="width:25%" >
-                                <p:selectOneMenu id="unidadModel"  value="#{modeloControlador.currentProdMod.unidad.idUnidad}">
+                                <p:selectOneMenu id="unidadModel"  value="#{productoModeloControlador.currentProductoModeloDetalle.unidad.idUnidad}">
                                 <f:selectItem  itemLabel="Seleccione una unidad" itemValue="#{null}"></f:selectItem>
-                                <f:selectItems value="#{modeloControlador.lstUnidad}" var="unidad" itemLabel="#{unidad.nombre}" itemValue="#{unidad.idUnidad}"></f:selectItems>
+                                <f:selectItems value="#{productoModeloControlador.lstUnidad}" var="unidad" itemLabel="#{unidad.nombre}" itemValue="#{unidad.idUnidad}"></f:selectItems>
                             </p:selectOneMenu></p:column>
                             
                        </p:row> 
@@ -72,7 +72,7 @@
                          
                         <p:row>   
                             <p:column colspan="2"  style="width:25%" >
-                             <p:commandButton value="Agregar" action="#{modeloControlador.agregarProductoModelo()}"/>
+                                <p:commandButton value="Agregar" action="#{productoModeloControlador.agregarProductoModelo()}"/>
                             </p:column>
                             <p:column colspan="2"  style="width:25%" >
                             <p:commandButton value="Cancelar" />    
@@ -84,33 +84,45 @@
                 </p:panel>
                 
                 <p:panel header="Listado"  styleClass="width=50%;">
-                    <p:dataTable   rendered="true"  id="tablaProductoModelo" var="productoModel"  selectionMode="single" rowKey="#{productoModel.producto.idproducto}" value="#{modeloControlador.currentModelo.lstProductoModeloDetalle}" scrollable="true"  >  
+                    <p:dataTable   rendered="true"  id="tablaProductoModelo" var="productoModel"  selectionMode="single" rowKey="#{productoModel.producto.idproducto}" value="#{productoModeloControlador.lstProductoModeloDetalle}" scrollable="true"  >  
                    
-                        <p:column style="width:150px;"  headerText="Producto" >  
+                        <p:column style="width:90px;"  headerText="Producto" >  
                        <h:outputText  value="#{productoModel.producto.nombre}" />  
                     </p:column>  
+                        
+                        <p:column style="width:90px;"  headerText="Unidad" >  
+                            <h:outputText  value="#{productoModel.unidad.nombre}" />  
+                    </p:column>      
 
-                    <p:column style="width:100px;" headerText="Precio Venta" >  
+                    <p:column style="width:75px;" headerText="Precio Venta" >  
                         <h:outputText  value="#{productoModel.precioVenta}" />  
                     </p:column>  
 
-                    <p:column  style="width:100px;" headerText="Stock Ini" >  
+                    <p:column  style="width:75px;" headerText="Stock Ini" >  
                         <h:outputText value="#{productoModel.stockInicial}" />  
                     </p:column>  
                     
-                    <p:column style="width:100px;" headerText="Vol Venta" >  
+                    <p:column style="width:75px;" headerText="Vol Venta" >  
                         <h:outputText value="#{productoModel.volumenVenta}" />  
                     </p:column>  
                    
-                    <p:column  style="width:50px;">  
-                        <p:commandButton icon="ui-icon-pencil" action="#{modeloControlador.editarProductoModelo()}"  >
-                            <f:setPropertyActionListener value="#{productoModel}" target="#{modeloControlador.currentProdMod}" />  
+                    <p:column style="width:75px;" headerText="Dias Pol." >  
+                        <h:outputText value="#{productoModel.politicaDias}" />  
+                    </p:column>  
+                        
+                    <p:column style="width:75px;" headerText="Stock Pol." >  
+                        <h:outputText value="#{productoModel.politicaStockMin}" />  
+                    </p:column>      
+                        
+                    <p:column  style="width:25px;">  
+                        <p:commandButton icon="ui-icon-pencil" action="#{productoModeloControlador.editarProductoModelo()}"  >
+                            <f:setPropertyActionListener value="#{productoModel}" target="#{productoModeloControlador.currentProductoModeloDetalle}" />  
                         </p:commandButton>
                     </p:column>  
                     
-                   <p:column  style="width:50px;">  
-                        <p:commandButton icon="ui-icon-close" action="#{modeloControlador.eliminarProductoModelo()}"  >
-                            <f:setPropertyActionListener value="#{productoModel}" target="#{modeloControlador.currentProdMod}" />  
+                   <p:column  style="width:25px;">  
+                        <p:commandButton icon="ui-icon-close" action="#{productoModeloControlador.eliminarProductoModelo()}"  >
+                            <f:setPropertyActionListener value="#{productoModel}" target="#{productoModeloControlador.currentProductoModeloDetalle}" />  
                         </p:commandButton>
                     </p:column>       
                    
