@@ -42,4 +42,7 @@ public class RedirectionerController {
      public String crearModelo(){
         return "/MODELO/CREARMODELO";
     }
+    public String listarModelo(){
+        return "/MODELO/LISTARMODELO";
+    }
 }

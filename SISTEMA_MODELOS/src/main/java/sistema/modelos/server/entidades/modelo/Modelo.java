@@ -86,7 +86,7 @@ public class Modelo implements Serializable{
 //     @OneToMany(cascade = CascadeType.ALL, mappedBy = "modelo",orphanRemoval=true)
 //     private List<PorcentajeVentaDetalle> lstPcVenta;
 //    
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "modelo")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "modelo",orphanRemoval=true)
      private List<ProductoModeloDetalle> lstProductoModeloDetalle;
 //    
 //     @OneToMany(cascade = CascadeType.ALL, mappedBy = "modelo",orphanRemoval=true)

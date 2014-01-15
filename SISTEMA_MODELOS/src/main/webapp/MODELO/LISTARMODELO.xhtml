@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+      <ui:composition template="/templateListModel.xhtml"> 
+        
+        <ui:define name="listado">
+     
+        <p:dataTable   rendered="true"  id="tablaListadoModelo" var="modelo"  selectionMode="single" rowKey="#{modelo.idModelo}" value="#{modeloControlador.lstModelo}" scrollable="true"  >  
+                   
+                        <p:column style="width:100px;"  headerText="Codigo" >  
+                            <h:outputText  value="#{modelo.codigo}" />  
+                    </p:column>  
+                        
+                        <p:column style="width:100px;"  headerText="Nombre" >  
+                            <h:outputText  value="#{modelo.nombre}" />  
+                    </p:column>      
+
+                    <p:column style="width:250px;" headerText="Descripcion" >  
+                        <h:outputText  value="#{modelo.descripcion}" />  
+                    </p:column>  
+
+                        
+                    <p:column  style="width:50px;">  
+                        <p:commandButton icon="ui-icon-pencil" action="#{modeloControlador.editarModelo()}"  >
+                            <f:setPropertyActionListener value="#{modelo}" target="#{modeloControlador.currentModelo}" />  
+                        </p:commandButton>
+                    </p:column>  
+                    
+                   <p:column  style="width:50px;">  
+                        <p:commandButton icon="ui-icon-close" action="#{modeloControlador.eliminarModelo()}"  >
+                            <f:setPropertyActionListener value="#{modelo}" target="#{modeloControlador.currentModelo}" />  
+                        </p:commandButton>
+                    </p:column>       
+                   
+                </p:dataTable>
+    
+        </ui:define>
+      </ui:composition>    
+</html>
+

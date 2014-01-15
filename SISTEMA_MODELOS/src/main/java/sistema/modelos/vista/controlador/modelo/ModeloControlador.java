@@ -40,6 +40,18 @@ public class ModeloControlador implements Serializable {
     
     private Modelo currentModelo;
     
+    private List<Modelo> lstModelo;
+
+    public List<Modelo> getLstModelo() {
+        return modeloFacade.findAll();
+    }
+
+    public void setLstModelo(List<Modelo> lstModelo) {
+        this.lstModelo = lstModelo;
+    }
+    
+    
+    
     public ProductoModeloControlador getProductoModeloControlador() {
         return productoModeloControlador;
     }
@@ -92,10 +104,23 @@ public class ModeloControlador implements Serializable {
             getProductoModeloControlador().getLstProductoModeloDetalle().get(i).setModelo(currentModelo);
         }
         currentModelo.setLstProductoModeloDetalle(getProductoModeloControlador().getLstProductoModeloDetalle());
+        if (currentModelo.getIdModelo() != null && currentModelo.getIdModelo()>0){
+        modeloFacade.edit(currentModelo);    
+        }else{
         modeloFacade.create(currentModelo);  
+        }
         currentModelo = new Modelo();
         RequestContext context = RequestContext.getCurrentInstance();  
         context.update("modeloForm");
      }
-
+     
+    public String editarModelo(){
+        getProductoModeloControlador().setLstProductoModeloDetalle(getCurrentModelo().getLstProductoModeloDetalle());
+        return "/MODELO/CREARMODELO";
+    }
+    
+    public void eliminarModelo(){
+        
+    }
+    
 }
