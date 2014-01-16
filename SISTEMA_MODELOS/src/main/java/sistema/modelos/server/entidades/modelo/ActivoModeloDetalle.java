@@ -6,18 +6,17 @@ package sistema.modelos.server.entidades.modelo;
 
 
 import java.io.Serializable;
-import javax.persistence.AssociationOverride;
-import javax.persistence.AssociationOverrides;
 import javax.persistence.Column;
-import javax.persistence.Embeddable;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-import sistema.modelos.server.entidades.empresa.Insumo;
-import sistema.modelos.server.entidades.empresa.Producto;
+import sistema.modelos.server.entidades.empresa.Activo;
 
 /**
  *
@@ -27,22 +26,36 @@ import sistema.modelos.server.entidades.empresa.Producto;
 @Table(name = "ACTIVO_MODELO")
 public class ActivoModeloDetalle implements Serializable{
    
-    @EmbeddedId
-    private ActivoModeloPK activoModeloPK;
+
+    @Id
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="ACTIVO_MODELO_SEQ")
+    @SequenceGenerator(name = "ACTIVO_MODELO_SEQ", sequenceName = "ACTIVO_MODELO_SEQ",allocationSize = 1)
+    @Column(name="ID_MODELO_ACTIVO")
+    private Long idActivoModelo;
     
+    
+    @Column(name = "CANTIDAD")
     private Long cantidad;
     
+    @Column(name="VALOR_COMPRA")
     private Long valorCompra;
     
+    @Column(name="HORAS_PRODUCCION")
     private Long horasProdu;
     
+    @Column(name="COSTO_MAQ_HOR")
     private Long costoMaqHora;
     
+    @Column(name="ANO_VIDA")
     private Long anoVida;
     
     @ManyToOne
-    @JoinColumn(name = "ID_MODELO", referencedColumnName = "ID_MODELO", insertable = false, updatable = false)
+    @JoinColumn(name = "ID_MODELO", referencedColumnName = "ID_MODELO")
     private Modelo modelo;
+    
+    @ManyToOne
+    @JoinColumn(name = "ID_ACTIVO", referencedColumnName = "ID_ACTIVO")
+    private Activo activo;
     
     public Modelo getModelo() {
         return modelo;
@@ -50,10 +63,6 @@ public class ActivoModeloDetalle implements Serializable{
 
     public void setModelo(Modelo modelo) {
         this.modelo = modelo;
-    }
-
-    public ActivoModeloPK getActivoModeloPK() {
-        return activoModeloPK;
     }
 
     public Long getAnoVida() {
@@ -76,10 +85,6 @@ public class ActivoModeloDetalle implements Serializable{
         return valorCompra;
     }
 
-    public void setActivoModeloPK(ActivoModeloPK activoModeloPK) {
-        this.activoModeloPK = activoModeloPK;
-    }
-
     public void setAnoVida(Long anoVida) {
         this.anoVida = anoVida;
     }
@@ -100,6 +105,26 @@ public class ActivoModeloDetalle implements Serializable{
         this.valorCompra = valorCompra;
     }
 
+    public Activo getActivo() {
+        if (activo == null){
+            activo = new Activo();
+        }
+        return activo;
+    }
+
+    public void setActivo(Activo activo) {
+        this.activo = activo;
+    }
+
+    public Long getIdActivoModelo() {
+        return idActivoModelo;
+    }
+
+    public void setIdActivoModelo(Long idActivoModelo) {
+        this.idActivoModelo = idActivoModelo;
+    }
+
+    
     
     
 }

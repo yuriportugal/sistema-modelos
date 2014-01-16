@@ -1,0 +1,118 @@
+<ui:composition 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui">
+    
+       <p:panel id="panelAct" >
+            <h:panelGrid columns="1" width="100%" >
+                <p:panel header="Edición/Creación" styleClass="width=50%;">
+                     <p:panelGrid   style="width:100%;border:0px;"   id="panelActivoMod"    >  
+                       <p:row>   
+                            <p:column   style="width:25%" >
+                            <h:outputLabel value="Activo " />
+                            </p:column>
+                            <p:column   style="width:25%" >
+                                <p:selectOneMenu id="activoModelo"  value="#{activoModeloControlador.currentActivoModeloDetalle.activo.idActivo}">
+                                <f:selectItem  itemLabel="Seleccione un activo" itemValue="#{null}"></f:selectItem>
+                                <f:selectItems value="#{activoModeloControlador.lstActivo}" var="activo" itemLabel="#{activo.nombre}" itemValue="#{activo.idActivo}"></f:selectItems>
+                            </p:selectOneMenu></p:column>
+                            <p:column   style="width:25%" >
+                            <h:outputLabel value="Cantidad: " />
+                            </p:column>
+                            <p:column   style="width:25%" >
+                                <p:inputText  id="cantidadActivoModel"   size="30" value="#{activoModeloControlador.currentActivoModeloDetalle.cantidad}"/>
+                            </p:column>
+                       </p:row> 
+                         
+                         
+                     <p:row>   
+                            <p:column   style="width:25%"  >
+                            <h:outputLabel value="Valor de compra: " />
+                            </p:column>
+                         <p:column   style="width:25%"  >
+                             <p:inputText id="valorCompraActivo"   size="30" value="#{activoModeloControlador.currentActivoModeloDetalle.valorCompra}"/>
+                            </p:column>
+                         <p:column   style="width:25%"  >
+                            <h:outputLabel value="Horas de producción: " />
+                            </p:column>
+                         <p:column   style="width:25%"  >
+                             <p:inputText id="horasProduccActivo"   size="30" value="#{activoModeloControlador.currentActivoModeloDetalle.horasProdu}"/>
+                            </p:column>
+                       </p:row> 
+                         
+                       <p:row>   
+                            <p:column   style="width:25%"  >
+                            <h:outputLabel value="Costo de Hora/Maq: " />
+                            </p:column>
+                            <p:column   style="width:25%" >
+                                <p:inputText id="costoHoraMaq"   size="30" value="#{activoModeloControlador.currentActivoModeloDetalle.costoMaqHora}"/>
+                            </p:column>
+                            <p:column   style="width:25%" >
+                            <h:outputLabel value="Años Vida: " />
+                            </p:column>
+                            <p:column   style="width:25%" >
+                                <p:inputText id="AnoVidaActivo"   size="30" value="#{activoModeloControlador.currentActivoModeloDetalle.anoVida}" />
+                            </p:column>
+                       </p:row>
+                         
+                        <p:row>   
+                            <p:column colspan="2"  style="width:25%" >
+                                <p:commandButton value="Agregar" action="#{activoModeloControlador.agregarActivoModelo()}"/>
+                            </p:column>
+                            <p:column colspan="2"  style="width:25%" >
+                            <p:commandButton value="Cancelar" />    
+                            </p:column>
+                       </p:row>   
+                          
+                     </p:panelGrid>
+                    
+                </p:panel>
+                
+                <p:panel header="Listado"  styleClass="width=50%;">
+                    <p:dataTable   rendered="true"  id="tablaActivoModelo" var="activoModel"  rowKey="#{activoModel.idActivoModelo}" value="#{activoModeloControlador.lstActivoModeloDetalle}" scrollable="true"  >  
+                   
+                        <p:column style="width:90px;"  headerText="Activo" >  
+                            <h:outputText  value="#{activoModel.activo.nombre}" />  
+                    </p:column>  
+                        
+                        <p:column style="width:75px;"  headerText="Cantidad" >  
+                            <h:outputText  value="#{activoModel.cantidad}" />  
+                    </p:column>      
+
+                    <p:column style="width:75px;" headerText="Val. Compra" >  
+                        <h:outputText  value="#{activoModel.valorCompra}" />  
+                    </p:column>  
+
+                    <p:column  style="width:75px;" headerText="Horas Prod." >  
+                        <h:outputText value="#{activoModel.horasProdu}" />  
+                    </p:column>  
+                    <p:column style="width:75px;" headerText="Costo Hor/Maq" >  
+                        <h:outputText value="#{activoModel.costoMaqHora}" />  
+                    </p:column>  
+                        
+                    <p:column style="width:75px;" headerText="Año Vida" >  
+                        <h:outputText value="#{activoModel.anoVida}" />  
+                    </p:column>      
+                        
+                    <p:column  style="width:25px;">  
+                        <p:commandButton icon="ui-icon-pencil" action="#{activoModeloControlador.editarActivoModelo()}"  >
+                            <f:setPropertyActionListener value="#{activoModel}" target="#{activoModeloControlador.currentActivoModeloDetalle}" />  
+                        </p:commandButton>
+                    </p:column>  
+                    
+                   <p:column  style="width:25px;">  
+                       <p:commandButton icon="ui-icon-close" action="#{activoModeloControlador.eliminarActivoModelo()}"  >
+                           <f:setPropertyActionListener value="#{activoModel}" target="#{activoModeloControlador.currentActivoModeloDetalle}" />  
+                        </p:commandButton>
+                    </p:column>       
+                   
+                </p:dataTable>
+                    
+                </p:panel>  
+            </h:panelGrid>
+            
+        </p:panel>
+    
+</ui:composition>

@@ -29,6 +29,13 @@ public class ModeloControlador implements Serializable {
     @ManagedProperty(value="#{productoModeloControlador}")
     private ProductoModeloControlador productoModeloControlador;
     
+    @ManagedProperty(value="#{insumoModeloControlador}")
+    private InsumoModeloControlador insumoModeloControlador;
+        
+    @ManagedProperty(value="#{activoModeloControlador}")
+    private ActivoModeloControlador activoModeloControlador;
+    
+    
     @EJB
     private TipoPeriodoFacade tipoPeriodoFacade;
     
@@ -49,8 +56,14 @@ public class ModeloControlador implements Serializable {
     public void setLstModelo(List<Modelo> lstModelo) {
         this.lstModelo = lstModelo;
     }
-    
-    
+
+    public ActivoModeloControlador getActivoModeloControlador() {
+        return activoModeloControlador;
+    }
+
+    public void setActivoModeloControlador(ActivoModeloControlador activoModeloControlador) {
+        this.activoModeloControlador = activoModeloControlador;
+    }
     
     public ProductoModeloControlador getProductoModeloControlador() {
         return productoModeloControlador;
@@ -59,6 +72,16 @@ public class ModeloControlador implements Serializable {
     public void setProductoModeloControlador(ProductoModeloControlador productoModeloControlador) {
         this.productoModeloControlador = productoModeloControlador;
     }
+
+    public InsumoModeloControlador getInsumoModeloControlador() {
+        return insumoModeloControlador;
+    }
+
+    public void setInsumoModeloControlador(InsumoModeloControlador insumoModeloControlador) {
+        this.insumoModeloControlador = insumoModeloControlador;
+    }
+    
+    
     
     public void crearTablaTC() {
         Long size = currentModelo.getHorizonte();
@@ -100,10 +123,25 @@ public class ModeloControlador implements Serializable {
     }
     
     public void grabarModelo(){
+        
+        //Seteando los productos
         for (int i = 0; i < getProductoModeloControlador().getLstProductoModeloDetalle().size();i++){
             getProductoModeloControlador().getLstProductoModeloDetalle().get(i).setModelo(currentModelo);
         }
         currentModelo.setLstProductoModeloDetalle(getProductoModeloControlador().getLstProductoModeloDetalle());
+        //Seteando los insumos
+        for (int i = 0; i < getInsumoModeloControlador().getLstInsumoModeloDetalle().size();i++){
+            getInsumoModeloControlador().getLstInsumoModeloDetalle().get(i).setModelo(currentModelo);
+        }
+        currentModelo.setLstInsumoModeloDetalle(getInsumoModeloControlador().getLstInsumoModeloDetalle());
+        //Seteando los activos
+        for (int i = 0; i < getActivoModeloControlador().getLstActivoModeloDetalle().size();i++){
+            getActivoModeloControlador().getLstActivoModeloDetalle().get(i).setModelo(currentModelo);
+        }
+        currentModelo.setLstActivoModeloDetalle(getActivoModeloControlador().getLstActivoModeloDetalle());
+        
+        
+        
         if (currentModelo.getIdModelo() != null && currentModelo.getIdModelo()>0){
         modeloFacade.edit(currentModelo);    
         }else{

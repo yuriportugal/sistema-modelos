@@ -6,18 +6,17 @@ package sistema.modelos.server.entidades.modelo;
 
 
 import java.io.Serializable;
-import javax.persistence.AssociationOverride;
-import javax.persistence.AssociationOverrides;
 import javax.persistence.Column;
-import javax.persistence.Embeddable;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import sistema.modelos.server.entidades.empresa.Insumo;
-import sistema.modelos.server.entidades.empresa.Producto;
 
 /**
  *
@@ -27,16 +26,19 @@ import sistema.modelos.server.entidades.empresa.Producto;
 @Table(name = "MODELO_INSUMO")
 public class InsumoModeloDetalle implements Serializable{
    
-    @EmbeddedId
-    private InsumoModeloPK insumoModeloPK;
+  @Id
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="MODELO_INSUMO_SEQ")
+    @SequenceGenerator(name = "MODELO_INSUMO_SEQ", sequenceName = "MODELO_INSUMO_SEQ",allocationSize = 1)
+    @Column(name="ID_MODELO_INSUMO")
+    private Long idInsumoModelo;
     
     
     @ManyToOne
-    @JoinColumn(name = "ID_MODELO", referencedColumnName = "ID_MODELO", insertable = false, updatable = false)
+    @JoinColumn(name = "ID_MODELO", referencedColumnName = "ID_MODELO")
     private Modelo modelo;
     
     @ManyToOne
-    @JoinColumn(name = "ID_INSUMO", referencedColumnName = "ID_INSUMO", insertable = false, updatable = false)
+    @JoinColumn(name = "ID_INSUMO", referencedColumnName = "ID_INSUMO")
     private Insumo insumo;
 
     @Column(name = "PRECIO_COMPRA")
@@ -56,11 +58,10 @@ public class InsumoModeloDetalle implements Serializable{
     private Unidad unidad;
 
     public Insumo getInsumo() {
+       if (insumo == null){
+           insumo = new Insumo();
+       } 
         return insumo;
-    }
-
-    public InsumoModeloPK getInsumoModeloPK() {
-        return insumoModeloPK;
     }
 
     public Modelo getModelo() {
@@ -84,6 +85,10 @@ public class InsumoModeloDetalle implements Serializable{
     }
 
     public Unidad getUnidad() {
+        if (unidad == null){
+            unidad = new Unidad();
+        }
+        
         return unidad;
     }
 
@@ -91,9 +96,6 @@ public class InsumoModeloDetalle implements Serializable{
         this.insumo = insumo;
     }
 
-    public void setInsumoModeloPK(InsumoModeloPK insumoModeloPK) {
-        this.insumoModeloPK = insumoModeloPK;
-    }
 
     public void setModelo(Modelo modelo) {
         this.modelo = modelo;
@@ -117,6 +119,14 @@ public class InsumoModeloDetalle implements Serializable{
 
     public void setUnidad(Unidad unidad) {
         this.unidad = unidad;
+    }
+
+    public Long getIdInsumoModelo() {
+        return idInsumoModelo;
+    }
+
+    public void setIdInsumoModelo(Long idInsumoModelo) {
+        this.idInsumoModelo = idInsumoModelo;
     }
     
 }

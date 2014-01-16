@@ -89,11 +89,11 @@ public class Modelo implements Serializable{
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "modelo",orphanRemoval=true)
      private List<ProductoModeloDetalle> lstProductoModeloDetalle;
 //    
-//     @OneToMany(cascade = CascadeType.ALL, mappedBy = "modelo",orphanRemoval=true)
-//     private List <InsumoModeloDetalle> lstInsumoModeloDetalle;
+     @OneToMany(cascade = CascadeType.ALL, mappedBy = "modelo",orphanRemoval=true)
+     private List <InsumoModeloDetalle> lstInsumoModeloDetalle;
 //
-//     @OneToMany(cascade = CascadeType.ALL, mappedBy = "modelo",orphanRemoval=true)
-//     private List<ActivoModeloDetalle> lstActivoModeloDetalle;
+     @OneToMany(cascade = CascadeType.ALL, mappedBy = "modelo",orphanRemoval=true)
+     private List<ActivoModeloDetalle> lstActivoModeloDetalle;
 //
 //     @OneToMany(cascade = CascadeType.ALL, mappedBy = "modelo",orphanRemoval=true)
 //     private List<CargoModeloDetalle> lstCargoModeloDetalle;
@@ -226,6 +226,24 @@ public class Modelo implements Serializable{
     public void setLstProductoModeloDetalle(List<ProductoModeloDetalle> lstProductoModeloDetalle) {
         this.lstProductoModeloDetalle = lstProductoModeloDetalle;
     }
+    
+    public List<InsumoModeloDetalle> getLstInsumoModeloDetalle() {
+       if (lstInsumoModeloDetalle == null){
+           lstInsumoModeloDetalle = new ArrayList<InsumoModeloDetalle>();
+       } 
+        
+        return lstInsumoModeloDetalle;
+    }
+    
+    public void setLstInsumoModeloDetalle(List<InsumoModeloDetalle> lstInsumoModeloDetalle) {
+        this.lstInsumoModeloDetalle = lstInsumoModeloDetalle;
+    }
+
+    public void setLstActivoModeloDetalle(List<ActivoModeloDetalle> lstActivoModeloDetalle) {
+        this.lstActivoModeloDetalle = lstActivoModeloDetalle;
+    }
+    
+    
 //
 //    public List<ActivoModeloDetalle> getLstActivoModeloDetalle() {
 //        return lstActivoModeloDetalle;
@@ -252,5 +270,14 @@ public class Modelo implements Serializable{
 //    }
 //    
 //    
+
+    public List<ActivoModeloDetalle> getLstActivoModeloDetalle() {
+        if (lstActivoModeloDetalle == null){
+            lstActivoModeloDetalle = new ArrayList<ActivoModeloDetalle>();
+        }
+        return lstActivoModeloDetalle;
+    }
+
+
     
 }

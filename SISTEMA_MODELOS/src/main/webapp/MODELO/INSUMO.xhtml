@@ -1,0 +1,128 @@
+<ui:composition 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui">
+    
+       <p:panel id="panelIns" >
+            <h:panelGrid columns="1" width="100%" >
+                <p:panel header="Edición/Creación" styleClass="width=50%;">
+                     <p:panelGrid   style="width:100%;border:0px;"   id="panelInsumoMod"    >  
+                       <p:row>   
+                            <p:column   style="width:25%" >
+                            <h:outputLabel value="Insumo: " />
+                            </p:column>
+                            <p:column   style="width:25%" >
+                                <p:selectOneMenu id="insumoModel"  value="#{insumoModeloControlador.currentInsumoModeloDetalle.insumo.idInsumo}">
+                                <f:selectItem  itemLabel="Seleccione un insumo" itemValue="#{null}"></f:selectItem>
+                                <f:selectItems value="#{insumoModeloControlador.lstInsumo}" var="insumo" itemLabel="#{insumo.nombre}" itemValue="#{insumo.idInsumo}"></f:selectItems>
+                            </p:selectOneMenu></p:column>
+                            <p:column   style="width:25%" >
+                            <h:outputLabel value="Precio compra: " />
+                            </p:column>
+                            <p:column   style="width:25%" >
+                                <p:inputText  id="precioCompraIns"   size="30" value="#{insumoModeloControlador.currentInsumoModeloDetalle.precioCompra}"/>
+                            </p:column>
+                       </p:row> 
+                         
+                         
+                     <p:row>   
+                            <p:column   style="width:25%"  >
+                            <h:outputLabel value="Stock inicial: " />
+                            </p:column>
+                         <p:column   style="width:25%" colspan="3" >
+                                <p:inputText id="stockInicialIns"   size="30" value="#{insumoModeloControlador.currentInsumoModeloDetalle.stockInicial}"/>
+                            </p:column>
+                       </p:row> 
+                         
+                       <p:row>   
+                            <p:column   style="width:25%"  >
+                            <h:outputLabel value="Días (Póliticas): " />
+                            </p:column>
+                            <p:column   style="width:25%" >
+                                <p:inputText id="politicasDiasIns"   size="30" value="#{insumoModeloControlador.currentInsumoModeloDetalle.politicaDias}"/>
+                            </p:column>
+                            <p:column   style="width:25%" >
+                            <h:outputLabel value="Stock Minimo (Póliticas) " />
+                            </p:column>
+                            <p:column   style="width:25%" >
+                                <p:inputText id="politicasStockIns"   size="30" value="#{insumoModeloControlador.currentInsumoModeloDetalle.politicaStockMin}" />
+                            </p:column>
+                       </p:row>   
+                       
+                       <p:row>   
+                            <p:column   style="width:25%" >
+                            <h:outputLabel value="Unidad: " />
+                            </p:column>
+                           <p:column colspan="3"   style="width:25%" >
+                               <p:selectOneMenu id="unidadModelIns"  value="#{insumoModeloControlador.currentInsumoModeloDetalle.unidad.idUnidad}">
+                                <f:selectItem  itemLabel="Seleccione una unidad" itemValue="#{null}"></f:selectItem>
+                                <f:selectItems value="#{insumoModeloControlador.lstUnidad}" var="unidad" itemLabel="#{unidad.nombre}" itemValue="#{unidad.idUnidad}"></f:selectItems>
+                            </p:selectOneMenu></p:column>
+                            
+                       </p:row> 
+                         
+                         
+                        <p:row>   
+                            <p:column colspan="2"  style="width:25%" >
+                                <p:commandButton value="Agregar" action="#{insumoModeloControlador.agregarInsumoModelo()}"/>
+                            </p:column>
+                            <p:column colspan="2"  style="width:25%" >
+                            <p:commandButton value="Cancelar" />    
+                            </p:column>
+                       </p:row>   
+                          
+                     </p:panelGrid>
+                    
+                </p:panel>
+                
+                <p:panel header="Listado"  styleClass="width=50%;">
+                    <p:dataTable   rendered="true"  id="tablaInsumoModelo" var="insumoModel"  rowKey="#{insumoModel.idInsumoModelo}" value="#{insumoModeloControlador.lstInsumoModeloDetalle}" scrollable="true"  >  
+                   
+                        <p:column style="width:90px;"  headerText="Insumo" >  
+                            <h:outputText  value="#{insumoModel.insumo.nombre}" />  
+                    </p:column>  
+                        
+                        <p:column style="width:90px;"  headerText="Unidad" >  
+                            <h:outputText  value="#{insumoModel.unidad.nombre}" />  
+                    </p:column>      
+
+                    <p:column style="width:75px;" headerText="Precio Compra" >  
+                        <h:outputText  value="#{insumoModel.precioCompra}" />  
+                    </p:column>  
+
+                    <p:column  style="width:75px;" headerText="Stock Ini" >  
+                        <h:outputText value="#{insumoModel.stockInicial}" />  
+                    </p:column>  
+                    
+               
+                   
+                    <p:column style="width:75px;" headerText="Dias Pol." >  
+                        <h:outputText value="#{insumoModel.politicaDias}" />  
+                    </p:column>  
+                        
+                    <p:column style="width:75px;" headerText="Stock Pol." >  
+                        <h:outputText value="#{insumoModel.politicaStockMin}" />  
+                    </p:column>      
+                        
+                    <p:column  style="width:25px;">  
+                        <p:commandButton icon="ui-icon-pencil" action="#{insumoModeloControlador.editarInsumoModelo()}"  >
+                            <f:setPropertyActionListener value="#{insumoModel}" target="#{insumoModeloControlador.currentInsumoModeloDetalle}" />  
+                        </p:commandButton>
+                    </p:column>  
+                    
+                   <p:column  style="width:25px;">  
+                       <p:commandButton icon="ui-icon-close" action="#{insumoModeloControlador.eliminarProductoModelo()}"  >
+                            <f:setPropertyActionListener value="#{insumoModel}" target="#{insumoModeloControlador.currentInsumoModeloDetalle}" />  
+                        </p:commandButton>
+                    </p:column>       
+                   
+                </p:dataTable>
+                    
+                </p:panel>  
+            </h:panelGrid>
+            
+        </p:panel>
+    
+</ui:composition>
