@@ -35,6 +35,8 @@ public class ModeloControlador implements Serializable {
     @ManagedProperty(value="#{activoModeloControlador}")
     private ActivoModeloControlador activoModeloControlador;
     
+    @ManagedProperty(value="#{cargoModeloControlador}")
+    private CargoModeloControlador cargoModeloControlador;
     
     @EJB
     private TipoPeriodoFacade tipoPeriodoFacade;
@@ -64,6 +66,15 @@ public class ModeloControlador implements Serializable {
     public void setActivoModeloControlador(ActivoModeloControlador activoModeloControlador) {
         this.activoModeloControlador = activoModeloControlador;
     }
+
+    public CargoModeloControlador getCargoModeloControlador() {
+        return cargoModeloControlador;
+    }
+
+    public void setCargoModeloControlador(CargoModeloControlador cargoModeloControlador) {
+        this.cargoModeloControlador = cargoModeloControlador;
+    }
+    
     
     public ProductoModeloControlador getProductoModeloControlador() {
         return productoModeloControlador;
@@ -139,6 +150,11 @@ public class ModeloControlador implements Serializable {
             getActivoModeloControlador().getLstActivoModeloDetalle().get(i).setModelo(currentModelo);
         }
         currentModelo.setLstActivoModeloDetalle(getActivoModeloControlador().getLstActivoModeloDetalle());
+        //Seteando los cargos
+        for (int i = 0; i < getCargoModeloControlador().getLstCargoModeloDetalle().size();i++){
+            getCargoModeloControlador().getLstCargoModeloDetalle().get(i).setModelo(currentModelo);
+        }
+        currentModelo.setLstCargoModeloDetalle(getCargoModeloControlador().getLstCargoModeloDetalle());
         
         
         

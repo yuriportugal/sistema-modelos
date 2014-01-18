@@ -1,0 +1,86 @@
+<ui:composition 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui">
+    
+       <p:panel id="panelCargo" >
+            <h:panelGrid columns="1" width="100%" >
+                <p:panel header="Edición/Creación" styleClass="width=50%;">
+                     <p:panelGrid   style="width:100%;border:0px;"   id="panelCargoMod"    >  
+                       <p:row>   
+                            <p:column   style="width:25%" >
+                            <h:outputLabel value="Activo " />
+                            </p:column>
+                            <p:column   style="width:25%" >
+                                <p:selectOneMenu id="cargoModelo"  value="#{cargoModeloControlador.currentCargoModeloDetalle.cargo.idCargo}">
+                                <f:selectItem  itemLabel="Seleccione un cargo" itemValue="#{null}"></f:selectItem>
+                                <f:selectItems value="#{cargoModeloControlador.lstCargo}" var="cargo" itemLabel="#{cargo.nombre}" itemValue="#{cargo.idCargo}"></f:selectItems>
+                            </p:selectOneMenu></p:column>
+                            <p:column   style="width:25%" >
+                            <h:outputLabel value="Cantidad: " />
+                            </p:column>
+                            <p:column   style="width:25%" >
+                                <p:inputText  id="cantidadCargoModel"   size="30" value="#{cargoModeloControlador.currentCargoModeloDetalle.cantidad}"/>
+                            </p:column>
+                       </p:row> 
+                         
+                         
+                     <p:row>   
+                            <p:column   style="width:25%"  >
+                            <h:outputLabel value="Sueldo: " />
+                            </p:column>
+                         <p:column   style="width:25%" colspan="3"  >
+                             <p:inputText id="sueldoCargoModelo"   size="30" value="#{cargoModeloControlador.currentCargoModeloDetalle.sueldo}"/>
+                            </p:column>
+                         </p:row> 
+                         
+                        <p:row>   
+                            <p:column colspan="2"  style="width:25%" >
+                                <p:commandButton value="Agregar" action="#{cargoModeloControlador.agregarCargoModelo()}"/>
+                            </p:column>
+                            <p:column colspan="2"  style="width:25%" >
+                            <p:commandButton value="Cancelar" />    
+                            </p:column>
+                       </p:row>   
+                          
+                     </p:panelGrid>
+                    
+                </p:panel>
+                
+                <p:panel header="Listado"  styleClass="width=50%;">
+                    <p:dataTable   rendered="true"  id="tablaCargoModelo" var="cargoModel"  rowKey="#{cargoModel.idCargoModelo}" value="#{cargoModeloControlador.lstCargoModeloDetalle}" scrollable="true"  >  
+                   
+                        <p:column style="width:90px;"  headerText="Cargo" >  
+                            <h:outputText  value="#{cargoModel.cargo.nombre}" />  
+                    </p:column>  
+                        
+                        <p:column style="width:75px;"  headerText="Cantidad" >  
+                            <h:outputText  value="#{cargoModel.cantidad}" />  
+                    </p:column>      
+
+                    <p:column style="width:75px;" headerText="Sueldo" >  
+                        <h:outputText  value="#{cargoModel.sueldo}" />  
+                    </p:column>  
+
+                    <p:column  style="width:25px;">  
+                        <p:commandButton icon="ui-icon-pencil" action="#{cargoModeloControlador.editarCargoModelo()}"  >
+                            <f:setPropertyActionListener value="#{cargoModel}" target="#{cargoModeloControlador.currentCargoModeloDetalle}" />  
+                        </p:commandButton>
+                    </p:column>  
+                    
+                   <p:column  style="width:25px;">  
+                       <p:commandButton icon="ui-icon-close" action="#{cargoModeloControlador.eliminarCargoModelo()}"  >
+                           <f:setPropertyActionListener value="#{cargoModel}" target="#{cargoModeloControlador.currentCargoModeloDetalle}" />  
+                        </p:commandButton>
+                    </p:column>       
+                   
+                </p:dataTable>
+                    
+                </p:panel>  
+            </h:panelGrid>
+            
+        </p:panel>
+    
+</ui:composition>

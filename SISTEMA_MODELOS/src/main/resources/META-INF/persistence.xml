@@ -20,6 +20,7 @@
     <class>sistema.modelos.server.entidades.modelo.Unidad</class>
     <class>sistema.modelos.server.entidades.modelo.InsumoModeloDetalle</class>
     <class>sistema.modelos.server.entidades.modelo.ActivoModeloDetalle</class>
+    <class>sistema.modelos.server.entidades.modelo.CargoModeloDetalle</class>
     <exclude-unlisted-classes>true</exclude-unlisted-classes>
     <properties/>
   </persistence-unit>

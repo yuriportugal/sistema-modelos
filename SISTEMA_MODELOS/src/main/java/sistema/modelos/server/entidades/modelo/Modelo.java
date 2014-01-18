@@ -95,9 +95,9 @@ public class Modelo implements Serializable{
      @OneToMany(cascade = CascadeType.ALL, mappedBy = "modelo",orphanRemoval=true)
      private List<ActivoModeloDetalle> lstActivoModeloDetalle;
 //
-//     @OneToMany(cascade = CascadeType.ALL, mappedBy = "modelo",orphanRemoval=true)
-//     private List<CargoModeloDetalle> lstCargoModeloDetalle;
-// 
+     @OneToMany(cascade = CascadeType.ALL, mappedBy = "modelo",orphanRemoval=true)
+     private List<CargoModeloDetalle> lstCargoModeloDetalle;
+ 
     public Long getIdModelo() {
         return idModelo;
     }
@@ -278,6 +278,17 @@ public class Modelo implements Serializable{
         return lstActivoModeloDetalle;
     }
 
+    public List<CargoModeloDetalle> getLstCargoModeloDetalle() {
+        if (lstCargoModeloDetalle == null){
+            lstCargoModeloDetalle = new ArrayList<CargoModeloDetalle>();
+        }
+        return lstCargoModeloDetalle;
+    }
 
-    
+    public void setLstCargoModeloDetalle(List<CargoModeloDetalle> lstCargoModeloDetalle) {
+        this.lstCargoModeloDetalle = lstCargoModeloDetalle;
+    }
+
+
+        
 }

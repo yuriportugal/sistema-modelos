@@ -34,8 +34,8 @@ public class CargoControlador implements Serializable {
     List<Cargo> lstCargo;
     List<Area> lstArea;
     
-    public Cargo currentCargo;
-    public Area currentArea;
+     Cargo currentCargo;
+     Area currentArea;
     
     public CargoControlador() {
               
@@ -45,8 +45,11 @@ public class CargoControlador implements Serializable {
         if (currentCargo == null){
             currentCargo = new Cargo();
         }
+        System.out.println("llamda:"+currentCargo.getNombre()+"codigo: "+currentCargo.getCodigo());
         return currentCargo;
     }
+
+    
     
      public Area getCurrentArea() {
         if (currentArea == null)
@@ -66,6 +69,8 @@ public class CargoControlador implements Serializable {
         
 
     public void setCurrentCargo(Cargo currentCargo) {
+        
+        System.out.println("seteada:"+currentCargo.getNombre());
         this.currentCargo = currentCargo;
     }
     public List<Cargo> getLstCargo() {
@@ -79,7 +84,7 @@ public class CargoControlador implements Serializable {
     
      public void persist(){
          String mensaje = "";
-                 
+         System.out.println("What happen with that shit:"+currentCargo.getNombre()  );        
          if (currentCargo.getNombre().equals(""))
                 mensaje += "Debe ingresar el nombre del Cargo <br/>";
                 System.out.println(mensaje);

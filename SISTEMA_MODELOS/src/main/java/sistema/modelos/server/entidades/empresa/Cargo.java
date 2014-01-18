@@ -56,6 +56,8 @@ public class Cargo implements Serializable{
       
     
     public void setCodigo(String codigo) {
+        
+        System.out.println("Saving from entity cod"+codigo);
         this.codigo = codigo;
     }
 
@@ -64,6 +66,7 @@ public class Cargo implements Serializable{
     }
 
     public void setNombre(String nombre) {
+        System.out.println("Saving from entity"+nombre);
         this.nombre = nombre;
     }
 
