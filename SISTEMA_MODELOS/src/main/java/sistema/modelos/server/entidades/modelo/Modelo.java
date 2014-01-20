@@ -98,6 +98,12 @@ public class Modelo implements Serializable{
      @OneToMany(cascade = CascadeType.ALL, mappedBy = "modelo",orphanRemoval=true)
      private List<CargoModeloDetalle> lstCargoModeloDetalle;
  
+     @OneToMany(cascade = CascadeType.ALL, mappedBy = "modelo",orphanRemoval=true)
+     private List<ServicioModeloDetalle> lstServicioModeloDetalle;
+ 
+     @OneToMany(cascade = CascadeType.ALL, mappedBy = "modelo",orphanRemoval=true)
+     private List<PrestamoModeloDetalle> lstPrestamoModeloDetalle;
+ 
     public Long getIdModelo() {
         return idModelo;
     }
@@ -289,6 +295,28 @@ public class Modelo implements Serializable{
         this.lstCargoModeloDetalle = lstCargoModeloDetalle;
     }
 
+    public List<ServicioModeloDetalle> getLstServicioModeloDetalle() {
+        if (lstServicioModeloDetalle == null){
+            lstServicioModeloDetalle = new ArrayList<ServicioModeloDetalle>();
+        }
+        return lstServicioModeloDetalle;
+    }
 
+    public void setLstServicioModeloDetalle(List<ServicioModeloDetalle> lstServicioModeloDetalle) {
+        this.lstServicioModeloDetalle = lstServicioModeloDetalle;
+    }
+
+    public List<PrestamoModeloDetalle> getLstPrestamoModeloDetalle() {
+        if (lstPrestamoModeloDetalle == null){
+            lstPrestamoModeloDetalle = new ArrayList<PrestamoModeloDetalle>();
+        }
+        return lstPrestamoModeloDetalle;
+    }
+
+    public void setLstPrestamoModeloDetalle(List<PrestamoModeloDetalle> lstPrestamoModeloDetalle) {
+        this.lstPrestamoModeloDetalle = lstPrestamoModeloDetalle;
+    }
+
+    
         
 }

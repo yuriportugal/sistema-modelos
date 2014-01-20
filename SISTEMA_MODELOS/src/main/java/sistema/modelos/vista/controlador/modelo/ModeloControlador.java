@@ -38,6 +38,15 @@ public class ModeloControlador implements Serializable {
     @ManagedProperty(value="#{cargoModeloControlador}")
     private CargoModeloControlador cargoModeloControlador;
     
+    @ManagedProperty(value="#{servicioModeloControlador}")
+    private ServicioModeloControlador servicioModeloControlador;
+    
+    @ManagedProperty(value="#{prestamoModeloControlador}")
+    private PrestamoModeloControlador prestamoModeloControlador;
+    
+    
+    
+    
     @EJB
     private TipoPeriodoFacade tipoPeriodoFacade;
     
@@ -51,6 +60,24 @@ public class ModeloControlador implements Serializable {
     
     private List<Modelo> lstModelo;
 
+    public void setPrestamoModeloControlador(PrestamoModeloControlador prestamoModeloControlador) {
+        this.prestamoModeloControlador = prestamoModeloControlador;
+    }
+
+    public PrestamoModeloControlador getPrestamoModeloControlador() {
+        return prestamoModeloControlador;
+    }
+
+    public ServicioModeloControlador getServicioModeloControlador() {
+        return servicioModeloControlador;
+    }
+
+    public void setServicioModeloControlador(ServicioModeloControlador servicioModeloControlador) {
+        this.servicioModeloControlador = servicioModeloControlador;
+    }
+
+    
+    
     public List<Modelo> getLstModelo() {
         return modeloFacade.findAll();
     }
@@ -155,6 +182,19 @@ public class ModeloControlador implements Serializable {
             getCargoModeloControlador().getLstCargoModeloDetalle().get(i).setModelo(currentModelo);
         }
         currentModelo.setLstCargoModeloDetalle(getCargoModeloControlador().getLstCargoModeloDetalle());
+        //Seteando los servicios
+        for (int i = 0; i < getServicioModeloControlador().getLstServicioModeloDetalle().size();i++){
+            getServicioModeloControlador().getLstServicioModeloDetalle().get(i).setModelo(currentModelo);
+        }
+        currentModelo.setLstServicioModeloDetalle(getServicioModeloControlador().getLstServicioModeloDetalle());
+        //Seteando los prestamos
+        for (int i = 0; i < getPrestamoModeloControlador().getLstPrestamoModeloDetalle().size();i++){
+            getPrestamoModeloControlador().getLstPrestamoModeloDetalle().get(i).setModelo(currentModelo);
+            if (getPrestamoModeloControlador().getLstPrestamoModeloDetalle().get(i).getIdModeloPrestamo().compareTo(1L)<0){
+                getPrestamoModeloControlador().getLstPrestamoModeloDetalle().get(i).setIdModeloPrestamo(null);
+            }
+        }
+        currentModelo.setLstPrestamoModeloDetalle(getPrestamoModeloControlador().getLstPrestamoModeloDetalle());
         
         
         

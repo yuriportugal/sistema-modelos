@@ -1,0 +1,110 @@
+<ui:composition 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui">
+    
+       <p:panel id="panelPrestamo" >
+            <h:panelGrid columns="1" width="100%" >
+                <p:panel header="Edición/Creación" styleClass="width=50%;">
+                     <p:panelGrid   style="width:100%;border:0px;"   id="panelPrestamoMod"    >  
+                       <p:row>   
+                            <p:column   style="width:25%" >
+                            <h:outputLabel value="Nombre " />
+                            </p:column>
+                            <p:column   style="width:25%" >
+                                <p:inputText  id="nombrePrestModel"   size="30" value="#{prestamoModeloControlador.currentPrestamoModeloDetalle.nombre}"/>
+                            </p:column>
+                            <p:column   style="width:25%" >
+                            <h:outputLabel value="Monto: " />
+                            </p:column>
+                            <p:column   style="width:25%" >
+                                <p:inputText  id="montoPrestModel"   size="30" value="#{prestamoModeloControlador.currentPrestamoModeloDetalle.monto}"/>
+                            </p:column>
+                       </p:row> 
+                       
+                         <p:row>   
+                            <p:column   style="width:25%" >
+                            <h:outputLabel value="Interes (%) " />
+                            </p:column>
+                            <p:column   style="width:25%" >
+                                <p:inputText  id="interesPrestModel"   size="30" value="#{prestamoModeloControlador.currentPrestamoModeloDetalle.interes}"/>
+                            </p:column>
+                            <p:column   style="width:25%" >
+                            <h:outputLabel value="Cantidad de periodos " />
+                            </p:column>
+                            <p:column   style="width:25%" >
+                                <p:inputText  id="montoCantPerioModel"   size="30" value="#{prestamoModeloControlador.currentPrestamoModeloDetalle.cantPeriodos}"/>
+                            </p:column>
+                       </p:row>
+                         
+                        <p:row>   
+                            <p:column   style="width:25%" >
+                            <h:outputLabel value="Tipo Prestamo " />
+                            </p:column>
+                            <p:column   style="width:25%" >
+                                <p:selectOneMenu id="tipoPrestModelo"  value="#{prestamoModeloControlador.currentPrestamoModeloDetalle.tipoPrestamo.idTipoPrestamo}">
+                                <f:selectItem  itemLabel="Seleccione un Prestamo" itemValue="#{null}"></f:selectItem>
+                                <f:selectItems value="#{prestamoModeloControlador.lstTipoPrestamo}" var="tipoPrestamo" itemLabel="#{tipoPrestamo.nombre}" itemValue="#{tipoPrestamo.idTipoPrestamo}"></f:selectItems>
+                            </p:selectOneMenu> 
+                            </p:column>
+                            
+                       </p:row>  
+                         
+                        <p:row>   
+                            <p:column colspan="2"  style="width:25%" >
+                                <p:commandButton value="Agregar" action="#{prestamoModeloControlador.agregarPrestamoModelo()}"/>
+                            </p:column>
+                            <p:column colspan="2"  style="width:25%" >
+                            <p:commandButton value="Cancelar" />    
+                            </p:column>
+                       </p:row>   
+                          
+                     </p:panelGrid>
+                    
+                </p:panel>
+                
+                <p:panel header="Listado"  styleClass="width=50%;">
+                    <p:dataTable   rendered="true"  id="tablaPrestamoModelo" var="prestamoModel"  rowKey="#{servicioModel.idModeloServicio}" value="#{prestamoModeloControlador.lstPrestamoModeloDetalle}" scrollable="true"  >  
+                   
+                        <p:column style="width:90px;"  headerText="Nombre" >  
+                            <h:outputText  value="#{prestamoModel.nombre}" />  
+                    </p:column>  
+                        
+                        <p:column style="width:75px;"  headerText="Monto" >  
+                            <h:outputText  value="#{prestamoModel.monto}" />  
+                    </p:column>      
+                        <p:column style="width:75px;"  headerText="Interes" >  
+                            <h:outputText  value="#{prestamoModel.interes}" />  
+                    </p:column>      
+                    
+                        <p:column style="width:75px;"  headerText="Cant. Periodos" >  
+                            <h:outputText  value="#{prestamoModel.cantPeriodos}" />  
+                    </p:column>          
+
+                    
+                        <p:column style="width:90px;"  headerText="Tipo" >  
+                            <h:outputText  value="#{prestamoModel.tipoPrestamo.nombre}" />  
+                    </p:column>          
+    
+                    <p:column  style="width:25px;">  
+                        <p:commandButton icon="ui-icon-pencil" action="#{prestamoModeloControlador.editarPrestamoModelo()}"  >
+                            <f:setPropertyActionListener value="#{prestamoModel}" target="#{prestamoModeloControlador.currentPrestamoModeloDetalle}" />  
+                        </p:commandButton>
+                    </p:column>  
+                    
+                   <p:column  style="width:25px;">  
+                       <p:commandButton icon="ui-icon-close" action="#{prestamoModeloControlador.eliminarPrestamoModelo()}"  >
+                            <f:setPropertyActionListener value="#{prestamoModel}" target="#{prestamoModeloControlador.currentPrestamoModeloDetalle}" />  
+                        </p:commandButton>
+                    </p:column>       
+                   
+                </p:dataTable>
+                    
+                </p:panel>  
+            </h:panelGrid>
+            
+        </p:panel>
+    
+</ui:composition>

@@ -21,6 +21,9 @@
     <class>sistema.modelos.server.entidades.modelo.InsumoModeloDetalle</class>
     <class>sistema.modelos.server.entidades.modelo.ActivoModeloDetalle</class>
     <class>sistema.modelos.server.entidades.modelo.CargoModeloDetalle</class>
+    <class>sistema.modelos.server.entidades.modelo.ServicioModeloDetalle</class>
+    <class>sistema.modelos.server.entidades.modelo.PrestamoModeloDetalle</class>
+    <class>sistema.modelos.server.entidades.modelo.TipoPrestamo</class>
     <exclude-unlisted-classes>true</exclude-unlisted-classes>
     <properties/>
   </persistence-unit>
