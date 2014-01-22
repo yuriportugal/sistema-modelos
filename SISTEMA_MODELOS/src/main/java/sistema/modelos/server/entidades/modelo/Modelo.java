@@ -104,6 +104,252 @@ public class Modelo implements Serializable{
      @OneToMany(cascade = CascadeType.ALL, mappedBy = "modelo",orphanRemoval=true)
      private List<PrestamoModeloDetalle> lstPrestamoModeloDetalle;
  
+     //Cobranzas
+     @Column(name="PORC_VENTAS_CONTADO")
+     private Long porcVentasContado;
+     @Column(name="PORC_VENTAS_CREDITO")
+     private Long porcVentasCredito;
+     @Column(name="PORC_VENTAS_INCOBRABLES")        
+     private Long porcVentasIncobrables;
+     @Column(name="PORC_DEUDA_COB_PER")
+     private Long porcDeudaCobradaPeriodo;
+     @Column(name="POR_DEU_COB_PER_SIG")
+     private Long porcDeudaCobradaSgtePeriodo;
+     //pagos
+     @Column(name="PORC_COMPRAS_CONTADO")
+     private Long porcComprasContado;
+     @Column(name="PORC_COMPRAS_CRED")        
+     private Long porcComprasCredito;
+     @Column(name="PORC_COMP_PAG_PER")     
+     private Long porcCompraPagadaPeriodo;
+     @Column(name="PORC_COMP_PAG_PER_SGTE")   
+     private Long porcCompraPagadaSgtePeriodo;       
+     //Balance Inicial  
+    
+     //ACTIVO CORRIENTE
+     
+     @Column(name="AC_CAJA_BANCO")
+     private Long ACCajaBanco;
+     @Column(name="AC_CRED_FISCAL")
+     private Long ACCredFiscal;
+     @Column(name="AC_CTA_COBRAR")
+     private Long ACCuentaxCobrar;
+     @Column(name="AC_INSUMOS")
+     private Long ACInsumos;
+     @Column(name="AC_PRODUCTO_TERMINADO")
+     private Long ACProductosTerminados;
+     @Column(name="ANC_ACTIVO_FIJO")
+     private Long ANCActivoFijo;
+     @Column(name="ANC_DEPRE_ACUMU")
+     private Long ANCDepreciacionAcum;
+     @Column(name="ANC_INTANGIBLE")
+     private Long ANCIntangible;
+     @Column(name="ANC_AMORT_ACUMU")
+     private Long ANCAmortAcumulada;
+     @Column(name="ANC_VAL_NEGOCIABLE")
+     private Long ANCValNegociable;
+     @Column(name="PC_CCXPP_PROV")
+     private Long PCCuentaxCobrarProveedores;
+     @Column(name="PC_CCXPP_SOBREGIRO")
+     private Long PCCuentaxCobrarSobregiro;
+     @Column(name="PC_IGV_X_PAG")
+     private Long PCIGVxPagar;
+     @Column(name="PC_PREST_X_PAG_CORTO")
+     private Long PCPrestxPagarCortoPlazo;
+     @Column(name="PC_PART_X_PAGAR")
+     private Long PCPartixPagar;
+     @Column(name="PC_DIR_BUEN_GEST_X_PAG")
+     private Long PCDirBuenaGest;
+     @Column(name="PC_IMP_RENT_X_PAG")
+     private Long PCImpuestoRenta;
+     @Column(name="PC_DIV_X_PAGAR")
+     private Long PCDividendoxPag;
+     @Column(name="PNC_DEUD_LARG_PLAZO")
+     private Long PNCDeudaLargoPlazo;
+     @Column(name="PAT_CAP_SOCIAL")
+     private Long PATCapitalSocial;
+     @Column(name="PAT_RESER_LEGAL_ACUM")
+     private Long PATReservaLegal;
+     @Column(name="PT_RESUL_ACUM")
+     private Long PATResultadoAcumulado;
+
+    public Long getACCajaBanco() {
+        return ACCajaBanco;
+    }
+
+    public Long getACCredFiscal() {
+        return ACCredFiscal;
+    }
+
+    public Long getACCuentaxCobrar() {
+        return ACCuentaxCobrar;
+    }
+
+    public Long getACInsumos() {
+        return ACInsumos;
+    }
+
+    public Long getACProductosTerminados() {
+        return ACProductosTerminados;
+    }
+
+    public Long getANCActivoFijo() {
+        return ANCActivoFijo;
+    }
+
+    public Long getANCAmortAcumulada() {
+        return ANCAmortAcumulada;
+    }
+
+    public Long getANCDepreciacionAcum() {
+        return ANCDepreciacionAcum;
+    }
+
+    public Long getANCIntangible() {
+        return ANCIntangible;
+    }
+
+    public Long getANCValNegociable() {
+        return ANCValNegociable;
+    }
+
+    public Long getPATCapitalSocial() {
+        return PATCapitalSocial;
+    }
+
+    public Long getPATReservaLegal() {
+        return PATReservaLegal;
+    }
+
+    public Long getPATResultadoAcumulado() {
+        return PATResultadoAcumulado;
+    }
+
+    public Long getPCCuentaxCobrarProveedores() {
+        return PCCuentaxCobrarProveedores;
+    }
+
+    public Long getPCCuentaxCobrarSobregiro() {
+        return PCCuentaxCobrarSobregiro;
+    }
+
+    public Long getPCDirBuenaGest() {
+        return PCDirBuenaGest;
+    }
+
+    public Long getPCDividendoxPag() {
+        return PCDividendoxPag;
+    }
+
+    public Long getPCIGVxPagar() {
+        return PCIGVxPagar;
+    }
+
+    public Long getPCImpuestoRenta() {
+        return PCImpuestoRenta;
+    }
+
+    public Long getPCPartixPagar() {
+        return PCPartixPagar;
+    }
+
+    public Long getPCPrestxPagarCortoPlazo() {
+        return PCPrestxPagarCortoPlazo;
+    }
+
+    public Long getPNCDeudaLargoPlazo() {
+        return PNCDeudaLargoPlazo;
+    }
+
+    public void setACCajaBanco(Long ACCajaBanco) {
+        this.ACCajaBanco = ACCajaBanco;
+    }
+
+    public void setACCredFiscal(Long ACCredFiscal) {
+        this.ACCredFiscal = ACCredFiscal;
+    }
+
+    public void setACCuentaxCobrar(Long ACCuentaxCobrar) {
+        this.ACCuentaxCobrar = ACCuentaxCobrar;
+    }
+
+    public void setACInsumos(Long ACInsumos) {
+        this.ACInsumos = ACInsumos;
+    }
+
+    public void setACProductosTerminados(Long ACProductosTerminados) {
+        this.ACProductosTerminados = ACProductosTerminados;
+    }
+
+    public void setANCActivoFijo(Long ANCActivoFijo) {
+        this.ANCActivoFijo = ANCActivoFijo;
+    }
+
+    public void setANCAmortAcumulada(Long ANCAmortAcumulada) {
+        this.ANCAmortAcumulada = ANCAmortAcumulada;
+    }
+
+    public void setANCDepreciacionAcum(Long ANCDepreciacionAcum) {
+        this.ANCDepreciacionAcum = ANCDepreciacionAcum;
+    }
+
+    public void setANCIntangible(Long ANCIntangible) {
+        this.ANCIntangible = ANCIntangible;
+    }
+
+    public void setANCValNegociable(Long ANCValNegociable) {
+        this.ANCValNegociable = ANCValNegociable;
+    }
+
+    public void setPATCapitalSocial(Long PATCapitalSocial) {
+        this.PATCapitalSocial = PATCapitalSocial;
+    }
+
+    public void setPATReservaLegal(Long PATReservaLegal) {
+        this.PATReservaLegal = PATReservaLegal;
+    }
+
+    public void setPATResultadoAcumulado(Long PATResultadoAcumulado) {
+        this.PATResultadoAcumulado = PATResultadoAcumulado;
+    }
+
+    public void setPCCuentaxCobrarProveedores(Long PCCuentaxCobrarProveedores) {
+        this.PCCuentaxCobrarProveedores = PCCuentaxCobrarProveedores;
+    }
+
+    public void setPCCuentaxCobrarSobregiro(Long PCCuentaxCobrarSobregiro) {
+        this.PCCuentaxCobrarSobregiro = PCCuentaxCobrarSobregiro;
+    }
+
+    public void setPCDirBuenaGest(Long PCDirBuenaGest) {
+        this.PCDirBuenaGest = PCDirBuenaGest;
+    }
+
+    public void setPCDividendoxPag(Long PCDividendoxPag) {
+        this.PCDividendoxPag = PCDividendoxPag;
+    }
+
+    public void setPCIGVxPagar(Long PCIGVxPagar) {
+        this.PCIGVxPagar = PCIGVxPagar;
+    }
+
+    public void setPCImpuestoRenta(Long PCImpuestoRenta) {
+        this.PCImpuestoRenta = PCImpuestoRenta;
+    }
+
+    public void setPCPartixPagar(Long PCPartixPagar) {
+        this.PCPartixPagar = PCPartixPagar;
+    }
+
+    public void setPCPrestxPagarCortoPlazo(Long PCPrestxPagarCortoPlazo) {
+        this.PCPrestxPagarCortoPlazo = PCPrestxPagarCortoPlazo;
+    }
+
+    public void setPNCDeudaLargoPlazo(Long PNCDeudaLargoPlazo) {
+        this.PNCDeudaLargoPlazo = PNCDeudaLargoPlazo;
+    }
+     
+     
     public Long getIdModelo() {
         return idModelo;
     }
@@ -317,6 +563,76 @@ public class Modelo implements Serializable{
         this.lstPrestamoModeloDetalle = lstPrestamoModeloDetalle;
     }
 
+    public Long getPorcCompraPagadaPeriodo() {
+        return porcCompraPagadaPeriodo;
+    }
+
+    public Long getPorcCompraPagadaSgtePeriodo() {
+        return porcCompraPagadaSgtePeriodo;
+    }
+
+    public Long getPorcComprasContado() {
+        return porcComprasContado;
+    }
+
+    public Long getPorcComprasCredito() {
+        return porcComprasCredito;
+    }
+
+    public Long getPorcDeudaCobradaPeriodo() {
+        return porcDeudaCobradaPeriodo;
+    }
+
+    public Long getPorcDeudaCobradaSgtePeriodo() {
+        return porcDeudaCobradaSgtePeriodo;
+    }
+
+    public Long getPorcVentasContado() {
+        return porcVentasContado;
+    }
+
+    public Long getPorcVentasCredito() {
+        return porcVentasCredito;
+    }
+
+    public Long getPorcVentasIncobrables() {
+        return porcVentasIncobrables;
+    }
+
+    public void setPorcCompraPagadaPeriodo(Long porcCompraPagadaPeriodo) {
+        this.porcCompraPagadaPeriodo = porcCompraPagadaPeriodo;
+    }
+
+    public void setPorcCompraPagadaSgtePeriodo(Long porcCompraPagadaSgtePeriodo) {
+        this.porcCompraPagadaSgtePeriodo = porcCompraPagadaSgtePeriodo;
+    }
+
+    public void setPorcComprasContado(Long porcComprasContado) {
+        this.porcComprasContado = porcComprasContado;
+    }
+
+    public void setPorcComprasCredito(Long porcComprasCredito) {
+        this.porcComprasCredito = porcComprasCredito;
+    }
+
+    public void setPorcDeudaCobradaPeriodo(Long porcDeudaCobradaPeriodo) {
+        this.porcDeudaCobradaPeriodo = porcDeudaCobradaPeriodo;
+    }
+
+    public void setPorcDeudaCobradaSgtePeriodo(Long porcDeudaCobradaSgtePeriodo) {
+        this.porcDeudaCobradaSgtePeriodo = porcDeudaCobradaSgtePeriodo;
+    }
+
+    public void setPorcVentasContado(Long porcVentasContado) {
+        this.porcVentasContado = porcVentasContado;
+    }
+
+    public void setPorcVentasCredito(Long porcVentasCredito) {
+        this.porcVentasCredito = porcVentasCredito;
+    }
+
+    public void setPorcVentasIncobrables(Long porcVentasIncobrables) {
+        this.porcVentasIncobrables = porcVentasIncobrables;
+    }
     
-        
 }
