@@ -24,6 +24,9 @@
     <class>sistema.modelos.server.entidades.modelo.ServicioModeloDetalle</class>
     <class>sistema.modelos.server.entidades.modelo.PrestamoModeloDetalle</class>
     <class>sistema.modelos.server.entidades.modelo.TipoPrestamo</class>
+    <class>sistema.modelos.server.entidades.modelo.ModeloFormulacionInsumo</class>
+    <class>sistema.modelos.server.entidades.modelo.ModeloFormulacionMaquinaria</class>
+    <class>sistema.modelos.server.entidades.modelo.ModeloFormulacionPersonal</class>
     <exclude-unlisted-classes>true</exclude-unlisted-classes>
     <properties/>
   </persistence-unit>

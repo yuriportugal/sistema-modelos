@@ -6,8 +6,11 @@ package sistema.modelos.server.entidades.modelo;
 
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.AssociationOverride;
 import javax.persistence.AssociationOverrides;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.persistence.EmbeddedId;
@@ -18,6 +21,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import sistema.modelos.server.entidades.empresa.Producto;
@@ -63,6 +67,8 @@ public class ProductoModeloDetalle implements Serializable{
     @JoinColumn(name="UNIDAD")
     private Unidad unidad;
     
+     @OneToMany(cascade = CascadeType.ALL, mappedBy = "productoModelo",orphanRemoval=true)
+     private List<ModeloFormulacionInsumo> lstModeloFormulacionInsumoDetalle;
 
     public Producto getProducto() {
         if (producto == null){
@@ -140,6 +146,17 @@ public class ProductoModeloDetalle implements Serializable{
 
     public void setIdProductoModelo(Long idProductoModelo) {
         this.idProductoModelo = idProductoModelo;
+    }
+
+    public List<ModeloFormulacionInsumo> getLstModeloFormulacionInsumoDetalle() {
+        if (lstModeloFormulacionInsumoDetalle == null){
+            lstModeloFormulacionInsumoDetalle = new ArrayList<ModeloFormulacionInsumo>();// <ModeloFormulacionInsumo>();
+        }
+        return lstModeloFormulacionInsumoDetalle;
+    }
+
+    public void setLstModeloFormulacionInsumoDetalle(List<ModeloFormulacionInsumo> lstModeloFormulacionInsumoDetalle) {
+        this.lstModeloFormulacionInsumoDetalle = lstModeloFormulacionInsumoDetalle;
     }
     
     

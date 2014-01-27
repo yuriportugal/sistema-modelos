@@ -6,26 +6,137 @@
     xmlns:p="http://primefaces.org/ui">
     
        <p:panel id="PanelBalanceInicial" >
-            <p:tabView id="tabView">  
+            <p:tabView id="tabViewBalanceInicial">  
   
-                <p:tab id="tab1" title="Activo">  
-                    <h:panelGrid columns="2" cellpadding="10">  
-                        <p:graphicImage id="tab1Img" value="/images/godfather/godfather1.jpg" />  
-                        <h:outputText id="tab1Text"  
-                            value="The story begins as Don Vito Corleone, the head of a New York Mafia family, oversees his daughter's wedding.  
-                            His beloved son Michael has just come home from the war, but does not intend to become part of his father's business. T  
-                            hrough Michael's life the nature of the family business becomes clear. The business of the family is just like the head of the family, kind and benevolent to those who give respect,  
-                            but given to ruthless violence whenever anything stands against the good of the family." />  
-                    </h:panelGrid>  
+                <p:tab id="tabActivo" title="Activo">  
+                      <h:panelGrid columns="2" width="100%" >
+                <p:panel header="Activo Corriente" styleClass="width=50%;">
+                    <p:panelGrid styleClass="wifth=100%" >
+                    <p:row>
+                        <p:column><h:outputLabel value="Caja - Bancos" /></p:column>
+                        <p:column><p:inputText size="15" id="ACCajaBanco" value="#{modeloControlador.currentModelo.ACCajaBanco}"/></p:column>
+                    </p:row>
+                    <p:row>
+                        <p:column><h:outputLabel value="Credito Fiscal" /></p:column>
+                        <p:column><p:inputText size="15" id="ACCredFiscal" value="#{modeloControlador.currentModelo.ACCredFiscal}"/></p:column>
+                    </p:row>
+                    <p:row>
+                        <p:column><h:outputLabel value="Cuentas por Cobrar" /></p:column>
+                        <p:column><p:inputText size="15" id="ACCuentaxCobrar" value="#{modeloControlador.currentModelo.ACCuentaxCobrar}"/></p:column>
+                    </p:row>
+                    <p:row>
+                        <p:column colspan="2"><h:outputLabel value="Existencias" /></p:column>
+                   </p:row>
+                    <p:row>
+                        <p:column><h:outputLabel value="    Insumos" /></p:column>
+                        <p:column><p:inputText size="15" id="ACInsumos" value="#{modeloControlador.currentModelo.ACInsumos}"/></p:column>
+                    </p:row>
+                    <p:row>
+                        <p:column><h:outputLabel value="    Productos Terminados" /></p:column>
+                        <p:column><p:inputText size="15" id="ACProductosTerminados" value="#{modeloControlador.currentModelo.ACProductosTerminados}"/></p:column>
+                    </p:row>
+                </p:panelGrid>
+                </p:panel>
+                
+                <p:panel header="Activo No Corriente" styleClass="width=50%;">
+                    <p:panelGrid styleClass="width=100%" >
+                    <p:row>
+                        <p:column><h:outputLabel value="Activos fijos" /></p:column>
+                        <p:column><p:inputText size="15" id="ANCActivoFijo" value="#{modeloControlador.currentModelo.ANCActivoFijo}"/></p:column>
+                    </p:row>
+                    <p:row>
+                        <p:column><h:outputLabel value="Depreciacion Acumulada" /></p:column>
+                        <p:column><p:inputText size="15" id="ANCDepreciacionAcum" value="#{modeloControlador.currentModelo.ANCDepreciacionAcum}"/></p:column>
+                    </p:row>
+                    <p:row>
+                        <p:column><h:outputLabel value="Intangibles" /></p:column>
+                        <p:column><p:inputText size="15" id="ANCIntangible" value="#{modeloControlador.currentModelo.ANCIntangible}"/></p:column>
+                    </p:row>
+                    <p:row>
+                        <p:column ><h:outputLabel value="Amortización Acumulada" /></p:column>
+                        <p:column><p:inputText size="15" id="ANCAmortAcumulada" value="#{modeloControlador.currentModelo.ANCAmortAcumulada}"/></p:column>
+                    </p:row>
+                    <p:row>
+                        <p:column><h:outputLabel value="Valores negociables" /></p:column>
+                        <p:column><p:inputText size="15" id="ANCValNegociable" value="#{modeloControlador.currentModelo.ANCValNegociable}"/></p:column>
+                    </p:row>
+                </p:panelGrid>
+                
+                </p:panel>
+            </h:panelGrid>
+            
                 </p:tab>  
   
-                <p:tab id="tab2" title="Pasivo y Patrimonio">  
-                    <h:panelGrid columns="2" cellpadding="10">  
-                        <p:graphicImage id="tab2Img" value="/images/godfather/godfather2.jpg" />  
-                        <h:outputText id="tab2Text" value="Francis Ford Coppola's legendary continuation and sequel to his landmark 1972 film, The_Godfather, parallels the young Vito Corleone's rise with his son Michael's spiritual fall, deepening The_Godfather's depiction of the dark side of the American dream.  
-                        In the early 1900s, the child Vito flees his Sicilian village for America after the local Mafia kills his family. Vito struggles to make a living, legally or illegally, for his wife and growing brood in Little Italy,  
-                        killing the local Black Hand Fanucci after he demands his customary cut of the tyro's business. With Fanucci gone, Vito's communal stature grows."/>  
-                    </h:panelGrid>  
+                <p:tab id="tabPasivoPatrimonio" title="Pasivo y Patrimonio">  
+                    <p:panelGrid style="width:100%">
+                        <p:row>
+                            <p:column rowspan="2"><p:panel header="Pasivo Corriente" styleClass="width=50%;">
+                                <p:panelGrid styleClass="width=100%" >
+                    <p:row>
+                        <p:column><h:outputLabel value="Cuentas por pagar proveedores" /></p:column>
+                        <p:column><p:inputText size="15" id="PCCuentaxCobrarProveedores" value="#{modeloControlador.currentModelo.PCCuentaxCobrarProveedores}"/></p:column>
+                    </p:row>
+                    <p:row>
+                        <p:column><h:outputLabel value="Cuentas por pagar sobregiros" /></p:column>
+                        <p:column><p:inputText size="15" id="PCCuentaxCobrarSobregiro" value="#{modeloControlador.currentModelo.PCCuentaxCobrarSobregiro}"/></p:column>
+                    </p:row>
+                    <p:row>
+                        <p:column><h:outputLabel value="IGV por pagar" /></p:column>
+                        <p:column><p:inputText size="15" id="PCIGVxPagar" value="#{modeloControlador.currentModelo.PCIGVxPagar}"/></p:column>
+                    </p:row>
+                    <p:row>
+                        <p:column ><h:outputLabel value="Prestamos por pagar Corto Plazo" /></p:column>
+                        <p:column><p:inputText size="15" id="PCPrestxPagarCortoPlazo" value="#{modeloControlador.currentModelo.PCPrestxPagarCortoPlazo}"/></p:column>
+                    </p:row>
+                    <p:row>
+                        <p:column><h:outputLabel value="Participaciones por pagar" /></p:column>
+                        <p:column><p:inputText size="15" id="PCPartixPagar" value="#{modeloControlador.currentModelo.PCPartixPagar}"/></p:column>
+                    </p:row>
+                    <p:row>
+                        <p:column><h:outputLabel value="Dirección y buenas gestión por pagar" /></p:column>
+                        <p:column><p:inputText size="15" id="PCDirBuenaGest" value="#{modeloControlador.currentModelo.PCDirBuenaGest}"/></p:column>
+                    </p:row>
+                    <p:row>
+                        <p:column><h:outputLabel value="Impuesto a la renta por pagar" /></p:column>
+                        <p:column><p:inputText size="15" id="PCImpuestoRenta" value="#{modeloControlador.currentModelo.PCImpuestoRenta}"/></p:column>
+                    </p:row>
+                    <p:row>
+                        <p:column><h:outputLabel value="Dividendos por pagar" /></p:column>
+                        <p:column><p:inputText size="15" id="PCDividendoxPag" value="#{modeloControlador.currentModelo.PCDividendoxPag}"/></p:column>
+                    </p:row>                
+               </p:panelGrid>
+                    
+                                </p:panel></p:column>
+                            <p:column><p:panel header="Pasivo no Corriente" styleClass="width=50%;">
+                                    <p:panelGrid>          
+                    <p:row>
+                        <p:column><h:outputLabel value="Deudas a largo plazo" /></p:column>
+                        <p:column><p:inputText size="15" id="PNCDeudaLargoPlazo" value="#{modeloControlador.currentModelo.PNCDeudaLargoPlazo}"/></p:column>
+                    </p:row>                
+               </p:panelGrid>
+                                </p:panel></p:column>
+                        </p:row>
+                        <p:row>
+                            <p:column><p:panel header="Patrimonio" styleClass="width=50%;">
+                            <p:panelGrid>          
+                                <p:row>
+                                    <p:column><h:outputLabel value="Capital Social" /></p:column>
+                                    <p:column><p:inputText size="15" id="PATCapitalSocial" value="#{modeloControlador.currentModelo.PATCapitalSocial}"/></p:column>
+                                </p:row>
+                                <p:row>
+                                    <p:column><h:outputLabel value="Reservas legales acumuladas" /></p:column>
+                                    <p:column><p:inputText size="15" id="PATReservaLegal" value="#{modeloControlador.currentModelo.PATReservaLegal}"/></p:column>
+                                </p:row>
+                                <p:row>
+                                    <p:column><h:outputLabel value="Resultados acumulados" /></p:column>
+                                    <p:column><p:inputText size="15" id="PATRESULACUMULADOS" value="#{modeloControlador.currentModelo.PATResultadoAcumulado}"/></p:column>
+                                </p:row>
+                           </p:panelGrid>
+                                    
+                                    
+                                </p:panel></p:column>
+                        </p:row>
+                    </p:panelGrid>
                 </p:tab>  
   
   
