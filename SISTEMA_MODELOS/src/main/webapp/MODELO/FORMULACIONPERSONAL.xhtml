@@ -1,0 +1,30 @@
+<ui:composition 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui">
+          <p:dataTable   rendered="true"  id="tablaProductoModeloFormulacionPersonal" var="productoModel"  selectionMode="single" rowKey="#{productoModel.producto.idproducto}" value="#{productoModeloControlador.lstProductoModeloDetalle}" scrollable="true"  >  
+              <p:column style="width:90px;"  headerText="Producto" >  
+                 <h:outputText  value="#{productoModel.producto.nombre}" />  
+              </p:column>  
+              <p:column style="width:90px;"  headerText="Unidad" >  
+                  <h:outputText  value="#{productoModel.unidad.nombre}" />  
+              </p:column>      
+
+              <p:column style="width:75px;" headerText="Precio Venta" >  
+                   <h:outputText  value="#{productoModel.precioVenta}" />  
+              </p:column>  
+
+              <p:column  style="width:75px;" headerText="Stock Ini" >  
+                   <h:outputText value="#{productoModel.stockInicial}" />  
+              </p:column>  
+                        
+              <p:column  style="width:25px;">  
+                  <p:commandButton icon="ui-icon-pencil" action="#{productoModeloControlador.editarProdModelFormuPersonal()}"  >
+                      <f:setPropertyActionListener value="#{productoModel}" target="#{productoModeloControlador.currentProdModDetFormPersonal}" />  
+                 </p:commandButton>
+              </p:column>  
+                    
+              </p:dataTable>
+</ui:composition>

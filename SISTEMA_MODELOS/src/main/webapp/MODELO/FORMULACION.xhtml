@@ -1,0 +1,25 @@
+<ui:composition 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui">
+    
+       <p:panel id="panelFormulacion" >
+         <p:tabView id="tabViewFormulacion">  
+  
+                <p:tab id="tabInsumoFormulacion" title="Insumos">
+                    <ui:include src="/MODELO/FORMULACIONINSUMO.xhtml" />  
+                </p:tab>
+                <p:tab id="tabPersonalFormulacion" title="Personal">
+                <ui:include src="/MODELO/FORMULACIONPERSONAL.xhtml" />  
+                </p:tab>
+                <p:tab id="tabMaquinariaFormulacion" title="Maquinarias">
+                <ui:include src="/MODELO/FORMULACIONMAQUINARIA.xhtml" />  
+                </p:tab>
+         </p:tabView>    
+           
+           
+      </p:panel>
+    
+</ui:composition>

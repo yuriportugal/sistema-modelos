@@ -210,6 +210,8 @@ public class ModeloControlador implements Serializable {
      
     public String editarModelo(){
         getProductoModeloControlador().setLstProductoModeloDetalle(getCurrentModelo().getLstProductoModeloDetalle());
+        RequestContext context = RequestContext.getCurrentInstance();  
+        context.update("modeloForm");
         return "/MODELO/CREARMODELO";
     }
     

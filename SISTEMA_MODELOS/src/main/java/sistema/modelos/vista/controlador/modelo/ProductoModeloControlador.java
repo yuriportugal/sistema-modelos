@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import org.primefaces.context.RequestContext;
 import sistema.modelos.server.entidades.empresa.Producto;
@@ -29,7 +30,18 @@ public class ProductoModeloControlador implements Serializable {
     
     private ProductoModeloDetalle currentProductoModeloDetalle;
     
+    private ProductoModeloDetalle currentProdModDetFormInsumo;
+    
+    private ProductoModeloDetalle currentProdModDetFormPersonal;
+    
+    private ProductoModeloDetalle currentProdModDetFormMaquinaria;
+    
     private List<Producto> lstProducto;
+    
+    
+    @ManagedProperty(value="#{modFormuInsumoControlador}")
+    private ModFormuInsumoControlador modFormuInsumoControlador;
+    
     
     private List<Unidad> lstUnidad;
     
@@ -54,6 +66,16 @@ public class ProductoModeloControlador implements Serializable {
         this.lstProductoModeloDetalle = lstProductoModeloDetalle;
     }
 
+    public ModFormuInsumoControlador getModFormuInsumoControlador() {
+        return modFormuInsumoControlador;
+    }
+
+    public void setModFormuInsumoControlador(ModFormuInsumoControlador modFormuInsumoControlador) {
+        this.modFormuInsumoControlador = modFormuInsumoControlador;
+    }
+
+    
+    
     public ProductoModeloDetalle getCurrentProductoModeloDetalle() {
         
         if (currentProductoModeloDetalle == null){
@@ -66,6 +88,19 @@ public class ProductoModeloControlador implements Serializable {
     public void setCurrentProductoModeloDetalle(ProductoModeloDetalle currentProductoModeloDetalle) {
         this.currentProductoModeloDetalle = currentProductoModeloDetalle;
     }
+
+    public ProductoModeloDetalle getCurrentProdModDetFormMaquinaria() {
+        if (currentProdModDetFormMaquinaria == null){
+            currentProdModDetFormMaquinaria = new ProductoModeloDetalle();
+        }
+        return currentProdModDetFormMaquinaria;
+    }
+
+    public void setCurrentProdModDetFormMaquinaria(ProductoModeloDetalle currentProdModDetFormMaquinaria) {
+        this.currentProdModDetFormMaquinaria = currentProdModDetFormMaquinaria;
+    }
+    
+    
 
     public ProductoFacade getProductoFacade() {
         return productoFacade;
@@ -100,6 +135,30 @@ public class ProductoModeloControlador implements Serializable {
     public void setLstUnidad(List<Unidad> lstUnidad) {
         this.lstUnidad = lstUnidad;
     }
+
+   
+
+    public ProductoModeloDetalle getCurrentProdModDetFormInsumo() {
+        if (currentProdModDetFormInsumo == null){
+            currentProdModDetFormInsumo = new ProductoModeloDetalle();
+        }
+        return currentProdModDetFormInsumo;
+    }
+
+    public void setCurrentProdModDetFormInsumo(ProductoModeloDetalle currentProdModDetFormInsumo) {
+        this.currentProdModDetFormInsumo = currentProdModDetFormInsumo;
+    }
+
+    public ProductoModeloDetalle getCurrentProdModDetFormPersonal() {
+        if (currentProdModDetFormPersonal == null){
+            currentProdModDetFormPersonal = new ProductoModeloDetalle();
+        }
+        return currentProdModDetFormPersonal;
+    }
+
+    public void setCurrentProdModDetFormPersonal(ProductoModeloDetalle currentProdModDetFormPersonal) {
+        this.currentProdModDetFormPersonal = currentProdModDetFormPersonal;
+    }
     
     
     
@@ -122,6 +181,7 @@ public class ProductoModeloControlador implements Serializable {
         System.out.println("Vol. Venta: "+getCurrentProductoModeloDetalle().getVolumenVenta());
         RequestContext context = RequestContext.getCurrentInstance();  
         context.update("modeloForm:tabViewModelo:panelProductoMod");
+        context.update("modeloForm:tabViewModelo:tabViewFormulacion");
     } 
     
     public void agregarProductoModelo(){
@@ -149,7 +209,7 @@ public class ProductoModeloControlador implements Serializable {
         RequestContext context = RequestContext.getCurrentInstance();  
         context.update("modeloForm:tabViewModelo:tablaProductoModelo");
         context.update("modeloForm:tabViewModelo:panelProductoMod");
-        
+        context.update("modeloForm:tabViewModelo:tabViewFormulacion");
     } 
     
     
@@ -169,7 +229,19 @@ public class ProductoModeloControlador implements Serializable {
         RequestContext context = RequestContext.getCurrentInstance();  
         context.update("modeloForm:tabViewModelo:tablaProductoModelo");
         context.update("modeloForm:tabViewModelo:panelProductoMod");
+        context.update("modeloForm:tabViewModelo:tabViewFormulacion");
         isEditProdMod = false;
     } 
+    
+     //Formulacion
+     
+    
+    public void editarProdModelFormuMaquinaria(){
+        
+    }
+    
+     public void editarProdModelFormuPersonal(){
+        
+    }
     
 }
