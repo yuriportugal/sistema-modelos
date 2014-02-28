@@ -45,6 +45,11 @@ public class InsumoModeloControlador implements Serializable {
         if (lstInsumoModeloDetalle == null){
             lstInsumoModeloDetalle = new ArrayList<InsumoModeloDetalle>();
         }
+        System.out.println("Imprimiendo datos del combo de insumo");
+        System.out.println("tamaño: "+lstInsumoModeloDetalle.size());
+        for(InsumoModeloDetalle insumoMod : lstInsumoModeloDetalle){ 
+            System.out.println("idInsumo: "+insumoMod.getInsumo().getIdInsumo());
+        }
         return lstInsumoModeloDetalle;
     }
 

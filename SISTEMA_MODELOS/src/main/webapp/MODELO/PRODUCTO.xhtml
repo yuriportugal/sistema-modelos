@@ -68,7 +68,32 @@
                             </p:selectOneMenu></p:column>
                             
                        </p:row> 
-                         
+                     
+                             <p:row>
+                             <p:column>
+                                 <h:outputLabel value="Formulación Maquinarías" />
+                             </p:column>
+                             <p:column>
+                                 <p:commandButton value="Abrir" action="#{productoModeloControlador.editarProdModelFormuMaquinaria()}" />
+                             </p:column>
+                         </p:row>  
+                         <p:row>
+                             <p:column>
+                                 <h:outputLabel value="Formulación Insumos" />
+                             </p:column>
+                             <p:column>
+                                 <p:commandButton value="Abrir" action="#{productoModeloControlador.editarProdModelFormuInsumo()}" />
+                             </p:column>
+                         </p:row>
+                         <p:row>
+                             <p:column>
+                                 <h:outputLabel value="Formulación Personal" />
+                             </p:column>
+                             <p:column>
+                                 <p:commandButton value="Abrir" action="#{productoModeloControlador.editarProdModelFormuPersonal()}"/>
+                             </p:column>
+                         </p:row>
+                     
                          
                         <p:row>   
                             <p:column colspan="2"  style="width:25%" >
@@ -132,5 +157,18 @@
             </h:panelGrid>
             
         </p:panel>
+        
+    <p:dialog id="FormularioInsumoDlg" dynamic="true" widgetVar="formularioDlgProd" header="Formulación de insumo" >
+        <ui:include src="/MODELO/POPUPINSUMO.xhtml" /> 
+    </p:dialog>
+    
+    <p:dialog id="FormularioPersonalDlg"  widgetVar="FormularioPersonalDlg" header="Formulación de personal">
+        <ui:include src="/MODELO/POPUPPERSONAL.xhtml" /> 
+    </p:dialog>
+    
+    <p:dialog id="FormularioMaquinariaDlg"  widgetVar="FormularioMaquinariaDlg" header="Formulación de maquinaria">
+        <ui:include src="/MODELO/POPUPMAQUINARIA.xhtml" /> 
+    </p:dialog>
+    
     
 </ui:composition>

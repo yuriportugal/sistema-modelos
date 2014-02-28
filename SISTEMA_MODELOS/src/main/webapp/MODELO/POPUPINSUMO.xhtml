@@ -4,7 +4,71 @@
     xmlns:h="http://java.sun.com/jsf/html"
     xmlns:ui="http://java.sun.com/jsf/facelets"
     xmlns:p="http://primefaces.org/ui">
-    <p:panel id="panelpopup">
-    POP UP INSUMO FORM #{modFormuInsumoControlador.currentProductoModeloDetalle.producto.nombre}    
+    <p:panel style="width:75%" id="panelpopupinsumo">
+       <p:panelGrid   style="width:75%;border:0px;"   id="panelFormInsumoGrid"    >  
+                       <p:row>   
+                            <p:column   style="width:25%" >
+                            <h:outputLabel value="Insumo: " />
+                            </p:column>
+                            <p:column   style="width:25%" >
+                                <p:selectOneMenu id="insumoFormModel" value="#{productoModeloControlador.currentModFormInsumo.insumo.idInsumo}" >
+                                    <f:selectItem  itemLabel="Seleccione un insumo" itemValue="#{null}"></f:selectItem>
+                                    <f:selectItems value="#{insumoModeloControlador.lstInsumoModeloDetalle}" var="insumoMod" itemLabel="#{insumoMod.insumo.nombre}" itemValue="#{insumoMod.insumo.idInsumo}"></f:selectItems>
+                                 </p:selectOneMenu> 
+                            </p:column>
+                       </p:row> 
+                         
+                         
+                     <p:row>   
+                            <p:column   style="width:25%"  >
+                            <h:outputLabel value="Cantidad: " />
+                            </p:column>
+                            <p:column   style="width:25%" >
+                                <p:inputText  id="cantidadInsForm" value="#{productoModeloControlador.currentModFormInsumo.cantidad}"   size="30" />
+                            </p:column>
+                       </p:row> 
+                         
+                         
+                        <p:row>   
+                            <p:column   style="width:25%" >
+                                <p:commandButton value="Agregar" action="#{productoModeloControlador.agregarFormulacionInsumo()}" />
+                            </p:column>
+                            <p:column   style="width:25%" >
+                            <p:commandButton value="Cancelar" />    
+                            </p:column>
+                       </p:row>   
+                          
+                     </p:panelGrid>
+                    
+        
+        <p:dataTable style="width:75%"   rendered="true"  id="tablaInsumoFormModelo" var="insumoFormModel"  rowKey="#{p.idInsroumoModelo}" value="#{productoModeloControlador.currentProductoModeloDetalle.lstModeloFormulacionInsumoDetalle}" scrollable="true"  >  
+                   
+                   <p:column style="width:50px;"  headerText="Codigo" >  
+                       <h:outputText  value="#{insumoFormModel.insumo.codigo}" />  
+                    </p:column>  
+                        
+                        <p:column style="width:100px;"  headerText="Nombre" >  
+                            <h:outputText  value="#{insumoFormModel.insumo.nombre}" />  
+                    </p:column>      
+
+                    <p:column style="width:30px;" headerText="Cantidad" >  
+                        <h:outputText  value="#{insumoFormModel.cantidad}" />  
+                    </p:column>  
+
+                    <p:column  style="width:25px;">  
+                        <p:commandButton icon="ui-icon-pencil"  action="#{productoModeloControlador.editarInsumoFormModel()}">
+                            <f:setPropertyActionListener value="#{insumoFormModel}" target="#{productoModeloControlador.currentModFormInsumo}" />  
+                        </p:commandButton>
+                    </p:column>  
+                    
+                   <p:column  style="width:25px;">  
+                       <p:commandButton icon="ui-icon-close"   >
+                            
+                        </p:commandButton>
+                    </p:column>       
+                   
+                </p:dataTable>
+                    
+        
     </p:panel>
 </ui:composition>
