@@ -54,6 +54,9 @@ public class ModeloFormulacionPersonal implements Serializable{
     }
 
     public Long getHoraHombre() {
+        if (horaHombre == null){
+            horaHombre = 0L;
+        }
         return horaHombre;
     }
 
@@ -62,6 +65,9 @@ public class ModeloFormulacionPersonal implements Serializable{
     }
 
     public Cargo getCargo() {
+        if (cargo == null){
+            cargo = new Cargo();
+        }
         return cargo;
     }
 

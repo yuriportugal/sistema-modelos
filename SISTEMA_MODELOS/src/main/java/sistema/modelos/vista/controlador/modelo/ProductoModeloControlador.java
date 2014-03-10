@@ -8,14 +8,20 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import org.primefaces.context.RequestContext;
 import sistema.modelos.server.entidades.empresa.Producto;
 import sistema.modelos.server.entidades.modelo.ModeloFormulacionInsumo;
+import sistema.modelos.server.entidades.modelo.ModeloFormulacionMaquinaria;
+import sistema.modelos.server.entidades.modelo.ModeloFormulacionPersonal;
 import sistema.modelos.server.entidades.modelo.ProductoModeloDetalle;
 import sistema.modelos.server.entidades.modelo.Unidad;
+import sistema.modelos.server.facade.empresa.ActivoFacade;
+import sistema.modelos.server.facade.empresa.CargoFacade;
 import sistema.modelos.server.facade.empresa.InsumoFacade;
 import sistema.modelos.server.facade.empresa.ProductoFacade;
 import sistema.modelos.server.facade.modelo.UnidadFacade;
@@ -40,6 +46,18 @@ public class ProductoModeloControlador implements Serializable {
     
     private List<Producto> lstProducto;
     
+      public void limpiarVariables(){
+        lstProductoModeloDetalle = null;
+        currentProductoModeloDetalle = null;
+        lstModFormInsumo = null;
+        currentModFormInsumo = null;
+        lstModFormMaquinaria = null;
+        currentModFormMaquinaria = null;
+        lstModFormPersonal = null;
+        currentModFormPersonal = null;
+      }
+    
+    
     
     @ManagedProperty(value="#{modFormuInsumoControlador}")
     private ModFormuInsumoControlador modFormuInsumoControlador;
@@ -55,6 +73,14 @@ public class ProductoModeloControlador implements Serializable {
     
     @EJB
     private InsumoFacade insumoFacade;
+    
+    @EJB
+    private ActivoFacade activoFacade;
+    
+    @EJB
+    private CargoFacade cargoFacade;
+    
+    
     
     private boolean isEditProdMod;
     
@@ -114,6 +140,24 @@ public class ProductoModeloControlador implements Serializable {
     public void setProductoFacade(ProductoFacade productoFacade) {
         this.productoFacade = productoFacade;
     }
+
+    public ActivoFacade getActivoFacade() {
+        return activoFacade;
+    }
+
+    public void setActivoFacade(ActivoFacade activoFacade) {
+        this.activoFacade = activoFacade;
+    }
+
+    public CargoFacade getCargoFacade() {
+        return cargoFacade;
+    }
+
+    public void setCargoFacade(CargoFacade cargoFacade) {
+        this.cargoFacade = cargoFacade;
+    }
+    
+    
 
     public boolean isIsEditProdMod() {
         return isEditProdMod;
@@ -215,6 +259,8 @@ public class ProductoModeloControlador implements Serializable {
         context.update("modeloForm:tabViewModelo:tablaProductoModelo");
         context.update("modeloForm:tabViewModelo:panelProductoMod");
         context.update("modeloForm:tabViewModelo:tabViewFormulacion");
+        FacesContext fcontext = FacesContext.getCurrentInstance();
+        fcontext.addMessage(null, new FacesMessage("aa", "Producto añadido correctamente "));  
     } 
     
     
@@ -242,14 +288,24 @@ public class ProductoModeloControlador implements Serializable {
      
     
      public void editarProdModelFormuInsumo(){
-          RequestContext.getCurrentInstance().execute("formularioDlgProd.show()");
+                RequestContext context = RequestContext.getCurrentInstance();  
+        context.update("modeloForm:tabViewModelo:panelFormInsumoGrid");
+        context.update("modeloForm:tabViewModelo:tablaInsumoFormModelo");
+  
+         RequestContext.getCurrentInstance().execute("formularioDlgProd.show()");
     } 
        
     public void editarProdModelFormuMaquinaria(){
-         RequestContext.getCurrentInstance().execute("FormularioMaquinariaDlg.show()");
+            RequestContext.getCurrentInstance().update("modeloForm:tabViewModelo:panelFormMaquinariaGrid");
+            RequestContext.getCurrentInstance().update("modeloForm:tabViewModelo:tablaMaquinariaFormModelo");
+         
+        RequestContext.getCurrentInstance().execute("FormularioMaquinariaDlg.show()");
     }
     
      public void editarProdModelFormuPersonal(){
+           
+        RequestContext.getCurrentInstance().update("modeloForm:tabViewModelo:panelFormPersonalGrid");
+        RequestContext.getCurrentInstance().update("modeloForm:tabViewModelo:tablaPersonalFormModelo");
          RequestContext.getCurrentInstance().execute("FormularioPersonalDlg.show()");
     }
     
@@ -353,5 +409,183 @@ public class ProductoModeloControlador implements Serializable {
         RequestContext context = RequestContext.getCurrentInstance();  
         context.update("modeloForm:tabViewModelo:panelFormInsumoGrid");
         context.update("modeloForm:tabViewModelo:tablaInsumoFormModelo");
-    }    
+    }
+     
+     
+     
+     //Formulación Activo
+     
+     private List<ModeloFormulacionMaquinaria> lstModFormMaquinaria;
+     private ModeloFormulacionMaquinaria currentModFormMaquinaria;
+     private boolean isEditFormMaquinaria;
+     
+     
+    public List<ModeloFormulacionMaquinaria> getLstModFormMaquinaria() {
+        if (lstModFormMaquinaria == null){
+            lstModFormMaquinaria = new ArrayList<ModeloFormulacionMaquinaria>();
+        }
+        return lstModFormMaquinaria;
+    }
+     
+    public void setLstModFormMaquinaria(List<ModeloFormulacionMaquinaria> lstModFormMaquinaria) {
+        this.lstModFormMaquinaria = lstModFormMaquinaria;
+    }
+
+    public ModeloFormulacionMaquinaria getCurrentModFormMaquinaria() {
+        if (currentModFormMaquinaria == null){
+            currentModFormMaquinaria = new ModeloFormulacionMaquinaria();
+        }
+        return currentModFormMaquinaria;
+    }
+
+    public void setCurrentModFormMaquinaria(ModeloFormulacionMaquinaria currentModFormMaquinaria) {
+        this.currentModFormMaquinaria = currentModFormMaquinaria;
+    }
+    
+    //CRUD
+ 
+       public void agregarFormulacionMaquinaria(){
+//        System.out.println("Grabando: ");
+//        System.out.println("idInsumo: "+getCurrentModFormInsumo().getInsumo().getIdInsumo());
+//        System.out.println("cantidad: "+getCurrentModFormInsumo().getCantidad());
+           if (!isEditFormMaquinaria){
+            getCurrentModFormMaquinaria().setActivo(activoFacade.find(getCurrentModFormMaquinaria().getActivo().getIdActivo()));
+            getCurrentModFormMaquinaria().setProductoModelo(getCurrentProductoModeloDetalle());
+            getCurrentProductoModeloDetalle().getLstModeloFormulacionMaquinariaDetalle().add(getCurrentModFormMaquinaria());
+        }else{
+            System.out.println("Estos editando brother");
+            int pos = 0;
+            for (int i = 0; i < getCurrentProductoModeloDetalle().getLstModeloFormulacionMaquinariaDetalle().size();i++){
+                if (getCurrentProductoModeloDetalle().getLstModeloFormulacionMaquinariaDetalle().get(i).getActivo().getIdActivo().equals(getCurrentModFormMaquinaria().getActivo().getIdActivo())){
+                    pos = i;
+                    break;
+                }
+            }
+            getCurrentProductoModeloDetalle().getLstModeloFormulacionMaquinariaDetalle().remove(pos);
+            getCurrentProductoModeloDetalle().getLstModeloFormulacionMaquinariaDetalle().add(getCurrentModFormMaquinaria());
+        }
+        
+        isEditFormMaquinaria = false;
+        currentModFormMaquinaria = new ModeloFormulacionMaquinaria();
+        RequestContext context = RequestContext.getCurrentInstance();  
+        context.update("modeloForm:tabViewModelo:panelFormMaquinariaGrid");
+        context.update("modeloForm:tabViewModelo:tablaMaquinariaFormModelo");
+    } 
+    
+        public void editarMaquinariaFormModel(){
+            isEditFormMaquinaria = true;
+            RequestContext context = RequestContext.getCurrentInstance();  
+            context.update("modeloForm:tabViewModelo:panelFormMaquinariaGrid");
+            context.update("modeloForm:tabViewModelo:tablaMaquinariaFormModelo");
+        } 
+        
+     
+     public void eliminarFormularioMaqModelo(){
+        int pos = 0;
+        for (int i = 0; i < getCurrentProductoModeloDetalle().getLstModeloFormulacionMaquinariaDetalle().size();i++){
+                
+                if (getCurrentProductoModeloDetalle().getLstModeloFormulacionMaquinariaDetalle().get(i).getActivo().getIdActivo().equals(getCurrentModFormMaquinaria().getActivo().getIdActivo())){
+                    pos = i;
+                    break;
+                }
+            }
+            getCurrentProductoModeloDetalle().getLstModeloFormulacionMaquinariaDetalle().remove(pos);
+
+
+        isEditFormMaquinaria = false;
+        currentModFormMaquinaria = new ModeloFormulacionMaquinaria();
+        RequestContext context = RequestContext.getCurrentInstance();  
+        context.update("modeloForm:tabViewModelo:panelFormMaquinariaGrid");
+        context.update("modeloForm:tabViewModelo:tablaMaquinariaFormModelo");
+    }
+     
+     
+     
+        //Formulación Activo
+     
+     private List<ModeloFormulacionPersonal> lstModFormPersonal;
+     private ModeloFormulacionPersonal currentModFormPersonal;
+     private boolean isEditFormPersonal;
+
+    public List<ModeloFormulacionPersonal> getLstModFormPersonal() {
+        if (lstModFormPersonal == null){
+            lstModFormPersonal = new ArrayList<ModeloFormulacionPersonal>();
+        }
+        return lstModFormPersonal;
+    }
+
+    public void setLstModFormPersonal(List<ModeloFormulacionPersonal> lstModFormPersonal) {
+        this.lstModFormPersonal = lstModFormPersonal;
+    }
+
+    public ModeloFormulacionPersonal getCurrentModFormPersonal() {
+        if (currentModFormPersonal == null){
+            currentModFormPersonal = new ModeloFormulacionPersonal();
+        }
+        return currentModFormPersonal;
+    }
+
+    public void setCurrentModFormPersonal(ModeloFormulacionPersonal currentModFormPersonal) {
+        this.currentModFormPersonal = currentModFormPersonal;
+    }
+    
+    //CRUD
+ 
+       public void agregarFormulacionPersonal(){
+//        System.out.println("Grabando: ");
+//        System.out.println("idInsumo: "+getCurrentModFormInsumo().getInsumo().getIdInsumo());
+//        System.out.println("cantidad: "+getCurrentModFormInsumo().getCantidad());
+           if (!isEditFormPersonal){
+            getCurrentModFormPersonal().setCargo(cargoFacade.find(getCurrentModFormPersonal().getCargo().getIdCargo()));
+            getCurrentModFormPersonal().setProductoModelo(getCurrentProductoModeloDetalle());
+            getCurrentProductoModeloDetalle().getLstModeloFormulacionPersonalDetalle().add(getCurrentModFormPersonal());
+        }else{
+            System.out.println("Estos editando brother");
+            int pos = 0;
+            for (int i = 0; i < getCurrentProductoModeloDetalle().getLstModeloFormulacionPersonalDetalle().size();i++){
+                if (getCurrentProductoModeloDetalle().getLstModeloFormulacionPersonalDetalle().get(i).getCargo().getIdCargo().equals(getCurrentModFormPersonal().getCargo().getIdCargo())){
+                    pos = i;
+                    break;
+                }
+            }
+            getCurrentProductoModeloDetalle().getLstModeloFormulacionPersonalDetalle().remove(pos);
+            getCurrentProductoModeloDetalle().getLstModeloFormulacionPersonalDetalle().add(getCurrentModFormPersonal());
+        }
+        
+        isEditFormPersonal = false;
+        currentModFormPersonal = new ModeloFormulacionPersonal();
+        RequestContext context = RequestContext.getCurrentInstance();  
+        context.update("modeloForm:tabViewModelo:panelFormPersonalGrid");
+        context.update("modeloForm:tabViewModelo:tablaPersonalFormModelo");
+    } 
+    
+        public void editarPersonalFormModel(){
+            isEditFormPersonal = true;
+            RequestContext context = RequestContext.getCurrentInstance();  
+            context.update("modeloForm:tabViewModelo:panelFormPersonalGrid");
+            context.update("modeloForm:tabViewModelo:tablaPersonalFormModelo");
+        } 
+        
+     
+     public void eliminarFormularioPersonalModelo(){
+        int pos = 0;
+        for (int i = 0; i < getCurrentProductoModeloDetalle().getLstModeloFormulacionPersonalDetalle().size();i++){
+                
+                if (getCurrentProductoModeloDetalle().getLstModeloFormulacionPersonalDetalle().get(i).getCargo().getIdCargo().equals(getCurrentModFormPersonal().getCargo().getIdCargo())){
+                    pos = i;
+                    break;
+                }
+            }
+            getCurrentProductoModeloDetalle().getLstModeloFormulacionPersonalDetalle().remove(pos);
+
+
+    isEditFormPersonal = false;
+        currentModFormPersonal = new ModeloFormulacionPersonal();
+        RequestContext context = RequestContext.getCurrentInstance();  
+        context.update("modeloForm:tabViewModelo:panelFormPersonalGrid");
+        context.update("modeloForm:tabViewModelo:tablaPersonalFormModelo");
+    }
+     
+     
+    
 }

@@ -34,6 +34,11 @@ public class CargoModeloControlador implements Serializable {
     
     private boolean isEditCargoMod;
 
+      public void limpiarVariables(){
+        lstCargoModeloDetalle = null;
+        currentCargoModeloDetalle = null;
+    }
+    
     public List<CargoModeloDetalle> getLstCargoModeloDetalle() {
         if (lstCargoModeloDetalle == null){
             lstCargoModeloDetalle = new ArrayList<CargoModeloDetalle>();

@@ -70,7 +70,15 @@ public class ProductoModeloDetalle implements Serializable{
      @OneToMany(cascade = CascadeType.ALL, mappedBy = "productoModelo",orphanRemoval=true)
      private List<ModeloFormulacionInsumo> lstModeloFormulacionInsumoDetalle;
 
-    public Producto getProducto() {
+     @OneToMany(cascade = CascadeType.ALL, mappedBy = "productoModelo",orphanRemoval=true)
+     private List<ModeloFormulacionMaquinaria> lstModeloFormulacionMaquinariaDetalle;
+     
+     @OneToMany(cascade = CascadeType.ALL, mappedBy = "productoModelo",orphanRemoval=true)
+     private List<ModeloFormulacionPersonal> lstModeloFormulacionPersonalDetalle;
+     
+     
+     
+     public Producto getProducto() {
         if (producto == null){
             producto = new Producto();
         }
@@ -158,6 +166,29 @@ public class ProductoModeloDetalle implements Serializable{
     public void setLstModeloFormulacionInsumoDetalle(List<ModeloFormulacionInsumo> lstModeloFormulacionInsumoDetalle) {
         this.lstModeloFormulacionInsumoDetalle = lstModeloFormulacionInsumoDetalle;
     }
+
+    public List<ModeloFormulacionMaquinaria> getLstModeloFormulacionMaquinariaDetalle() {
+        if (lstModeloFormulacionMaquinariaDetalle == null){
+            lstModeloFormulacionMaquinariaDetalle = new ArrayList<ModeloFormulacionMaquinaria>();
+        }
+        return lstModeloFormulacionMaquinariaDetalle;
+    }
+
+    public void setLstModeloFormulacionMaquinariaDetalle(List<ModeloFormulacionMaquinaria> lstModeloFormulacionMaquinariaDetalle) {
+        this.lstModeloFormulacionMaquinariaDetalle = lstModeloFormulacionMaquinariaDetalle;
+    }
+
+    public List<ModeloFormulacionPersonal> getLstModeloFormulacionPersonalDetalle() {
+        if (lstModeloFormulacionPersonalDetalle == null){
+            lstModeloFormulacionPersonalDetalle = new ArrayList<ModeloFormulacionPersonal>();
+        }
+        return lstModeloFormulacionPersonalDetalle;
+    }
+
+    public void setLstModeloFormulacionPersonalDetalle(List<ModeloFormulacionPersonal> lstModeloFormulacionPersonalDetalle) {
+        this.lstModeloFormulacionPersonalDetalle = lstModeloFormulacionPersonalDetalle;
+    }
+    
     
     
     

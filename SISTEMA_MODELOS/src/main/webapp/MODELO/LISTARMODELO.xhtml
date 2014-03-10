@@ -35,7 +35,11 @@
                             <f:setPropertyActionListener value="#{modelo}" target="#{modeloControlador.currentModelo}" />  
                         </p:commandButton>
                     </p:column>       
-                   
+                   <p:column  style="width:50px;">  
+                        <p:commandButton icon="ui-icon-close" action="#{modeloControlador.generarCorrida()}"  >
+                            <f:setPropertyActionListener value="#{modelo}" target="#{modeloControlador.currentModelo}" />  
+                        </p:commandButton>
+                    </p:column>
                 </p:dataTable>
     
         </ui:define>

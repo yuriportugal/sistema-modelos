@@ -34,6 +34,12 @@ public class ActivoModeloControlador implements Serializable {
     
     private boolean isEditActMod;
 
+    public void limpiarVariables(){
+        lstActivoModeloDetalle = null;
+        currentActivoModeloDetalle = null;
+    }
+    
+    
     public List<ActivoModeloDetalle> getLstActivoModeloDetalle() {
         if (lstActivoModeloDetalle == null){
             lstActivoModeloDetalle = new ArrayList<ActivoModeloDetalle>();

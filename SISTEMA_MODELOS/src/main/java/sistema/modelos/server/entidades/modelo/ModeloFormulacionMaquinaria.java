@@ -42,10 +42,13 @@ public class ModeloFormulacionMaquinaria implements Serializable{
     @JoinColumn(name = "ID_ACTIVO", referencedColumnName = "ID_ACTIVO")
     private Activo activo;
 
-    @Column(name = "HORAS_MAQUINA")
+    @Column(name = "HORA_MAQUINA")
     private Long horaMaquina;
 
     public Activo getActivo() {
+        if (activo == null){
+            activo = new Activo();
+        }
         return activo;
     }
 
@@ -54,6 +57,9 @@ public class ModeloFormulacionMaquinaria implements Serializable{
     }
 
     public Long getHoraMaquina() {
+        if (horaMaquina == null){
+            horaMaquina = 0L;
+        }
         return horaMaquina;
     }
 

@@ -29,6 +29,11 @@ public class ServicioModeloControlador implements Serializable {
        
     private List<Servicio> lstServicio;
     
+    public void limpiarVariables(){
+        lstServicioModeloDetalle = null;
+        currentServicioModeloDetalle = null;
+    }
+    
     @EJB
     private ServicioFacade servicioFacade;
     

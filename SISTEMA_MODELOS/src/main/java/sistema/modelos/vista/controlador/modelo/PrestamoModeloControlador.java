@@ -39,6 +39,12 @@ public class PrestamoModeloControlador implements Serializable {
 
     private Long maxId = -1L;
     
+    public void limpiarVariables(){
+        lstPrestamoModeloDetalle = null;
+        currentPrestamoModeloDetalle = null;
+    }
+    
+    
     public PrestamoModeloDetalle getCurrentPrestamoModeloDetalle() {
         if (currentPrestamoModeloDetalle == null){
             currentPrestamoModeloDetalle = new PrestamoModeloDetalle();

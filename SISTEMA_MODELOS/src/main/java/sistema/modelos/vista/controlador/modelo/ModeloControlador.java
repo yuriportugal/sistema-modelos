@@ -203,13 +203,37 @@ public class ModeloControlador implements Serializable {
         }else{
         modeloFacade.create(currentModelo);  
         }
-        currentModelo = new Modelo();
+        limpiarVariables(true);
         RequestContext context = RequestContext.getCurrentInstance();  
         context.update("modeloForm");
      }
+    
+    public void limpiarVariables(boolean limpiarModelo){
+        if (limpiarModelo){
+            currentModelo = new Modelo();
+        }
+        getActivoModeloControlador().limpiarVariables();
+        getCargoModeloControlador().limpiarVariables();
+        getInsumoModeloControlador().limpiarVariables();
+        getPrestamoModeloControlador().limpiarVariables();
+        getProductoModeloControlador().limpiarVariables();
+        getServicioModeloControlador().limpiarVariables();
+        
+    }
      
-    public String editarModelo(){
+    public void setearVariables(){
+        getActivoModeloControlador().setLstActivoModeloDetalle(getCurrentModelo().getLstActivoModeloDetalle());
+        getCargoModeloControlador().setLstCargoModeloDetalle(getCurrentModelo().getLstCargoModeloDetalle());
+        getInsumoModeloControlador().setLstInsumoModeloDetalle(getCurrentModelo().getLstInsumoModeloDetalle());
+        getPrestamoModeloControlador().setLstPrestamoModeloDetalle(getCurrentModelo().getLstPrestamoModeloDetalle());
         getProductoModeloControlador().setLstProductoModeloDetalle(getCurrentModelo().getLstProductoModeloDetalle());
+        getServicioModeloControlador().setLstServicioModeloDetalle(getCurrentModelo().getLstServicioModeloDetalle());
+        
+    }
+    
+    public String editarModelo(){
+        limpiarVariables(false);
+        setearVariables();
         RequestContext context = RequestContext.getCurrentInstance();  
         context.update("modeloForm");
         return "/MODELO/CREARMODELO";

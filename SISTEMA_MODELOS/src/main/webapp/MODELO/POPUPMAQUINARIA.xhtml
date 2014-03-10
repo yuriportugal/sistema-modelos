@@ -9,25 +9,30 @@
                      <p:panelGrid   style="width:100%;border:0px;"   id="panelFormMaquinariaGrid"    >  
                        <p:row>   
                             <p:column   style="width:25%" >
-                            <h:outputLabel value="Cargo " />
+                            <h:outputLabel value="Maquinaria " />
                             </p:column>
                             <p:column   style="width:25%" >
+                                <p:selectOneMenu id="cargoFormModel" value="#{productoModeloControlador.currentModFormMaquinaria.activo.idActivo}" >
+                                    <f:selectItem  itemLabel="Seleccione un activo" itemValue="#{null}"></f:selectItem>
+                                    <f:selectItems value="#{activoModeloControlador.lstActivoModeloDetalle}" var="activoMod" itemLabel="#{activoMod.activo.nombre}" itemValue="#{activoMod.activo.idActivo}"></f:selectItems>
+                              </p:selectOneMenu>  
                             </p:column>
                        </p:row> 
                          
                          
                      <p:row>   
                             <p:column   style="width:25%"  >
-                            <h:outputLabel value="Horas Hombres: " />
+                            <h:outputLabel value="Horas Maquinas: " />
                             </p:column>
                             <p:column   style="width:25%" >
+                                <p:inputText  id="horasHombrActForm" value="#{productoModeloControlador.currentModFormMaquinaria.horaMaquina}"   size="30" />
                             </p:column>
                        </p:row> 
                          
                          
                         <p:row>   
                             <p:column   style="width:25%" >
-                                <p:commandButton value="Agregar" />
+                                <p:commandButton value="Agregar" action="#{productoModeloControlador.agregarFormulacionMaquinaria()}" />
                             </p:column>
                             <p:column   style="width:25%" >
                             <p:commandButton value="Cancelar" />    
@@ -36,6 +41,33 @@
                           
                      </p:panelGrid>
                     
+        <p:dataTable style="width:75%"   rendered="true"  id="tablaMaquinariaFormModelo" var="maquinariaFormModel"  rowKey="#{maquinariaFormModel.idModeloFormulacionMaquinaria}" value="#{productoModeloControlador.currentProductoModeloDetalle.lstModeloFormulacionMaquinariaDetalle}" scrollable="true"  >  
+                   
+                   <p:column style="width:50px;"  headerText="Codigo" >  
+                       <h:outputText  value="#{maquinariaFormModel.activo.codigo}" />  
+                    </p:column>  
+                        
+                        <p:column style="width:100px;"  headerText="Nombre" >  
+                            <h:outputText  value="#{maquinariaFormModel.activo.nombre}" />  
+                    </p:column>      
+
+                    <p:column style="width:30px;" headerText="Horas Maquina" >  
+                        <h:outputText  value="#{maquinariaFormModel.horaMaquina}" />  
+                    </p:column>  
+
+                    <p:column  style="width:25px;">  
+                        <p:commandButton icon="ui-icon-pencil"  action="#{productoModeloControlador.editarMaquinariaFormModel()}">
+                            <f:setPropertyActionListener value="#{maquinariaFormModel}" target="#{productoModeloControlador.currentModFormMaquinaria}" />  
+                        </p:commandButton>
+                    </p:column>  
+                    
+                   <p:column  style="width:25px;">  
+                       <p:commandButton icon="ui-icon-close"  action="#{productoModeloControlador.eliminarFormularioMaqModelo()}"  >
+                            <f:setPropertyActionListener value="#{maquinariaFormModel}" target="#{productoModeloControlador.currentModFormMaquinaria}" />  
+                        </p:commandButton>
+                    </p:column>       
+                   
+                </p:dataTable>
        
     </p:panel>
 </ui:composition>

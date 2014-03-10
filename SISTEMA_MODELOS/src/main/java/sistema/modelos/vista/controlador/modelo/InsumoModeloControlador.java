@@ -40,7 +40,12 @@ public class InsumoModeloControlador implements Serializable {
     private InsumoFacade insumoFacade;
     
     private boolean isEditInsMod;
-
+    
+     public void limpiarVariables(){
+        currentInsumoModeloDetalle = null;
+        lstInsumoModeloDetalle = null;
+    }
+    
     public List<InsumoModeloDetalle> getLstInsumoModeloDetalle() {
         if (lstInsumoModeloDetalle == null){
             lstInsumoModeloDetalle = new ArrayList<InsumoModeloDetalle>();
