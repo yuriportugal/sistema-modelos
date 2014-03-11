@@ -73,6 +73,11 @@ public class Modelo implements Serializable{
     @JoinColumn(name="ID_ANO")
     private Ano ano;
     
+    @ManyToOne 
+    @JoinColumn(name="PARENT_ID_MODELO")
+    private Modelo parentModelo;
+    
+    
     
     @ManyToOne
     @Null 
@@ -634,5 +639,18 @@ public class Modelo implements Serializable{
     public void setPorcVentasIncobrables(Long porcVentasIncobrables) {
         this.porcVentasIncobrables = porcVentasIncobrables;
     }
+
+    public Modelo getParentModelo() {
+        if (parentModelo == null){
+            parentModelo = null;
+        }
+        return parentModelo;
+    }
+
+    public void setParentModelo(Modelo parentModelo) {
+        this.parentModelo = parentModelo;
+    }
+    
+    
     
 }

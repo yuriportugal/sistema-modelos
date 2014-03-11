@@ -42,7 +42,41 @@
                     </p:column>
                 </p:dataTable>
     
+
+    
+            <p:dataTable   rendered="true"  id="tablaListadoCorridas" var="corrida"  selectionMode="single" rowKey="#{corrida.idModelo}" value="#{modeloControlador.lstCorridasModelo}" scrollable="true"  >  
+                   
+                        <p:column style="width:100px;"  headerText="Codigo" >  
+                            <h:outputText  value="#{corrida.codigo}" />  
+                    </p:column>  
+                        
+                        <p:column style="width:100px;"  headerText="Nombre" >  
+                            <h:outputText  value="#{corrida.nombre}" />  
+                    </p:column>      
+
+                    <p:column style="width:250px;" headerText="Descripcion" >  
+                        <h:outputText  value="#{corrida.descripcion}" />  
+                    </p:column>  
+
+                        
+                    <p:column  style="width:50px;">  
+                        <p:commandButton icon="ui-icon-pencil" action="#{modeloControlador.editarModelo()}"  >
+                            <f:setPropertyActionListener value="#{corrida}" target="#{modeloControlador.currentModelo}" />  
+                        </p:commandButton>
+                    </p:column>  
+                    
+                   <p:column  style="width:50px;">  
+                        <p:commandButton icon="ui-icon-close" action="#{modeloControlador.eliminarModelo()}"  >
+                            <f:setPropertyActionListener value="#{corrida}" target="#{modeloControlador.currentModelo}" />  
+                        </p:commandButton>
+                    </p:column>       
+   
+                </p:dataTable>
+    
         </ui:define>
-      </ui:composition>    
+      </ui:composition>
+    
+    
+    
 </html>
 

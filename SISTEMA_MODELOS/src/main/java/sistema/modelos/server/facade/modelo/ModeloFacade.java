@@ -6,9 +6,11 @@
 
 package sistema.modelos.server.facade.modelo;
 
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import sistema.modelos.server.entidades.modelo.Modelo;
 import sistema.modelos.server.facade.general.AbstractFacade;
 
@@ -29,4 +31,9 @@ public class ModeloFacade extends AbstractFacade<Modelo> {
     protected EntityManager getEntityManager() {
         return em;
     }
+    
+    public List<Modelo> findCorridas(){
+         Query q = getEntityManager().createQuery("Select m from Modelo m where m.parentModelo IS NOT NULL ");
+        return q.getResultList();
+       }
 }

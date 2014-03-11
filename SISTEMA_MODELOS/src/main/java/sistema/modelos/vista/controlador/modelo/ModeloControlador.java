@@ -59,6 +59,8 @@ public class ModeloControlador implements Serializable {
     private Modelo currentModelo;
     
     private List<Modelo> lstModelo;
+    
+    private List<Modelo> lstCorridasModelo;
 
     public void setPrestamoModeloControlador(PrestamoModeloControlador prestamoModeloControlador) {
         this.prestamoModeloControlador = prestamoModeloControlador;
@@ -74,6 +76,14 @@ public class ModeloControlador implements Serializable {
 
     public void setServicioModeloControlador(ServicioModeloControlador servicioModeloControlador) {
         this.servicioModeloControlador = servicioModeloControlador;
+    }
+
+    public List<Modelo> getLstCorridasModelo() {
+        return modeloFacade.findCorridas();
+    }
+
+    public void setLstCorridasModelo(List<Modelo> lstCorridasModelo) {
+        this.lstCorridasModelo = lstCorridasModelo;
     }
 
     
@@ -161,7 +171,8 @@ public class ModeloControlador implements Serializable {
     }
     
     public void grabarModelo(){
-        
+        System.out.println("Vamos a grabar el mierdelo");
+        System.out.println("Tipo periodo"+currentModelo.getTipoPeriodo().getIdTipoPeriodo());
         //Seteando los productos
         for (int i = 0; i < getProductoModeloControlador().getLstProductoModeloDetalle().size();i++){
             getProductoModeloControlador().getLstProductoModeloDetalle().get(i).setModelo(currentModelo);
@@ -242,5 +253,65 @@ public class ModeloControlador implements Serializable {
     public void eliminarModelo(){
         
     }
+    
+    public void limpiarReferenciasModeloPadre(){
+        for (int i = 0; i < currentModelo.getLstActivoModeloDetalle().size();i++){
+            currentModelo.getLstActivoModeloDetalle().get(i).setModelo(currentModelo);
+            currentModelo.getLstActivoModeloDetalle().get(i).setIdActivoModelo(null);
+        }
+        
+        for (int i = 0; i < currentModelo.getLstCargoModeloDetalle().size();i++){
+            currentModelo.getLstCargoModeloDetalle().get(i).setModelo(currentModelo);
+            currentModelo.getLstCargoModeloDetalle().get(i).setIdCargoModelo(null);
+        }
+         for (int i = 0; i < currentModelo.getLstInsumoModeloDetalle().size();i++){
+            currentModelo.getLstInsumoModeloDetalle().get(i).setModelo(currentModelo);
+            currentModelo.getLstInsumoModeloDetalle().get(i).setIdInsumoModelo(null);
+        }
+          for (int i = 0; i < currentModelo.getLstPrestamoModeloDetalle().size();i++){
+            currentModelo.getLstPrestamoModeloDetalle().get(i).setModelo(currentModelo);
+            currentModelo.getLstPrestamoModeloDetalle().get(i).setIdModeloPrestamo(null);
+        }
+          for (int i = 0; i < currentModelo.getLstProductoModeloDetalle().size();i++){
+            currentModelo.getLstProductoModeloDetalle().get(i).setModelo(currentModelo);
+            currentModelo.getLstProductoModeloDetalle().get(i).setIdProductoModelo(null);
+            for (int j = 0; j < currentModelo.getLstProductoModeloDetalle().get(i).getLstModeloFormulacionInsumoDetalle().size(); j++){
+                currentModelo.getLstProductoModeloDetalle().get(i).getLstModeloFormulacionInsumoDetalle().get(j).setIdModeloFormulacionInsumo(null);
+                currentModelo.getLstProductoModeloDetalle().get(i).getLstModeloFormulacionInsumoDetalle().get(j).setProductoModelo(currentModelo.getLstProductoModeloDetalle().get(i));
+            }
+            
+            for (int j = 0; j < currentModelo.getLstProductoModeloDetalle().get(i).getLstModeloFormulacionMaquinariaDetalle().size(); j++){
+                currentModelo.getLstProductoModeloDetalle().get(i).getLstModeloFormulacionMaquinariaDetalle().get(j).setIdModeloFormulacionMaquinaria(null);
+                currentModelo.getLstProductoModeloDetalle().get(i).getLstModeloFormulacionMaquinariaDetalle().get(j).setProductoModelo(currentModelo.getLstProductoModeloDetalle().get(i));
+            }
+            
+            for (int j = 0; j < currentModelo.getLstProductoModeloDetalle().get(i).getLstModeloFormulacionPersonalDetalle().size(); j++){
+                currentModelo.getLstProductoModeloDetalle().get(i).getLstModeloFormulacionPersonalDetalle().get(j).setIdModeloFormulacionPersonal(null);
+                currentModelo.getLstProductoModeloDetalle().get(i).getLstModeloFormulacionPersonalDetalle().get(j).setProductoModelo(currentModelo.getLstProductoModeloDetalle().get(i));
+            }
+            
+        }
+          for (int i = 0; i < currentModelo.getLstServicioModeloDetalle().size();i++){
+            currentModelo.getLstServicioModeloDetalle().get(i).setModelo(currentModelo);
+            currentModelo.getLstServicioModeloDetalle().get(i).setIdModeloServicio(null);
+        }
+            
+    }
+    
+    public String generarCorrida(){
+        Modelo modeloPadre = modeloFacade.find(currentModelo.getIdModelo());
+        currentModelo = modeloFacade.find(currentModelo.getIdModelo());
+        currentModelo.setParentModelo(modeloPadre);
+        currentModelo.setIdModelo(null);
+        limpiarReferenciasModeloPadre();
+        limpiarVariables(false);
+        setearVariables();
+        RequestContext context = RequestContext.getCurrentInstance();  
+        context.update("modeloForm");
+        System.out.println("Valores que salen para el current modelo");
+        System.out.println("Tipo periodo"+currentModelo.getTipoPeriodo().getIdTipoPeriodo());
+        return "/MODELO/CREARMODELO";
+    }
+    
     
 }
