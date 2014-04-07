@@ -5,6 +5,8 @@
 package sistema.modelos.vista.controlador.modelo;
 
 import java.io.Serializable;
+import java.util.AbstractList;
+import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -17,6 +19,8 @@ import sistema.modelos.server.entidades.modelo.TipoPeriodo;
 import sistema.modelos.server.facade.modelo.AnoFacade;
 import sistema.modelos.server.facade.modelo.ModeloFacade;
 import sistema.modelos.server.facade.modelo.TipoPeriodoFacade;
+import sistema.modelos.vista.controlador.resultado.ResultadoControlador;
+import sistema.modelos.vista.controlador.util.ColumnModel;
 
 /**
  *
@@ -44,9 +48,14 @@ public class ModeloControlador implements Serializable {
     @ManagedProperty(value="#{prestamoModeloControlador}")
     private PrestamoModeloControlador prestamoModeloControlador;
     
+    @ManagedProperty(value="#{resultadoControlador}")
+    private ResultadoControlador resultadoControlador;
     
     
+    private List<ColumnModel> lstColumnModel;
     
+    private List<Double> lstTipoCambio;
+     
     @EJB
     private TipoPeriodoFacade tipoPeriodoFacade;
     
@@ -62,6 +71,30 @@ public class ModeloControlador implements Serializable {
     
     private List<Modelo> lstCorridasModelo;
 
+    public List<ColumnModel> getLstColumnModel() {
+        if (lstColumnModel == null){
+            lstColumnModel = new ArrayList<ColumnModel>();
+        }
+        return lstColumnModel;
+    }
+
+    public void setLstColumnModel(List<ColumnModel> lstColumnModel) {
+        this.lstColumnModel = lstColumnModel;
+    }
+
+    public List<Double> getLstTipoCambio() {
+        if (lstTipoCambio == null){
+            lstTipoCambio = new ArrayList<Double>();
+        }
+        return lstTipoCambio;
+    }
+
+    public void setLstTipoCambio(List<Double> lstTipoCambio) {
+        this.lstTipoCambio = lstTipoCambio;
+    }
+    
+    
+    
     public void setPrestamoModeloControlador(PrestamoModeloControlador prestamoModeloControlador) {
         this.prestamoModeloControlador = prestamoModeloControlador;
     }
@@ -102,6 +135,10 @@ public class ModeloControlador implements Serializable {
 
     public void setActivoModeloControlador(ActivoModeloControlador activoModeloControlador) {
         this.activoModeloControlador = activoModeloControlador;
+    }
+
+    public ResultadoControlador getResultadoControlador() {
+        return resultadoControlador;
     }
 
     public CargoModeloControlador getCargoModeloControlador() {
@@ -158,6 +195,17 @@ public class ModeloControlador implements Serializable {
 
     public void setAnoFacade(AnoFacade anoFacade) {
         this.anoFacade = anoFacade;
+    }
+    
+    public void generarColumnasTiempo(){
+       int tam = Integer.valueOf(currentModelo.getHorizonte().toString());
+       getLstColumnModel().clear();
+       for (int i = 1; i < tam; i++){
+           ColumnModel columnModel = new ColumnModel();
+           columnModel.setHeader(String.valueOf(i));
+           //columnModel.setSize(String.valueOf(i));
+           getLstColumnModel().add(columnModel);
+       }
     }
 
     public Modelo getCurrentModelo() {
@@ -312,6 +360,19 @@ public class ModeloControlador implements Serializable {
         System.out.println("Tipo periodo"+currentModelo.getTipoPeriodo().getIdTipoPeriodo());
         return "/MODELO/CREARMODELO";
     }
+    
+    public String generarResultado(){
+        System.out.print("EMPEZAMOS A GENERAR");
+        Modelo corrida = modeloFacade.find(currentModelo.getIdModelo());
+        getResultadoControlador().generarResultado(corrida);
+        return "/RESULTADO/MOSTRARRESULTADO";
+    
+    }
+
+    public void setResultadoControlador(ResultadoControlador resultadoControlador) {
+        this.resultadoControlador = resultadoControlador;
+    }
+    
     
     
 }

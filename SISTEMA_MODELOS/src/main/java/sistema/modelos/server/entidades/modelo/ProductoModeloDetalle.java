@@ -188,6 +188,11 @@ public class ProductoModeloDetalle implements Serializable{
     public void setLstModeloFormulacionPersonalDetalle(List<ModeloFormulacionPersonal> lstModeloFormulacionPersonalDetalle) {
         this.lstModeloFormulacionPersonalDetalle = lstModeloFormulacionPersonalDetalle;
     }
+
+    @Override
+    public String toString() {
+        return getProducto().toString();
+    }
     
     
     

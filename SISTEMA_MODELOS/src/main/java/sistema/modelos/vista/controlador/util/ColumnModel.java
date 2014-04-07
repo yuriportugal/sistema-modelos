@@ -10,7 +10,7 @@ package sistema.modelos.vista.controlador.util;
  */
 public class ColumnModel {
     private String header;
-    private String size;
+    private String property;
 
     public String getHeader() {
         return header;
@@ -20,12 +20,14 @@ public class ColumnModel {
         this.header = header;
     }
 
-    public String getSize() {
-        return size;
+    public String getProperty() {
+        return property;
     }
 
-    public void setSize(String size) {
-        this.size = size;
+    public void setProperty(String property) {
+        this.property = property;
     }
+
+    
     
 }

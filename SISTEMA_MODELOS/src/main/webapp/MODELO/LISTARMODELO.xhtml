@@ -44,6 +44,11 @@
     
 
     
+          
+    
+        </ui:define>
+          
+          <ui:define name="listadoCorridas">
             <p:dataTable   rendered="true"  id="tablaListadoCorridas" var="corrida"  selectionMode="single" rowKey="#{corrida.idModelo}" value="#{modeloControlador.lstCorridasModelo}" scrollable="true"  >  
                    
                         <p:column style="width:100px;"  headerText="Codigo" >  
@@ -71,9 +76,17 @@
                         </p:commandButton>
                     </p:column>       
    
-                </p:dataTable>
-    
-        </ui:define>
+                
+                    <p:column  style="width:50px;">  
+                        <p:commandButton icon="ui-icon-close" action="#{modeloControlador.generarResultado()}"  >
+                            <f:setPropertyActionListener value="#{corrida}" target="#{modeloControlador.currentModelo}" />  
+                        </p:commandButton>
+                    </p:column>
+                
+                </p:dataTable>    
+              
+              
+          </ui:define>  
       </ui:composition>
     
     

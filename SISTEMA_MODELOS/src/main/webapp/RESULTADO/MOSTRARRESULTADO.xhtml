@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+    
+    <ui:composition template="/templateResultado.xhtml"> 
+        
+        <ui:define name="showresultado">
+           
+            PROYECCION DE PLAN DE VENTAS
+            <p:dataTable  id="idTabPVProyeccion" var="result" value="#{resultadoControlador.resultado.planVentas.planVentasProyeccion}" >                      
+                <p:columns value="#{resultadoControlador.columnas}" var="column" columnIndexVar="indice"   
+                    >  
+            <f:facet name="header">  
+                #{column.header}
+            </f:facet>    
+                    <h:outputText rendered="#{indice == 0}" value="#{result.objeto}" /> 
+                    <h:outputText rendered="#{indice > 0}" value=" #{result.valores[indice-1]}" /> 
+                   
+             
+        </p:columns>  
+  
+    </p:dataTable> 
+            
+            
+            Valor de venta por unidad de venta sin IGV
+            <p:dataTable  id="idTabPVValorVentaxUni" var="result" value="#{resultadoControlador.resultado.planVentas.valorVentaSinIGV}" >                      
+                <p:columns value="#{resultadoControlador.columnas}" var="column" columnIndexVar="indice"   
+                    >  
+            <f:facet name="header">  
+                #{column.header}
+            </f:facet>    
+                    <h:outputText rendered="#{indice == 0}" value="#{result.objeto}" /> 
+                    <h:outputText rendered="#{indice > 0}" value=" #{result.valores[indice-1]}" /> 
+                   
+             
+        </p:columns>  
+  
+    </p:dataTable> 
+        </ui:define>
+
+
+    </ui:composition>
+</html>
+

@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+    
+    <ui:composition template="/templateResultado.xhtml"> 
+        
+        <ui:define name="showresultado">
+           
+            <ui:repeat  value="#{resultadoControlador.resultado.planProduccion.arrLstInventarioProdTerminados}" var="tableExt">
+               
+                <h:outputText value="#{tableExt.objetoExt}"/>
+               
+                <p:dataTable rendered="#{resultadoControlador.detalle}"  var="result" value="#{tableExt.lstTablaResultado}" >                      
+                <p:columns value="#{resultadoControlador.columnas}" var="column" columnIndexVar="indice"   
+                    >  
+            <f:facet name="header">  
+                #{column.header}
+            </f:facet>    
+                    <h:outputText rendered="#{indice == 0}" value="#{result.objeto}" /> 
+                    <h:outputText rendered="#{indice > 0}" value=" #{result.valValores[indice-1]}" /> 
+                   
+             
+        </p:columns>  
+  
+    </p:dataTable>
+                
+            </ui:repeat>
+            
+            CONSOLIDADO DE PLAN DE PRODUCCIÓN
+            <p:dataTable rendered="#{resultadoControlador.detalle}" id="idTabConsolidadoPDPT" var="result" value="#{resultadoControlador.resultado.planProduccion.consolidadoPlanProd}" >                      
+                <p:columns value="#{resultadoControlador.columnas}" var="column" columnIndexVar="indice"   
+                    >  
+            <f:facet name="header">  
+                #{column.header}
+            </f:facet>    
+                    <h:outputText rendered="#{indice == 0}" value="#{result.objeto}" /> 
+                    <h:outputText rendered="#{indice > 0}" value=" #{result.valValores[indice-1]}" /> 
+                   
+             
+        </p:columns>  
+  
+    </p:dataTable> 
+            
+            
+            Consolidado del stock finales de productos terminados 										
+            <p:dataTable rendered="#{resultadoControlador.detalle}" id="idTabConsolidadoStockPT" var="result" value="#{resultadoControlador.resultado.planProduccion.consolidadoStockFinalesProd}" >                      
+                <p:columns value="#{resultadoControlador.columnas}" var="column" columnIndexVar="indice"   
+                    >  
+            <f:facet name="header">  
+                #{column.header}
+            </f:facet>    
+                    <h:outputText rendered="#{indice == 0}" value="#{result.objeto}" /> 
+                    <h:outputText rendered="#{indice > 0}" value=" #{result.valValores[indice-1]}" /> 
+                   
+             
+        </p:columns>  
+  
+    </p:dataTable> 
+            
+          
+            
+            
+        </ui:define>
+
+
+    </ui:composition>
+</html>
+
