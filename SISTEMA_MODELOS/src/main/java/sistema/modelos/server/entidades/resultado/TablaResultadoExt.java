@@ -27,6 +27,9 @@ public class TablaResultadoExt {
     }
 
     public List<TablaResultado> getLstTablaResultado() {
+        if (lstTablaResultado == null){
+            lstTablaResultado = new ArrayList<TablaResultado>();
+        }
         return lstTablaResultado;
     }
 

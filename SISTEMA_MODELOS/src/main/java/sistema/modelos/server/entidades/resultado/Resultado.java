@@ -12,7 +12,8 @@ public class Resultado {
     
     private PlanVentas planVentas;
     private PlanProduccion planProduccion;
-
+    private NecesidadInsumo necesidadInsumo;
+    
     public PlanVentas getPlanVentas() {
         if (planVentas == null){
             System.out.println("--- hola mundo");
@@ -39,9 +40,17 @@ public class Resultado {
     public void setPlanProduccion(PlanProduccion planProduccion) {
         this.planProduccion = planProduccion;
     }
+
+    public NecesidadInsumo getNecesidadInsumo() {
+        if (necesidadInsumo == null){
+            necesidadInsumo = new NecesidadInsumo();
+        }
+        return necesidadInsumo;
+    }
+
+    public void setNecesidadInsumo(NecesidadInsumo necesidadInsumo) {
+        this.necesidadInsumo = necesidadInsumo;
+    }
     
-    
-    
-   
     
 }

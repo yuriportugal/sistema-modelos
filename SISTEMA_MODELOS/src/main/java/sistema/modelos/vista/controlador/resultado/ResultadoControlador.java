@@ -91,16 +91,20 @@ public class ResultadoControlador {
         resultado.getPlanVentas().generarPlanVentasValorizadoConIGV();
         //Vista de plan de producción
         resultado.getPlanProduccion().llenarPlanVentasProyeccion(resultado.getPlanVentas().getPlanVentasProyeccion());
-        System.out.println("PlanProduccion llenarPlanVentas");
         resultado.getPlanProduccion().inicializarValores();
-        System.out.println("PlanProduccion Inicializar Valores");
         resultado.getPlanProduccion().generarValoresProductosTerminados();
-        System.out.println("PlanProduccion productos terminados");
         resultado.getPlanProduccion().generarResumenes();
-        System.out.println("PlanProduccion generar resumenes");
+        //Vista para necesidades de insumo...
+        resultado.getNecesidadInsumo().setConsolidadoPlanProd(resultado.getPlanProduccion().getConsolidadoPlanProd());
+        resultado.getNecesidadInsumo().generarNecesidadInsumoxProducto();
+        resultado.getNecesidadInsumo().generarResumen();
         setResultado(resultado);
+        
         DecimalFormat df = new DecimalFormat("###,###,###");
        
+        
+        
+        
         //        System.out.println("Proyección de plan de ventas");
 //        for (int i = 0; i <resultado.getPlanVentas().getPlanVentasProyeccion().size();i++){
 //            Producto prod = (Producto)resultado.getPlanVentas().getPlanVentasProyeccion().get(i).getObjeto();
@@ -155,6 +159,12 @@ public class ResultadoControlador {
         detalle = true;
         return "/RESULTADO/PLANPRODUCCION";
     }
+    
+    public String mostrarNecesidadesInsumoDetalle(){
+        detalle = true;
+        return "/RESULTADO/NECESIDADINSUMO";
+    }
+    
    
     
 }

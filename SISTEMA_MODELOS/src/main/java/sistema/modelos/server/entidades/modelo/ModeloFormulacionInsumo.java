@@ -81,6 +81,11 @@ public class ModeloFormulacionInsumo implements Serializable{
     public void setProductoModelo(ProductoModeloDetalle productoModelo) {
         this.productoModelo = productoModelo;
     }
+
+    @Override
+    public String toString() {
+        return getInsumo().getNombre();
+    }
     
     
     

@@ -88,6 +88,11 @@ public class Insumo implements Serializable{
     public void setEmpresa(Empresa empresa) {
         this.empresa = empresa;
     }
+
+    @Override
+    public String toString() {
+        return this.nombre;
+    }
     
-   
+    
 }

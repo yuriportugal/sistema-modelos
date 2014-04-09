@@ -65,6 +65,8 @@ public class PlanProduccion {
             consolidadoPlanProd.add(tablaPlanProd);
             consolidadoStockFinalesProd.add(tablaStockFinProd);
         }
+        
+        arrLstInventarioProdTerminados.remove(arrLstInventarioProdTerminados.size()-1);
     }
     
     

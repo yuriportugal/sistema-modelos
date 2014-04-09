@@ -10,7 +10,7 @@
         
         <ui:define name="showresultado">
            
-            <ui:repeat  value="#{resultadoControlador.resultado.planProduccion.arrLstInventarioProdTerminados}" var="tableExt">
+            <ui:repeat  value="#{resultadoControlador.resultado.necesidadInsumo.lstNecesidadInsumoxProducto}" var="tableExt">
                 
                 <h:outputText value="#{tableExt.objetoExt}"/>
                
@@ -29,9 +29,8 @@
     </p:dataTable>
                 
             </ui:repeat>
-            
-            CONSOLIDADO DE PLAN DE PRODUCCIÓN
-            <p:dataTable rendered="#{resultadoControlador.detalle}" id="idTabConsolidadoPDPT" var="result" value="#{resultadoControlador.resultado.planProduccion.consolidadoPlanProd}" >                      
+            RESUMEN DE NECESIDADES DE INSUMO
+            <p:dataTable rendered="#{resultadoControlador.detalle}"  var="result" value="#{resultadoControlador.resultado.necesidadInsumo.listaResumenNecesidadesInsumo}" >                      
                 <p:columns value="#{resultadoControlador.columnas}" var="column" columnIndexVar="indice"   
                     >  
             <f:facet name="header">  
@@ -43,26 +42,7 @@
              
         </p:columns>  
   
-    </p:dataTable> 
-            
-            
-            Consolidado del stock finales de productos terminados 										
-            <p:dataTable rendered="#{resultadoControlador.detalle}" id="idTabConsolidadoStockPT" var="result" value="#{resultadoControlador.resultado.planProduccion.consolidadoStockFinalesProd}" >                      
-                <p:columns value="#{resultadoControlador.columnas}" var="column" columnIndexVar="indice"   
-                    >  
-            <f:facet name="header">  
-                #{column.header}
-            </f:facet>    
-                    <h:outputText rendered="#{indice == 0}" value="#{result.objeto}" /> 
-                    <h:outputText rendered="#{indice > 0}" value=" #{result.valValores[indice-1]}" /> 
-                   
-             
-        </p:columns>  
-  
-    </p:dataTable> 
-            
-          
-            
+    </p:dataTable>
             
         </ui:define>
 
