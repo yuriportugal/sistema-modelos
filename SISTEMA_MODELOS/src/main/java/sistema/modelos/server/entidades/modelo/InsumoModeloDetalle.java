@@ -6,6 +6,8 @@ package sistema.modelos.server.entidades.modelo;
 
 
 import java.io.Serializable;
+import java.util.Collections;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
@@ -128,6 +130,23 @@ public class InsumoModeloDetalle implements Serializable{
     public void setIdInsumoModelo(Long idInsumoModelo) {
         this.idInsumoModelo = idInsumoModelo;
     }
+    
+    public static InsumoModeloDetalle getByInsumo(List<InsumoModeloDetalle> lstInsumo, Insumo insumo){
+        for (int i = 0; i < lstInsumo.size(); i++){
+            if (lstInsumo.get(i).getInsumo().getIdInsumo().equals(insumo.getIdInsumo())){
+                return lstInsumo.get(i);
+            }
+        }
+        return null;
+        
+    }
+
+    @Override
+    public String toString() {
+        return getInsumo().getNombre();
+    }
+    
+    
     
 }
 

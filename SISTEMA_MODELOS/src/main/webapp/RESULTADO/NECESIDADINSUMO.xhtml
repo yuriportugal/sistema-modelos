@@ -9,13 +9,14 @@
     <ui:composition template="/templateResultado.xhtml"> 
         
         <ui:define name="showresultado">
-           
+           NECESIDADES DE INSUMO 
+           <br/>
             <ui:repeat  value="#{resultadoControlador.resultado.necesidadInsumo.lstNecesidadInsumoxProducto}" var="tableExt">
-                
-                <h:outputText value="#{tableExt.objetoExt}"/>
+                <br/>  
+                <h:outputText value="PRODUCTO - #{tableExt.objetoExt}"/>
                
                 <p:dataTable rendered="#{resultadoControlador.detalle}"  var="result" value="#{tableExt.lstTablaResultado}" >                      
-                <p:columns value="#{resultadoControlador.columnas}" var="column" columnIndexVar="indice"   
+                    <p:columns value="#{resultadoControlador.columnasInsumo}" var="column" columnIndexVar="indice"   
                     >  
             <f:facet name="header">  
                 #{column.header}
@@ -25,13 +26,15 @@
                    
              
         </p:columns>  
+                  
   
     </p:dataTable>
                 
             </ui:repeat>
+            <br/>  
             RESUMEN DE NECESIDADES DE INSUMO
             <p:dataTable rendered="#{resultadoControlador.detalle}"  var="result" value="#{resultadoControlador.resultado.necesidadInsumo.listaResumenNecesidadesInsumo}" >                      
-                <p:columns value="#{resultadoControlador.columnas}" var="column" columnIndexVar="indice"   
+                <p:columns value="#{resultadoControlador.columnasInsumo}" var="column" columnIndexVar="indice"   
                     >  
             <f:facet name="header">  
                 #{column.header}

@@ -13,6 +13,7 @@ public class Resultado {
     private PlanVentas planVentas;
     private PlanProduccion planProduccion;
     private NecesidadInsumo necesidadInsumo;
+    private PlanCompras planCompras;
     
     public PlanVentas getPlanVentas() {
         if (planVentas == null){
@@ -51,6 +52,19 @@ public class Resultado {
     public void setNecesidadInsumo(NecesidadInsumo necesidadInsumo) {
         this.necesidadInsumo = necesidadInsumo;
     }
+
+    public PlanCompras getPlanCompras() {
+        if (planCompras == null){
+            planCompras = new PlanCompras();
+        }
+        return planCompras;
+    }
+
+    public void setPlanCompras(PlanCompras planCompras) {
+        this.planCompras = planCompras;
+    }
+    
+    
     
     
 }

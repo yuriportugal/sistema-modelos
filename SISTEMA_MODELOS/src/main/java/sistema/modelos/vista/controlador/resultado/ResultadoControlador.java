@@ -28,8 +28,21 @@ public class ResultadoControlador {
    
    private List<ColumnModel> columnas;
    
+   private List<ColumnModel> columnasInsumo;
+   
    private boolean detalle;
 
+    public List<ColumnModel> getColumnasInsumo() {
+        if (columnasInsumo == null){
+            columnasInsumo = new ArrayList<ColumnModel>();
+        }
+        return columnasInsumo;
+    }
+
+    public void setColumnas(List<ColumnModel> columnas) {
+        this.columnas = columnas;
+    }
+   
     public boolean isDetalle() {
         return detalle;
     }
@@ -49,6 +62,24 @@ public class ResultadoControlador {
 
     public void setResultado(Resultado resultado) {
         this.resultado = resultado;
+    }
+    
+     public void generarColumnaNecesiadesInsumo(int size){
+       columnasInsumo = new ArrayList<ColumnModel>();
+        for (int i = 0; i <= size; i++){
+            ColumnModel column = new ColumnModel();
+            if (i == 0) {
+                column.setHeader("Insumos");
+                column.setProperty("objeto");
+            }    
+            else {
+                column.setHeader("Periodo "+i);
+                column.setProperty("valores");
+            }
+            
+            getColumnasInsumo().add(column);        
+                    
+        }
     }
     
     public void generarColumna(int size){
@@ -82,6 +113,7 @@ public class ResultadoControlador {
         
         
         generarColumna(Integer.valueOf(modelo.getHorizonte().toString()));
+        generarColumnaNecesiadesInsumo(Integer.valueOf(modelo.getHorizonte().toString()));
         Resultado resultado = new Resultado();
         //Vista plan de ventas
         resultado.getPlanVentas().generarPlanVentasProy(modelo.getLstProductoModeloDetalle(),Integer.valueOf(modelo.getHorizonte().toString()));
@@ -99,6 +131,10 @@ public class ResultadoControlador {
         resultado.getNecesidadInsumo().generarNecesidadInsumoxProducto();
         resultado.getNecesidadInsumo().generarResumen();
         setResultado(resultado);
+        //Vista de plan de compras
+        resultado.getPlanCompras().setLstMaestroInsumoModeloDetalle(modelo.getLstInsumoModeloDetalle());
+        resultado.getPlanCompras().setLstResumenNecesidadInsumo(resultado.getNecesidadInsumo().getListaResumenNecesidadesInsumo());
+        resultado.getPlanCompras().generarPlanDeCompras();
         
         DecimalFormat df = new DecimalFormat("###,###,###");
        
@@ -165,6 +201,9 @@ public class ResultadoControlador {
         return "/RESULTADO/NECESIDADINSUMO";
     }
     
-   
+   public String mostrarPlandeComprasDetalle(){
+        detalle = true;
+        return "/RESULTADO/PLANCOMPRAS";
+    }
     
 }
