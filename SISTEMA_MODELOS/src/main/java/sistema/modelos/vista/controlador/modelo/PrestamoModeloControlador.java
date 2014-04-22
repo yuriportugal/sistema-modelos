@@ -35,7 +35,7 @@ public class PrestamoModeloControlador implements Serializable {
     @EJB
     private TipoPrestamoFacade tipoPrestamoFacade;
     
-    private boolean isEditPrestMod;
+    private boolean isEditPrestMod = false;
 
     private Long maxId = -1L;
     
