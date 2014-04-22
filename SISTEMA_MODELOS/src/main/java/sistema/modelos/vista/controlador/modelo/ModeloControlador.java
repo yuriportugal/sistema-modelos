@@ -318,7 +318,7 @@ public class ModeloControlador implements Serializable {
         }
           for (int i = 0; i < currentModelo.getLstPrestamoModeloDetalle().size();i++){
             currentModelo.getLstPrestamoModeloDetalle().get(i).setModelo(currentModelo);
-            currentModelo.getLstPrestamoModeloDetalle().get(i).setIdModeloPrestamo(null);
+            currentModelo.getLstPrestamoModeloDetalle().get(i).setIdModeloPrestamo((long)-1);
         }
           for (int i = 0; i < currentModelo.getLstProductoModeloDetalle().size();i++){
             currentModelo.getLstProductoModeloDetalle().get(i).setModelo(currentModelo);
