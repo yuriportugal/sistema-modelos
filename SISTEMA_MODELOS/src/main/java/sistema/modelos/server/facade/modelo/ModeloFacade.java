@@ -34,6 +34,11 @@ public class ModeloFacade extends AbstractFacade<Modelo> {
     
     public List<Modelo> findCorridas(){
          Query q = getEntityManager().createQuery("Select m from Modelo m where m.parentModelo IS NOT NULL ");
-        return q.getResultList();
+         return q.getResultList();
+       }
+    
+    public List<Modelo> findModelos(){
+         Query q = getEntityManager().createQuery("Select m from Modelo m where m.parentModelo IS NULL ");
+         return q.getResultList();
        }
 }
