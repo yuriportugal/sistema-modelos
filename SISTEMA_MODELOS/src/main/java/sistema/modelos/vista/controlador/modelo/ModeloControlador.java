@@ -119,11 +119,14 @@ public class ModeloControlador implements Serializable {
         this.lstCorridasModelo = lstCorridasModelo;
     }
 
-    
-    
     public List<Modelo> getLstModelo() {
-        return modeloFacade.findAll();
+        return modeloFacade.findModelos();
     }
+    
+    
+//    public List<Modelo> getLstModelo() {
+//        return modeloFacade.findAll();
+//    }
 
     public void setLstModelo(List<Modelo> lstModelo) {
         this.lstModelo = lstModelo;
