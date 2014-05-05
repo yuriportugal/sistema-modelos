@@ -9,6 +9,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import sistema.modelos.server.entidades.empresa.Activo;
 import sistema.modelos.server.entidades.empresa.Producto;
 import sistema.modelos.server.entidades.modelo.ProductoModeloDetalle;
 import sistema.modelos.server.facade.general.AbstractFacade;
@@ -56,5 +57,14 @@ public class ProductoFacade extends AbstractFacade<Producto> {
         return q.getResultList();
         
     }
+    
+        public List<Producto> findAllByEmpresa(Long idEmpresa){
+        Query q = getEntityManager().createQuery("Select p from Producto p where p.empresa.idEmpresa = :idEmpresa");
+        q.setParameter("idEmpresa", idEmpresa);
+        return q.getResultList();
+        
+    }
+
+    
     
 }

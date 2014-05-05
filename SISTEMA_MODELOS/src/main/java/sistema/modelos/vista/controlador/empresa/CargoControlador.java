@@ -9,6 +9,7 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import org.primefaces.context.RequestContext;
@@ -16,6 +17,8 @@ import sistema.modelos.server.entidades.empresa.Area;
 import sistema.modelos.server.entidades.empresa.Cargo;
 import sistema.modelos.server.facade.empresa.AreaFacade;
 import sistema.modelos.server.facade.empresa.CargoFacade;
+import sistema.modelos.server.facade.empresa.EmpresaFacade;
+import sistema.modelos.vista.controlador.util.UsuarioControlador;
 
 /**
  *
@@ -30,6 +33,12 @@ public class CargoControlador implements Serializable {
     @EJB
     private CargoFacade cargoFacade;
         
+    @EJB
+    private EmpresaFacade empresaFacade;
+    
+    @ManagedProperty(value="#{usuarioControlador}")
+    private UsuarioControlador usuarioControlador;
+    
     
     List<Cargo> lstCargo;
     List<Area> lstArea;
@@ -74,7 +83,7 @@ public class CargoControlador implements Serializable {
         this.currentCargo = currentCargo;
     }
     public List<Cargo> getLstCargo() {
-        lstCargo = cargoFacade.findAll();
+        lstCargo = cargoFacade.findAllByEmpresa(getUsuarioControlador().getCurrentUsuario().getEmpresa().getIdEmpresa());
         return lstCargo;
     }
     
@@ -85,6 +94,7 @@ public class CargoControlador implements Serializable {
      public void persist(){
          String mensaje = "";
          System.out.println("What happen with that shit:"+currentCargo.getNombre()  );        
+         currentCargo.setEmpresa(empresaFacade.find(getUsuarioControlador().getCurrentUsuario().getEmpresa().getIdEmpresa()));
          if (currentCargo.getNombre().equals(""))
                 mensaje += "Debe ingresar el nombre del Cargo <br/>";
                 System.out.println(mensaje);
@@ -153,6 +163,14 @@ public class CargoControlador implements Serializable {
     
     public void closeConfirm(){
        RequestContext.getCurrentInstance().execute("ConfirmDlg.hide()");
+    }
+    
+     public UsuarioControlador getUsuarioControlador() {
+        return usuarioControlador;
+    }
+
+    public void setUsuarioControlador(UsuarioControlador usuarioControlador) {
+        this.usuarioControlador = usuarioControlador;
     }
     
 }

@@ -4,10 +4,12 @@
  */
 package sistema.modelos.server.facade.empresa;
 
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import sistema.modelos.server.entidades.empresa.Cargo;
 import sistema.modelos.server.entidades.empresa.Insumo;
 import sistema.modelos.server.facade.general.AbstractFacade;
 
@@ -40,5 +42,13 @@ public class InsumoFacade extends AbstractFacade<Insumo> {
         System.out.println("tamano:"+i+codigo);
         return i;
     }
-    
+   
+   
+    public List<Insumo> findAllByEmpresa(Long idEmpresa){
+        Query q = getEntityManager().createQuery("Select a from Insumo a where a.empresa.idEmpresa = :idEmpresa");
+        q.setParameter("idEmpresa", idEmpresa);
+        return q.getResultList();
+        
+    }
+   
 }

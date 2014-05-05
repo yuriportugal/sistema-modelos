@@ -16,11 +16,14 @@ import org.primefaces.context.RequestContext;
 import sistema.modelos.server.entidades.modelo.Ano;
 import sistema.modelos.server.entidades.modelo.Modelo;
 import sistema.modelos.server.entidades.modelo.TipoPeriodo;
+import sistema.modelos.server.facade.empresa.EmpresaFacade;
 import sistema.modelos.server.facade.modelo.AnoFacade;
 import sistema.modelos.server.facade.modelo.ModeloFacade;
 import sistema.modelos.server.facade.modelo.TipoPeriodoFacade;
+import sistema.modelos.server.facade.util.UsuarioFacade;
 import sistema.modelos.vista.controlador.resultado.ResultadoControlador;
 import sistema.modelos.vista.controlador.util.ColumnModel;
+import sistema.modelos.vista.controlador.util.UsuarioControlador;
 
 /**
  *
@@ -32,6 +35,9 @@ public class ModeloControlador implements Serializable {
   
     @ManagedProperty(value="#{productoModeloControlador}")
     private ProductoModeloControlador productoModeloControlador;
+    
+    @ManagedProperty(value="#{usuarioControlador}")
+    private UsuarioControlador usuarioControlador;
     
     @ManagedProperty(value="#{insumoModeloControlador}")
     private InsumoModeloControlador insumoModeloControlador;
@@ -64,6 +70,9 @@ public class ModeloControlador implements Serializable {
     
     @EJB
     private ModeloFacade modeloFacade;
+    
+     @EJB
+    private EmpresaFacade empresaFacade;
     
     private Modelo currentModelo;
     
@@ -112,7 +121,7 @@ public class ModeloControlador implements Serializable {
     }
 
     public List<Modelo> getLstCorridasModelo() {
-        return modeloFacade.findCorridas();
+        return modeloFacade.findCorridasByEmpresa(getUsuarioControlador().getCurrentUsuario().getEmpresa().getIdEmpresa());
     }
 
     public void setLstCorridasModelo(List<Modelo> lstCorridasModelo) {
@@ -120,7 +129,7 @@ public class ModeloControlador implements Serializable {
     }
 
     public List<Modelo> getLstModelo() {
-        return modeloFacade.findModelos();
+        return modeloFacade.findModelosByEmpresa(getUsuarioControlador().getCurrentUsuario().getEmpresa().getIdEmpresa());
     }
     
     
@@ -134,6 +143,14 @@ public class ModeloControlador implements Serializable {
 
     public ActivoModeloControlador getActivoModeloControlador() {
         return activoModeloControlador;
+    }
+
+    public UsuarioControlador getUsuarioControlador() {
+        return usuarioControlador;
+    }
+
+    public void setUsuarioControlador(UsuarioControlador usuarioControlador) {
+        this.usuarioControlador = usuarioControlador;
     }
 
     public void setActivoModeloControlador(ActivoModeloControlador activoModeloControlador) {
@@ -225,6 +242,7 @@ public class ModeloControlador implements Serializable {
         System.out.println("Vamos a grabar el mierdelo");
         System.out.println("Tipo periodo"+currentModelo.getTipoPeriodo().getIdTipoPeriodo());
         //Seteando los productos
+        currentModelo.setEmpresa(empresaFacade.find(getUsuarioControlador().getCurrentUsuario().getEmpresa().getIdEmpresa()));
         for (int i = 0; i < getProductoModeloControlador().getLstProductoModeloDetalle().size();i++){
             getProductoModeloControlador().getLstProductoModeloDetalle().get(i).setModelo(currentModelo);
         }

@@ -9,11 +9,13 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import org.primefaces.context.RequestContext;
 import sistema.modelos.server.entidades.empresa.Cargo;
 import sistema.modelos.server.entidades.modelo.CargoModeloDetalle;
 import sistema.modelos.server.facade.empresa.CargoFacade;
+import sistema.modelos.vista.controlador.util.UsuarioControlador;
 
 /**
  *
@@ -29,6 +31,9 @@ public class CargoModeloControlador implements Serializable {
        
     private List<Cargo> lstCargo;
     
+    @ManagedProperty(value="#{usuarioControlador}")
+    private UsuarioControlador usuarioControlador;
+    
     @EJB
     private CargoFacade cargoFacade;
     
@@ -38,7 +43,17 @@ public class CargoModeloControlador implements Serializable {
         lstCargoModeloDetalle = null;
         currentCargoModeloDetalle = null;
     }
+
+    public UsuarioControlador getUsuarioControlador() {
+        return usuarioControlador;
+    }
+
+    public void setUsuarioControlador(UsuarioControlador usuarioControlador) {
+        this.usuarioControlador = usuarioControlador;
+    }
     
+      
+      
     public List<CargoModeloDetalle> getLstCargoModeloDetalle() {
         if (lstCargoModeloDetalle == null){
             lstCargoModeloDetalle = new ArrayList<CargoModeloDetalle>();
@@ -70,7 +85,7 @@ public class CargoModeloControlador implements Serializable {
     }
 
     public List<Cargo> getLstCargo() {
-        lstCargo = cargoFacade.findAll();
+        lstCargo = cargoFacade.findAllByEmpresa(getUsuarioControlador().getCurrentUsuario().getEmpresa().getIdEmpresa());
         return lstCargo;
     }
 

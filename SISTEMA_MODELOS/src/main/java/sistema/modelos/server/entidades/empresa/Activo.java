@@ -37,7 +37,6 @@ public class Activo implements Serializable{
     private String codigo;
 
     @ManyToOne
-    @Null 
     @JoinColumn(name="ID_EMPRESA")
     private Empresa empresa;
     

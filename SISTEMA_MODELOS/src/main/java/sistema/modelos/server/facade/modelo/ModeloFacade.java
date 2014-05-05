@@ -41,4 +41,16 @@ public class ModeloFacade extends AbstractFacade<Modelo> {
          Query q = getEntityManager().createQuery("Select m from Modelo m where m.parentModelo IS NULL ");
          return q.getResultList();
        }
+
+    public List<Modelo> findCorridasByEmpresa(Long idEmpresa) {
+        Query q = getEntityManager().createQuery("Select m from Modelo m where m.parentModelo IS NOT NULL and  m.empresa.idEmpresa = :idEmpresa ");
+         q.setParameter("idEmpresa", idEmpresa); 
+        return q.getResultList();
+    }
+
+    public List<Modelo> findModelosByEmpresa(Long idEmpresa) {
+         Query q = getEntityManager().createQuery("Select m from Modelo m where m.parentModelo IS  NULL and  m.empresa.idEmpresa = :idEmpresa");
+         q.setParameter("idEmpresa", idEmpresa);
+         return q.getResultList();
+    }
 }

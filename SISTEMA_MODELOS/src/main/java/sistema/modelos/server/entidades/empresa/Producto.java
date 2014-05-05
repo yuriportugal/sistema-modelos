@@ -47,7 +47,6 @@ public class Producto implements Serializable {
     private String nombre;
     
     @ManyToOne
-    @Null
     @JoinColumn(name="ID_EMPRESA")
     private Empresa empresa;
         

@@ -9,11 +9,13 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import org.primefaces.context.RequestContext;
 import sistema.modelos.server.entidades.empresa.Servicio;
 import sistema.modelos.server.entidades.modelo.ServicioModeloDetalle;
 import sistema.modelos.server.facade.empresa.ServicioFacade;
+import sistema.modelos.vista.controlador.util.UsuarioControlador;
 
 /**
  *
@@ -39,6 +41,19 @@ public class ServicioModeloControlador implements Serializable {
     
     private boolean isEditServMod;
 
+    @ManagedProperty(value="#{usuarioControlador}")
+    private UsuarioControlador usuarioControlador;
+
+    public UsuarioControlador getUsuarioControlador() {
+        return usuarioControlador;
+    }
+
+    public void setUsuarioControlador(UsuarioControlador usuarioControlador) {
+        this.usuarioControlador = usuarioControlador;
+    }
+    
+    
+    
     public ServicioModeloDetalle getCurrentServicioModeloDetalle() {
         if ( currentServicioModeloDetalle == null){
             currentServicioModeloDetalle = new ServicioModeloDetalle();
@@ -51,7 +66,7 @@ public class ServicioModeloControlador implements Serializable {
     }
 
     public List<Servicio> getLstServicio() {
-        return servicioFacade.findAll();
+        return servicioFacade.findAllByEmpresa(getUsuarioControlador().getCurrentUsuario().getEmpresa().getIdEmpresa());
     }
 
     public void setLstServicio(List<Servicio> lstServicio) {

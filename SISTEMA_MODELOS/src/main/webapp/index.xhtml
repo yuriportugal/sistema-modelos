@@ -2,9 +2,45 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
-   <ui:composition template="/template.xhtml"> 
-   </ui:composition>    
-
+      xmlns:p="http://primefaces.org/ui">
+ 
+    <h:body
+        onload="#{usuarioControlador.validarSesion()}">
+        
+    </h:body>
+    <h:form>
+    <p:panel header="Edición/Creación" styleClass="width=50%;">
+        
+   
+        
+        <p:panelGrid   style="width:100%;border:0px;"   id="panelUsuario"    >  
+                       <p:row>   
+                            <p:column   style="width:25%" >
+                            <h:outputLabel value="Usuario " />
+                            </p:column>
+                            <p:column   style="width:25%" >
+                                <p:inputText  id="codUsuario"   size="30" value="#{usuarioControlador.currentUsuario.codUsuario}"/>
+                            </p:column>
+                            
+                       </p:row> 
+                         
+                         
+                     <p:row>   
+                            <p:column   style="width:25%"  >
+                            <h:outputLabel value="Contraseña: " />
+                            </p:column>
+                         <p:column   style="width:25%"  >
+                             <p:inputText id="valorCompraActivo"   size="30" value="#{usuarioControlador.currentUsuario.passUsuario}"/>
+                            </p:column>
+                         
+                       </p:row> 
+                         <p:row>
+                             <p:column ><p:commandButton  value="Ingresar" action="#{usuarioControlador.validarUsuario()}" ></p:commandButton></p:column>
+                         </p:row>
+                        
+                     </p:panelGrid>
+                    
+                </p:panel>
+    </h:form>
 </html>
 

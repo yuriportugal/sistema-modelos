@@ -10,6 +10,7 @@ import java.util.Map;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import org.primefaces.context.RequestContext;
@@ -20,9 +21,11 @@ import sistema.modelos.server.entidades.empresa.Servicio;
 import sistema.modelos.server.entidades.empresa.TipoActivo;
 import sistema.modelos.server.facade.empresa.ActivoFacade;
 import sistema.modelos.server.facade.empresa.AreaFacade;
+import sistema.modelos.server.facade.empresa.EmpresaFacade;
 import sistema.modelos.server.facade.empresa.InsumoFacade;
 import sistema.modelos.server.facade.empresa.ServicioFacade;
 import sistema.modelos.server.facade.empresa.TipoActivoFacade;
+import sistema.modelos.vista.controlador.util.UsuarioControlador;
 
 /**
  *
@@ -36,6 +39,13 @@ public class ServicioControlador implements Serializable {
    
     @EJB
     private AreaFacade areaFacade;
+    
+    @EJB
+    private EmpresaFacade empresaFacade;
+    
+    @ManagedProperty(value="#{usuarioControlador}")
+    private UsuarioControlador usuarioControlador;
+    
     
     Long idActivo;
     List<Servicio> lstServicio;
@@ -78,7 +88,7 @@ public class ServicioControlador implements Serializable {
     }
 
     public List<Servicio> getLstServicio() {
-        lstServicio = servicioFacade.findAll();
+        lstServicio = servicioFacade.findAllByEmpresa(getUsuarioControlador().getCurrentUsuario().getEmpresa().getIdEmpresa());
         return lstServicio;
     }
 
@@ -92,7 +102,7 @@ public class ServicioControlador implements Serializable {
     
      public void persist(){
              String mensaje = "";
-            
+            currentServicio.setEmpresa(empresaFacade.find(getUsuarioControlador().getCurrentUsuario().getEmpresa().getIdEmpresa()));
             if (currentServicio.getNombre().equals(""))
                 mensaje += "Debe ingresar el nombre del Servicio <br/>";
             if (currentServicio.getCodigo().equals(""))
@@ -163,5 +173,13 @@ public class ServicioControlador implements Serializable {
     
     public void closeConfirm(){
        RequestContext.getCurrentInstance().execute("ConfirmDlg.hide()");
+    }
+    
+     public UsuarioControlador getUsuarioControlador() {
+        return usuarioControlador;
+    }
+
+    public void setUsuarioControlador(UsuarioControlador usuarioControlador) {
+        this.usuarioControlador = usuarioControlador;
     }
 }

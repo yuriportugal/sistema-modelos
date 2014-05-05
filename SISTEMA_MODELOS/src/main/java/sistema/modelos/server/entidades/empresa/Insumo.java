@@ -40,7 +40,6 @@ public class Insumo implements Serializable{
     private String codigo;
 
     @ManyToOne
-    @Null
     @JoinColumn(name="ID_EMPRESA")
     private Empresa empresa;
     

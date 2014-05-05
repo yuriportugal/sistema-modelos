@@ -9,12 +9,15 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import org.primefaces.context.RequestContext;
 import sistema.modelos.server.entidades.empresa.Insumo;
 import sistema.modelos.server.entidades.empresa.Producto;
+import sistema.modelos.server.facade.empresa.EmpresaFacade;
 import sistema.modelos.server.facade.empresa.ProductoFacade;
+import sistema.modelos.vista.controlador.util.UsuarioControlador;
 
 /**
  *
@@ -25,6 +28,13 @@ import sistema.modelos.server.facade.empresa.ProductoFacade;
 public class ProductoControlador implements Serializable {
     @EJB
     private ProductoFacade productoFacade;
+    
+    @EJB
+    private EmpresaFacade empresaFacade;
+    
+    @ManagedProperty(value="#{usuarioControlador}")
+    private UsuarioControlador usuarioControlador;
+    
     
     Long idProducto;
     
@@ -47,7 +57,7 @@ public class ProductoControlador implements Serializable {
     
     
     public List<Producto> getLstProductos() {
-        lstProductos = productoFacade.findAll();
+        lstProductos = productoFacade.findAllByEmpresa(getUsuarioControlador().getCurrentUsuario().getEmpresa().getIdEmpresa());
         return lstProductos;
     }
     
@@ -62,7 +72,7 @@ public class ProductoControlador implements Serializable {
         
              String mensaje = "";
              System.out.println(currentProducto.getNombre());
-             
+             currentProducto.setEmpresa(empresaFacade.find(getUsuarioControlador().getCurrentUsuario().getEmpresa().getIdEmpresa()));
              if (currentProducto.getNombre().equals(""))
                 mensaje += "Debe ingresar el nombre del Producto <br/>";
              if (currentProducto.getCodigo().equals(""))
@@ -153,6 +163,14 @@ public class ProductoControlador implements Serializable {
 
     public void setProductoFacade(ProductoFacade productoFacade) {
         this.productoFacade = productoFacade;
+    }
+    
+     public UsuarioControlador getUsuarioControlador() {
+        return usuarioControlador;
+    }
+
+    public void setUsuarioControlador(UsuarioControlador usuarioControlador) {
+        this.usuarioControlador = usuarioControlador;
     }
     
     

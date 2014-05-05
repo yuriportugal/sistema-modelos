@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import org.primefaces.context.RequestContext;
 import sistema.modelos.server.entidades.empresa.Insumo;
@@ -16,6 +17,7 @@ import sistema.modelos.server.entidades.modelo.InsumoModeloDetalle;
 import sistema.modelos.server.entidades.modelo.Unidad;
 import sistema.modelos.server.facade.empresa.InsumoFacade;
 import sistema.modelos.server.facade.modelo.UnidadFacade;
+import sistema.modelos.vista.controlador.util.UsuarioControlador;
 
 /**
  *
@@ -39,12 +41,25 @@ public class InsumoModeloControlador implements Serializable {
     @EJB
     private InsumoFacade insumoFacade;
     
+    @ManagedProperty(value="#{usuarioControlador}")
+    private UsuarioControlador usuarioControlador;
+    
     private boolean isEditInsMod;
     
      public void limpiarVariables(){
         currentInsumoModeloDetalle = null;
         lstInsumoModeloDetalle = null;
     }
+
+    public UsuarioControlador getUsuarioControlador() {
+        return usuarioControlador;
+    }
+
+    public void setUsuarioControlador(UsuarioControlador usuarioControlador) {
+        this.usuarioControlador = usuarioControlador;
+    }
+    
+     
     
     public List<InsumoModeloDetalle> getLstInsumoModeloDetalle() {
         if (lstInsumoModeloDetalle == null){
@@ -109,7 +124,7 @@ public class InsumoModeloControlador implements Serializable {
     }
 
     public List<Insumo> getLstInsumo() {
-        lstInsumo = insumoFacade.findAll();
+        lstInsumo = insumoFacade.findAllByEmpresa(getUsuarioControlador().getCurrentUsuario().getEmpresa().getIdEmpresa());
         return lstInsumo;
     }
 

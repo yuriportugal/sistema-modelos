@@ -25,6 +25,7 @@ import sistema.modelos.server.facade.empresa.CargoFacade;
 import sistema.modelos.server.facade.empresa.InsumoFacade;
 import sistema.modelos.server.facade.empresa.ProductoFacade;
 import sistema.modelos.server.facade.modelo.UnidadFacade;
+import sistema.modelos.vista.controlador.util.UsuarioControlador;
 
 /**
  *
@@ -43,6 +44,19 @@ public class ProductoModeloControlador implements Serializable {
     private ProductoModeloDetalle currentProdModDetFormPersonal;
     
     private ProductoModeloDetalle currentProdModDetFormMaquinaria;
+    
+    @ManagedProperty(value="#{usuarioControlador}")
+    private UsuarioControlador usuarioControlador;
+
+    public UsuarioControlador getUsuarioControlador() {
+        return usuarioControlador;
+    }
+
+    public void setUsuarioControlador(UsuarioControlador usuarioControlador) {
+        this.usuarioControlador = usuarioControlador;
+    }
+    
+    
     
     private List<Producto> lstProducto;
     
@@ -168,7 +182,7 @@ public class ProductoModeloControlador implements Serializable {
     }
 
     public List<Producto> getLstProducto() {
-        lstProducto = productoFacade.findAll();
+        lstProducto = productoFacade.findAllByEmpresa(getUsuarioControlador().getCurrentUsuario().getEmpresa().getIdEmpresa());
         return lstProducto;
     }
 

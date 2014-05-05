@@ -9,11 +9,14 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import org.primefaces.context.RequestContext;
 import sistema.modelos.server.entidades.empresa.Insumo;
+import sistema.modelos.server.facade.empresa.EmpresaFacade;
 import sistema.modelos.server.facade.empresa.InsumoFacade;
+import sistema.modelos.vista.controlador.util.UsuarioControlador;
 
 /**
  *
@@ -24,6 +27,13 @@ import sistema.modelos.server.facade.empresa.InsumoFacade;
 public class InsumoControlador implements Serializable {
     @EJB
     private InsumoFacade insumoFacade;
+    
+    @EJB
+    private EmpresaFacade empresaFacade;
+    
+    @ManagedProperty(value="#{usuarioControlador}")
+    private UsuarioControlador usuarioControlador;
+    
     
     Long idInsumo;
     List<Insumo> lstInsumo;
@@ -44,7 +54,7 @@ public class InsumoControlador implements Serializable {
     }
     
     public List<Insumo> getLstInsumos() {
-        lstInsumo = insumoFacade.findAll();
+        lstInsumo = insumoFacade.findAllByEmpresa(getUsuarioControlador().getCurrentUsuario().getEmpresa().getIdEmpresa());
         
         return lstInsumo;
     }
@@ -60,7 +70,7 @@ public class InsumoControlador implements Serializable {
         
         String mensaje = "";
              System.out.println(currentInsumo.getNombre());
-             
+             currentInsumo.setEmpresa(empresaFacade.find(getUsuarioControlador().getCurrentUsuario().getEmpresa().getIdEmpresa()));
              if (currentInsumo.getCodigo().equals(""))
                 mensaje += "Debe ingresar el código del Insumo <br/>";
              if (currentInsumo.getNombre().equals(""))
@@ -151,6 +161,12 @@ public class InsumoControlador implements Serializable {
     public void setInsumoFacade(InsumoFacade insumoFacade) {
         this.insumoFacade = insumoFacade;
     }
-    
+     public UsuarioControlador getUsuarioControlador() {
+        return usuarioControlador;
+    }
+
+    public void setUsuarioControlador(UsuarioControlador usuarioControlador) {
+        this.usuarioControlador = usuarioControlador;
+    }
     
 }

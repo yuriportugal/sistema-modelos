@@ -10,6 +10,7 @@ import java.util.Map;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import org.primefaces.context.RequestContext;
@@ -19,8 +20,11 @@ import sistema.modelos.server.entidades.empresa.Insumo;
 import sistema.modelos.server.entidades.empresa.TipoActivo;
 import sistema.modelos.server.facade.empresa.ActivoFacade;
 import sistema.modelos.server.facade.empresa.AreaFacade;
+import sistema.modelos.server.facade.empresa.EmpresaFacade;
 import sistema.modelos.server.facade.empresa.InsumoFacade;
 import sistema.modelos.server.facade.empresa.TipoActivoFacade;
+import sistema.modelos.vista.controlador.modelo.ProductoModeloControlador;
+import sistema.modelos.vista.controlador.util.UsuarioControlador;
 
 /**
  *
@@ -34,6 +38,13 @@ public class ActivoControlador implements Serializable {
     
     @EJB
     private TipoActivoFacade tipoActivoFacade;
+    
+    @EJB
+    private EmpresaFacade empresaFacade;
+    
+    @ManagedProperty(value="#{usuarioControlador}")
+    private UsuarioControlador usuarioControlador;
+    
     
     @EJB
     private AreaFacade areaFacade;
@@ -107,7 +118,7 @@ public class ActivoControlador implements Serializable {
         this.currentActivo = currentActivo;
     }
     public List<Activo> getLstActivo() {
-        lstActivo = activoFacade.findAll();
+        lstActivo = activoFacade.findAllByEmpresa(getUsuarioControlador().getCurrentUsuario().getEmpresa().getIdEmpresa());
         return lstActivo;
     }
     public List<TipoActivo> getLstTipoActivo(){
@@ -121,7 +132,8 @@ public class ActivoControlador implements Serializable {
      public void persist(){
              String mensaje = "";
              System.out.print("MIRA SI SALIO");
-            if (currentActivo.getNombre().equals(""))
+             currentActivo.setEmpresa(empresaFacade.find(getUsuarioControlador().getCurrentUsuario().getEmpresa().getIdEmpresa()));
+             if (currentActivo.getNombre().equals(""))
                 mensaje += "Debe ingresar el nombre del Area <br/>";
             if (currentActivo.getCodigo().equals(""))
                 mensaje += "Debe ingresar el código del Area<br/>";
@@ -203,4 +215,14 @@ public class ActivoControlador implements Serializable {
     public ActivoFacade getActivoFacade() {
         return activoFacade;
     }
+
+    public UsuarioControlador getUsuarioControlador() {
+        return usuarioControlador;
+    }
+
+    public void setUsuarioControlador(UsuarioControlador usuarioControlador) {
+        this.usuarioControlador = usuarioControlador;
+    }
+    
+    
 }

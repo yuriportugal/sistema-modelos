@@ -9,11 +9,13 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import org.primefaces.context.RequestContext;
 import sistema.modelos.server.entidades.empresa.Activo;
 import sistema.modelos.server.entidades.modelo.ActivoModeloDetalle;
 import sistema.modelos.server.facade.empresa.ActivoFacade;
+import sistema.modelos.vista.controlador.util.UsuarioControlador;
 
 /**
  *
@@ -31,6 +33,18 @@ public class ActivoModeloControlador implements Serializable {
     
     @EJB
     private ActivoFacade activoFacade;
+    
+    
+    @ManagedProperty(value="#{usuarioControlador}")
+    private UsuarioControlador usuarioControlador;
+
+    public UsuarioControlador getUsuarioControlador() {
+        return usuarioControlador;
+    }
+
+    public void setUsuarioControlador(UsuarioControlador usuarioControlador) {
+        this.usuarioControlador = usuarioControlador;
+    }
     
     private boolean isEditActMod;
 
@@ -63,7 +77,7 @@ public class ActivoModeloControlador implements Serializable {
     }
 
     public List<Activo> getLstActivo() {
-        return activoFacade.findAll();
+        return activoFacade.findAllByEmpresa(getUsuarioControlador().getCurrentUsuario().getEmpresa().getIdEmpresa());
     }
 
     public void setLstActivo(List<Activo> lstActivo) {
