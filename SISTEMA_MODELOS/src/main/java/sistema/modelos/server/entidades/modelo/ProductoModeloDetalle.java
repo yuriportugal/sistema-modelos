@@ -67,6 +67,11 @@ public class ProductoModeloDetalle implements Serializable{
     @JoinColumn(name="UNIDAD")
     private Unidad unidad;
     
+    
+    @ManyToOne
+    @JoinColumn(name="UNIDAD_PRESENTACION")
+    private Unidad unidadPresentacion;
+    
      @OneToMany(cascade = CascadeType.ALL, mappedBy = "productoModelo",orphanRemoval=true)
      private List<ModeloFormulacionInsumo> lstModeloFormulacionInsumoDetalle;
 
@@ -192,6 +197,14 @@ public class ProductoModeloDetalle implements Serializable{
     @Override
     public String toString() {
         return getProducto().toString();
+    }
+
+    public Unidad getUnidadPresentacion() {
+        return unidadPresentacion;
+    }
+
+    public void setUnidadPresentacion(Unidad unidadPresentacion) {
+        this.unidadPresentacion = unidadPresentacion;
     }
     
     

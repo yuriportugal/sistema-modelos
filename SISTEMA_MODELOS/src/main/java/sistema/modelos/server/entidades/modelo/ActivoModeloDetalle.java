@@ -40,8 +40,9 @@ public class ActivoModeloDetalle implements Serializable{
     @Column(name="VALOR_COMPRA")
     private Long valorCompra;
     
-    @Column(name="HORAS_PRODUCCION")
-    private Long horasProdu;
+    @Column(name="DEPRE_ACUMULADA")
+    private Long depAcumulada;
+  
     
     @Column(name="COSTO_MAQ_HOR")
     private Long costoMaqHora;
@@ -77,12 +78,17 @@ public class ActivoModeloDetalle implements Serializable{
         return costoMaqHora;
     }
 
-    public Long getHorasProdu() {
-        return horasProdu;
-    }
 
     public Long getValorCompra() {
         return valorCompra;
+    }
+
+    public Long getDepAcumulada() {
+        return depAcumulada;
+    }
+
+    public void setDepAcumulada(Long depAcumulada) {
+        this.depAcumulada = depAcumulada;
     }
 
     public void setAnoVida(Long anoVida) {
@@ -97,9 +103,6 @@ public class ActivoModeloDetalle implements Serializable{
         this.costoMaqHora = costoMaqHora;
     }
 
-    public void setHorasProdu(Long horasProdu) {
-        this.horasProdu = horasProdu;
-    }
 
     public void setValorCompra(Long valorCompra) {
         this.valorCompra = valorCompra;

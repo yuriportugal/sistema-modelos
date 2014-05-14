@@ -42,6 +42,9 @@ public class PrestamoModeloDetalle implements Serializable{
     @Column(name="CANTIDAD_PERIODOS")
     private Long cantPeriodos;
     
+    @Column(name="SALDO_DEUDOR")
+    private Long saldoDeudor;
+    
     
     @ManyToOne
     @JoinColumn(name = "ID_MODELO", referencedColumnName = "ID_MODELO")
@@ -111,6 +114,15 @@ public class PrestamoModeloDetalle implements Serializable{
         return cantPeriodos;
     }
 
+    public Long getSaldoDeudor() {
+        return saldoDeudor;
+    }
+
+    public void setSaldoDeudor(Long saldoDeudor) {
+        this.saldoDeudor = saldoDeudor;
+    }
+
+    
 
     
 }

@@ -115,19 +115,17 @@ public class Modelo implements Serializable{
      private Long porcVentasCredito;
      @Column(name="PORC_VENTAS_INCOBRABLES")        
      private Long porcVentasIncobrables;
-     @Column(name="PORC_DEUDA_COB_PER")
-     private Long porcDeudaCobradaPeriodo;
-     @Column(name="POR_DEU_COB_PER_SIG")
-     private Long porcDeudaCobradaSgtePeriodo;
+    @Column(name="NUM_DIAS_COBRANZA")        
+     private Long numDiasCobranza;
+
      //pagos
      @Column(name="PORC_COMPRAS_CONTADO")
      private Long porcComprasContado;
      @Column(name="PORC_COMPRAS_CRED")        
      private Long porcComprasCredito;
-     @Column(name="PORC_COMP_PAG_PER")     
-     private Long porcCompraPagadaPeriodo;
-     @Column(name="PORC_COMP_PAG_PER_SGTE")   
-     private Long porcCompraPagadaSgtePeriodo;       
+     @Column(name="NUM_DIAS_PAGO")        
+     private Long numDiasPago;
+      
      //Balance Inicial  
     
      //ACTIVO CORRIENTE
@@ -176,7 +174,327 @@ public class Modelo implements Serializable{
      private Long PATReservaLegal;
      @Column(name="PT_RESUL_ACUM")
      private Long PATResultadoAcumulado;
+     
+     
+     //PARAMETROS DE TIEMPO
+     @Column(name="PTM_HORAS_JORNADA")
+     private Long PTHorasJornada;
+     @Column(name="PTM_NUMERO_TURNOS")
+     private Long PTNumeroTurnos;
+     @Column(name="PTM_COMISIONES_VENDEDOR")
+     private Long PTComisionesVend;
+     @Column(name="PTM_PORC_ACTIVOS_NO_REL_PROD")
+     private Long PTPorcActivosNoRelProd;
+     //TODO INDUCTOR    
+     @Column(name="PTM_IND_VAR_TC")
+     private Long PTIndVarTipoCambio;
+     @Column(name="PTM_TC_INICIAL")
+     private Long PTTipoCambioIni;
 
+     //Parametros estados financieros
+     @Column(name="PF_PORC_RESERV_LEGAL_CAP")
+     private Long PFPorcReservaLegalCapital;
+    @Column(name="PF_PORC_RESERV_LEGAL")
+       private Long PFPorcReservaLegal;
+    @Column(name="PF_PORC_REP_DIVID")
+         private Long PFPorcRepDividendos;
+    @Column(name="PF_PART_TRABAJADOR")
+         private Long PFPartTrabajadores;
+    @Column(name="PF_DIREC_BUENA_GEST")
+         private Long PFDirBuenaGest;
+    @Column(name="PF_UTILIDAD_CAP")
+     private Long PFUtiCapitalizar;
+    //Decisiones financieras
+    @Column(name="DF_CAJA_MINIMA")
+     private Long DFCajaMinima;
+    @Column(name="DF_CAJA_MAXIMA")
+     private Long DFCajaMaxima;
+    @Column(name="DF_SOBREGIRO_MAXIMO")
+     private Long DFSobreGiroMax;
+    @Column(name="DF_INTERES_ANU_SOBRE")
+     private Long DFInteresAnualSobregiro;
+    @Column(name="DF_PREST_CORTO")
+     private Long DFPrestamoCortoPlazoMax;
+    @Column(name="DF_INTERES_PREST_CORTO")
+     private Long DFInteresAnualPrestamo;
+    //Variaciones
+    @Column(name="VAR_IND_PRECIO_VENTA")
+     private Long VARIndPrecioVenta;
+    @Column(name="VAR_PORC_INI_PRE_VENT")
+     private Long VARPorcInicialPrecioVenta;
+    @Column(name="VAR_IND_PRECIO_COMPRA")
+     private Long VARIndPrecioCompra;
+    @Column(name="VAR_PORC_INI_PRE_COMP")
+     private Long VARPorcInicialPrecioCompra;
+    @Column(name="VAR_IND_VENTA")
+     private Long VARIndVenta;
+    @Column(name="VAR_PORC_INI_VENTA")
+     private Long VARPorcInicialVenta;
+    @Column(name="VAR_IND_MANTENIMIENTO")
+     private Long VARIndMantenimiento;
+    @Column(name="VAR_PORC_INI_MANTENIMIENTO")
+     private Long VARPorcInicialMantenimiento;
+    @Column(name="VAR_IND_SALARIAL")
+     private Long VARIndSalarial;
+    @Column(name="VAR_PORC_INI_SALARIAL")
+     private Long VARPorcInicialSalarial;
+    @Column(name="VAR_IND_GASTOS")
+     private Long VARIndGastos;
+    @Column(name="VAR_PORC_INI_GASTOS")
+     private Long VARPorcInicialGastos;
+
+    public Long getVARIndGastos() {
+        return VARIndGastos;
+    }
+
+    public void setVARIndGastos(Long VARIndGastos) {
+        this.VARIndGastos = VARIndGastos;
+    }
+
+    public Long getVARIndMantenimiento() {
+        return VARIndMantenimiento;
+    }
+
+    public Long getVARIndPrecioCompra() {
+        return VARIndPrecioCompra;
+    }
+
+    public Long getVARIndPrecioVenta() {
+        return VARIndPrecioVenta;
+    }
+
+    public Long getVARIndSalarial() {
+        return VARIndSalarial;
+    }
+
+    public Long getVARIndVenta() {
+        return VARIndVenta;
+    }
+
+    public Long getVARPorcInicialGastos() {
+        return VARPorcInicialGastos;
+    }
+
+    public Long getVARPorcInicialMantenimiento() {
+        return VARPorcInicialMantenimiento;
+    }
+
+    public Long getVARPorcInicialPrecioCompra() {
+        return VARPorcInicialPrecioCompra;
+    }
+
+    public Long getVARPorcInicialPrecioVenta() {
+        return VARPorcInicialPrecioVenta;
+    }
+
+    public Long getVARPorcInicialSalarial() {
+        return VARPorcInicialSalarial;
+    }
+
+    public Long getVARPorcInicialVenta() {
+        return VARPorcInicialVenta;
+    }
+
+    public void setVARIndMantenimiento(Long VARIndMantenimiento) {
+        this.VARIndMantenimiento = VARIndMantenimiento;
+    }
+
+    public void setVARIndPrecioCompra(Long VARIndPrecioCompra) {
+        this.VARIndPrecioCompra = VARIndPrecioCompra;
+    }
+
+    public void setVARIndPrecioVenta(Long VARIndPrecioVenta) {
+        this.VARIndPrecioVenta = VARIndPrecioVenta;
+    }
+
+    public void setVARIndSalarial(Long VARIndSalarial) {
+        this.VARIndSalarial = VARIndSalarial;
+    }
+
+    public void setVARIndVenta(Long VARIndVenta) {
+        this.VARIndVenta = VARIndVenta;
+    }
+
+    public void setVARPorcInicialGastos(Long VARPorcInicialGastos) {
+        this.VARPorcInicialGastos = VARPorcInicialGastos;
+    }
+
+    public void setVARPorcInicialMantenimiento(Long VARPorcInicialMantenimiento) {
+        this.VARPorcInicialMantenimiento = VARPorcInicialMantenimiento;
+    }
+
+    public void setVARPorcInicialPrecioCompra(Long VARPorcInicialPrecioCompra) {
+        this.VARPorcInicialPrecioCompra = VARPorcInicialPrecioCompra;
+    }
+
+    public void setVARPorcInicialPrecioVenta(Long VARPorcInicialPrecioVenta) {
+        this.VARPorcInicialPrecioVenta = VARPorcInicialPrecioVenta;
+    }
+
+    public void setVARPorcInicialSalarial(Long VARPorcInicialSalarial) {
+        this.VARPorcInicialSalarial = VARPorcInicialSalarial;
+    }
+
+    public void setVARPorcInicialVenta(Long VARPorcInicialVenta) {
+        this.VARPorcInicialVenta = VARPorcInicialVenta;
+    }
+    
+    
+    
+    
+    
+    
+    public Long getDFCajaMaxima() {
+        return DFCajaMaxima;
+    }
+
+    public void setDFCajaMaxima(Long DFCajaMaxima) {
+        this.DFCajaMaxima = DFCajaMaxima;
+    }
+
+    public Long getDFCajaMinima() {
+        return DFCajaMinima;
+    }
+
+    public void setDFCajaMinima(Long DFCajaMinima) {
+        this.DFCajaMinima = DFCajaMinima;
+    }
+
+    public Long getDFInteresAnualPrestamo() {
+        return DFInteresAnualPrestamo;
+    }
+
+    public void setDFInteresAnualPrestamo(Long DFInteresAnualPrestamo) {
+        this.DFInteresAnualPrestamo = DFInteresAnualPrestamo;
+    }
+
+    public Long getDFInteresAnualSobregiro() {
+        return DFInteresAnualSobregiro;
+    }
+
+    public void setDFInteresAnualSobregiro(Long DFInteresAnualSobregiro) {
+        this.DFInteresAnualSobregiro = DFInteresAnualSobregiro;
+    }
+
+    public Long getDFPrestamoCortoPlazoMax() {
+        return DFPrestamoCortoPlazoMax;
+    }
+
+    public void setDFPrestamoCortoPlazoMax(Long DFPrestamoCortoPlazoMax) {
+        this.DFPrestamoCortoPlazoMax = DFPrestamoCortoPlazoMax;
+    }
+
+    public Long getDFSobreGiroMax() {
+        return DFSobreGiroMax;
+    }
+
+    public void setDFSobreGiroMax(Long DFSobreGiroMax) {
+        this.DFSobreGiroMax = DFSobreGiroMax;
+    }
+    
+    
+    
+    
+    
+    
+    public Long getPFDirBuenaGest() {
+        return PFDirBuenaGest;
+    }
+
+    public void setPFDirBuenaGest(Long PFDirBuenaGest) {
+        this.PFDirBuenaGest = PFDirBuenaGest;
+    }
+
+    public Long getPFPartTrabajadores() {
+        return PFPartTrabajadores;
+    }
+
+    public void setPFPartTrabajadores(Long PFPartTrabajadores) {
+        this.PFPartTrabajadores = PFPartTrabajadores;
+    }
+
+    public Long getPFPorcRepDividendos() {
+        return PFPorcRepDividendos;
+    }
+
+    public void setPFPorcRepDividendos(Long PFPorcRepDividendos) {
+        this.PFPorcRepDividendos = PFPorcRepDividendos;
+    }
+
+    public Long getPFPorcReservaLegal() {
+        return PFPorcReservaLegal;
+    }
+
+    public void setPFPorcReservaLegal(Long PFPorcReservaLegal) {
+        this.PFPorcReservaLegal = PFPorcReservaLegal;
+    }
+
+    public Long getPFPorcReservaLegalCapital() {
+        return PFPorcReservaLegalCapital;
+    }
+
+    public void setPFPorcReservaLegalCapital(Long PFPorcReservaLegalCapital) {
+        this.PFPorcReservaLegalCapital = PFPorcReservaLegalCapital;
+    }
+
+    public Long getPFUtiCapitalizar() {
+        return PFUtiCapitalizar;
+    }
+
+    public void setPFUtiCapitalizar(Long PFUtiCapitalizar) {
+        this.PFUtiCapitalizar = PFUtiCapitalizar;
+    }
+ 
+    public Long getPTHorasJornada() {
+        return PTHorasJornada;
+    }
+
+    public void setPTHorasJornada(Long PTHorasJornada) {
+        this.PTHorasJornada = PTHorasJornada;
+    }
+
+    public Long getPTNumeroTurnos() {
+        return PTNumeroTurnos;
+    }
+
+    public void setPTNumeroTurnos(Long PTNumeroTurnos) {
+        this.PTNumeroTurnos = PTNumeroTurnos;
+    }
+
+    public Long getPTComisionesVend() {
+        return PTComisionesVend;
+    }
+
+    public void setPTComisionesVend(Long PTComisionesVend) {
+        this.PTComisionesVend = PTComisionesVend;
+    }
+
+    public Long getPTPorcActivosNoRelProd() {
+        return PTPorcActivosNoRelProd;
+    }
+
+    public void setPTPorcActivosNoRelProd(Long PTPorcActivosNoRelProd) {
+        this.PTPorcActivosNoRelProd = PTPorcActivosNoRelProd;
+    }
+
+    public Long getPTIndVarTipoCambio() {
+        return PTIndVarTipoCambio;
+    }
+
+    public void setPTIndVarTipoCambio(Long PTIndVarTipoCambio) {
+        this.PTIndVarTipoCambio = PTIndVarTipoCambio;
+    }
+
+    public Long getPTTipoCambioIni() {
+        return PTTipoCambioIni;
+    }
+
+    public void setPTTipoCambioIni(Long PTTipoCambioIni) {
+        this.PTTipoCambioIni = PTTipoCambioIni;
+    }
+     
+     
+     
     public Long getACCajaBanco() {
         return ACCajaBanco;
     }
@@ -567,13 +885,7 @@ public class Modelo implements Serializable{
         this.lstPrestamoModeloDetalle = lstPrestamoModeloDetalle;
     }
 
-    public Long getPorcCompraPagadaPeriodo() {
-        return porcCompraPagadaPeriodo;
-    }
 
-    public Long getPorcCompraPagadaSgtePeriodo() {
-        return porcCompraPagadaSgtePeriodo;
-    }
 
     public Long getPorcComprasContado() {
         return porcComprasContado;
@@ -583,13 +895,6 @@ public class Modelo implements Serializable{
         return porcComprasCredito;
     }
 
-    public Long getPorcDeudaCobradaPeriodo() {
-        return porcDeudaCobradaPeriodo;
-    }
-
-    public Long getPorcDeudaCobradaSgtePeriodo() {
-        return porcDeudaCobradaSgtePeriodo;
-    }
 
     public Long getPorcVentasContado() {
         return porcVentasContado;
@@ -603,14 +908,16 @@ public class Modelo implements Serializable{
         return porcVentasIncobrables;
     }
 
-    public void setPorcCompraPagadaPeriodo(Long porcCompraPagadaPeriodo) {
-        this.porcCompraPagadaPeriodo = porcCompraPagadaPeriodo;
+    public Long getNumDiasPago() {
+        return numDiasPago;
     }
 
-    public void setPorcCompraPagadaSgtePeriodo(Long porcCompraPagadaSgtePeriodo) {
-        this.porcCompraPagadaSgtePeriodo = porcCompraPagadaSgtePeriodo;
+    public void setNumDiasPago(Long numDiasPago) {
+        this.numDiasPago = numDiasPago;
     }
 
+    
+    
     public void setPorcComprasContado(Long porcComprasContado) {
         this.porcComprasContado = porcComprasContado;
     }
@@ -619,14 +926,16 @@ public class Modelo implements Serializable{
         this.porcComprasCredito = porcComprasCredito;
     }
 
-    public void setPorcDeudaCobradaPeriodo(Long porcDeudaCobradaPeriodo) {
-        this.porcDeudaCobradaPeriodo = porcDeudaCobradaPeriodo;
+    public Long getNumDiasCobranza() {
+        return numDiasCobranza;
     }
 
-    public void setPorcDeudaCobradaSgtePeriodo(Long porcDeudaCobradaSgtePeriodo) {
-        this.porcDeudaCobradaSgtePeriodo = porcDeudaCobradaSgtePeriodo;
+    public void setNumDiasCobranza(Long numDiasCobranza) {
+        this.numDiasCobranza = numDiasCobranza;
     }
 
+    
+    
     public void setPorcVentasContado(Long porcVentasContado) {
         this.porcVentasContado = porcVentasContado;
     }

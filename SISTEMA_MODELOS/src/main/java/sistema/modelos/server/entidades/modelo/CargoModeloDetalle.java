@@ -38,6 +38,9 @@ public class CargoModeloDetalle implements Serializable{
     @Column(name="SUELDO")
     private Long sueldo;
     
+    @Column(name="RELACION_PRODUCCION")
+    private String esRelacionadoProduccion;
+    
     @ManyToOne
     @JoinColumn(name = "ID_MODELO", referencedColumnName = "ID_MODELO")
     private Modelo modelo;
@@ -53,6 +56,15 @@ public class CargoModeloDetalle implements Serializable{
     public void setModelo(Modelo modelo) {
         this.modelo = modelo;
     }
+
+    public String getEsRelacionadoProduccion() {
+        return esRelacionadoProduccion;
+    }
+
+    public void setEsRelacionadoProduccion(String esRelacionadoProduccion) {
+        this.esRelacionadoProduccion = esRelacionadoProduccion;
+    }
+    
 
     public Long getCantidad() {
         return cantidad;
