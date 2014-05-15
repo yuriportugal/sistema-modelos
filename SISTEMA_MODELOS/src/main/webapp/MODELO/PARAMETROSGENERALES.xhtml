@@ -4,7 +4,7 @@
     xmlns:h="http://java.sun.com/jsf/html"
     xmlns:ui="http://java.sun.com/jsf/facelets"
     xmlns:p="http://primefaces.org/ui">
-      <p:panelGrid   style="width:100%;border:0px;"   id="panelParametrosTiempo"    >  
+      <p:panelGrid   style="width:100%;border:0px;"   id="panelParametrosGenerales"    >  
             <p:row>   
                  <p:column  colspan="4" style="width:100%" >
                     <p:messages id="messages"/>
@@ -13,7 +13,7 @@
             
             <p:row>   
                  <p:column   style="width:25%" >
-                    <h:outputLabel value="Tipo de Periodo : *" />
+                    <h:outputLabel value="Tipo de periodo : *" />
                  </p:column>
                 
                  <p:column   style="width:25%" >
@@ -43,38 +43,69 @@
                       </p:inputText>    
                  </p:column>
                  <p:column   style="width:25%" >
-                    <h:outputLabel value="Dias trabajados : *" />
+                    <h:outputLabel value="Dias trabajados por año : *" />
                  </p:column>
                  <p:column   style="width:25%" >
                      <p:inputText  id="diasTrabajo"  size="30" value="#{modeloControlador.currentModelo.diasTrabajo}" />
                  </p:column>
             </p:row>
-            
+          
             <p:row>   
-                <p:column colspan="3"  style="width:25%" >
-                    <p:commandButton value="Generar Columnas" action="#{modeloControlador.generarColumnasTiempo()}" />
+                 <p:column   style="width:25%" >
+                    <h:outputLabel value="Horas de jornada laboral : *" />
                  </p:column>
-                
+                 <p:column   style="width:25%" >
+                     <p:inputText  id="horasJornada"   size="30" value="">
+                      </p:inputText>    
+                 </p:column>
+                 <p:column   style="width:25%" >
+                    <h:outputLabel value="Número de turnos : *" />
+                 </p:column>
+                 <p:column   style="width:25%" >
+                     <p:inputText  id="numeroTurnos"  size="30" value="" />
+                 </p:column>
+            </p:row>        
+            <p:row>   
+                 <p:column   style="width:25%" >
+                    <h:outputLabel value="Comision de vendedores % : *" />
+                 </p:column>
+                 <p:column   style="width:25%" >
+                     <p:inputText  id="comisionVendedor"   size="30" value="">
+                      </p:inputText>    
+                 </p:column>
+                 <p:column   style="width:25%" >
+                    <h:outputLabel value="Distribucion de activos % : *" />
+                 </p:column>
+                 <p:column   style="width:25%" >
+                     <p:inputText  id="distribucionActivos"  size="30" value="" />
+                 </p:column>
             </p:row>
-          
-          
+          <p:row>   
+                 <p:column   style="width:25%" >
+                    <h:outputLabel value="Tipo de Cambio: *" />
+                 </p:column>
+                 <p:column   style="width:25%" >
+                     <p:inputText  id="tipoCambio"   size="30" value="">
+                      </p:inputText>    
+                 </p:column>
+                 <p:column   style="width:25%" >
+                    <h:outputLabel value="% Variacion de Tipo Cambio: *" />
+                 </p:column>
+                 <p:column   style="width:25%" >
+                     <p:inputText  id="porVarTipoCambio"  size="30" value="" />
+                 </p:column>
+            </p:row>
             <p:row>   
                  <p:column   style="width:25%" >
-                 <h:outputLabel value="Tipo de cambio : *" />
+                    <h:outputLabel value="Tipo de Inductor : *" />
                  </p:column>
-                 <p:column colspan="3"  style="width:75%" >
-                     ------------------------FALTA----------------------
-                 </p:column>
-            </p:row>    
-            
-            <p:row>   
-                 <p:column   style="width:25%" >
-                 <h:outputLabel value="% de venta : *" />
-                 </p:column>
-                 <p:column colspan="3"  style="width:75%" >
-                      ------------------------FALTA----------------------
-                 </p:column>
-            </p:row>    
                 
+                 <p:column   style="width:25%" >
+                     <p:selectOneMenu id="tipoInductor" value="" >
+                            <f:selectItem  itemLabel="Seleccione un Tipo de Inductor" itemValue="#{null}"></f:selectItem>
+                            <f:selectItems value="" var="tipoInductor" itemLabel="" itemValue=""></f:selectItems>
+                       </p:selectOneMenu>
+                 </p:column>
+            </p:row>
             </p:panelGrid> 
 </ui:composition>

@@ -11,76 +11,57 @@
                      <p:panelGrid   style="width:100%;border:0px;"   id="panelCobranzaMod"    >  
                        <p:row>   
                             <p:column   style="width:40%" >
-                            <h:outputLabel value="% Ventas Contado " />
+                                <h:outputLabel value="% Ventas al contado : *" />
                             </p:column>
                             <p:column   style="width:10%" >
                                 <p:inputText  id="porcVentCobMod"   size="10" value="#{modeloControlador.currentModelo.porcVentasContado}"/>
                             </p:column>
                             <p:column   style="width:40%" >
-                            <h:outputLabel value="% Deudas cobradas periodo en curso " />
-                            </p:column>
-                            <p:column   style="width:10%" >
-                                <p:inputText  id="porcDeuCobPerMod"   size="10" value="#{modeloControlador.currentModelo.porcDeudaCobradaPeriodo}"/>
-                            </p:column>
-                       </p:row> 
-                         <p:row>   
-                            <p:column   style="width:40%" >
-                            <h:outputLabel value="% Ventas Credito " />
+                                <h:outputLabel value="% Ventas al crédito : *" />
                             </p:column>
                             <p:column   style="width:10%" >
                                 <p:inputText  id="porcVentCredMod"   size="10" value="#{modeloControlador.currentModelo.porcVentasCredito}"/>
                             </p:column>
+                       </p:row> 
+                       <p:row>   
                             <p:column   style="width:40%" >
-                            <h:outputLabel value="% Deudas cobradas en el periodo siguiente " />
+                                <h:outputLabel value="% Ventas incobrables " />
+                            </p:column>
+                            <p:column   colspan="3" style="width:10%" >
+                                <p:inputText  id="porcVentIncMod"   size="10" value="#{modeloControlador.currentModelo.porcVentasIncobrables}"/>
+                            </p:column>
+                            <p:column   style="width:40%" >
+                                <h:outputLabel value="Nro. de dias de cobranza : * " />
                             </p:column>
                             <p:column   style="width:10%" >
-                                <p:inputText  id="porcDeuCobPerSigMod"   size="10" value="#{modeloControlador.currentModelo.porcDeudaCobradaSgtePeriodo}"/>
-                            </p:column>
-                       </p:row>
-                         
-                      <p:row>   
-                            <p:column   style="width:40%" >
-                            <h:outputLabel value="% Ventas Incobrables " />
-                            </p:column>
-                                <p:column   colspan="3" style="width:10%" >
-                                    <p:inputText  id="porcVentIncMod"   size="10" value="#{modeloControlador.currentModelo.porcVentasIncobrables}"/>
+                                <p:inputText  id="nroDiasCobranzaMod"   size="10" value="#"/>
                             </p:column>
                        </p:row> 
-     
-          
-                     </p:panelGrid>
-                      
-                    
+                    </p:panelGrid>
                 </p:panel>
                 
                 <p:panel header="Pagos" styleClass="width=50%;">
                      <p:panelGrid   style="width:100%;border:0px;"   id="panelPagoCobranzaMod"    >  
                        <p:row>   
                             <p:column   style="width:40%" >
-                            <h:outputLabel value="% Compras Contado " />
+                            <h:outputLabel value="% Compras al contado :* " />
                             </p:column>
                             <p:column   style="width:10%" >
                                 <p:inputText  id="porcCompConMod"   size="10" value="#{modeloControlador.currentModelo.porcComprasContado}"/>
                             </p:column>
                             <p:column   style="width:40%" >
-                            <h:outputLabel value="% Compras pagadas en el mismo periodo " />
-                            </p:column>
-                            <p:column   style="width:10%" >
-                                <p:inputText  id="porcCompPagPerMod"   size="10" value="#{modeloControlador.currentModelo.porcCompraPagadaPeriodo}"/>
-                            </p:column>
-                       </p:row> 
-                         <p:row>   
-                            <p:column   style="width:40%" >
-                            <h:outputLabel value="% Compras Credito " />
+                            <h:outputLabel value="% Compras al crédito : *" />
                             </p:column>
                             <p:column   style="width:10%" >
                                 <p:inputText  id="porcCompCredMod"   size="10" value="#{modeloControlador.currentModelo.porcComprasCredito}"/>
                             </p:column>
+                       </p:row> 
+                         <p:row>   
                             <p:column   style="width:40%" >
-                            <h:outputLabel value="% Compras pagadas en el periodo siguiente " />
+                            <h:outputLabel value="Nro. de dias de pago : *" />
                             </p:column>
                             <p:column   style="width:10%" >
-                                <p:inputText  id="porcCompPagPerSigMod"   size="10" value="#{modeloControlador.currentModelo.porcCompraPagadaSgtePeriodo}"/>
+                                <p:inputText  id="nroDiasPagoMod"   size="10" value="#"/>
                             </p:column>
                        </p:row>
                          

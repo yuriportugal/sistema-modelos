@@ -12,15 +12,15 @@
                      <p:panelGrid   style="width:100%;border:0px;"   id="panelProductoMod"    >  
                        <p:row>   
                             <p:column   style="width:25%" >
-                            <h:outputLabel value="Producto: " />
+                                <h:outputLabel value="Producto: *" />
                             </p:column>
                             <p:column   style="width:25%" >
                                 <p:selectOneMenu id="productoModel"  value="#{productoModeloControlador.currentProductoModeloDetalle.producto.idproducto}">
-                                <f:selectItem  itemLabel="Seleccione un producto" itemValue="#{null}"></f:selectItem>
-                                <f:selectItems value="#{productoModeloControlador.lstProducto}" var="producto" itemLabel="#{producto.nombre}" itemValue="#{producto.idproducto}"></f:selectItems>
-                            </p:selectOneMenu></p:column>
+                                    <f:selectItem  itemLabel="Seleccione un producto" itemValue="#{null}"></f:selectItem>
+                                    <f:selectItems value="#{productoModeloControlador.lstProducto}" var="producto" itemLabel="#{producto.nombre}" itemValue="#{producto.idproducto}"></f:selectItems>
+                                </p:selectOneMenu></p:column>
                             <p:column   style="width:25%" >
-                            <h:outputLabel value="Precio venta: " />
+                                <h:outputLabel value="Precio de venta: *" />
                             </p:column>
                             <p:column   style="width:25%" >
                                 <p:inputText  id="precioVenta"   size="30" value="#{productoModeloControlador.currentProductoModeloDetalle.precioVenta}"/>
@@ -30,13 +30,13 @@
                          
                      <p:row>   
                             <p:column   style="width:25%"  >
-                            <h:outputLabel value="Stock inicial: " />
+                            <h:outputLabel value="Stock inicial: *" />
                             </p:column>
                             <p:column   style="width:25%" >
                                 <p:inputText id="stockInicial"   size="30" value="#{productoModeloControlador.currentProductoModeloDetalle.stockInicial}"/>
                             </p:column>
                             <p:column   style="width:25%" >
-                            <h:outputLabel value="Vol venta: " />
+                            <h:outputLabel value="Vol. de venta: *" />
                             </p:column>
                             <p:column   style="width:25%" >
                                 <p:inputText id="volVenta"   size="30" value="#{productoModeloControlador.currentProductoModeloDetalle.volumenVenta}" />
@@ -45,30 +45,39 @@
                          
                        <p:row>   
                             <p:column   style="width:25%"  >
-                            <h:outputLabel value="Días (Póliticas): " />
+                            <h:outputLabel value="Días (Políticas de stock): *" />
                             </p:column>
                             <p:column   style="width:25%" >
                                 <p:inputText id="politicasDias"   size="30" value="#{productoModeloControlador.currentProductoModeloDetalle.politicaDias}"/>
                             </p:column>
                             <p:column   style="width:25%" >
-                            <h:outputLabel value="Stock Minimo (Póliticas) " />
+                            <h:outputLabel value="Stock mínimo (Políticas de stock) *" />
                             </p:column>
                             <p:column   style="width:25%" >
                                 <p:inputText id="politicasStock"   size="30" value="#{productoModeloControlador.currentProductoModeloDetalle.politicaStockMin}" />
                             </p:column>
                        </p:row>   
                        
-                       <p:row>   
+                       <p:row>
                             <p:column   style="width:25%" >
-                            <h:outputLabel value="Unidad: " />
+                                <h:outputLabel value="Unidad de venta: *" />
                             </p:column>
-                           <p:column colspan="3"   style="width:25%" >
+                            <p:column colspan="3"   style="width:25%" >
                                 <p:selectOneMenu id="unidadModel"  value="#{productoModeloControlador.currentProductoModeloDetalle.unidad.idUnidad}">
-                                <f:selectItem  itemLabel="Seleccione una unidad" itemValue="#{null}"></f:selectItem>
-                                <f:selectItems value="#{productoModeloControlador.lstUnidad}" var="unidad" itemLabel="#{unidad.nombre}" itemValue="#{unidad.idUnidad}"></f:selectItems>
-                            </p:selectOneMenu></p:column>
-                            
-                       </p:row> 
+                                    <f:selectItem  itemLabel="Seleccione una unidad" itemValue="#{null}"></f:selectItem>
+                                    <f:selectItems value="#{productoModeloControlador.lstUnidad}" var="unidad" itemLabel="#{unidad.nombre}" itemValue="#{unidad.idUnidad}"></f:selectItems>
+                                </p:selectOneMenu>
+                            </p:column>
+                            <p:column   style="width:25%" >
+                                <h:outputLabel value="Unidad de produccion: *" />
+                            </p:column>
+                            <p:column colspan="3"   style="width:25%" >
+                                <p:selectOneMenu id="unidadModel"  value="#{productoModeloControlador.currentProductoModeloDetalle.unidad.idUnidad}">
+                                    <f:selectItem  itemLabel="Seleccione una unidad" itemValue="#{null}"></f:selectItem>
+                                    <f:selectItems value="#{productoModeloControlador.lstUnidad}" var="unidad" itemLabel="#{unidad.nombre}" itemValue="#{unidad.idUnidad}"></f:selectItems>
+                                </p:selectOneMenu>
+                            </p:column>
+                        </p:row> 
                      
                              <p:row>
                              <p:column>

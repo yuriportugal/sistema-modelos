@@ -1,0 +1,58 @@
+<ui:composition 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui">
+      <p:panelGrid   style="width:100%;border:0px;"   id="panelVariacionesPeriodo"    >  
+            <p:row>   
+                 <p:column  colspan="4" style="width:100%" >
+                    <p:messages id="messages"/>
+                 </p:column>
+            </p:row>
+            
+            <p:row>   
+                 <p:column   style="width:30%" >
+                    <h:outputLabel value="% Caja Mínima: *" />
+                 </p:column>                
+                 <p:column   style="width:20%" >
+                     <p:inputText  id="cajaMinima"   size="30" value="#"></p:inputText>    
+                 </p:column>
+                 <p:column   style="width:30%" >
+                    <h:outputLabel value="% Caja Máxima: *" />
+                 </p:column>
+                 <p:column   style="width:20%" >
+                     <p:inputText  id="cajaMaxima"  size="30" value="#" />
+                 </p:column>
+            </p:row>
+            <p:row>   
+                 <p:column   style="width:30%" >
+                    <h:outputLabel value="Monto Sobregiro Máximo:" />
+                 </p:column>                
+                 <p:column   style="width:20%" >
+                     <p:inputText  id="montoSobregiro"   size="30" value="#"></p:inputText>    
+                 </p:column>
+                 <p:column   style="width:30%" >
+                    <h:outputLabel value="% Interes Sobregiro:" />
+                 </p:column>
+                 <p:column   style="width:20%" >
+                     <p:inputText  id="intSobregiro"  size="30" value="#" />
+                 </p:column>
+            </p:row>
+            <p:row>   
+                 <p:column   style="width:30%" >
+                    <h:outputLabel value="Monto Prestamo Corto Plazo Máximo:" />
+                 </p:column>                
+                 <p:column   style="width:20%" >
+                     <p:inputText  id="porPrestamoCortoPlazo" size="30" value="#"></p:inputText>    
+                 </p:column>
+                 <p:column   style="width:30%" >
+                    <h:outputLabel value="% Interes Prestamo Corto Plazo:" />
+                 </p:column>
+                 <p:column   style="width:20%" >
+                     <p:inputText  id="intPrestamoCortoPlazo"  size="30" value="#" />
+                 </p:column>
+            </p:row>
+            
+            </p:panelGrid> 
+</ui:composition>

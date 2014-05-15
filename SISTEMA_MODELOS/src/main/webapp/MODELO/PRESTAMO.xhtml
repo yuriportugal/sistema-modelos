@@ -11,45 +11,50 @@
                      <p:panelGrid   style="width:100%;border:0px;"   id="panelPrestamoMod"    >  
                        <p:row>   
                             <p:column   style="width:25%" >
-                            <h:outputLabel value="Nombre " />
+                                <h:outputLabel value="Nombre: *" />
                             </p:column>
                             <p:column   style="width:25%" >
                                 <p:inputText  id="nombrePrestModel"   size="30" value="#{prestamoModeloControlador.currentPrestamoModeloDetalle.nombre}"/>
                             </p:column>
                             <p:column   style="width:25%" >
-                            <h:outputLabel value="Monto: " />
+                                <h:outputLabel value="Tipo de préstamo: *" />
+                            </p:column>
+                            <p:column   style="width:25%" >
+                                <p:selectOneMenu id="tipoPrestModelo"  value="#{prestamoModeloControlador.currentPrestamoModeloDetalle.tipoPrestamo.idTipoPrestamo}">
+                                    <f:selectItem  itemLabel="Seleccione un prestamo" itemValue="#{null}"></f:selectItem>
+                                    <f:selectItems value="#{prestamoModeloControlador.lstTipoPrestamo}" var="tipoPrestamo" itemLabel="#{tipoPrestamo.nombre}" itemValue="#{tipoPrestamo.idTipoPrestamo}"></f:selectItems>
+                            </p:selectOneMenu> 
+                            </p:column>
+                         </p:row> 
+                       
+                         <p:row>
+                            <p:column   style="width:25%" >
+                                <h:outputLabel value="Monto total: *" />
                             </p:column>
                             <p:column   style="width:25%" >
                                 <p:inputText  id="montoPrestModel"   size="30" value="#{prestamoModeloControlador.currentPrestamoModeloDetalle.monto}"/>
                             </p:column>
-                       </p:row> 
-                       
-                         <p:row>   
                             <p:column   style="width:25%" >
-                            <h:outputLabel value="Interes (%) " />
+                                <h:outputLabel value="Saldo deudor: *" />
+                            </p:column>
+                            <p:column   style="width:25%" >
+                                <p:inputText  id="saldoPrestModel"   size="30" value="#"/>
+                            </p:column> 
+                       </p:row>
+                         
+                        <p:row>   
+                            <p:column   style="width:25%" >
+                                <h:outputLabel value="T.E.A (%): *" />
                             </p:column>
                             <p:column   style="width:25%" >
                                 <p:inputText  id="interesPrestModel"   size="30" value="#{prestamoModeloControlador.currentPrestamoModeloDetalle.interes}"/>
                             </p:column>
                             <p:column   style="width:25%" >
-                            <h:outputLabel value="Cantidad de periodos " />
+                                <h:outputLabel value="Cantidad de periodos: *" />
                             </p:column>
                             <p:column   style="width:25%" >
                                 <p:inputText  id="montoCantPerioModel"   size="30" value="#{prestamoModeloControlador.currentPrestamoModeloDetalle.cantPeriodos}"/>
-                            </p:column>
-                       </p:row>
-                         
-                        <p:row>   
-                            <p:column   style="width:25%" >
-                            <h:outputLabel value="Tipo Prestamo " />
-                            </p:column>
-                            <p:column   style="width:25%" >
-                                <p:selectOneMenu id="tipoPrestModelo"  value="#{prestamoModeloControlador.currentPrestamoModeloDetalle.tipoPrestamo.idTipoPrestamo}">
-                                <f:selectItem  itemLabel="Seleccione un Prestamo" itemValue="#{null}"></f:selectItem>
-                                <f:selectItems value="#{prestamoModeloControlador.lstTipoPrestamo}" var="tipoPrestamo" itemLabel="#{tipoPrestamo.nombre}" itemValue="#{tipoPrestamo.idTipoPrestamo}"></f:selectItems>
-                            </p:selectOneMenu> 
-                            </p:column>
-                            
+                            </p:column>                            
                        </p:row>  
                          
                         <p:row>   

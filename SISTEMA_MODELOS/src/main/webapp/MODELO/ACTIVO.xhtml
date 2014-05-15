@@ -10,50 +10,50 @@
                 <p:panel header="Edición/Creación" styleClass="width=50%;">
                      <p:panelGrid   style="width:100%;border:0px;"   id="panelActivoMod"    >  
                        <p:row>   
-                            <p:column   style="width:25%" >
-                            <h:outputLabel value="Activo " />
+                            <p:column   style="width:30%" >
+                                <h:outputLabel value="Activo: *" />
                             </p:column>
-                            <p:column   style="width:25%" >
+                            <p:column   style="width:20%" >
                                 <p:selectOneMenu id="activoModelo"  value="#{activoModeloControlador.currentActivoModeloDetalle.activo.idActivo}">
-                                <f:selectItem  itemLabel="Seleccione un activo" itemValue="#{null}"></f:selectItem>
-                                <f:selectItems value="#{activoModeloControlador.lstActivo}" var="activo" itemLabel="#{activo.nombre}" itemValue="#{activo.idActivo}"></f:selectItems>
-                            </p:selectOneMenu></p:column>
-                            <p:column   style="width:25%" >
-                            <h:outputLabel value="Cantidad: " />
+                                    <f:selectItem  itemLabel="Seleccione un activo" itemValue="#{null}"></f:selectItem>
+                                    <f:selectItems value="#{activoModeloControlador.lstActivo}" var="activo" itemLabel="#{activo.nombre}" itemValue="#{activo.idActivo}"></f:selectItems>
+                                </p:selectOneMenu></p:column>
+                            <p:column   style="width:30%" >
+                                <h:outputLabel value="Cantidad: *" />
                             </p:column>
-                            <p:column   style="width:25%" >
+                            <p:column   style="width:20%" >
                                 <p:inputText  id="cantidadActivoModel"   size="30" value="#{activoModeloControlador.currentActivoModeloDetalle.cantidad}"/>
                             </p:column>
                        </p:row> 
                          
                          
                      <p:row>   
-                            <p:column   style="width:25%"  >
-                            <h:outputLabel value="Valor de compra: " />
+                            <p:column   style="width:30%"  >
+                                <h:outputLabel value="Valor de compra: * " />
                             </p:column>
-                         <p:column   style="width:25%"  >
-                             <p:inputText id="valorCompraActivo"   size="30" value="#{activoModeloControlador.currentActivoModeloDetalle.valorCompra}"/>
+                         <p:column   style="width:20%"  >
+                                <p:inputText id="valorCompraActivo"   size="30" value="#{activoModeloControlador.currentActivoModeloDetalle.valorCompra}"/>
                             </p:column>
-                         <p:column   style="width:25%"  >
-                            <h:outputLabel value="Horas de producción: " />
+                         <p:column   style="width:30%"  >
+                            <h:outputLabel value="Años vida útil: *" />
                             </p:column>
-                         <p:column   style="width:25%"  >
-                             <p:inputText id="horasProduccActivo"   size="30" value="#{activoModeloControlador.currentActivoModeloDetalle.horasProdu}"/>
+                         <p:column   style="width:20%"  >
+                             <p:inputText id=""AnoVidaActivo""   size="30" value="#{activoModeloControlador.currentActivoModeloDetalle.horasProdu}"/>
                             </p:column>
                        </p:row> 
                          
                        <p:row>   
-                            <p:column   style="width:25%"  >
-                            <h:outputLabel value="Costo de Hora/Maq: " />
+                            <p:column   style="width:30%"  >
+                            <h:outputLabel value="Costo de mant. por hora: *" />
                             </p:column>
-                            <p:column   style="width:25%" >
+                            <p:column   style="width:20%" >
                                 <p:inputText id="costoHoraMaq"   size="30" value="#{activoModeloControlador.currentActivoModeloDetalle.costoMaqHora}"/>
                             </p:column>
-                            <p:column   style="width:25%" >
-                            <h:outputLabel value="Años Vida: " />
+                            <p:column   style="width:30%" >
+                            <h:outputLabel value="Depreciacion Acumulada: *" />
                             </p:column>
-                            <p:column   style="width:25%" >
-                                <p:inputText id="AnoVidaActivo"   size="30" value="#{activoModeloControlador.currentActivoModeloDetalle.anoVida}" />
+                            <p:column   style="width:20%" >
+                                <p:inputText id="depreAcumulada"   size="30" value="#" />
                             </p:column>
                        </p:row>
                          

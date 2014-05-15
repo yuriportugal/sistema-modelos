@@ -12,11 +12,14 @@
              <ui:include src="/MODELO/DATOSGENERALES.xhtml" />  
         </ui:define>
 
-
-        <ui:define name="parametros">
-             <ui:include src="/MODELO/PARAMETROSTIEMPO.xhtml" />  
+        <ui:define name="parametrosGenerales">
+             <ui:include src="/MODELO/PARAMETROSGENERALES.xhtml" />  
         </ui:define>
-   
+
+        <ui:define name="variacionesPeriodo">
+             <ui:include src="/MODELO/VARIACIONESPERIODO.xhtml" />  
+        </ui:define>
+
         <ui:define name="producto">
              <ui:include src="/MODELO/PRODUCTO.xhtml" />  
         </ui:define>
@@ -36,6 +39,7 @@
         <ui:define name="servicio">
              <ui:include src="/MODELO/SERVICIO.xhtml" />  
         </ui:define>
+        
         <ui:define name="prestamo">
              <ui:include src="/MODELO/PRESTAMO.xhtml" />  
         </ui:define>
@@ -43,17 +47,18 @@
         <ui:define name="cobranzapago">
              <ui:include src="/MODELO/COBRANZAPAGO.xhtml" />  
         </ui:define>
-        
-        
-        <ui:define name="balanceinicial">
-             <ui:include src="/MODELO/BALANCEINICIAL.xhtml" />  
-        </ui:define>
-        
+                   
         <ui:define name="formulacion">
              <ui:include src="/MODELO/FORMULACION.xhtml" />  
         </ui:define>
         
+        <ui:define name="parametrosFinancieros">
+             <ui:include src="/MODELO/PARAMETROSFINANCIEROS.xhtml" />  
+        </ui:define>
         
+        <ui:define name="decisionesFinancieras">
+             <ui:include src="/MODELO/DECISIONESFINANCIERAS.xhtml" />  
+        </ui:define>
     </ui:composition>
 </html>
 

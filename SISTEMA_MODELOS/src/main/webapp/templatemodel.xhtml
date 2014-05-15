@@ -36,6 +36,10 @@
                 <p:menuitem value="Registrar" action="#{redirectionerController.servicio()}" />  
                 <p:menuitem value="Listar" url="#" />  
             </p:submenu>
+            <p:submenu label="BALANCE INICIAL" icon="ui-icon-contact">  
+                <p:menuitem value="Registrar" action="#" />
+                <p:menuitem value="Listar" url="#" />
+            </p:submenu>
         </p:submenu>  
         <p:submenu label="Simulación">
         
@@ -69,13 +73,18 @@
                 <ui:insert name="datosGenerales"></ui:insert>
             </p:tab>
             
-            <p:tab title="PARAMETROS DE TIEMPO">  
-                <ui:insert name="parametros"></ui:insert>
+            <p:tab title="PARAMETROS GENERALES">  
+                <ui:insert name="parametrosGenerales"></ui:insert>
             </p:tab>  
-            <p:tab title="PRODUCTO">
+            
+            <p:tab title="VARIACIONES POR PERIODO">  
+                <ui:insert name="variacionesPeriodo"></ui:insert>
+            </p:tab>  
+              
+            <p:tab title="PRODUCTOS">
                 <ui:insert name="producto"></ui:insert>
             </p:tab>  
-            <p:tab title="INSUMO">
+            <p:tab title="INSUMOS">
                 <ui:insert name="insumo"></ui:insert>
             </p:tab>
             <p:tab title="ACTIVOS">
@@ -88,17 +97,19 @@
                 <ui:insert name='formulacion'></ui:insert>
             </p:tab>
             <p:tab title="GASTOS">
-                <ui:insert name='servicio'></ui:insert>
+                <ui:insert name='gastos'></ui:insert>
             </p:tab>
             <p:tab title="COBRANZAS Y PAGOS">
                       <ui:insert name='cobranzapago'></ui:insert>
-            
             </p:tab>
             <p:tab title="PRESTAMOS">
                   <ui:insert name='prestamo'></ui:insert>
             </p:tab>
-            <p:tab title="BALANCE INICIAL">
-                <ui:insert name='balanceinicial'></ui:insert>
+            <p:tab title="PARAMETROS ESTADOS FINANCIEROS">
+                  <ui:insert name='parametrosFinancieros'></ui:insert>
+            </p:tab>
+            <p:tab title="DECISIONES FINANCIERAS">
+                  <ui:insert name='decisionesFinancieras'></ui:insert>
             </p:tab>
          </p:tabView>  
             </p:column>
