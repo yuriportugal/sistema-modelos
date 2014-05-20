@@ -31,8 +31,14 @@
                             <p:column   style="width:25%"  >
                             <h:outputLabel value="Sueldo: " />
                             </p:column>
-                         <p:column   style="width:25%" colspan="3"  >
+                         <p:column   style="width:25%"   >
                              <p:inputText id="sueldoCargoModelo"   size="30" value="#{cargoModeloControlador.currentCargoModeloDetalle.sueldo}"/>
+                            </p:column>
+                         <p:column   style="width:25%"  >
+                            <h:outputLabel value="Esta relacionado a la producción" />
+                            </p:column>
+                         <p:column   style="width:25%"   >
+                             <p:selectBooleanCheckbox  id="estaRelacionadoProduccion"   value="#{cargoModeloControlador.relProduccion}"/>
                             </p:column>
                          </p:row> 
                          
@@ -63,7 +69,9 @@
                     <p:column style="width:75px;" headerText="Sueldo" >  
                         <h:outputText  value="#{cargoModel.sueldo}" />  
                     </p:column>  
-
+                    <p:column style="width:140px;" headerText="Relacionado. Prod" >  
+                        <h:outputText  value="#{cargoModel.esRelacionadoProduccion}" />  
+                    </p:column>      
                     <p:column  style="width:25px;">  
                         <p:commandButton icon="ui-icon-pencil" action="#{cargoModeloControlador.editarCargoModelo()}"  >
                             <f:setPropertyActionListener value="#{cargoModel}" target="#{cargoModeloControlador.currentCargoModeloDetalle}" />  

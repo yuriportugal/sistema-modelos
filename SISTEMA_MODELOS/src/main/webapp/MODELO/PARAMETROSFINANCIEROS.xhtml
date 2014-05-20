@@ -6,23 +6,17 @@
     xmlns:p="http://primefaces.org/ui">
       <p:panelGrid   style="width:100%;border:0px;"   id="panelParametrosFinancieros"    >  
             <p:row>   
-                 <p:column  colspan="4" style="width:100%" >
-                    <p:messages id="messages"/>
-                 </p:column>
-            </p:row>
-            
-            <p:row>   
                  <p:column   style="width:30%" >
                     <h:outputLabel value="% Capital Social en Reserva Legal: *" />
                  </p:column>                
                  <p:column   style="width:20%" >
-                     <p:inputText  id="porCapitalReserva"   size="30" value="#"></p:inputText>    
+                     <p:inputText  id="porCapitalReserva"   size="30" value="#{modeloControlador.currentModelo.PFPorcReservaLegalCapital}"></p:inputText>    
                  </p:column>
                  <p:column   style="width:30%" >
                     <h:outputLabel value="% Reserva Legal: *" />
                  </p:column>
                  <p:column   style="width:20%" >
-                     <p:inputText  id="porReservaLegal"  size="30" value="#" />
+                     <p:inputText  id="porReservaLegal"  size="30" value="#{modeloControlador.currentModelo.PFPorcReservaLegal}" />
                  </p:column>
             </p:row>
             <p:row>   
@@ -30,27 +24,13 @@
                     <h:outputLabel value="% Reparticion Dividendos: *" />
                  </p:column>                
                  <p:column   style="width:20%" >
-                     <p:inputText  id="porRepDividendos"   size="30" value="#"></p:inputText>    
+                     <p:inputText  id="porRepDividendos"   size="30" value="#{modeloControlador.currentModelo.PFPorcRepDividendos}"></p:inputText>    
                  </p:column>
                  <p:column   style="width:30%" >
                     <h:outputLabel value="% Participacion Trabajadores: *" />
                  </p:column>
                  <p:column   style="width:20%" >
-                     <p:inputText  id="porParTrabajadores"  size="30" value="#" />
-                 </p:column>
-            </p:row>
-            <p:row>   
-                 <p:column   style="width:30%" >
-                    <h:outputLabel value="% Variacion Ventas: *" />
-                 </p:column>                
-                 <p:column   style="width:20%" >
-                     <p:inputText  id="porVarVentas" size="30" value="#"></p:inputText>    
-                 </p:column>
-                 <p:column   style="width:30%" >
-                    <h:outputLabel value="% Incial Ventas: *" />
-                 </p:column>
-                 <p:column   style="width:20%" >
-                     <p:inputText  id="porIniVentas"  size="30" value="#" />
+                     <p:inputText  id="porParTrabajadores"  size="30" value="#{modeloControlador.currentModelo.PFPartTrabajadores}" />
                  </p:column>
             </p:row>
             <p:row>   
@@ -58,13 +38,13 @@
                     <h:outputLabel value="% Directorio: *" />
                  </p:column>                
                  <p:column   style="width:20%" >
-                     <p:inputText  id="porDirectorio"   size="30" value="#"></p:inputText>    
+                     <p:inputText  id="porDirectorio1"   size="30" value="#{modeloControlador.currentModelo.PFDirBuenaGest}"></p:inputText>    
                  </p:column>
                  <p:column   style="width:30%" >
                     <h:outputLabel value="% Utilidad para Capitalizarse: *" />
                  </p:column>
                  <p:column   style="width:20%" >
-                     <p:inputText  id="porUtilCapitazar"  size="30" value="#" />
+                     <p:inputText  id="porUtilCapitazar1"  size="30" value="#{modeloControlador.currentModelo.PFUtiCapitalizar}" />
                  </p:column>
             </p:row>
             </p:panelGrid> 

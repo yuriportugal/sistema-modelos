@@ -80,9 +80,7 @@ public class ProductoModeloDetalle implements Serializable{
      
      @OneToMany(cascade = CascadeType.ALL, mappedBy = "productoModelo",orphanRemoval=true)
      private List<ModeloFormulacionPersonal> lstModeloFormulacionPersonalDetalle;
-     
-     
-     
+          
      public Producto getProducto() {
         if (producto == null){
             producto = new Producto();

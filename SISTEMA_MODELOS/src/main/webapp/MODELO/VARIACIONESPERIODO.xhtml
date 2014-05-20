@@ -4,25 +4,21 @@
     xmlns:h="http://java.sun.com/jsf/html"
     xmlns:ui="http://java.sun.com/jsf/facelets"
     xmlns:p="http://primefaces.org/ui">
-      <p:panelGrid   style="width:100%;border:0px;"   id="panelVariacionesPeriodo"    >  
-            <p:row>   
-                 <p:column  colspan="4" style="width:100%" >
-                    <p:messages id="messages"/>
-                 </p:column>
-            </p:row>
+      <p:panelGrid   style="width:100%;border:0px;"   id="panelVariacionesPeriodo1"    >  
+            
             
             <p:row>   
                  <p:column   style="width:30%" >
                     <h:outputLabel value="% Variacion Precio Venta: *" />
                  </p:column>                
                  <p:column   style="width:20%" >
-                     <p:inputText  id="porVarPrecioVenta"   size="30" value="#"></p:inputText>    
+                     <p:inputText  id="porVarPrecioVenta"   size="30" value="#{modeloControlador.currentModelo.VARIndPrecioVenta}"></p:inputText>    
                  </p:column>
                  <p:column   style="width:30%" >
                     <h:outputLabel value="% Incial Precio Venta: *" />
                  </p:column>
                  <p:column   style="width:20%" >
-                     <p:inputText  id="porIniPrecioVenta"  size="30" value="#" />
+                     <p:inputText  id="porIniPrecioVenta"  size="30" value="#{modeloControlador.currentModelo.VARPorcInicialPrecioVenta}" />
                  </p:column>
             </p:row>
             <p:row>   
@@ -30,13 +26,13 @@
                     <h:outputLabel value="% Variacion Precio Compra: *" />
                  </p:column>                
                  <p:column   style="width:20%" >
-                     <p:inputText  id="porVarPrecioCompra"   size="30" value="#"></p:inputText>    
+                     <p:inputText  id="porVarPrecioCompra"   size="30" value="#{modeloControlador.currentModelo.VARIndPrecioCompra}"></p:inputText>    
                  </p:column>
                  <p:column   style="width:30%" >
                     <h:outputLabel value="% Incial Precio Compra: *" />
                  </p:column>
                  <p:column   style="width:20%" >
-                     <p:inputText  id="porIniPrecioCompra"  size="30" value="#" />
+                     <p:inputText  id="porIniPrecioCompra"  size="30" value="#{modeloControlador.currentModelo.VARPorcInicialPrecioCompra}" />
                  </p:column>
             </p:row>
             <p:row>   
@@ -44,13 +40,13 @@
                     <h:outputLabel value="% Variacion Ventas: *" />
                  </p:column>                
                  <p:column   style="width:20%" >
-                     <p:inputText  id="porVarVentas" size="30" value="#"></p:inputText>    
+                     <p:inputText  id="porVarVentas" size="30" value="#{modeloControlador.currentModelo.VARIndVenta}"></p:inputText>    
                  </p:column>
                  <p:column   style="width:30%" >
                     <h:outputLabel value="% Incial Ventas: *" />
                  </p:column>
                  <p:column   style="width:20%" >
-                     <p:inputText  id="porIniVentas"  size="30" value="#" />
+                     <p:inputText  id="porIniVentas"  size="30" value="#{modeloControlador.currentModelo.VARPorcInicialVenta}" />
                  </p:column>
             </p:row>
             <p:row>   
@@ -58,13 +54,13 @@
                     <h:outputLabel value="% Variacion Mantenimiento: *" />
                  </p:column>                
                  <p:column   style="width:20%" >
-                     <p:inputText  id="porVarMantenimiento"   size="30" value="#"></p:inputText>    
+                     <p:inputText  id="porVarMantenimiento"   size="30" value="#{modeloControlador.currentModelo.VARIndMantenimiento}"></p:inputText>    
                  </p:column>
                  <p:column   style="width:30%" >
                     <h:outputLabel value="% Incial Mantenimiento: *" />
                  </p:column>
                  <p:column   style="width:20%" >
-                     <p:inputText  id="porIniMantenimiento"  size="30" value="#" />
+                     <p:inputText  id="porIniMantenimiento"  size="30" value="#{modeloControlador.currentModelo.VARPorcInicialMantenimiento}" />
                  </p:column>
             </p:row>
             <p:row>   
@@ -72,13 +68,13 @@
                     <h:outputLabel value="% Variacion Salarial: *" />
                  </p:column>                
                  <p:column   style="width:20%" >
-                     <p:inputText  id="porVarSalarial"   size="30" value="#"></p:inputText>    
+                     <p:inputText  id="porVarSalarial"   size="30" value="#{modeloControlador.currentModelo.VARIndSalarial}"></p:inputText>    
                  </p:column>
                  <p:column   style="width:30%" >
                     <h:outputLabel value="% Incial Salarial: *" />
                  </p:column>
                  <p:column   style="width:20%" >
-                     <p:inputText  id="porIniSalarial"  size="30" value="#" />
+                     <p:inputText  id="porIniSalarial"  size="30" value="#{modeloControlador.currentModelo.VARPorcInicialSalarial}" />
                  </p:column>
             </p:row>
             <p:row>   
@@ -86,13 +82,13 @@
                     <h:outputLabel value="% Variacion Servicios: *" />
                  </p:column>                
                  <p:column   style="width:20%" >
-                     <p:inputText  id="porVarServicios"   size="30" value="#"></p:inputText>    
+                     <p:inputText  id="porVarServicios"   size="30" value="#{modeloControlador.currentModelo.VARIndGastos}"></p:inputText>    
                  </p:column>
                  <p:column   style="width:30%" >
                     <h:outputLabel value="% Incial Servicios: *" />
                  </p:column>
                  <p:column   style="width:20%" >
-                     <p:inputText  id="porIniServicios"  size="30" value="#" />
+                     <p:inputText  id="porIniServicios"  size="30" value="#{modeloControlador.currentModelo.VARPorcInicialGastos}" />
                  </p:column>
             </p:row>
             </p:panelGrid> 

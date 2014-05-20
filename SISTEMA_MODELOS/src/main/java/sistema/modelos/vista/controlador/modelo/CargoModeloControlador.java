@@ -37,6 +37,16 @@ public class CargoModeloControlador implements Serializable {
     @EJB
     private CargoFacade cargoFacade;
     
+    private boolean relProduccion;
+
+    public boolean isRelProduccion() {
+        return relProduccion;
+    }
+
+    public void setRelProduccion(boolean relProduccion) {
+        this.relProduccion = relProduccion;
+    }
+    
     private boolean isEditCargoMod;
 
       public void limpiarVariables(){
@@ -104,12 +114,14 @@ public class CargoModeloControlador implements Serializable {
     public void nuevoCargoModelo(){
         isEditCargoMod = false;
         currentCargoModeloDetalle = new CargoModeloDetalle();
+        setRelProduccion(false);
         RequestContext context = RequestContext.getCurrentInstance();  
         context.update("modeloForm:tabViewModelo:panelCargoMod");
            }
       
     public void editarCargoModelo(){
         isEditCargoMod = true;
+        setRelProduccion(getCurrentCargoModeloDetalle().getEsRelacionadoProduccion().equals("1")?true:false);
         RequestContext context = RequestContext.getCurrentInstance();  
         context.update("modeloForm:tabViewModelo:panelCargoMod");
     } 
@@ -120,6 +132,7 @@ public class CargoModeloControlador implements Serializable {
         System.out.println("Empezamos a ver isEditInsMod: "+isEditCargoMod);
         if (!isEditCargoMod){
             getCurrentCargoModeloDetalle().setCargo(cargoFacade.find(getCurrentCargoModeloDetalle().getCargo().getIdCargo()));
+            getCurrentCargoModeloDetalle().setEsRelacionadoProduccion(isRelProduccion()?"1":"0");
             getLstCargoModeloDetalle().add(getCurrentCargoModeloDetalle());
             System.out.println("Tamaño: "+getLstCargoModeloDetalle().size());
         }else{
@@ -131,6 +144,7 @@ public class CargoModeloControlador implements Serializable {
                 }
             }
             getLstCargoModeloDetalle().remove(pos);
+            getCurrentCargoModeloDetalle().setEsRelacionadoProduccion(isRelProduccion()?"1":"0");
             getLstCargoModeloDetalle().add(getCurrentCargoModeloDetalle());
         }
         

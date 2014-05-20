@@ -34,7 +34,7 @@
                                 <h:outputLabel value="Nro. de dias de cobranza : * " />
                             </p:column>
                             <p:column   style="width:10%" >
-                                <p:inputText  id="nroDiasCobranzaMod"   size="10" value="#"/>
+                                <p:inputText  id="nroDiasCobranzaMod"   size="10" value="#{modeloControlador.currentModelo.numDiasCobranza}"/>
                             </p:column>
                        </p:row> 
                     </p:panelGrid>
@@ -61,7 +61,7 @@
                             <h:outputLabel value="Nro. de dias de pago : *" />
                             </p:column>
                             <p:column   style="width:10%" >
-                                <p:inputText  id="nroDiasPagoMod"   size="10" value="#"/>
+                                <p:inputText  id="nroDiasPagoMod"   size="10" value="#{modeloControlador.currentModelo.numDiasPago}"/>
                             </p:column>
                        </p:row>
                          
