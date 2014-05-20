@@ -1,0 +1,169 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    
+    <ui:composition template="/templateBalance.xhtml"> 
+    
+        <ui:define name="title">           
+        </ui:define>
+        
+        <ui:define name="Right">
+        <h:form id="cruForm">
+        <p:panelGrid  style="width:100%;border:0px;"   id="panelcrud">  
+           <p:row>   
+              <p:column  colspan="4" style="width:100%" >
+                 <p:messages id="messages"/>
+              </p:column>
+           </p:row>
+           <p:row>   
+               <p:column colspan="2" style="width:20%"><p:commandButton  value="Salvar"  action="#{empresaControlador.grabarBalance()}"  ></p:commandButton></p:column>
+               <p:column colspan="2" style="width:80%"><p:commandButton value="Cancelar"></p:commandButton></p:column>
+           </p:row> 
+            
+            
+            <p:row>
+                <p:column colspan="2" style="width:50%">
+                <p:panel header="Activo Corriente" styleClass="width=50%;">
+                    <p:panelGrid styleClass="wifth=100%" >
+                    <p:row>
+                        <p:column><h:outputLabel value="Caja - Bancos" /></p:column>
+                        <p:column><p:inputText size="15" id="ACCajaBanco" value="#{empresaControlador.usuarioControlador.currentUsuario.empresa.biCajaBancos}"/></p:column>
+                    </p:row>
+                    <p:row>
+                        <p:column><h:outputLabel value="Credito Fiscal" /></p:column>
+                        <p:column><p:inputText size="15" id="ACCredFiscal" value="#{empresaControlador.usuarioControlador.currentUsuario.empresa.biCreditoFiscal}"/></p:column>
+                    </p:row>
+                    <p:row>
+                        <p:column><h:outputLabel value="Cuentas por Cobrar" /></p:column>
+                        <p:column><p:inputText size="15" id="ACCuentaxCobrar" value="#{empresaControlador.usuarioControlador.currentUsuario.empresa.biCuentasXCobrar}"/></p:column>
+                    </p:row>
+                    <p:row>
+                        <p:column colspan="2"><h:outputLabel value="Existencias" /></p:column>
+                   </p:row>
+                    <p:row>
+                        <p:column><h:outputLabel value="    Insumos" /></p:column>
+                        <p:column><p:inputText size="15" id="ACInsumos" value="#{empresaControlador.usuarioControlador.currentUsuario.empresa.biExistInsumos}"/></p:column>
+                    </p:row>
+                    <p:row>
+                        <p:column><h:outputLabel value="    Productos Terminados" /></p:column>
+                        <p:column><p:inputText size="15" id="ACProductosTerminados" value="#{empresaControlador.usuarioControlador.currentUsuario.empresa.biExistProdTerminados}"/></p:column>
+                    </p:row>
+                </p:panelGrid>
+                </p:panel>
+                </p:column>
+                
+                <p:column colspan="2" style="width:50%">
+                <p:panel header="Activo No Corriente" styleClass="width=50%;">
+                    <p:panelGrid styleClass="width=100%" >
+                    <p:row>
+                        <p:column><h:outputLabel value="Activos fijos" /></p:column>
+                        <p:column><p:inputText size="15" id="ANCActivoFijo" value="#{empresaControlador.usuarioControlador.currentUsuario.empresa.biActivosFijos}"/></p:column>
+                    </p:row>
+                    <p:row>
+                        <p:column><h:outputLabel value="Depreciacion Acumulada" /></p:column>
+                        <p:column><p:inputText size="15" id="ANCDepreciacionAcum" value="#{empresaControlador.usuarioControlador.currentUsuario.empresa.biDeprecAcumulada}"/></p:column>
+                    </p:row>
+                    <p:row>
+                        <p:column><h:outputLabel value="Intangibles" /></p:column>
+                        <p:column><p:inputText size="15" id="ANCIntangible" value="#{empresaControlador.usuarioControlador.currentUsuario.empresa.biIntangibles}"/></p:column>
+                    </p:row>
+                    <p:row>
+                        <p:column ><h:outputLabel value="Amortización Acumulada" /></p:column>
+                        <p:column><p:inputText size="15" id="ANCAmortAcumulada" value="#{empresaControlador.usuarioControlador.currentUsuario.empresa.biAmortAcumulada}"/></p:column>
+                    </p:row>
+                    <p:row>
+                        <p:column><h:outputLabel value="Valores negociables" /></p:column>
+                        <p:column><p:inputText size="15" id="ANCValNegociable" value="#{empresaControlador.usuarioControlador.currentUsuario.empresa.biValoresNegociables}"/></p:column>
+                    </p:row>
+                    </p:panelGrid>
+                </p:panel>
+                </p:column>
+            </p:row>    
+            
+            <p:row>
+                <p:column colspan="2" style="width:50%">
+                <p:panel header="Pasivo Corriente" styleClass="width=50%;">
+                    <p:panelGrid styleClass="width=100%" >
+                    <p:row>
+                        <p:column><h:outputLabel value="Cuentas por pagar proveedores" /></p:column>
+                        <p:column><p:inputText size="15" id="PCCuentaxCobrarProveedores" value="#{empresaControlador.usuarioControlador.currentUsuario.empresa.biCuentasXPagarProv}"/></p:column>
+                    </p:row>
+                    <p:row>
+                        <p:column><h:outputLabel value="Cuentas por pagar sobregiros" /></p:column>
+                        <p:column><p:inputText size="15" id="PCCuentaxCobrarSobregiro" value="#{empresaControlador.usuarioControlador.currentUsuario.empresa.biCuentasxPagarSobregiro}"/></p:column>
+                    </p:row>
+                    <p:row>
+                        <p:column><h:outputLabel value="IGV por pagar" /></p:column>
+                        <p:column><p:inputText size="15" id="PCIGVxPagar" value="#{empresaControlador.usuarioControlador.currentUsuario.empresa.biIGV}"/></p:column>
+                    </p:row>
+                    <p:row>
+                        <p:column ><h:outputLabel value="Prestamos por pagar Corto Plazo" /></p:column>
+                        <p:column><p:inputText size="15" id="PCPrestxPagarCortoPlazo" value="#{empresaControlador.usuarioControlador.currentUsuario.empresa.biPrestamosCortoPlazo}"/></p:column>
+                    </p:row>
+                    <p:row>
+                        <p:column><h:outputLabel value="Participaciones por pagar" /></p:column>
+                        <p:column><p:inputText size="15" id="PCPartixPagar" value="#{empresaControlador.usuarioControlador.currentUsuario.empresa.biParticipaciones}"/></p:column>
+                    </p:row>
+                    <p:row>
+                        <p:column><h:outputLabel value="Dirección y buenas gestión por pagar" /></p:column>
+                        <p:column><p:inputText size="15" id="PCDirBuenaGest" value="#{empresaControlador.usuarioControlador.currentUsuario.empresa.biDirecBuenaGestion}"/></p:column>
+                    </p:row>
+                    <p:row>
+                        <p:column><h:outputLabel value="Impuesto a la renta por pagar" /></p:column>
+                        <p:column><p:inputText size="15" id="PCImpuestoRenta" value="#{empresaControlador.usuarioControlador.currentUsuario.empresa.biImpuestoRenta}"/></p:column>
+                    </p:row>
+                    <p:row>
+                        <p:column><h:outputLabel value="Dividendos por pagar" /></p:column>
+                        <p:column><p:inputText size="15" id="PCDividendoxPag" value="#{empresaControlador.usuarioControlador.currentUsuario.empresa.biDividendos}"/></p:column>
+                    </p:row> 
+                    </p:panelGrid>      
+                </p:panel>
+                </p:column>
+                
+                <p:column colspan="2" style="width:50%">
+                    <p:panel>
+                        <p:row>
+                           <p:column>
+                           <p:panel header="Pasivo no Corriente" styleClass="width=50%;">
+                           <p:panelGrid>          
+                                <p:row>
+                                    <p:column><h:outputLabel value="Deudas a largo plazo" /></p:column>
+                                    <p:column><p:inputText size="15" id="PNCDeudaLargoPlazo" value="#{empresaControlador.usuarioControlador.currentUsuario.empresa.biDeudasLargoPlazo}"/></p:column>
+                                </p:row>                
+                           </p:panelGrid>
+                           </p:panel>
+                           </p:column>
+                        </p:row>
+                        <p:row>
+                            <p:column>
+                            <p:panel header="Patrimonio" styleClass="width=50%;">
+                            <p:panelGrid>          
+                                <p:row>
+                                    <p:column><h:outputLabel value="Capital Social" /></p:column>
+                                    <p:column><p:inputText size="15" id="PATCapitalSocial" value="#{empresaControlador.usuarioControlador.currentUsuario.empresa.biCapitalSocial}"/></p:column>
+                                </p:row>
+                                <p:row>
+                                    <p:column><h:outputLabel value="Reservas legales acumuladas" /></p:column>
+                                    <p:column><p:inputText size="15" id="PATReservaLegal" value="#{empresaControlador.usuarioControlador.currentUsuario.empresa.biReservaLegalAcum}"/></p:column>
+                                </p:row>
+                                <p:row>
+                                    <p:column><h:outputLabel value="Resultados acumulados" /></p:column>
+                                    <p:column><p:inputText size="15" id="PATRESULACUMULADOS" value="#{empresaControlador.usuarioControlador.currentUsuario.empresa.biResultAcumulados}"/></p:column>
+                                </p:row>
+                           </p:panelGrid>
+                           </p:panel>
+                           </p:column>
+                        </p:row>
+                </p:panel>
+                </p:column>
+            </p:row>
+        </p:panelGrid>     
+        </h:form>
+        </ui:define>    
+            
+</ui:composition>
+</html>

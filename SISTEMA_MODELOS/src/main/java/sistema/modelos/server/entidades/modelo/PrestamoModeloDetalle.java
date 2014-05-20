@@ -44,8 +44,7 @@ public class PrestamoModeloDetalle implements Serializable{
     
     @Column(name="SALDO_DEUDOR")
     private Long saldoDeudor;
-    
-    
+        
     @ManyToOne
     @JoinColumn(name = "ID_MODELO", referencedColumnName = "ID_MODELO")
     private Modelo modelo;

@@ -38,7 +38,7 @@
                                 <h:outputLabel value="Saldo deudor: *" />
                             </p:column>
                             <p:column   style="width:25%" >
-                                <p:inputText  id="saldoPrestModel"   size="30" value="#"/>
+                                <p:inputText  id="saldoPrestModel"   size="30" value="#{prestamoModeloControlador.currentPrestamoModeloDetalle.saldoDeudor}"/>
                             </p:column> 
                        </p:row>
                          
@@ -73,23 +73,27 @@
                 <p:panel header="Listado"  styleClass="width=50%;">
                     <p:dataTable   rendered="true"  id="tablaPrestamoModelo" var="prestamoModel"  rowKey="#{servicioModel.idModeloServicio}" value="#{prestamoModeloControlador.lstPrestamoModeloDetalle}" scrollable="true"  >  
                    
-                        <p:column style="width:90px;"  headerText="Nombre" >  
+                    <p:column style="width:90px;"  headerText="Nombre" >  
                             <h:outputText  value="#{prestamoModel.nombre}" />  
                     </p:column>  
                         
-                        <p:column style="width:75px;"  headerText="Monto" >  
+                    <p:column style="width:75px;"  headerText="Monto" >  
                             <h:outputText  value="#{prestamoModel.monto}" />  
-                    </p:column>      
-                        <p:column style="width:75px;"  headerText="Interes" >  
+                    </p:column>
+                        
+                    <p:column style="width:75px;"  headerText="S. Deudor" >  
+                        <h:outputText  value="#{prestamoModel.saldoDeudor}" />  
+                    </p:column>
+                    
+                    <p:column style="width:75px;"  headerText="Interes" >  
                             <h:outputText  value="#{prestamoModel.interes}" />  
                     </p:column>      
                     
-                        <p:column style="width:75px;"  headerText="Cant. Periodos" >  
+                    <p:column style="width:75px;"  headerText="Cant. Periodos" >  
                             <h:outputText  value="#{prestamoModel.cantPeriodos}" />  
                     </p:column>          
 
-                    
-                        <p:column style="width:90px;"  headerText="Tipo" >  
+                    <p:column style="width:90px;"  headerText="Tipo" >  
                             <h:outputText  value="#{prestamoModel.tipoPrestamo.nombre}" />  
                     </p:column>          
     

@@ -63,7 +63,7 @@
                                 <h:outputLabel value="Unidad de venta: *" />
                             </p:column>
                             <p:column colspan="3"   style="width:25%" >
-                                <p:selectOneMenu id="unidadModel"  value="#{productoModeloControlador.currentProductoModeloDetalle.unidad.idUnidad}">
+                                <p:selectOneMenu id="unidadModel"  value="#{productoModeloControlador.currentProductoModeloDetalle.unidadPresentacion.idUnidad}">
                                     <f:selectItem  itemLabel="Seleccione una unidad" itemValue="#{null}"></f:selectItem>
                                     <f:selectItems value="#{productoModeloControlador.lstUnidad}" var="unidad" itemLabel="#{unidad.nombre}" itemValue="#{unidad.idUnidad}"></f:selectItems>
                                 </p:selectOneMenu>
@@ -121,14 +121,18 @@
                 <p:panel header="Listado"  styleClass="width=50%;">
                     <p:dataTable   rendered="true"  id="tablaProductoModelo" var="productoModel"  selectionMode="single" rowKey="#{productoModel.producto.idproducto}" value="#{productoModeloControlador.lstProductoModeloDetalle}" scrollable="true"  >  
                    
-                        <p:column style="width:90px;"  headerText="Producto" >  
+                    <p:column style="width:90px;"  headerText="Producto" >  
                        <h:outputText  value="#{productoModel.producto.nombre}" />  
                     </p:column>  
                         
-                        <p:column style="width:90px;"  headerText="Unidad" >  
-                            <h:outputText  value="#{productoModel.unidad.nombre}" />  
+                    <p:column style="width:90px;"  headerText="Unidad Prod." >  
+                        <h:outputText  value="#{productoModel.unidad.nombre}" />  
                     </p:column>      
-
+                    
+                    <p:column style="width:90px;"  headerText="Unidad Prod." >  
+                        <h:outputText  value="#{productoModel.unidadPresentacion.nombre}" />  
+                    </p:column>    
+                        
                     <p:column style="width:75px;" headerText="Precio Venta" >  
                         <h:outputText  value="#{productoModel.precioVenta}" />  
                     </p:column>  
@@ -168,15 +172,15 @@
             
         </p:panel>
         
-    <p:dialog id="FormularioInsumoDlg" dynamic="true" widgetVar="formularioDlgProd" header="Formulación de insumo" >
+    <p:dialog id="FormularioInsumoDlg" dynamic="true" widgetVar="formularioDlgProd" header="Formulación de Insumos x Producto" >
         <ui:include src="/MODELO/POPUPINSUMO.xhtml" /> 
     </p:dialog>
     
-    <p:dialog id="FormularioPersonalDlg"  widgetVar="FormularioPersonalDlg" header="Formulación de personal">
+    <p:dialog id="FormularioPersonalDlg"  widgetVar="FormularioPersonalDlg" header="Formulación de Personal por Producto">
         <ui:include src="/MODELO/POPUPPERSONAL.xhtml" /> 
     </p:dialog>
     
-    <p:dialog id="FormularioMaquinariaDlg"  widgetVar="FormularioMaquinariaDlg" header="Formulación de maquinaria">
+    <p:dialog id="FormularioMaquinariaDlg"  widgetVar="FormularioMaquinariaDlg" header="Formulación de Maquinaria por Producto">
         <ui:include src="/MODELO/POPUPMAQUINARIA.xhtml" /> 
     </p:dialog>
     

@@ -38,6 +38,9 @@ public class RedirectionerController {
     public String servicio(){
         return "/EMPRESA/SERVICIO/SERVICIO";
     }
+    public String balanceInicial(){
+        return "/EMPRESA/BALANCE_INICIAL/BALANCEINICIAL";
+    }
     
      public String crearModelo(){
         return "/MODELO/CREARMODELO";
@@ -45,4 +48,5 @@ public class RedirectionerController {
     public String listarModelo(){
         return "/MODELO/LISTARMODELO";
     }
+     
 }
