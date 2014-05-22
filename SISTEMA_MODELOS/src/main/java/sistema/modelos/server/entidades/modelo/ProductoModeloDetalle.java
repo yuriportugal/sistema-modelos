@@ -198,6 +198,9 @@ public class ProductoModeloDetalle implements Serializable{
     }
 
     public Unidad getUnidadPresentacion() {
+        if (unidadPresentacion == null){
+            unidadPresentacion = new Unidad();
+        }
         return unidadPresentacion;
     }
 
