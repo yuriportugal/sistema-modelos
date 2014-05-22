@@ -72,7 +72,7 @@
                                 <h:outputLabel value="Unidad de produccion: *" />
                             </p:column>
                             <p:column colspan="3"   style="width:25%" >
-                                <p:selectOneMenu id="unidadModel"  value="#{productoModeloControlador.currentProductoModeloDetalle.unidad.idUnidad}">
+                                <p:selectOneMenu id="unidadModelPresentacion"  value="#{productoModeloControlador.currentProductoModeloDetalle.unidad.idUnidad}">
                                     <f:selectItem  itemLabel="Seleccione una unidad" itemValue="#{null}"></f:selectItem>
                                     <f:selectItems value="#{productoModeloControlador.lstUnidad}" var="unidad" itemLabel="#{unidad.nombre}" itemValue="#{unidad.idUnidad}"></f:selectItems>
                                 </p:selectOneMenu>
