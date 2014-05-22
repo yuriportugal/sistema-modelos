@@ -1,0 +1,146 @@
+<ui:composition 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui">
+    
+       <p:panel id="PanelBalanceInicial" >
+            <p:tabView id="tabViewBalanceInicial">  
+  
+                <p:tab id="tabActivo" title="Activo">  
+                      <h:panelGrid columns="2" width="100%" >
+                <p:panel header="Activo Corriente" styleClass="width=50%;">
+                    <p:panelGrid styleClass="wifth=100%" >
+                    <p:row>
+                        <p:column><h:outputLabel value="Caja - Bancos" /></p:column>
+                        <p:column><p:inputText size="15" id="ACCajaBanco" value="#{modeloControlador.currentModelo.ACCajaBanco}"/></p:column>
+                    </p:row>
+                    <p:row>
+                        <p:column><h:outputLabel value="Credito Fiscal" /></p:column>
+                        <p:column><p:inputText size="15" id="ACCredFiscal" value="#{modeloControlador.currentModelo.ACCredFiscal}"/></p:column>
+                    </p:row>
+                    <p:row>
+                        <p:column><h:outputLabel value="Cuentas por Cobrar" /></p:column>
+                        <p:column><p:inputText size="15" id="ACCuentaxCobrar" value="#{modeloControlador.currentModelo.ACCuentaxCobrar}"/></p:column>
+                    </p:row>
+                    <p:row>
+                        <p:column colspan="2"><h:outputLabel value="Existencias" /></p:column>
+                   </p:row>
+                    <p:row>
+                        <p:column><h:outputLabel value="    Insumos" /></p:column>
+                        <p:column><p:inputText size="15" id="ACInsumos" value="#{modeloControlador.currentModelo.ACInsumos}"/></p:column>
+                    </p:row>
+                    <p:row>
+                        <p:column><h:outputLabel value="    Productos Terminados" /></p:column>
+                        <p:column><p:inputText size="15" id="ACProductosTerminados" value="#{modeloControlador.currentModelo.ACProductosTerminados}"/></p:column>
+                    </p:row>
+                </p:panelGrid>
+                </p:panel>
+                
+                <p:panel header="Activo No Corriente" styleClass="width=50%;">
+                    <p:panelGrid styleClass="width=100%" >
+                    <p:row>
+                        <p:column><h:outputLabel value="Activos fijos" /></p:column>
+                        <p:column><p:inputText size="15" id="ANCActivoFijo" value="#{modeloControlador.currentModelo.ANCActivoFijo}"/></p:column>
+                    </p:row>
+                    <p:row>
+                        <p:column><h:outputLabel value="Depreciacion Acumulada" /></p:column>
+                        <p:column><p:inputText size="15" id="ANCDepreciacionAcum" value="#{modeloControlador.currentModelo.ANCDepreciacionAcum}"/></p:column>
+                    </p:row>
+                    <p:row>
+                        <p:column><h:outputLabel value="Intangibles" /></p:column>
+                        <p:column><p:inputText size="15" id="ANCIntangible" value="#{modeloControlador.currentModelo.ANCIntangible}"/></p:column>
+                    </p:row>
+                    <p:row>
+                        <p:column ><h:outputLabel value="Amortización Acumulada" /></p:column>
+                        <p:column><p:inputText size="15" id="ANCAmortAcumulada" value="#{modeloControlador.currentModelo.ANCAmortAcumulada}"/></p:column>
+                    </p:row>
+                    <p:row>
+                        <p:column><h:outputLabel value="Valores negociables" /></p:column>
+                        <p:column><p:inputText size="15" id="ANCValNegociable" value="#{modeloControlador.currentModelo.ANCValNegociable}"/></p:column>
+                    </p:row>
+                </p:panelGrid>
+                
+                </p:panel>
+            </h:panelGrid>
+            
+                </p:tab>  
+  
+                <p:tab id="tabPasivoPatrimonio" title="Pasivo y Patrimonio">  
+                    <p:panelGrid style="width:100%">
+                        <p:row>
+                            <p:column rowspan="2"><p:panel header="Pasivo Corriente" styleClass="width=50%;">
+                                <p:panelGrid styleClass="width=100%" >
+                    <p:row>
+                        <p:column><h:outputLabel value="Cuentas por pagar proveedores" /></p:column>
+                        <p:column><p:inputText size="15" id="PCCuentaxCobrarProveedores" value="#{modeloControlador.currentModelo.PCCuentaxCobrarProveedores}"/></p:column>
+                    </p:row>
+                    <p:row>
+                        <p:column><h:outputLabel value="Cuentas por pagar sobregiros" /></p:column>
+                        <p:column><p:inputText size="15" id="PCCuentaxCobrarSobregiro" value="#{modeloControlador.currentModelo.PCCuentaxCobrarSobregiro}"/></p:column>
+                    </p:row>
+                    <p:row>
+                        <p:column><h:outputLabel value="IGV por pagar" /></p:column>
+                        <p:column><p:inputText size="15" id="PCIGVxPagar" value="#{modeloControlador.currentModelo.PCIGVxPagar}"/></p:column>
+                    </p:row>
+                    <p:row>
+                        <p:column ><h:outputLabel value="Prestamos por pagar Corto Plazo" /></p:column>
+                        <p:column><p:inputText size="15" id="PCPrestxPagarCortoPlazo" value="#{modeloControlador.currentModelo.PCPrestxPagarCortoPlazo}"/></p:column>
+                    </p:row>
+                    <p:row>
+                        <p:column><h:outputLabel value="Participaciones por pagar" /></p:column>
+                        <p:column><p:inputText size="15" id="PCPartixPagar" value="#{modeloControlador.currentModelo.PCPartixPagar}"/></p:column>
+                    </p:row>
+                    <p:row>
+                        <p:column><h:outputLabel value="Dirección y buenas gestión por pagar" /></p:column>
+                        <p:column><p:inputText size="15" id="PCDirBuenaGest" value="#{modeloControlador.currentModelo.PCDirBuenaGest}"/></p:column>
+                    </p:row>
+                    <p:row>
+                        <p:column><h:outputLabel value="Impuesto a la renta por pagar" /></p:column>
+                        <p:column><p:inputText size="15" id="PCImpuestoRenta" value="#{modeloControlador.currentModelo.PCImpuestoRenta}"/></p:column>
+                    </p:row>
+                    <p:row>
+                        <p:column><h:outputLabel value="Dividendos por pagar" /></p:column>
+                        <p:column><p:inputText size="15" id="PCDividendoxPag" value="#{modeloControlador.currentModelo.PCDividendoxPag}"/></p:column>
+                    </p:row>                
+               </p:panelGrid>
+                    
+                                </p:panel></p:column>
+                            <p:column><p:panel header="Pasivo no Corriente" styleClass="width=50%;">
+                                    <p:panelGrid>          
+                    <p:row>
+                        <p:column><h:outputLabel value="Deudas a largo plazo" /></p:column>
+                        <p:column><p:inputText size="15" id="PNCDeudaLargoPlazo" value="#{modeloControlador.currentModelo.PNCDeudaLargoPlazo}"/></p:column>
+                    </p:row>                
+               </p:panelGrid>
+                                </p:panel></p:column>
+                        </p:row>
+                        <p:row>
+                            <p:column><p:panel header="Patrimonio" styleClass="width=50%;">
+                            <p:panelGrid>          
+                                <p:row>
+                                    <p:column><h:outputLabel value="Capital Social" /></p:column>
+                                    <p:column><p:inputText size="15" id="PATCapitalSocial" value="#{modeloControlador.currentModelo.PATCapitalSocial}"/></p:column>
+                                </p:row>
+                                <p:row>
+                                    <p:column><h:outputLabel value="Reservas legales acumuladas" /></p:column>
+                                    <p:column><p:inputText size="15" id="PATReservaLegal" value="#{modeloControlador.currentModelo.PATReservaLegal}"/></p:column>
+                                </p:row>
+                                <p:row>
+                                    <p:column><h:outputLabel value="Resultados acumulados" /></p:column>
+                                    <p:column><p:inputText size="15" id="PATRESULACUMULADOS" value="#{modeloControlador.currentModelo.PATResultadoAcumulado}"/></p:column>
+                                </p:row>
+                           </p:panelGrid>
+                                    
+                                    
+                                </p:panel></p:column>
+                        </p:row>
+                    </p:panelGrid>
+                </p:tab>  
+  
+  
+</p:tabView>  
+        </p:panel>
+    
+</ui:composition>
