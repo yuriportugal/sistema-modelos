@@ -6,19 +6,19 @@
     xmlns:p="http://primefaces.org/ui">
     
        <p:panel id="panelProd" >
-           <p:growl id="growlProducto" showDetail="true" sticky="true" />   
            <h:panelGrid columns="1" width="100%" >
                 <p:panel header="Edición/Creación" styleClass="width=50%;">
                      <p:panelGrid   style="width:100%;border:0px;"   id="panelProductoMod"    >  
                        <p:row>   
                             <p:column   style="width:25%" >
-                                <h:outputLabel value="Producto: *" />
+                                <h:outputLabel value="Producto: " />
                             </p:column>
                             <p:column   style="width:25%" >
                                 <p:selectOneMenu id="productoModel"  value="#{productoModeloControlador.currentProductoModeloDetalle.producto.idproducto}">
                                     <f:selectItem  itemLabel="Seleccione un producto" itemValue="#{null}"></f:selectItem>
                                     <f:selectItems value="#{productoModeloControlador.lstProducto}" var="producto" itemLabel="#{producto.nombre}" itemValue="#{producto.idproducto}"></f:selectItems>
-                                </p:selectOneMenu></p:column>
+                                </p:selectOneMenu>
+                            </p:column>
                             <p:column   style="width:25%" >
                                 <h:outputLabel value="Precio de venta: *" />
                             </p:column>
@@ -30,13 +30,13 @@
                          
                      <p:row>   
                             <p:column   style="width:25%"  >
-                            <h:outputLabel value="Stock inicial: *" />
+                            <h:outputLabel value="Stock inicial:" />
                             </p:column>
                             <p:column   style="width:25%" >
                                 <p:inputText id="stockInicial"   size="30" value="#{productoModeloControlador.currentProductoModeloDetalle.stockInicial}"/>
                             </p:column>
                             <p:column   style="width:25%" >
-                            <h:outputLabel value="Vol. de venta: *" />
+                            <h:outputLabel value="Vol. de venta:" />
                             </p:column>
                             <p:column   style="width:25%" >
                                 <p:inputText id="volVenta"   size="30" value="#{productoModeloControlador.currentProductoModeloDetalle.volumenVenta}" />
@@ -45,13 +45,13 @@
                          
                        <p:row>   
                             <p:column   style="width:25%"  >
-                            <h:outputLabel value="Días (Políticas de stock): *" />
+                            <h:outputLabel value="Días (Políticas de stock):" />
                             </p:column>
                             <p:column   style="width:25%" >
                                 <p:inputText id="politicasDias"   size="30" value="#{productoModeloControlador.currentProductoModeloDetalle.politicaDias}"/>
                             </p:column>
                             <p:column   style="width:25%" >
-                            <h:outputLabel value="Stock mínimo (Políticas de stock) *" />
+                                <h:outputLabel value="Stock mínimo(Políticas de stock):" />
                             </p:column>
                             <p:column   style="width:25%" >
                                 <p:inputText id="politicasStock"   size="30" value="#{productoModeloControlador.currentProductoModeloDetalle.politicaStockMin}" />
@@ -60,18 +60,18 @@
                        
                        <p:row>
                             <p:column   style="width:25%" >
-                                <h:outputLabel value="Unidad de venta: *" />
+                                <h:outputLabel value="Unidad de venta: " />
                             </p:column>
-                            <p:column colspan="3"   style="width:25%" >
+                            <p:column    style="width:25%" >
                                 <p:selectOneMenu id="unidadModel"  value="#{productoModeloControlador.currentProductoModeloDetalle.unidadPresentacion.idUnidad}">
                                     <f:selectItem  itemLabel="Seleccione una unidad" itemValue="#{null}"></f:selectItem>
                                     <f:selectItems value="#{productoModeloControlador.lstUnidad}" var="unidad" itemLabel="#{unidad.nombre}" itemValue="#{unidad.idUnidad}"></f:selectItems>
                                 </p:selectOneMenu>
                             </p:column>
                             <p:column   style="width:25%" >
-                                <h:outputLabel value="Unidad de produccion: *" />
+                                <h:outputLabel value="Unidad de produccion: " />
                             </p:column>
-                            <p:column colspan="3"   style="width:25%" >
+                            <p:column    style="width:25%" >
                                 <p:selectOneMenu id="unidadModelPresentacion"  value="#{productoModeloControlador.currentProductoModeloDetalle.unidad.idUnidad}">
                                     <f:selectItem  itemLabel="Seleccione una unidad" itemValue="#{null}"></f:selectItem>
                                     <f:selectItems value="#{productoModeloControlador.lstUnidad}" var="unidad" itemLabel="#{unidad.nombre}" itemValue="#{unidad.idUnidad}"></f:selectItems>
@@ -125,31 +125,31 @@
                        <h:outputText  value="#{productoModel.producto.nombre}" />  
                     </p:column>  
                         
-                    <p:column style="width:90px;"  headerText="Unidad Prod." >  
+                    <p:column style="width:55px;"  headerText="U.Prod." >  
                         <h:outputText  value="#{productoModel.unidad.nombre}" />  
                     </p:column>      
                     
-                    <p:column style="width:90px;"  headerText="Unidad Prod." >  
+                    <p:column style="width:55px;"  headerText="U.Venta" >  
                         <h:outputText  value="#{productoModel.unidadPresentacion.nombre}" />  
                     </p:column>    
                         
-                    <p:column style="width:75px;" headerText="Precio Venta" >  
+                    <p:column style="width:55px;" headerText="P.Venta" >  
                         <h:outputText  value="#{productoModel.precioVenta}" />  
                     </p:column>  
 
-                    <p:column  style="width:75px;" headerText="Stock Ini" >  
+                    <p:column  style="width:75px;" headerText="Stock Ini." >  
                         <h:outputText value="#{productoModel.stockInicial}" />  
                     </p:column>  
                     
-                    <p:column style="width:75px;" headerText="Vol Venta" >  
+                    <p:column style="width:78px;" headerText="Vol. Venta" >  
                         <h:outputText value="#{productoModel.volumenVenta}" />  
                     </p:column>  
                    
-                    <p:column style="width:75px;" headerText="Dias Pol." >  
+                    <p:column style="width:68px;" headerText="Dias Pol." >  
                         <h:outputText value="#{productoModel.politicaDias}" />  
                     </p:column>  
                         
-                    <p:column style="width:75px;" headerText="Stock Pol." >  
+                    <p:column style="width:80px;" headerText="Stock Pol." >  
                         <h:outputText value="#{productoModel.politicaStockMin}" />  
                     </p:column>      
                         
