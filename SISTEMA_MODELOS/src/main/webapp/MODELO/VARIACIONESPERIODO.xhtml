@@ -8,13 +8,13 @@
             
           <p:row>   
                  <p:column   style="width:30%" >
-                    <h:outputLabel value="% Variacion Precio Venta: *" />
+                    <h:outputLabel value="% Variacion Precio Compra: *" />
                  </p:column>                
                  <p:column   style="width:20%" >
                      <p:inputText  id="porVarPrecioCompra"   size="30" value="#{modeloControlador.currentModelo.VARIndPrecioCompra}"></p:inputText>    
                  </p:column>
                  <p:column   style="width:30%" >
-                    <h:outputLabel value="% Incial Precio Venta: *" />
+                    <h:outputLabel value="% Incial Precio Compra: *" />
                  </p:column>
                  <p:column   style="width:20%" >
                      <p:inputText  id="porIniPrecioCompra"  size="30" value="#{modeloControlador.currentModelo.VARPorcInicialPrecioCompra}" />
@@ -23,10 +23,28 @@
           
           <p:row>   
                 <p:column  colspan="4" style="width:30%" >
-                    <h:outputLabel value="!----------BOTON---------!" />
+                    <p:commandButton value="Generar" action="#{modeloControlador.generarResultadosVariacion()}">
+                        <f:setPropertyActionListener value="1" target="#{modeloControlador.numTabla}" />  
+                    </p:commandButton>
                  </p:column>                
             </p:row>  
-         
+         <p:row>   
+                <p:column  colspan="4" style="width:30%" >
+                    <p:dataTable id="varTab_1"  var="result" value="#{modeloControlador.tablaResulVar}" >                      
+                        <p:columns value="#{modeloControlador.columnas}" var="column" columnIndexVar="indice"   
+                    >  
+            <f:facet name="header">  
+                #{column.header}
+            </f:facet>    
+                    
+                    <h:outputText  value=" #{result.valValores[indice]}" /> 
+                   
+             
+        </p:columns>  
+  
+    </p:dataTable>
+                 </p:column>                
+            </p:row>
           
             <p:row>   
                  <p:column   style="width:30%" >
@@ -45,12 +63,25 @@
           
           <p:row>   
                 <p:column  colspan="4" style="width:30%" >
-                    <h:outputLabel value="!----------BOTON---------!" />
+                    <p:commandButton value="Generar" action="#{modeloControlador.generarResultadosVariacion()}">
+                        <f:setPropertyActionListener value="2" target="#{modeloControlador.numTabla}" />  
+                    </p:commandButton>
                  </p:column>                
             </p:row>  
           <p:row>   
                 <p:column  colspan="4" style="width:30%" >
-                    <h:outputLabel value="!----------FALTA---------!" />
+                    <p:dataTable id="varTab_2"  var="result" value="#{modeloControlador.tablaResulVar}" >                      
+                        <p:columns value="#{modeloControlador.columnas}" var="column" columnIndexVar="indice"   
+                    >  
+            <f:facet name="header">  
+                #{column.header}
+            </f:facet>    
+                    <h:outputText  value=" #{result.valValores[indice]}" /> 
+                   
+             
+        </p:columns>  
+  
+    </p:dataTable>
                  </p:column>                
             </p:row>
             <p:row>   
@@ -69,12 +100,26 @@
             </p:row>
           <p:row>   
                 <p:column  colspan="4" style="width:30%" >
-                    <h:outputLabel value="!----------BOTON---------!" />
+                    <p:commandButton value="Generar" action="#{modeloControlador.generarResultadosVariacion()}">
+                        <f:setPropertyActionListener value="3" target="#{modeloControlador.numTabla}" />  
+                    </p:commandButton>
                  </p:column>                
             </p:row>  
            <p:row>   
                 <p:column  colspan="4" style="width:30%" >
-                    <h:outputLabel value="!----------FALTA---------!" />
+                    <p:dataTable id="varTab_3"  var="result" value="#{modeloControlador.tablaResulVar}" >                      
+                        <p:columns value="#{modeloControlador.columnas}" var="column" columnIndexVar="indice"   
+                    >  
+            <f:facet name="header">  
+                #{column.header}
+            </f:facet>    
+                    
+                    <h:outputText  value=" #{result.valValores[indice]}" /> 
+                   
+             
+        </p:columns>  
+  
+    </p:dataTable>
                  </p:column>                
             </p:row>
             <p:row>   
@@ -93,12 +138,26 @@
             </p:row>
           <p:row>   
                 <p:column  colspan="4" style="width:30%" >
-                    <h:outputLabel value="!----------BOTON---------!" />
+                    <p:commandButton value="Generar" action="#{modeloControlador.generarResultadosVariacion()}">
+                        <f:setPropertyActionListener value="4" target="#{modeloControlador.numTabla}" />  
+                    </p:commandButton>
                  </p:column>                
             </p:row>  
            <p:row>   
                 <p:column  colspan="4" style="width:30%" >
-                    <h:outputLabel value="!----------FALTA---------!" />
+                    <p:dataTable id="varTab_4"  var="result" value="#{modeloControlador.tablaResulVar}" >                      
+                        <p:columns value="#{modeloControlador.columnas}" var="column" columnIndexVar="indice"   
+                    >  
+            <f:facet name="header">  
+                #{column.header}
+            </f:facet>    
+                    
+                    <h:outputText value=" #{result.valValores[indice]}" /> 
+                   
+             
+        </p:columns>  
+  
+    </p:dataTable>
                  </p:column>                
             </p:row>
             <p:row>   
@@ -117,12 +176,26 @@
             </p:row>
           <p:row>   
                 <p:column  colspan="4" style="width:30%" >
-                    <h:outputLabel value="!----------BOTON---------!" />
+                    <p:commandButton value="Generar" action="#{modeloControlador.generarResultadosVariacion()}">
+                        <f:setPropertyActionListener value="5" target="#{modeloControlador.numTabla}" />  
+                    </p:commandButton>
                  </p:column>                
             </p:row>  
            <p:row>   
                 <p:column  colspan="4" style="width:30%" >
-                    <h:outputLabel value="!----------FALTA---------!" />
+                    <p:dataTable id="varTab_5"  var="result" value="#{modeloControlador.tablaResulVar}" >                      
+                        <p:columns value="#{modeloControlador.columnas}" var="column" columnIndexVar="indice"   
+                    >  
+            <f:facet name="header">  
+                #{column.header}
+            </f:facet>    
+                    
+                    <h:outputText value=" #{result.valValores[indice]}" /> 
+                   
+             
+        </p:columns>  
+  
+    </p:dataTable>
                  </p:column>                
             </p:row>
             <p:row>   
@@ -141,12 +214,26 @@
             </p:row>
           <p:row>   
                 <p:column  colspan="4" style="width:30%" >
-                    <h:outputLabel value="!----------BOTON---------!" />
+                    <p:commandButton value="Generar" action="#{modeloControlador.generarResultadosVariacion()}">
+                        <f:setPropertyActionListener value="6" target="#{modeloControlador.numTabla}" />  
+                    </p:commandButton>
                  </p:column>                
             </p:row>  
            <p:row>   
                 <p:column  colspan="4" style="width:30%" >
-                    <h:outputLabel value="!----------FALTA---------!" />
+                    <p:dataTable id="varTab_6"  var="result" value="#{modeloControlador.tablaResulVar}" >                      
+                        <p:columns value="#{modeloControlador.columnas}" var="column" columnIndexVar="indice"   
+                    >  
+            <f:facet name="header">  
+                #{column.header}
+            </f:facet>    
+                    
+                    <h:outputText  value=" #{result.valValores[indice]}" /> 
+                   
+             
+        </p:columns>  
+  
+    </p:dataTable>
                  </p:column>                
             </p:row>
             </p:panelGrid> 

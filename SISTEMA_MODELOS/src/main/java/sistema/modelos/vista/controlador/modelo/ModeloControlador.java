@@ -16,6 +16,7 @@ import org.primefaces.context.RequestContext;
 import sistema.modelos.server.entidades.modelo.Ano;
 import sistema.modelos.server.entidades.modelo.Modelo;
 import sistema.modelos.server.entidades.modelo.TipoPeriodo;
+import sistema.modelos.server.entidades.resultado.TablaResultado;
 import sistema.modelos.server.facade.empresa.EmpresaFacade;
 import sistema.modelos.server.facade.modelo.AnoFacade;
 import sistema.modelos.server.facade.modelo.ModeloFacade;
@@ -392,6 +393,126 @@ public class ModeloControlador implements Serializable {
 
     public void setResultadoControlador(ResultadoControlador resultadoControlador) {
         this.resultadoControlador = resultadoControlador;
+    }
+    
+    
+    private int numTabla;
+
+    public int getNumTabla() {
+        return numTabla;
+    }
+
+    public void setNumTabla(int numTabla) {
+        this.numTabla = numTabla;
+    }
+    
+    private List<ColumnModel> columnas;
+
+    public List<ColumnModel> getColumnas() {
+        if (columnas == null){
+            columnas = new ArrayList<ColumnModel>();
+        }
+        return columnas;
+    }
+
+    public void setColumnas(List<ColumnModel> columnas) {
+        this.columnas = columnas;
+    }
+    
+    private TablaResultado tablaResulVar;
+
+    public TablaResultado getTablaResulVar() {
+        if (tablaResulVar == null){
+            tablaResulVar = new TablaResultado();
+        }
+        return tablaResulVar;
+    }
+
+    public void setTablaResulVar(TablaResultado tablaResulVar) {
+        this.tablaResulVar = tablaResulVar;
+    }
+    
+     public void generarColumnasVariacion(int size){
+       columnas = new ArrayList<ColumnModel>();
+        for (int i = 0; i < size; i++){
+            ColumnModel column = new ColumnModel();
+                column.setHeader("Periodo "+i);
+                column.setProperty("valores");
+            
+           columnas.add(column);        
+                    
+        }
+    }
+    
+    
+    
+    public void generarResultadosVariacion(){
+            if (currentModelo.getHorizonte() != null){
+                if (currentModelo.getHorizonte().compareTo(0L)>0){
+                    generarColumnasVariacion(currentModelo.getHorizonte().intValue());
+                    RequestContext context = RequestContext.getCurrentInstance();  
+                    double inicial = 0.1;
+                    double variacion = 2;
+                    switch (numTabla){
+                        case 1: {
+                            inicial = currentModelo.getVARPorcInicialPrecioCompra();
+                            variacion = currentModelo.getVARIndPrecioCompra();
+                            break;
+                        }
+                        case 2: {
+                            
+                            inicial = currentModelo.getVARPorcInicialPrecioVenta();
+                            variacion = currentModelo.getVARIndPrecioVenta();
+                            break;
+                        }
+                        case 3: {
+                            inicial = currentModelo.getVARPorcInicialVenta();
+                            variacion = currentModelo.getVARIndVenta();
+                            break;
+
+                        }
+                        case 4: {
+                            inicial = currentModelo.getVARPorcInicialMantenimiento();
+                            variacion = currentModelo.getVARIndMantenimiento();
+                            break;
+
+                        }
+                        case 5: {
+                            inicial = currentModelo.getVARPorcInicialSalarial();
+                            variacion = currentModelo.getVARPorcInicialSalarial();
+                            break;
+                            
+                        }
+                        case 6: {
+                            inicial = currentModelo.getVARPorcInicialGastos();
+                            variacion = currentModelo.getVARIndGastos();
+                            break;
+                        }
+                            
+                            
+                    }
+                    generarVariacion(inicial,variacion,currentModelo.getHorizonte().intValue());
+                    context.update("modeloForm:tabViewModelo:varTab_"+numTabla);
+        
+                }
+            }
+           System.out.println("modeloForm:tabViewModelo:varTab_"+numTabla);
+    }
+
+    private void generarVariacion(double inicial, double variacion, int numTabla) {
+        double [] valores = new double[numTabla];
+        String [] sValores = new String[numTabla];
+        for (int i = 0; i < numTabla;i++){
+            if (i == 0)
+                valores[i] = inicial;
+            else
+                valores[i] = valores[i-1]*(1+variacion/100);
+            sValores[i] = String.valueOf(valores[i]);
+        }
+        
+        tablaResulVar = new TablaResultado();
+        tablaResulVar.setValores(valores);
+        tablaResulVar.setValValores(sValores);
     }
     
     
