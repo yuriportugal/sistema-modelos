@@ -28,6 +28,7 @@
     <class>sistema.modelos.server.entidades.modelo.ModeloFormulacionMaquinaria</class>
     <class>sistema.modelos.server.entidades.modelo.ModeloFormulacionPersonal</class>
     <class>sistema.modelos.server.entidades.util.Usuario</class>
+    <class>sistema.modelos.server.entidades.modelo.Inductor</class>
     <exclude-unlisted-classes>true</exclude-unlisted-classes>
     <properties/>
   </persistence-unit>

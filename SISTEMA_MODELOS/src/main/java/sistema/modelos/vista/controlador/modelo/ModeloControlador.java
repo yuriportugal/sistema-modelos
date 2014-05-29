@@ -14,11 +14,13 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import org.primefaces.context.RequestContext;
 import sistema.modelos.server.entidades.modelo.Ano;
+import sistema.modelos.server.entidades.modelo.Inductor;
 import sistema.modelos.server.entidades.modelo.Modelo;
 import sistema.modelos.server.entidades.modelo.TipoPeriodo;
 import sistema.modelos.server.entidades.resultado.TablaResultado;
 import sistema.modelos.server.facade.empresa.EmpresaFacade;
 import sistema.modelos.server.facade.modelo.AnoFacade;
+import sistema.modelos.server.facade.modelo.InductorFacade;
 import sistema.modelos.server.facade.modelo.ModeloFacade;
 import sistema.modelos.server.facade.modelo.TipoPeriodoFacade;
 import sistema.modelos.server.facade.util.UsuarioFacade;
@@ -68,6 +70,9 @@ public class ModeloControlador implements Serializable {
     
     @EJB
     private AnoFacade anoFacade;
+
+    @EJB
+    private InductorFacade inductorFacade;
     
     @EJB
     private ModeloFacade modeloFacade;
@@ -80,13 +85,31 @@ public class ModeloControlador implements Serializable {
     private List<Modelo> lstModelo;
     
     private List<Modelo> lstCorridasModelo;
-
+    
+    private List<Inductor> lstInductor;
+    
     public List<ColumnModel> getLstColumnModel() {
         if (lstColumnModel == null){
             lstColumnModel = new ArrayList<ColumnModel>();
         }
         return lstColumnModel;
     }
+
+    public InductorFacade getInductorFacade() {
+        return inductorFacade;
+    }
+
+    public void setInductorFacade(InductorFacade inductorFacade) {
+        this.inductorFacade = inductorFacade;
+    }
+
+    public List<Inductor> getLstInductor() {
+        lstInductor = getInductorFacade().findAll();
+        return lstInductor;
+    }
+    
+    
+    
 
     public void setLstColumnModel(List<ColumnModel> lstColumnModel) {
         this.lstColumnModel = lstColumnModel;

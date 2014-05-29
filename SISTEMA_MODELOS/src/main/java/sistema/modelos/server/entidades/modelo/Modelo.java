@@ -73,6 +73,10 @@ public class Modelo implements Serializable{
     private Ano ano;
     
     @ManyToOne 
+    @JoinColumn(name="ID_INDUCTOR")
+    private Inductor inductor;
+    
+    @ManyToOne 
     @JoinColumn(name="PARENT_ID_MODELO")
     private Modelo parentModelo;
     
@@ -958,6 +962,19 @@ public class Modelo implements Serializable{
     public void setParentModelo(Modelo parentModelo) {
         this.parentModelo = parentModelo;
     }
+
+    public Inductor getInductor() {
+        if (inductor == null){
+            inductor = new Inductor();
+        }
+        return inductor;
+    }
+
+    public void setInductor(Inductor inductor) {
+        this.inductor = inductor;
+    }
+    
+    
     
     
     
