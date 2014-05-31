@@ -12,7 +12,7 @@ import sistema.modelos.server.entidades.modelo.InsumoModeloDetalle;
 import sistema.modelos.server.entidades.modelo.ModeloFormulacionInsumo;
 import sistema.modelos.server.entidades.modelo.ProductoModeloDetalle;
 
-public class NecesidadInsumo {
+public class ModeloInventarioUnidades {
     
         //Dependencias Plan de produccion
         List<TablaResultado> planProduccion;
@@ -20,18 +20,81 @@ public class NecesidadInsumo {
         List<TablaResultado> lstPrecioCompraInsumoProy; //Insumo Resultado
         //Resultados
         List<TablaResultado> requerimientoInsumo;
-        List<TablaResultadoExt> necesidadesInsumo;
-        List<TablaResultado> planComprasInsumo;
-        List<TablaResultado> planComprasValorizadoInsumo;
-        List<TablaResultado> stockInicialNecesidadInsumo;
-        List<TablaResultado> stockFinalNecesidadInsumo;
+        List<TablaResultadoExt> modeloInventarioUnidades;
+        List<TablaResultado> planComprasUnidades;
+        List<TablaResultado> planComprasValorizadoUnidades;
+        List<TablaResultado> stockInicial;
+        List<TablaResultado> stockFinal;
+
+    public List<TablaResultado> getLstPrecioCompraInsumoProy() {
+        return lstPrecioCompraInsumoProy;
+    }
+
+    public List<TablaResultadoExt> getModeloInventarioUnidades() {
+        return modeloInventarioUnidades;
+    }
+
+    public List<TablaResultado> getPlanComprasUnidades() {
+        return planComprasUnidades;
+    }
+
+    public List<TablaResultado> getPlanComprasValorizadoUnidades() {
+        return planComprasValorizadoUnidades;
+    }
+
+    public List<TablaResultado> getPlanProduccion() {
+        return planProduccion;
+    }
+
+    public List<TablaResultado> getRequerimientoInsumo() {
+        return requerimientoInsumo;
+    }
+
+    public List<TablaResultado> getStockFinal() {
+        return stockFinal;
+    }
+
+    public List<TablaResultado> getStockInicial() {
+        return stockInicial;
+    }
+
+    public void setInsumoDetFormulacion(List<FormulacionDetalle> insumoDetFormulacion) {
+        this.insumoDetFormulacion = insumoDetFormulacion;
+    }
+
+    public void setLstPrecioCompraInsumoProy(List<TablaResultado> lstPrecioCompraInsumoProy) {
+        this.lstPrecioCompraInsumoProy = lstPrecioCompraInsumoProy;
+    }
+
+    public void setModeloInventarioUnidades(List<TablaResultadoExt> modeloInventarioUnidades) {
+        this.modeloInventarioUnidades = modeloInventarioUnidades;
+    }
+
+    public void setPlanComprasUnidades(List<TablaResultado> planComprasUnidades) {
+        this.planComprasUnidades = planComprasUnidades;
+    }
+
+    public void setPlanComprasValorizadoUnidades(List<TablaResultado> planComprasValorizadoUnidades) {
+        this.planComprasValorizadoUnidades = planComprasValorizadoUnidades;
+    }
+
+    public void setPlanProduccion(List<TablaResultado> planProduccion) {
+        this.planProduccion = planProduccion;
+    }
+
+    public void setRequerimientoInsumo(List<TablaResultado> requerimientoInsumo) {
+        this.requerimientoInsumo = requerimientoInsumo;
+    }
+
+    public void setStockFinal(List<TablaResultado> stockFinal) {
+        this.stockFinal = stockFinal;
+    }
+
+    public void setStockInicial(List<TablaResultado> stockInicial) {
+        this.stockInicial = stockInicial;
+    }
         
-    
-    
-    
-    
-    
-    
+        
 //    List<TablaResultado> consolidadoPlanProd = null;
 //    DecimalFormat df = new DecimalFormat("###,###,###");
 //    List<TablaResultadoExt> lstNecesidadInsumoxProducto;
@@ -164,5 +227,9 @@ public class NecesidadInsumo {
 //
 //    
 //    
+
+    public List<FormulacionDetalle> getInsumoDetFormulacion() {
+        return insumoDetFormulacion;
+    }
     
 }
