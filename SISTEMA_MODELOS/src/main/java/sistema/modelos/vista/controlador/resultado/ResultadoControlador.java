@@ -112,32 +112,32 @@ public class ResultadoControlador {
     public void generarResultado(Modelo modelo){
         
         
-        generarColumna(Integer.valueOf(modelo.getHorizonte().toString()));
-        generarColumnaNecesiadesInsumo(Integer.valueOf(modelo.getHorizonte().toString()));
-        Resultado resultado = new Resultado();
-        //Vista plan de ventas
-        resultado.getPlanVentas().generarPlanVentasProy(modelo.getLstProductoModeloDetalle(),Integer.valueOf(modelo.getHorizonte().toString()));
-        System.out.println("---"+resultado.getPlanVentas().getPlanVentasProyeccion().size());
-        resultado.getPlanVentas().generarValorVentaSinIGV(modelo.getLstProductoModeloDetalle(),Integer.valueOf(modelo.getHorizonte().toString()));
-        resultado.getPlanVentas().generarPlanVentasValorizado();
-        resultado.getPlanVentas().generarPlanVentasValorizadoConIGV();
-        //Vista de plan de producción
-        resultado.getPlanProduccion().llenarPlanVentasProyeccion(resultado.getPlanVentas().getPlanVentasProyeccion());
-        resultado.getPlanProduccion().inicializarValores();
-        resultado.getPlanProduccion().generarValoresProductosTerminados();
-        resultado.getPlanProduccion().generarResumenes();
-        //Vista para necesidades de insumo...
-        resultado.getNecesidadInsumo().setConsolidadoPlanProd(resultado.getPlanProduccion().getConsolidadoPlanProd());
-        resultado.getNecesidadInsumo().generarNecesidadInsumoxProducto();
-        resultado.getNecesidadInsumo().generarResumen();
-        setResultado(resultado);
-        //Vista de plan de compras
-        resultado.getPlanCompras().setLstMaestroInsumoModeloDetalle(modelo.getLstInsumoModeloDetalle());
-        resultado.getPlanCompras().setLstResumenNecesidadInsumo(resultado.getNecesidadInsumo().getListaResumenNecesidadesInsumo());
-        resultado.getPlanCompras().generarPlanDeCompras();
-        
-        DecimalFormat df = new DecimalFormat("###,###,###");
-       
+//        generarColumna(Integer.valueOf(modelo.getHorizonte().toString()));
+//        generarColumnaNecesiadesInsumo(Integer.valueOf(modelo.getHorizonte().toString()));
+//        Resultado resultado = new Resultado();
+//        //Vista plan de ventas
+//        resultado.getPlanVentas().generarPlanVentasProy(modelo.getLstProductoModeloDetalle(),Integer.valueOf(modelo.getHorizonte().toString()));
+//        System.out.println("---"+resultado.getPlanVentas().getPlanVentasProyeccion().size());
+//        resultado.getPlanVentas().generarValorVentaSinIGV(modelo.getLstProductoModeloDetalle(),Integer.valueOf(modelo.getHorizonte().toString()));
+//        resultado.getPlanVentas().generarPlanVentasValorizado();
+//        resultado.getPlanVentas().generarPlanVentasValorizadoConIGV();
+//        //Vista de plan de producción
+//        resultado.getPlanProduccion().llenarPlanVentasProyeccion(resultado.getPlanVentas().getPlanVentasProyeccion());
+//        resultado.getPlanProduccion().inicializarValores();
+//        resultado.getPlanProduccion().generarValoresProductosTerminados();
+//        resultado.getPlanProduccion().generarResumenes();
+//        //Vista para necesidades de insumo...
+//        resultado.getNecesidadInsumo().setConsolidadoPlanProd(resultado.getPlanProduccion().getConsolidadoPlanProd());
+//        resultado.getNecesidadInsumo().generarNecesidadInsumoxProducto();
+//        resultado.getNecesidadInsumo().generarResumen();
+//        setResultado(resultado);
+//        //Vista de plan de compras
+//        resultado.getPlanCompras().setLstMaestroInsumoModeloDetalle(modelo.getLstInsumoModeloDetalle());
+//        resultado.getPlanCompras().setLstResumenNecesidadInsumo(resultado.getNecesidadInsumo().getListaResumenNecesidadesInsumo());
+//        resultado.getPlanCompras().generarPlanDeCompras();
+//        
+//        DecimalFormat df = new DecimalFormat("###,###,###");
+//       
         
         
         
