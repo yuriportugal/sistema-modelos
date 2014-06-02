@@ -14,26 +14,45 @@
         <h:form>
             <h:graphicImage value="/resources/imagenes/fireball.jpg" height="100" width="100%"></h:graphicImage>
         <p:menubar>  
-        <p:submenu label="Resultados">  
-            <p:submenu label="Plan de ventas" icon="ui-icon-contact">  
+        <p:submenu label="General">  
+            <p:submenu label="Personal" icon="ui-icon-contact">  
                 <p:menuitem value="Detalle" action="#{resultadoControlador.mostrarPlanVentasDetalle()}" />  
                 <p:menuitem value="Resumen" url="#" />  
             </p:submenu>  
            
-            <p:submenu label="Plan de produccion" icon="ui-icon-contact">  
+            <p:submenu label="Activos" icon="ui-icon-contact">  
                 <p:menuitem value="Detalle" action="#{resultadoControlador.mostrarPlanProduccionDetalle()}" />  
                 <p:menuitem value="Resumen" url="#" />  
             </p:submenu>  
-            <p:submenu label="Necesidades de Insumo" icon="ui-icon-contact">  
+            <p:submenu label="Insumo" icon="ui-icon-contact">  
                 <p:menuitem value="Detalle" action="#{resultadoControlador.mostrarNecesidadesInsumoDetalle()}" />  
-                <p:menuitem value="Resumen" url="#" />  
-            </p:submenu>
-            <p:submenu label="Plan de Compras" icon="ui-icon-contact">  
-                <p:menuitem value="Detalle" action="#{resultadoControlador.mostrarPlandeComprasDetalle()}" />  
                 <p:menuitem value="Resumen" url="#" />  
             </p:submenu>
             
         </p:submenu>  
+            
+        <p:submenu label="Producción">  
+            <p:submenu label="Plan de Ventas" icon="ui-icon-contact">  
+                <p:menuitem value="Detalle" action="#{resultadoControlador.mostrarPlanVentasDetalle()}" />  
+                <p:menuitem value="Resumen" url="#" />  
+            </p:submenu>  
+           
+            <p:submenu label="Plan de Producción" icon="ui-icon-contact">  
+                <p:menuitem value="Detalle" action="#{resultadoControlador.mostrarPlanProduccionDetalle()}" />  
+                <p:menuitem value="Resumen" url="#" />  
+            </p:submenu>  
+            <p:submenu label="Plan de Compras" icon="ui-icon-contact">  
+                <p:submenu label="Modelo Inventarios Unidades" icon="ui-icon-contact">  
+                    <p:menuitem value="Detalle" action="#{resultadoControlador.mostrarPlanProduccionDetalle()}" />  
+                    <p:menuitem value="Resumen" url="#" />  
+                </p:submenu>  
+                <p:submenu label="Modelo Inventarios Consumo" icon="ui-icon-contact">  
+                    <p:menuitem value="Detalle" action="#{resultadoControlador.mostrarNecesidadesInsumoDetalle()}" />  
+                    <p:menuitem value="Resumen" url="#" />  
+                </p:submenu>
+            </p:submenu>
+            
+        </p:submenu>    
   
        
     </p:menubar>  

@@ -410,7 +410,7 @@ public class ModeloControlador implements Serializable {
         System.out.print("EMPEZAMOS A GENERAR");
         Modelo corrida = modeloFacade.find(currentModelo.getIdModelo());
         getResultadoControlador().generarResultado(corrida);
-        return "/RESULTADO/MOSTRARRESULTADO";
+            return "/RESULTADO/MOSTRARRESULTADO";
     
     }
 
