@@ -63,6 +63,9 @@ public class ProductoModeloDetalle implements Serializable{
     @Column(name = "POLITICA_STOCK_MIN")
     private Long politicaStockMin;
     
+    @Column(name = "EQUIVALENCIA")
+    private Long equivalencia;
+    
     @ManyToOne
     @JoinColumn(name="UNIDAD")
     private Unidad unidad;
@@ -206,6 +209,14 @@ public class ProductoModeloDetalle implements Serializable{
 
     public void setUnidadPresentacion(Unidad unidadPresentacion) {
         this.unidadPresentacion = unidadPresentacion;
+    }
+
+    public Long getEquivalencia() {
+        return equivalencia;
+    }
+
+    public void setEquivalencia(Long equivalencia) {
+        this.equivalencia = equivalencia;
     }
     
     
