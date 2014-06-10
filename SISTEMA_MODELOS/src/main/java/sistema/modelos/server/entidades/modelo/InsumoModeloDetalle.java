@@ -6,6 +6,7 @@ package sistema.modelos.server.entidades.modelo;
 
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Collections;
 import java.util.List;
 import javax.persistence.Column;
@@ -44,16 +45,16 @@ public class InsumoModeloDetalle implements Serializable{
     private Insumo insumo;
 
     @Column(name = "PRECIO_COMPRA")
-    private Long precioCompra;
+    private BigDecimal precioCompra;
     
     @Column(name = "STOCK_INICIAL")
-    private Long stockInicial;
+    private BigDecimal stockInicial;
     
     @Column(name = "POLITICA_DIAS")
-    private Long politicaDias;
+    private BigDecimal politicaDias;
     
     @Column(name = "POLITICA_STOCK_MIN")
-    private Long politicaStockMin;
+    private BigDecimal politicaStockMin;
     
     @ManyToOne
     @JoinColumn(name="UNIDAD")
@@ -70,19 +71,19 @@ public class InsumoModeloDetalle implements Serializable{
         return modelo;
     }
 
-    public Long getPoliticaDias() {
+    public BigDecimal getPoliticaDias() {
         return politicaDias;
     }
 
-    public Long getPoliticaStockMin() {
+    public BigDecimal getPoliticaStockMin() {
         return politicaStockMin;
     }
 
-    public Long getPrecioCompra() {
+    public BigDecimal getPrecioCompra() {
         return precioCompra;
     }
 
-    public Long getStockInicial() {
+    public BigDecimal getStockInicial() {
         return stockInicial;
     }
 
@@ -103,19 +104,19 @@ public class InsumoModeloDetalle implements Serializable{
         this.modelo = modelo;
     }
 
-    public void setPoliticaDias(Long politicaDias) {
+    public void setPoliticaDias(BigDecimal politicaDias) {
         this.politicaDias = politicaDias;
     }
 
-    public void setPoliticaStockMin(Long politicaStockMin) {
+    public void setPoliticaStockMin(BigDecimal politicaStockMin) {
         this.politicaStockMin = politicaStockMin;
     }
 
-    public void setPrecioCompra(Long precioCompra) {
+    public void setPrecioCompra(BigDecimal precioCompra) {
         this.precioCompra = precioCompra;
     }
 
-    public void setStockInicial(Long stockInicial) {
+    public void setStockInicial(BigDecimal stockInicial) {
         this.stockInicial = stockInicial;
     }
 

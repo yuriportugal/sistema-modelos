@@ -145,7 +145,7 @@ public class Formulacion {
                 if (cargo.getIdCargo().equals(modFormPersonal.getCargo().getIdCargo())){
                     ProductoFormulacion prodForm = new ProductoFormulacion();
                     prodForm.setProducto(prodModDet.getProducto());
-                    prodForm.setCantidad(modFormPersonal.getHoraHombre());
+                    prodForm.setCantidad(modFormPersonal.getHoraHombre().doubleValue());
                     lstProdForm.add(prodForm);
                 }
             }
@@ -160,7 +160,7 @@ public class Formulacion {
                 if (activo.getIdActivo().equals(modFormActivo.getActivo().getIdActivo())){
                     ProductoFormulacion prodForm = new ProductoFormulacion();
                     prodForm.setProducto(prodModDet.getProducto());
-                    prodForm.setCantidad(modFormActivo.getHoraMaquina());
+                    prodForm.setCantidad(modFormActivo.getHoraMaquina().doubleValue());
                     lstProdForm.add(prodForm);
                 }
             }

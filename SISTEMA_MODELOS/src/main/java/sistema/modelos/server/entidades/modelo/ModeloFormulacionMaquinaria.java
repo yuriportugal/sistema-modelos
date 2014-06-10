@@ -6,6 +6,7 @@ package sistema.modelos.server.entidades.modelo;
 
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
@@ -43,7 +44,7 @@ public class ModeloFormulacionMaquinaria implements Serializable{
     private Activo activo;
 
     @Column(name = "HORA_MAQUINA")
-    private Long horaMaquina;
+    private BigDecimal horaMaquina;
 
     public Activo getActivo() {
         if (activo == null){
@@ -56,14 +57,14 @@ public class ModeloFormulacionMaquinaria implements Serializable{
         this.activo = activo;
     }
 
-    public Long getHoraMaquina() {
+    public BigDecimal getHoraMaquina() {
         if (horaMaquina == null){
-            horaMaquina = 0L;
+            horaMaquina = BigDecimal.ZERO;
         }
         return horaMaquina;
     }
 
-    public void setHoraMaquina(Long horaMaquina) {
+    public void setHoraMaquina(BigDecimal horaMaquina) {
         this.horaMaquina = horaMaquina;
     }
 

@@ -6,6 +6,7 @@ package sistema.modelos.server.entidades.modelo;
 
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -31,19 +32,19 @@ public class PrestamoModeloDetalle implements Serializable{
     private Long idModeloPrestamo;
     
     @Column(name="MONTO")
-    private Long monto;
+    private BigDecimal monto;
     
     @Column(name="NOMBRE")
     private String nombre;
     
     @Column(name="INTERES")
-    private Long interes;
+    private BigDecimal interes;
     
     @Column(name="CANTIDAD_PERIODOS")
     private Long cantPeriodos;
     
     @Column(name="SALDO_DEUDOR")
-    private Long saldoDeudor;
+    private BigDecimal saldoDeudor;
         
     @ManyToOne
     @JoinColumn(name = "ID_MODELO", referencedColumnName = "ID_MODELO")
@@ -73,11 +74,11 @@ public class PrestamoModeloDetalle implements Serializable{
         return nombre;
     }
 
-    public void setMonto(Long monto) {
+    public void setMonto(BigDecimal monto) {
         this.monto = monto;
     }
 
-    public Long getMonto() {
+    public BigDecimal getMonto() {
         return monto;
     }
 
@@ -89,11 +90,11 @@ public class PrestamoModeloDetalle implements Serializable{
         return modelo;
     }
 
-    public void setInteres(Long interes) {
+    public void setInteres(BigDecimal interes) {
         this.interes = interes;
     }
 
-    public Long getInteres() {
+    public BigDecimal getInteres() {
         return interes;
     }
 
@@ -113,11 +114,11 @@ public class PrestamoModeloDetalle implements Serializable{
         return cantPeriodos;
     }
 
-    public Long getSaldoDeudor() {
+    public BigDecimal getSaldoDeudor() {
         return saldoDeudor;
     }
 
-    public void setSaldoDeudor(Long saldoDeudor) {
+    public void setSaldoDeudor(BigDecimal saldoDeudor) {
         this.saldoDeudor = saldoDeudor;
     }
 

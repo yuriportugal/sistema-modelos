@@ -478,37 +478,37 @@ public class ModeloControlador implements Serializable {
                     double variacion = 2;
                     switch (numTabla){
                         case 1: {
-                            inicial = currentModelo.getVARPorcInicialPrecioCompra();
-                            variacion = currentModelo.getVARIndPrecioCompra();
+                            inicial = currentModelo.getVARPorcInicialPrecioCompra().doubleValue();
+                            variacion = currentModelo.getVARIndPrecioCompra().doubleValue();
                             break;
                         }
                         case 2: {
                             
-                            inicial = currentModelo.getVARPorcInicialPrecioVenta();
-                            variacion = currentModelo.getVARIndPrecioVenta();
+                            inicial = currentModelo.getVARPorcInicialPrecioVenta().doubleValue();
+                            variacion = currentModelo.getVARIndPrecioVenta().doubleValue();
                             break;
                         }
                         case 3: {
-                            inicial = currentModelo.getVARPorcInicialVenta();
-                            variacion = currentModelo.getVARIndVenta();
+                            inicial = currentModelo.getVARPorcInicialVenta().doubleValue();
+                            variacion = currentModelo.getVARIndVenta().doubleValue();
                             break;
 
                         }
                         case 4: {
-                            inicial = currentModelo.getVARPorcInicialMantenimiento();
-                            variacion = currentModelo.getVARIndMantenimiento();
+                            inicial = currentModelo.getVARPorcInicialMantenimiento().doubleValue();
+                            variacion = currentModelo.getVARIndMantenimiento().doubleValue();
                             break;
 
                         }
                         case 5: {
-                            inicial = currentModelo.getVARPorcInicialSalarial();
-                            variacion = currentModelo.getVARPorcInicialSalarial();
+                            inicial = currentModelo.getVARPorcInicialSalarial().doubleValue();
+                            variacion = currentModelo.getVARPorcInicialSalarial().doubleValue();
                             break;
                             
                         }
                         case 6: {
-                            inicial = currentModelo.getVARPorcInicialGastos();
-                            variacion = currentModelo.getVARIndGastos();
+                            inicial = currentModelo.getVARPorcInicialGastos().doubleValue();
+                            variacion = currentModelo.getVARIndGastos().doubleValue();
                             break;
                         }
                             

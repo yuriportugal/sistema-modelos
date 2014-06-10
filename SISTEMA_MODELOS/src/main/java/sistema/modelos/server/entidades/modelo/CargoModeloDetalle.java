@@ -6,6 +6,7 @@ package sistema.modelos.server.entidades.modelo;
 
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
@@ -33,10 +34,10 @@ public class CargoModeloDetalle implements Serializable{
     private Long idCargoModelo;
     
     @Column(name="CANTIDAD")
-    private Long cantidad;
+    private BigDecimal cantidad;
     
     @Column(name="SUELDO")
-    private Long sueldo;
+    private BigDecimal sueldo;
     
     @Column(name="RELACION_PRODUCCION")
     private String esRelacionadoProduccion;
@@ -66,19 +67,19 @@ public class CargoModeloDetalle implements Serializable{
     }
     
 
-    public Long getCantidad() {
+    public BigDecimal getCantidad() {
         return cantidad;
     }
 
-    public void setCantidad(Long cantidad) {
+    public void setCantidad(BigDecimal cantidad) {
         this.cantidad = cantidad;
     }
 
-    public Long getSueldo() {
+    public BigDecimal getSueldo() {
         return sueldo;
     }
 
-    public void setSueldo(Long sueldo) {
+    public void setSueldo(BigDecimal sueldo) {
         this.sueldo = sueldo;
     }
 

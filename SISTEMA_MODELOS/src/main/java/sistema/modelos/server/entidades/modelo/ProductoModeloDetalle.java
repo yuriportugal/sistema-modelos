@@ -6,6 +6,7 @@ package sistema.modelos.server.entidades.modelo;
 
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.AssociationOverride;
@@ -49,22 +50,22 @@ public class ProductoModeloDetalle implements Serializable{
     private Producto producto;
 
     @Column(name = "PRECIO_VENTA")
-    private Long precioVenta;
+    private BigDecimal precioVenta;
     
     @Column(name = "STOCK_INICIAL")
-    private Long stockInicial;
+    private BigDecimal stockInicial;
     
     @Column(name = "VOL_VENTA")
-    private Long volumenVenta;
+    private BigDecimal volumenVenta;
     
     @Column(name = "POLITICA_DIAS")
-    private Long politicaDias;
+    private BigDecimal politicaDias;
     
     @Column(name = "POLITICA_STOCK_MIN")
-    private Long politicaStockMin;
+    private BigDecimal politicaStockMin;
     
     @Column(name = "EQUIVALENCIA")
-    private Long equivalencia;
+    private BigDecimal equivalencia;
     
     @ManyToOne
     @JoinColumn(name="UNIDAD")
@@ -114,43 +115,43 @@ public class ProductoModeloDetalle implements Serializable{
         this.unidad = unidad;
     }
 
-    public Long getPoliticaDias() {
+    public BigDecimal getPoliticaDias() {
         return politicaDias;
     }
 
-    public Long getPoliticaStockMin() {
+    public BigDecimal getPoliticaStockMin() {
         return politicaStockMin;
     }
 
-    public Long getPrecioVenta() {
+    public BigDecimal getPrecioVenta() {
         return precioVenta;
     }
 
-    public Long getStockInicial() {
+    public BigDecimal getStockInicial() {
         return stockInicial;
     }
 
-    public Long getVolumenVenta() {
+    public BigDecimal getVolumenVenta() {
         return volumenVenta;
     }
 
-    public void setPoliticaDias(Long politicaDias) {
+    public void setPoliticaDias(BigDecimal politicaDias) {
         this.politicaDias = politicaDias;
     }
 
-    public void setPoliticaStockMin(Long politicaStockMin) {
+    public void setPoliticaStockMin(BigDecimal politicaStockMin) {
         this.politicaStockMin = politicaStockMin;
     }
 
-    public void setPrecioVenta(Long precioVenta) {
+    public void setPrecioVenta(BigDecimal precioVenta) {
         this.precioVenta = precioVenta;
     }
 
-    public void setStockInicial(Long stockInicial) {
+    public void setStockInicial(BigDecimal stockInicial) {
         this.stockInicial = stockInicial;
     }
 
-    public void setVolumenVenta(Long volumenVenta) {
+    public void setVolumenVenta(BigDecimal volumenVenta) {
         this.volumenVenta = volumenVenta;
     }
 
@@ -211,11 +212,11 @@ public class ProductoModeloDetalle implements Serializable{
         this.unidadPresentacion = unidadPresentacion;
     }
 
-    public Long getEquivalencia() {
+    public BigDecimal getEquivalencia() {
         return equivalencia;
     }
 
-    public void setEquivalencia(Long equivalencia) {
+    public void setEquivalencia(BigDecimal equivalencia) {
         this.equivalencia = equivalencia;
     }
     

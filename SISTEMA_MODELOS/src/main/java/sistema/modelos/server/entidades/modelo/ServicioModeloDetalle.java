@@ -6,6 +6,7 @@ package sistema.modelos.server.entidades.modelo;
 
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -32,7 +33,7 @@ public class ServicioModeloDetalle implements Serializable{
     private Long idModeloServicio;
     
     @Column(name="MONTO")
-    private Long monto;
+    private BigDecimal monto;
     
     @ManyToOne
     @JoinColumn(name = "ID_MODELO", referencedColumnName = "ID_MODELO")
@@ -58,11 +59,11 @@ public class ServicioModeloDetalle implements Serializable{
         this.modelo = modelo;
     }
 
-    public Long getMonto() {
+    public BigDecimal getMonto() {
         return monto;
     }
 
-    public void setMonto(Long monto) {
+    public void setMonto(BigDecimal monto) {
         this.monto = monto;
     }
 

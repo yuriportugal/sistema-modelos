@@ -6,6 +6,7 @@ package sistema.modelos.server.entidades.modelo;
 
 import sistema.modelos.server.entidades.empresa.*;
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
@@ -114,19 +115,19 @@ public class Modelo implements Serializable{
  
      //Cobranzas
      @Column(name="PORC_VENTAS_CONTADO")
-     private Long porcVentasContado;
+     private BigDecimal porcVentasContado;
      @Column(name="PORC_VENTAS_CREDITO")
-     private Long porcVentasCredito;
+     private BigDecimal porcVentasCredito;
      @Column(name="PORC_VENTAS_INCOBRABLES")        
-     private Long porcVentasIncobrables;
+     private BigDecimal porcVentasIncobrables;
     @Column(name="NUM_DIAS_COBRANZA")        
      private Long numDiasCobranza;
 
      //pagos
      @Column(name="PORC_COMPRAS_CONTADO")
-     private Long porcComprasContado;
+     private BigDecimal porcComprasContado;
      @Column(name="PORC_COMPRAS_CRED")        
-     private Long porcComprasCredito;
+     private BigDecimal porcComprasCredito;
      @Column(name="NUM_DIAS_PAGO")        
      private Long numDiasPago;
       
@@ -135,211 +136,211 @@ public class Modelo implements Serializable{
      //ACTIVO CORRIENTE
      
      @Column(name="AC_CAJA_BANCO")
-     private Long ACCajaBanco;
+     private BigDecimal ACCajaBanco;
      @Column(name="AC_CRED_FISCAL")
-     private Long ACCredFiscal;
+     private BigDecimal ACCredFiscal;
      @Column(name="AC_CTA_COBRAR")
-     private Long ACCuentaxCobrar;
+     private BigDecimal ACCuentaxCobrar;
      @Column(name="AC_INSUMOS")
-     private Long ACInsumos;
+     private BigDecimal ACInsumos;
      @Column(name="AC_PRODUCTO_TERMINADO")
-     private Long ACProductosTerminados;
+     private BigDecimal ACProductosTerminados;
      @Column(name="ANC_ACTIVO_FIJO")
-     private Long ANCActivoFijo;
+     private BigDecimal ANCActivoFijo;
      @Column(name="ANC_DEPRE_ACUMU")
-     private Long ANCDepreciacionAcum;
+     private BigDecimal ANCDepreciacionAcum;
      @Column(name="ANC_INTANGIBLE")
-     private Long ANCIntangible;
+     private BigDecimal ANCIntangible;
      @Column(name="ANC_AMORT_ACUMU")
-     private Long ANCAmortAcumulada;
+     private BigDecimal ANCAmortAcumulada;
      @Column(name="ANC_VAL_NEGOCIABLE")
-     private Long ANCValNegociable;
+     private BigDecimal ANCValNegociable;
      @Column(name="PC_CCXPP_PROV")
-     private Long PCCuentaxCobrarProveedores;
+     private BigDecimal PCCuentaxCobrarProveedores;
      @Column(name="PC_CCXPP_SOBREGIRO")
-     private Long PCCuentaxCobrarSobregiro;
+     private BigDecimal PCCuentaxCobrarSobregiro;
      @Column(name="PC_IGV_X_PAG")
-     private Long PCIGVxPagar;
+     private BigDecimal PCIGVxPagar;
      @Column(name="PC_PREST_X_PAG_CORTO")
-     private Long PCPrestxPagarCortoPlazo;
+     private BigDecimal PCPrestxPagarCortoPlazo;
      @Column(name="PC_PART_X_PAGAR")
-     private Long PCPartixPagar;
+     private BigDecimal PCPartixPagar;
      @Column(name="PC_DIR_BUEN_GEST_X_PAG")
-     private Long PCDirBuenaGest;
+     private BigDecimal PCDirBuenaGest;
      @Column(name="PC_IMP_RENT_X_PAG")
-     private Long PCImpuestoRenta;
+     private BigDecimal PCImpuestoRenta;
      @Column(name="PC_DIV_X_PAGAR")
-     private Long PCDividendoxPag;
+     private BigDecimal PCDividendoxPag;
      @Column(name="PNC_DEUD_LARG_PLAZO")
-     private Long PNCDeudaLargoPlazo;
+     private BigDecimal PNCDeudaLargoPlazo;
      @Column(name="PAT_CAP_SOCIAL")
-     private Long PATCapitalSocial;
+     private BigDecimal PATCapitalSocial;
      @Column(name="PAT_RESER_LEGAL_ACUM")
-     private Long PATReservaLegal;
+     private BigDecimal PATReservaLegal;
      @Column(name="PT_RESUL_ACUM")
-     private Long PATResultadoAcumulado;
+     private BigDecimal PATResultadoAcumulado;
      
      
      //PARAMETROS DE TIEMPO
      @Column(name="PTM_HORAS_JORNADA")
-     private Long PTHorasJornada;
+     private BigDecimal PTHorasJornada;
      @Column(name="PTM_NUMERO_TURNOS")
-     private Long PTNumeroTurnos;
+     private BigDecimal PTNumeroTurnos;
      @Column(name="PTM_COMISIONES_VENDEDOR")
-     private Long PTComisionesVend;
+     private BigDecimal PTComisionesVend;
      @Column(name="PTM_PORC_ACTIVOS_NO_REL_PROD")
-     private Long PTPorcActivosNoRelProd;
+     private BigDecimal PTPorcActivosNoRelProd;
      //TODO INDUCTOR    
      @Column(name="PTM_IND_VAR_TC")
-     private Long PTIndVarTipoCambio;
+     private BigDecimal PTIndVarTipoCambio;
      @Column(name="PTM_TC_INICIAL")
-     private Long PTTipoCambioIni;
+     private BigDecimal PTTipoCambioIni;
 
      //Parametros estados financieros
      @Column(name="PF_PORC_RESERV_LEGAL_CAP")
-     private Long PFPorcReservaLegalCapital;
+     private BigDecimal PFPorcReservaLegalCapital;
     @Column(name="PF_PORC_RESERV_LEGAL")
-       private Long PFPorcReservaLegal;
+       private BigDecimal PFPorcReservaLegal;
     @Column(name="PF_PORC_REP_DIVID")
-         private Long PFPorcRepDividendos;
+         private BigDecimal PFPorcRepDividendos;
     @Column(name="PF_PART_TRABAJADOR")
-         private Long PFPartTrabajadores;
+         private BigDecimal PFPartTrabajadores;
     @Column(name="PF_DIREC_BUENA_GEST")
-         private Long PFDirBuenaGest;
+         private BigDecimal PFDirBuenaGest;
     @Column(name="PF_UTILIDAD_CAP")
-     private Long PFUtiCapitalizar;
+     private BigDecimal PFUtiCapitalizar;
     //Decisiones financieras
     @Column(name="DF_CAJA_MINIMA")
-     private Long DFCajaMinima;
+     private BigDecimal DFCajaMinima;
     @Column(name="DF_CAJA_MAXIMA")
-     private Long DFCajaMaxima;
+     private BigDecimal DFCajaMaxima;
     @Column(name="DF_SOBREGIRO_MAXIMO")
-     private Long DFSobreGiroMax;
+     private BigDecimal DFSobreGiroMax;
     @Column(name="DF_INTERES_ANU_SOBRE")
-     private Long DFInteresAnualSobregiro;
+     private BigDecimal DFInteresAnualSobregiro;
     @Column(name="DF_PREST_CORTO")
-     private Long DFPrestamoCortoPlazoMax;
+     private BigDecimal DFPrestamoCortoPlazoMax;
     @Column(name="DF_INTERES_PREST_CORTO")
-     private Long DFInteresAnualPrestamo;
+     private BigDecimal DFInteresAnualPrestamo;
     //Variaciones
     @Column(name="VAR_IND_PRECIO_VENTA")
-     private Long VARIndPrecioVenta;
+     private BigDecimal VARIndPrecioVenta;
     @Column(name="VAR_PORC_INI_PRE_VENT")
-     private Long VARPorcInicialPrecioVenta;
+     private BigDecimal VARPorcInicialPrecioVenta;
     @Column(name="VAR_IND_PRECIO_COMPRA")
-     private Long VARIndPrecioCompra;
+     private BigDecimal VARIndPrecioCompra;
     @Column(name="VAR_PORC_INI_PRE_COMP")
-     private Long VARPorcInicialPrecioCompra;
+     private BigDecimal VARPorcInicialPrecioCompra;
     @Column(name="VAR_IND_VENTA")
-     private Long VARIndVenta;
+     private BigDecimal VARIndVenta;
     @Column(name="VAR_PORC_INI_VENTA")
-     private Long VARPorcInicialVenta;
+     private BigDecimal VARPorcInicialVenta;
     @Column(name="VAR_IND_MANTENIMIENTO")
-     private Long VARIndMantenimiento;
+     private BigDecimal VARIndMantenimiento;
     @Column(name="VAR_PORC_INI_MANTENIMIENTO")
-     private Long VARPorcInicialMantenimiento;
+     private BigDecimal VARPorcInicialMantenimiento;
     @Column(name="VAR_IND_SALARIAL")
-     private Long VARIndSalarial;
+     private BigDecimal VARIndSalarial;
     @Column(name="VAR_PORC_INI_SALARIAL")
-     private Long VARPorcInicialSalarial;
+     private BigDecimal VARPorcInicialSalarial;
     @Column(name="VAR_IND_GASTOS")
-     private Long VARIndGastos;
+     private BigDecimal VARIndGastos;
     @Column(name="VAR_PORC_INI_GASTOS")
-     private Long VARPorcInicialGastos;
+     private BigDecimal VARPorcInicialGastos;
 
-    public Long getVARIndGastos() {
+    public BigDecimal getVARIndGastos() {
         return VARIndGastos;
     }
 
-    public void setVARIndGastos(Long VARIndGastos) {
+    public void setVARIndGastos(BigDecimal VARIndGastos) {
         this.VARIndGastos = VARIndGastos;
     }
 
-    public Long getVARIndMantenimiento() {
+    public BigDecimal getVARIndMantenimiento() {
         return VARIndMantenimiento;
     }
 
-    public Long getVARIndPrecioCompra() {
+    public BigDecimal getVARIndPrecioCompra() {
         return VARIndPrecioCompra;
     }
 
-    public Long getVARIndPrecioVenta() {
+    public BigDecimal getVARIndPrecioVenta() {
         return VARIndPrecioVenta;
     }
 
-    public Long getVARIndSalarial() {
+    public BigDecimal getVARIndSalarial() {
         return VARIndSalarial;
     }
 
-    public Long getVARIndVenta() {
+    public BigDecimal getVARIndVenta() {
         return VARIndVenta;
     }
 
-    public Long getVARPorcInicialGastos() {
+    public BigDecimal getVARPorcInicialGastos() {
         return VARPorcInicialGastos;
     }
 
-    public Long getVARPorcInicialMantenimiento() {
+    public BigDecimal getVARPorcInicialMantenimiento() {
         return VARPorcInicialMantenimiento;
     }
 
-    public Long getVARPorcInicialPrecioCompra() {
+    public BigDecimal getVARPorcInicialPrecioCompra() {
         return VARPorcInicialPrecioCompra;
     }
 
-    public Long getVARPorcInicialPrecioVenta() {
+    public BigDecimal getVARPorcInicialPrecioVenta() {
         return VARPorcInicialPrecioVenta;
     }
 
-    public Long getVARPorcInicialSalarial() {
+    public BigDecimal getVARPorcInicialSalarial() {
         return VARPorcInicialSalarial;
     }
 
-    public Long getVARPorcInicialVenta() {
+    public BigDecimal getVARPorcInicialVenta() {
         return VARPorcInicialVenta;
     }
 
-    public void setVARIndMantenimiento(Long VARIndMantenimiento) {
+    public void setVARIndMantenimiento(BigDecimal VARIndMantenimiento) {
         this.VARIndMantenimiento = VARIndMantenimiento;
     }
 
-    public void setVARIndPrecioCompra(Long VARIndPrecioCompra) {
+    public void setVARIndPrecioCompra(BigDecimal VARIndPrecioCompra) {
         this.VARIndPrecioCompra = VARIndPrecioCompra;
     }
 
-    public void setVARIndPrecioVenta(Long VARIndPrecioVenta) {
+    public void setVARIndPrecioVenta(BigDecimal VARIndPrecioVenta) {
         this.VARIndPrecioVenta = VARIndPrecioVenta;
     }
 
-    public void setVARIndSalarial(Long VARIndSalarial) {
+    public void setVARIndSalarial(BigDecimal VARIndSalarial) {
         this.VARIndSalarial = VARIndSalarial;
     }
 
-    public void setVARIndVenta(Long VARIndVenta) {
+    public void setVARIndVenta(BigDecimal VARIndVenta) {
         this.VARIndVenta = VARIndVenta;
     }
 
-    public void setVARPorcInicialGastos(Long VARPorcInicialGastos) {
+    public void setVARPorcInicialGastos(BigDecimal VARPorcInicialGastos) {
         this.VARPorcInicialGastos = VARPorcInicialGastos;
     }
 
-    public void setVARPorcInicialMantenimiento(Long VARPorcInicialMantenimiento) {
+    public void setVARPorcInicialMantenimiento(BigDecimal VARPorcInicialMantenimiento) {
         this.VARPorcInicialMantenimiento = VARPorcInicialMantenimiento;
     }
 
-    public void setVARPorcInicialPrecioCompra(Long VARPorcInicialPrecioCompra) {
+    public void setVARPorcInicialPrecioCompra(BigDecimal VARPorcInicialPrecioCompra) {
         this.VARPorcInicialPrecioCompra = VARPorcInicialPrecioCompra;
     }
 
-    public void setVARPorcInicialPrecioVenta(Long VARPorcInicialPrecioVenta) {
+    public void setVARPorcInicialPrecioVenta(BigDecimal VARPorcInicialPrecioVenta) {
         this.VARPorcInicialPrecioVenta = VARPorcInicialPrecioVenta;
     }
 
-    public void setVARPorcInicialSalarial(Long VARPorcInicialSalarial) {
+    public void setVARPorcInicialSalarial(BigDecimal VARPorcInicialSalarial) {
         this.VARPorcInicialSalarial = VARPorcInicialSalarial;
     }
 
-    public void setVARPorcInicialVenta(Long VARPorcInicialVenta) {
+    public void setVARPorcInicialVenta(BigDecimal VARPorcInicialVenta) {
         this.VARPorcInicialVenta = VARPorcInicialVenta;
     }
     
@@ -348,51 +349,51 @@ public class Modelo implements Serializable{
     
     
     
-    public Long getDFCajaMaxima() {
+    public BigDecimal getDFCajaMaxima() {
         return DFCajaMaxima;
     }
 
-    public void setDFCajaMaxima(Long DFCajaMaxima) {
+    public void setDFCajaMaxima(BigDecimal DFCajaMaxima) {
         this.DFCajaMaxima = DFCajaMaxima;
     }
 
-    public Long getDFCajaMinima() {
+    public BigDecimal getDFCajaMinima() {
         return DFCajaMinima;
     }
 
-    public void setDFCajaMinima(Long DFCajaMinima) {
+    public void setDFCajaMinima(BigDecimal DFCajaMinima) {
         this.DFCajaMinima = DFCajaMinima;
     }
 
-    public Long getDFInteresAnualPrestamo() {
+    public BigDecimal getDFInteresAnualPrestamo() {
         return DFInteresAnualPrestamo;
     }
 
-    public void setDFInteresAnualPrestamo(Long DFInteresAnualPrestamo) {
+    public void setDFInteresAnualPrestamo(BigDecimal DFInteresAnualPrestamo) {
         this.DFInteresAnualPrestamo = DFInteresAnualPrestamo;
     }
 
-    public Long getDFInteresAnualSobregiro() {
+    public BigDecimal getDFInteresAnualSobregiro() {
         return DFInteresAnualSobregiro;
     }
 
-    public void setDFInteresAnualSobregiro(Long DFInteresAnualSobregiro) {
+    public void setDFInteresAnualSobregiro(BigDecimal DFInteresAnualSobregiro) {
         this.DFInteresAnualSobregiro = DFInteresAnualSobregiro;
     }
 
-    public Long getDFPrestamoCortoPlazoMax() {
+    public BigDecimal getDFPrestamoCortoPlazoMax() {
         return DFPrestamoCortoPlazoMax;
     }
 
-    public void setDFPrestamoCortoPlazoMax(Long DFPrestamoCortoPlazoMax) {
+    public void setDFPrestamoCortoPlazoMax(BigDecimal DFPrestamoCortoPlazoMax) {
         this.DFPrestamoCortoPlazoMax = DFPrestamoCortoPlazoMax;
     }
 
-    public Long getDFSobreGiroMax() {
+    public BigDecimal getDFSobreGiroMax() {
         return DFSobreGiroMax;
     }
 
-    public void setDFSobreGiroMax(Long DFSobreGiroMax) {
+    public void setDFSobreGiroMax(BigDecimal DFSobreGiroMax) {
         this.DFSobreGiroMax = DFSobreGiroMax;
     }
     
@@ -401,277 +402,277 @@ public class Modelo implements Serializable{
     
     
     
-    public Long getPFDirBuenaGest() {
+    public BigDecimal getPFDirBuenaGest() {
         return PFDirBuenaGest;
     }
 
-    public void setPFDirBuenaGest(Long PFDirBuenaGest) {
+    public void setPFDirBuenaGest(BigDecimal PFDirBuenaGest) {
         this.PFDirBuenaGest = PFDirBuenaGest;
     }
 
-    public Long getPFPartTrabajadores() {
+    public BigDecimal getPFPartTrabajadores() {
         return PFPartTrabajadores;
     }
 
-    public void setPFPartTrabajadores(Long PFPartTrabajadores) {
+    public void setPFPartTrabajadores(BigDecimal PFPartTrabajadores) {
         this.PFPartTrabajadores = PFPartTrabajadores;
     }
 
-    public Long getPFPorcRepDividendos() {
+    public BigDecimal getPFPorcRepDividendos() {
         return PFPorcRepDividendos;
     }
 
-    public void setPFPorcRepDividendos(Long PFPorcRepDividendos) {
+    public void setPFPorcRepDividendos(BigDecimal PFPorcRepDividendos) {
         this.PFPorcRepDividendos = PFPorcRepDividendos;
     }
 
-    public Long getPFPorcReservaLegal() {
+    public BigDecimal getPFPorcReservaLegal() {
         return PFPorcReservaLegal;
     }
 
-    public void setPFPorcReservaLegal(Long PFPorcReservaLegal) {
+    public void setPFPorcReservaLegal(BigDecimal PFPorcReservaLegal) {
         this.PFPorcReservaLegal = PFPorcReservaLegal;
     }
 
-    public Long getPFPorcReservaLegalCapital() {
+    public BigDecimal getPFPorcReservaLegalCapital() {
         return PFPorcReservaLegalCapital;
     }
 
-    public void setPFPorcReservaLegalCapital(Long PFPorcReservaLegalCapital) {
+    public void setPFPorcReservaLegalCapital(BigDecimal PFPorcReservaLegalCapital) {
         this.PFPorcReservaLegalCapital = PFPorcReservaLegalCapital;
     }
 
-    public Long getPFUtiCapitalizar() {
+    public BigDecimal getPFUtiCapitalizar() {
         return PFUtiCapitalizar;
     }
 
-    public void setPFUtiCapitalizar(Long PFUtiCapitalizar) {
+    public void setPFUtiCapitalizar(BigDecimal PFUtiCapitalizar) {
         this.PFUtiCapitalizar = PFUtiCapitalizar;
     }
  
-    public Long getPTHorasJornada() {
+    public BigDecimal getPTHorasJornada() {
         return PTHorasJornada;
     }
 
-    public void setPTHorasJornada(Long PTHorasJornada) {
+    public void setPTHorasJornada(BigDecimal PTHorasJornada) {
         this.PTHorasJornada = PTHorasJornada;
     }
 
-    public Long getPTNumeroTurnos() {
+    public BigDecimal getPTNumeroTurnos() {
         return PTNumeroTurnos;
     }
 
-    public void setPTNumeroTurnos(Long PTNumeroTurnos) {
+    public void setPTNumeroTurnos(BigDecimal PTNumeroTurnos) {
         this.PTNumeroTurnos = PTNumeroTurnos;
     }
 
-    public Long getPTComisionesVend() {
+    public BigDecimal getPTComisionesVend() {
         return PTComisionesVend;
     }
 
-    public void setPTComisionesVend(Long PTComisionesVend) {
+    public void setPTComisionesVend(BigDecimal PTComisionesVend) {
         this.PTComisionesVend = PTComisionesVend;
     }
 
-    public Long getPTPorcActivosNoRelProd() {
+    public BigDecimal getPTPorcActivosNoRelProd() {
         return PTPorcActivosNoRelProd;
     }
 
-    public void setPTPorcActivosNoRelProd(Long PTPorcActivosNoRelProd) {
+    public void setPTPorcActivosNoRelProd(BigDecimal PTPorcActivosNoRelProd) {
         this.PTPorcActivosNoRelProd = PTPorcActivosNoRelProd;
     }
 
-    public Long getPTIndVarTipoCambio() {
+    public BigDecimal getPTIndVarTipoCambio() {
         return PTIndVarTipoCambio;
     }
 
-    public void setPTIndVarTipoCambio(Long PTIndVarTipoCambio) {
+    public void setPTIndVarTipoCambio(BigDecimal PTIndVarTipoCambio) {
         this.PTIndVarTipoCambio = PTIndVarTipoCambio;
     }
 
-    public Long getPTTipoCambioIni() {
+    public BigDecimal getPTTipoCambioIni() {
         return PTTipoCambioIni;
     }
 
-    public void setPTTipoCambioIni(Long PTTipoCambioIni) {
+    public void setPTTipoCambioIni(BigDecimal PTTipoCambioIni) {
         this.PTTipoCambioIni = PTTipoCambioIni;
     }
      
      
      
-    public Long getACCajaBanco() {
+    public BigDecimal getACCajaBanco() {
         return ACCajaBanco;
     }
 
-    public Long getACCredFiscal() {
+    public BigDecimal getACCredFiscal() {
         return ACCredFiscal;
     }
 
-    public Long getACCuentaxCobrar() {
+    public BigDecimal getACCuentaxCobrar() {
         return ACCuentaxCobrar;
     }
 
-    public Long getACInsumos() {
+    public BigDecimal getACInsumos() {
         return ACInsumos;
     }
 
-    public Long getACProductosTerminados() {
+    public BigDecimal getACProductosTerminados() {
         return ACProductosTerminados;
     }
 
-    public Long getANCActivoFijo() {
+    public BigDecimal getANCActivoFijo() {
         return ANCActivoFijo;
     }
 
-    public Long getANCAmortAcumulada() {
+    public BigDecimal getANCAmortAcumulada() {
         return ANCAmortAcumulada;
     }
 
-    public Long getANCDepreciacionAcum() {
+    public BigDecimal getANCDepreciacionAcum() {
         return ANCDepreciacionAcum;
     }
 
-    public Long getANCIntangible() {
+    public BigDecimal getANCIntangible() {
         return ANCIntangible;
     }
 
-    public Long getANCValNegociable() {
+    public BigDecimal getANCValNegociable() {
         return ANCValNegociable;
     }
 
-    public Long getPATCapitalSocial() {
+    public BigDecimal getPATCapitalSocial() {
         return PATCapitalSocial;
     }
 
-    public Long getPATReservaLegal() {
+    public BigDecimal getPATReservaLegal() {
         return PATReservaLegal;
     }
 
-    public Long getPATResultadoAcumulado() {
+    public BigDecimal getPATResultadoAcumulado() {
         return PATResultadoAcumulado;
     }
 
-    public Long getPCCuentaxCobrarProveedores() {
+    public BigDecimal getPCCuentaxCobrarProveedores() {
         return PCCuentaxCobrarProveedores;
     }
 
-    public Long getPCCuentaxCobrarSobregiro() {
+    public BigDecimal getPCCuentaxCobrarSobregiro() {
         return PCCuentaxCobrarSobregiro;
     }
 
-    public Long getPCDirBuenaGest() {
+    public BigDecimal getPCDirBuenaGest() {
         return PCDirBuenaGest;
     }
 
-    public Long getPCDividendoxPag() {
+    public BigDecimal getPCDividendoxPag() {
         return PCDividendoxPag;
     }
 
-    public Long getPCIGVxPagar() {
+    public BigDecimal getPCIGVxPagar() {
         return PCIGVxPagar;
     }
 
-    public Long getPCImpuestoRenta() {
+    public BigDecimal getPCImpuestoRenta() {
         return PCImpuestoRenta;
     }
 
-    public Long getPCPartixPagar() {
+    public BigDecimal getPCPartixPagar() {
         return PCPartixPagar;
     }
 
-    public Long getPCPrestxPagarCortoPlazo() {
+    public BigDecimal getPCPrestxPagarCortoPlazo() {
         return PCPrestxPagarCortoPlazo;
     }
 
-    public Long getPNCDeudaLargoPlazo() {
+    public BigDecimal getPNCDeudaLargoPlazo() {
         return PNCDeudaLargoPlazo;
     }
 
-    public void setACCajaBanco(Long ACCajaBanco) {
+    public void setACCajaBanco(BigDecimal ACCajaBanco) {
         this.ACCajaBanco = ACCajaBanco;
     }
 
-    public void setACCredFiscal(Long ACCredFiscal) {
+    public void setACCredFiscal(BigDecimal ACCredFiscal) {
         this.ACCredFiscal = ACCredFiscal;
     }
 
-    public void setACCuentaxCobrar(Long ACCuentaxCobrar) {
+    public void setACCuentaxCobrar(BigDecimal ACCuentaxCobrar) {
         this.ACCuentaxCobrar = ACCuentaxCobrar;
     }
 
-    public void setACInsumos(Long ACInsumos) {
+    public void setACInsumos(BigDecimal ACInsumos) {
         this.ACInsumos = ACInsumos;
     }
 
-    public void setACProductosTerminados(Long ACProductosTerminados) {
+    public void setACProductosTerminados(BigDecimal ACProductosTerminados) {
         this.ACProductosTerminados = ACProductosTerminados;
     }
 
-    public void setANCActivoFijo(Long ANCActivoFijo) {
+    public void setANCActivoFijo(BigDecimal ANCActivoFijo) {
         this.ANCActivoFijo = ANCActivoFijo;
     }
 
-    public void setANCAmortAcumulada(Long ANCAmortAcumulada) {
+    public void setANCAmortAcumulada(BigDecimal ANCAmortAcumulada) {
         this.ANCAmortAcumulada = ANCAmortAcumulada;
     }
 
-    public void setANCDepreciacionAcum(Long ANCDepreciacionAcum) {
+    public void setANCDepreciacionAcum(BigDecimal ANCDepreciacionAcum) {
         this.ANCDepreciacionAcum = ANCDepreciacionAcum;
     }
 
-    public void setANCIntangible(Long ANCIntangible) {
+    public void setANCIntangible(BigDecimal ANCIntangible) {
         this.ANCIntangible = ANCIntangible;
     }
 
-    public void setANCValNegociable(Long ANCValNegociable) {
+    public void setANCValNegociable(BigDecimal ANCValNegociable) {
         this.ANCValNegociable = ANCValNegociable;
     }
 
-    public void setPATCapitalSocial(Long PATCapitalSocial) {
+    public void setPATCapitalSocial(BigDecimal PATCapitalSocial) {
         this.PATCapitalSocial = PATCapitalSocial;
     }
 
-    public void setPATReservaLegal(Long PATReservaLegal) {
+    public void setPATReservaLegal(BigDecimal PATReservaLegal) {
         this.PATReservaLegal = PATReservaLegal;
     }
 
-    public void setPATResultadoAcumulado(Long PATResultadoAcumulado) {
+    public void setPATResultadoAcumulado(BigDecimal PATResultadoAcumulado) {
         this.PATResultadoAcumulado = PATResultadoAcumulado;
     }
 
-    public void setPCCuentaxCobrarProveedores(Long PCCuentaxCobrarProveedores) {
+    public void setPCCuentaxCobrarProveedores(BigDecimal PCCuentaxCobrarProveedores) {
         this.PCCuentaxCobrarProveedores = PCCuentaxCobrarProveedores;
     }
 
-    public void setPCCuentaxCobrarSobregiro(Long PCCuentaxCobrarSobregiro) {
+    public void setPCCuentaxCobrarSobregiro(BigDecimal PCCuentaxCobrarSobregiro) {
         this.PCCuentaxCobrarSobregiro = PCCuentaxCobrarSobregiro;
     }
 
-    public void setPCDirBuenaGest(Long PCDirBuenaGest) {
+    public void setPCDirBuenaGest(BigDecimal PCDirBuenaGest) {
         this.PCDirBuenaGest = PCDirBuenaGest;
     }
 
-    public void setPCDividendoxPag(Long PCDividendoxPag) {
+    public void setPCDividendoxPag(BigDecimal PCDividendoxPag) {
         this.PCDividendoxPag = PCDividendoxPag;
     }
 
-    public void setPCIGVxPagar(Long PCIGVxPagar) {
+    public void setPCIGVxPagar(BigDecimal PCIGVxPagar) {
         this.PCIGVxPagar = PCIGVxPagar;
     }
 
-    public void setPCImpuestoRenta(Long PCImpuestoRenta) {
+    public void setPCImpuestoRenta(BigDecimal PCImpuestoRenta) {
         this.PCImpuestoRenta = PCImpuestoRenta;
     }
 
-    public void setPCPartixPagar(Long PCPartixPagar) {
+    public void setPCPartixPagar(BigDecimal PCPartixPagar) {
         this.PCPartixPagar = PCPartixPagar;
     }
 
-    public void setPCPrestxPagarCortoPlazo(Long PCPrestxPagarCortoPlazo) {
+    public void setPCPrestxPagarCortoPlazo(BigDecimal PCPrestxPagarCortoPlazo) {
         this.PCPrestxPagarCortoPlazo = PCPrestxPagarCortoPlazo;
     }
 
-    public void setPNCDeudaLargoPlazo(Long PNCDeudaLargoPlazo) {
+    public void setPNCDeudaLargoPlazo(BigDecimal PNCDeudaLargoPlazo) {
         this.PNCDeudaLargoPlazo = PNCDeudaLargoPlazo;
     }
      
@@ -891,24 +892,24 @@ public class Modelo implements Serializable{
 
 
 
-    public Long getPorcComprasContado() {
+    public BigDecimal getPorcComprasContado() {
         return porcComprasContado;
     }
 
-    public Long getPorcComprasCredito() {
+    public BigDecimal getPorcComprasCredito() {
         return porcComprasCredito;
     }
 
 
-    public Long getPorcVentasContado() {
+    public BigDecimal getPorcVentasContado() {
         return porcVentasContado;
     }
 
-    public Long getPorcVentasCredito() {
+    public BigDecimal getPorcVentasCredito() {
         return porcVentasCredito;
     }
 
-    public Long getPorcVentasIncobrables() {
+    public BigDecimal getPorcVentasIncobrables() {
         return porcVentasIncobrables;
     }
 
@@ -922,11 +923,11 @@ public class Modelo implements Serializable{
 
     
     
-    public void setPorcComprasContado(Long porcComprasContado) {
+    public void setPorcComprasContado(BigDecimal porcComprasContado) {
         this.porcComprasContado = porcComprasContado;
     }
 
-    public void setPorcComprasCredito(Long porcComprasCredito) {
+    public void setPorcComprasCredito(BigDecimal porcComprasCredito) {
         this.porcComprasCredito = porcComprasCredito;
     }
 
@@ -940,15 +941,15 @@ public class Modelo implements Serializable{
 
     
     
-    public void setPorcVentasContado(Long porcVentasContado) {
+    public void setPorcVentasContado(BigDecimal porcVentasContado) {
         this.porcVentasContado = porcVentasContado;
     }
 
-    public void setPorcVentasCredito(Long porcVentasCredito) {
+    public void setPorcVentasCredito(BigDecimal porcVentasCredito) {
         this.porcVentasCredito = porcVentasCredito;
     }
 
-    public void setPorcVentasIncobrables(Long porcVentasIncobrables) {
+    public void setPorcVentasIncobrables(BigDecimal porcVentasIncobrables) {
         this.porcVentasIncobrables = porcVentasIncobrables;
     }
 

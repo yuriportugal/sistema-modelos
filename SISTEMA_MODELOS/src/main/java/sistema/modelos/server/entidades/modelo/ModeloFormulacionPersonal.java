@@ -6,6 +6,7 @@ package sistema.modelos.server.entidades.modelo;
 
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
@@ -43,7 +44,7 @@ public class ModeloFormulacionPersonal implements Serializable{
     private Cargo cargo;
 
     @Column(name = "HORAS_HOMBRE")
-    private Long horaHombre;
+    private BigDecimal horaHombre;
 
     public Long getIdModeloFormulacionPersonal() {
         return idModeloFormulacionPersonal;
@@ -53,14 +54,14 @@ public class ModeloFormulacionPersonal implements Serializable{
         this.idModeloFormulacionPersonal = idModeloFormulacionPersonal;
     }
 
-    public Long getHoraHombre() {
+    public BigDecimal getHoraHombre() {
         if (horaHombre == null){
-            horaHombre = 0L;
+            horaHombre = BigDecimal.ZERO;
         }
         return horaHombre;
     }
 
-    public void setHoraHombre(Long horaHombre) {
+    public void setHoraHombre(BigDecimal horaHombre) {
         this.horaHombre = horaHombre;
     }
 

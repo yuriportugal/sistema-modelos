@@ -6,6 +6,7 @@ package sistema.modelos.server.entidades.modelo;
 
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
@@ -35,20 +36,20 @@ public class ActivoModeloDetalle implements Serializable{
     
     
     @Column(name = "CANTIDAD")
-    private Long cantidad;
+    private BigDecimal cantidad;
     
     @Column(name="VALOR_COMPRA")
-    private Long valorCompra;
+    private BigDecimal valorCompra;
     
     @Column(name="DEPRE_ACUMULADA")
-    private Long depAcumulada;
+    private BigDecimal depAcumulada;
   
     
     @Column(name="COSTO_MAQ_HOR")
-    private Long costoMaqHora;
+    private BigDecimal costoMaqHora;
     
     @Column(name="ANO_VIDA")
-    private Long anoVida;
+    private BigDecimal anoVida;
     
     @ManyToOne
     @JoinColumn(name = "ID_MODELO", referencedColumnName = "ID_MODELO")
@@ -66,45 +67,45 @@ public class ActivoModeloDetalle implements Serializable{
         this.modelo = modelo;
     }
 
-    public Long getAnoVida() {
+    public BigDecimal getAnoVida() {
         return anoVida;
     }
 
-    public Long getCantidad() {
+    public BigDecimal getCantidad() {
         return cantidad;
     }
 
-    public Long getCostoMaqHora() {
+    public BigDecimal getCostoMaqHora() {
         return costoMaqHora;
     }
 
 
-    public Long getValorCompra() {
+    public BigDecimal getValorCompra() {
         return valorCompra;
     }
 
-    public Long getDepAcumulada() {
+    public BigDecimal getDepAcumulada() {
         return depAcumulada;
     }
 
-    public void setDepAcumulada(Long depAcumulada) {
+    public void setDepAcumulada(BigDecimal depAcumulada) {
         this.depAcumulada = depAcumulada;
     }
 
-    public void setAnoVida(Long anoVida) {
+    public void setAnoVida(BigDecimal anoVida) {
         this.anoVida = anoVida;
     }
 
-    public void setCantidad(Long cantidad) {
+    public void setCantidad(BigDecimal cantidad) {
         this.cantidad = cantidad;
     }
 
-    public void setCostoMaqHora(Long costoMaqHora) {
+    public void setCostoMaqHora(BigDecimal costoMaqHora) {
         this.costoMaqHora = costoMaqHora;
     }
 
 
-    public void setValorCompra(Long valorCompra) {
+    public void setValorCompra(BigDecimal valorCompra) {
         this.valorCompra = valorCompra;
     }
 
