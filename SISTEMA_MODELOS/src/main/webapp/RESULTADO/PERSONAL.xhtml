@@ -10,7 +10,43 @@
         
         <ui:define name="showresultado">
            
-            HOLA MUNDO
+           Variacion de Personal
+            
+           <p:dataTable  id="idTabPVaracionPersonal" var="result" value="#{resultadoControlador.personalResultado.variacionPersonalxPeriodo}" >                      
+               <p:columns   value="#{resultadoControlador.personalResultado.columnaTabla}" var="column" columnIndexVar="indice">  
+                    <f:facet name="header">  
+                        #{column.header}
+                    </f:facet>      
+                    <h:outputText rendered="#{indice == 0}" value="#{result.objeto}" /> 
+                    <h:outputText rendered="#{indice > 0}" value=" #{result.valValores[indice-1]}" /> 
+                 </p:columns>  
+            </p:dataTable> 
+
+           Sueldo Unitario Mensual
+           <p:dataTable  id="idTabPVaracionSueldoUnitMensual" var="result" value="#{resultadoControlador.personalResultado.variacionSueldoUnitarioMensual}" >                      
+               <p:columns   value="#{resultadoControlador.personalResultado.columnaTabla}" var="column" columnIndexVar="indice">  
+                    <f:facet name="header">  
+                        #{column.header}
+                    </f:facet>      
+                    <h:outputText rendered="#{indice == 0}" value="#{result.objeto}" /> 
+                    <h:outputText rendered="#{indice > 0}" value=" #{result.valValores[indice-1]}" /> 
+                 </p:columns>  
+            </p:dataTable> 
+
+
+           Sueldo Unitario Anual
+           <p:dataTable  id="idTabPVaracionSueldoUnitAnual" var="result" value="#{resultadoControlador.personalResultado.variacionSueldoUnitarioAnual}" >                      
+               <p:columns   value="#{resultadoControlador.personalResultado.columnaTabla}" var="column" columnIndexVar="indice">  
+                    <f:facet name="header">  
+                        #{column.header}
+                    </f:facet>      
+                    <h:outputText rendered="#{indice == 0}" value="#{result.objeto}" /> 
+                    <h:outputText rendered="#{indice > 0}" value=" #{result.valValores[indice-1]}" /> 
+                 </p:columns>  
+            </p:dataTable> 
+
+
+
         </ui:define>
 
 

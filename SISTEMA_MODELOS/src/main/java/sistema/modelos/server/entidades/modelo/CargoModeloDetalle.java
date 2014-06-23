@@ -102,6 +102,11 @@ public class CargoModeloDetalle implements Serializable{
         this.idCargoModelo = idCargoModelo;
     }
 
+    @Override
+    public String toString() {
+        return getCargo().getNombre() +" - "+getCargo().getArea().getNombre();
+    }
+
    
     
 }

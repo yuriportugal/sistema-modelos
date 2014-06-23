@@ -247,7 +247,30 @@ public class Modelo implements Serializable{
      private BigDecimal VARIndGastos;
     @Column(name="VAR_PORC_INI_GASTOS")
      private BigDecimal VARPorcInicialGastos;
+    
+    @Column(name="VAR_PORC_INI_PERSONAL")
+     private BigDecimal VARPorcInicialPersonal;
+    @Column(name="VAR_IND_PERSONAL")
+     private BigDecimal VARIndPersonal;
 
+    public BigDecimal getVARIndPersonal() {
+        return VARIndPersonal;
+    }
+
+    public void setVARIndPersonal(BigDecimal VARIndPersonal) {
+        this.VARIndPersonal = VARIndPersonal;
+    }
+
+    public BigDecimal getVARPorcInicialPersonal() {
+        return VARPorcInicialPersonal;
+    }
+
+    public void setVARPorcInicialPersonal(BigDecimal VARPorcInicialPersonal) {
+        this.VARPorcInicialPersonal = VARPorcInicialPersonal;
+    }
+    
+    
+    
     public BigDecimal getVARIndGastos() {
         return VARIndGastos;
     }

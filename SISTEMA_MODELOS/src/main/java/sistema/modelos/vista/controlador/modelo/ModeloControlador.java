@@ -512,7 +512,11 @@ public class ModeloControlador implements Serializable {
                             break;
                         }
                             
-                            
+                        case 7: {
+                            inicial = currentModelo.getVARPorcInicialPersonal().doubleValue();
+                            variacion = currentModelo.getVARIndPersonal().doubleValue();
+                            break;
+                        }    
                     }
                     generarVariacion(inicial,variacion,currentModelo.getHorizonte().intValue());
                     context.update("modeloForm:tabViewModelo:varTab_"+numTabla);
@@ -530,6 +534,8 @@ public class ModeloControlador implements Serializable {
                 valores[i] = inicial;
             else
                 valores[i] = valores[i-1]*(1+variacion/100);
+            
+            valores[i] = Math.round(valores[i]*100.0)/100.0;
             sValores[i] = String.valueOf(valores[i]);
         }
         
