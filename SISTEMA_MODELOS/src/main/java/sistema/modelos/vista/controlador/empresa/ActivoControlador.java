@@ -12,6 +12,9 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+import javax.faces.component.UIComponent;
+import javax.faces.component.UIInput;
+import javax.faces.component.UIViewRoot;
 import javax.faces.context.FacesContext;
 import org.primefaces.context.RequestContext;
 import sistema.modelos.server.entidades.empresa.Activo;
@@ -130,23 +133,8 @@ public class ActivoControlador implements Serializable {
     }
     
      public void persist(){
-             String mensaje = "";
-             System.out.print("MIRA SI SALIO");
              currentActivo.setEmpresa(empresaFacade.find(getUsuarioControlador().getCurrentUsuario().getEmpresa().getIdEmpresa()));
-             if (currentActivo.getNombre().equals(""))
-                mensaje += "Debe ingresar el nombre del Area <br/>";
-            if (currentActivo.getCodigo().equals(""))
-                mensaje += "Debe ingresar el código del Area<br/>";
-            
-            if (currentActivo.getArea().getIdArea() == null)
-                mensaje += "Debe seleccionar un Area<br/>";
-            if (currentActivo.getTipoActivo().getIdTipoActivo() == null)
-                mensaje += " Debe seleccionar un Tipo de Activo";
-        if (!mensaje.equals("")){    
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,mensaje,""));  
-    
-            return;
-        }
+         
         
         if (activoFacade.countActivoByCode(currentActivo.getCodigo(),currentActivo.getIdActivo())>0){
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Ya se encuentra registrado un activo con el mismo código",""));  
@@ -181,6 +169,11 @@ public class ActivoControlador implements Serializable {
     public void agregar(){
         currentActivo = new Activo();
         RequestContext context = RequestContext.getCurrentInstance();  
+        clear("cruForm:nombre");
+        clear("cruForm:codigo");
+        clear("cruForm:tipo");
+        clear("cruForm:area");
+        
         context.update("miform:tablaActivo");
         context.update("cruForm:panelcrud");
     
@@ -189,10 +182,34 @@ public class ActivoControlador implements Serializable {
     public void editar(){
         currentActivo = activoFacade.find(currentActivo.getIdActivo());
         RequestContext context = RequestContext.getCurrentInstance();  
+        clear("cruForm:nombre");
+        clear("cruForm:codigo");
+        clear("cruForm:tipo");
+        clear("cruForm:area");
         context.update("miform:tablaActivo");
         context.update("cruForm:panelcrud");
         
+        
+        
     } 
+    
+    public String clear(final String parentComponentId) {
+        UIViewRoot view = FacesContext.getCurrentInstance().getViewRoot();
+        UIComponent fc = view.findComponent(parentComponentId);
+                if (fc instanceof UIInput) {
+                    UIInput input = (UIInput) fc;
+                    // JSF 1.1+ 
+//                input.setSubmittedValue(null);
+//                input.setValue(null);
+//                input.setLocalValueSet(false);
+//                input.setValid(true);
+                    // JSF 1.2+
+                    input.resetValue();
+                }
+                
+            
+        return null;
+    }
     
     public void eliminar(){
         currentActivo = activoFacade.find(currentActivo.getIdActivo());

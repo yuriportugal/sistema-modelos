@@ -8,7 +8,7 @@
     <ui:composition template="/templatecrud.xhtml"> 
      
         <ui:define name="title">
-           AAAAAAAAAAAAAA
+           
         </ui:define>
        
        <ui:define name="Left">
@@ -58,46 +58,50 @@
                    </p:row>
                     
                 <p:row  >   
-                    <p:column colspan="2" style="width:20%" ><p:commandButton id="save"  value="Salvar" action="#{activoControlador.persist()}" update="panelcrud"></p:commandButton></p:column>
+                    <p:column colspan="2" style="width:20%" ><p:commandButton id="save"  value="Salvar" action="#{activoControlador.persist()}" update="panelcrud" ></p:commandButton></p:column>
                     <p:column colspan="2" style="width:80%"><p:commandButton value="Cancelar"></p:commandButton></p:column>
                 </p:row>
                    
                 <p:row>   
                     <p:column style="width:15%"><h:outputLabel  value="Nombre : *"></h:outputLabel></p:column>  
-                    <p:column style="width:5%"></p:column>
-                    <p:column style="width:80%" colspan="2"><p:inputText  id="nombre" value="#{activoControlador.currentActivo.nombre}" size="30"  ></p:inputText></p:column>
+                    <p:column style="width:20%" colspan="2"><p:inputText requiredMessage="El Nombre es obligatorio" id="nombre" label="Nombre" value="#{activoControlador.currentActivo.nombre}" size="30" required="true"  ></p:inputText></p:column>
+                    <p:column style="width:65%">
+                        <p:message for="nombre" display="icon"></p:message>
+                    </p:column>
                 </p:row>
                 
                 <p:row>   
                         <p:column style="width:15%"><h:outputLabel value="Código : *" ></h:outputLabel></p:column>  
-                        <p:column style="width:5%"></p:column>  
-                        <p:column style="width:80%" colspan="2"><p:inputText id="codigo"  value="#{activoControlador.currentActivo.codigo}" size="30"></p:inputText></p:column>
+                        <p:column style="width:20%" colspan="2"><p:inputText requiredMessage="El Código es obligatorio" id="codigo" label="Código" value="#{activoControlador.currentActivo.codigo}" required="true" size="30"></p:inputText></p:column>
+                        <p:column style="width:65%">
+                            <p:message for="codigo" display="icon"></p:message>
+                        </p:column>
                 </p:row>
                 
                 <p:row>    
                    <p:column style="width:15%"><h:outputLabel value="Tipo : *" ></h:outputLabel></p:column>
-                   <p:column style="width:5%"> </p:column>
-                   <p:column style="width:20%" ><p:selectOneMenu id="tipo" value="#{activoControlador.currentActivo.tipoActivo.idTipoActivo}">
+                   <p:column style="width:15%" ><p:selectOneMenu id="tipo" label="Tipo" requiredMessage="El Tipo es obligatorio" required="true" value="#{activoControlador.currentActivo.tipoActivo.idTipoActivo}">
                             <f:selectItem  itemLabel="Seleccione un Tipo de Activo" itemValue="#{null}"></f:selectItem>
                             <f:selectItems value="#{activoControlador.lstTipoActivo}" var="tipoActivo" itemLabel="#{tipoActivo.nombre}" itemValue="#{tipoActivo.idTipoActivo}"></f:selectItems>
                        </p:selectOneMenu></p:column>
-                   <p:column style="width:60%;" >    
+                   <p:column style="width:5%;" >    
                         <p:commandButton icon="ui-icon-pencil" oncomplete="TipoActivoDlg.show()"  />
                    </p:column>
-                   
+                     <p:column style="width:65%"><p:message for="tipo" display="icon"  /> </p:column>
                 </p:row>
                 
                 <p:row>    
                    <p:column style="width:15%"><h:outputLabel value="Area : *" ></h:outputLabel></p:column>
-                   <p:column style="width:5%"><p:message for="area" display="icon"  /> </p:column>
-                   <p:column style="width:20%"><p:selectOneMenu id="area" requiredMessage="El Area es obligatorio" value="#{activoControlador.currentActivo.area.idArea}">
+                   
+                   <p:column style="width:15%"><p:selectOneMenu label="Área" required="true" id="area" requiredMessage="El Area es obligatorio" value="#{activoControlador.currentActivo.area.idArea}">
                            <f:selectItem  itemLabel="Seleccione un area" itemValue="#{null}"></f:selectItem>
                            <f:selectItems value="#{activoControlador.lstArea}" var="area" itemLabel="#{area.nombre}" itemValue="#{area.idArea}"></f:selectItems>
                        </p:selectOneMenu>
                    </p:column>  
-                    <p:column style="width:60%;" >    
+                    <p:column style="width:5%;" >    
                         <p:commandButton icon="ui-icon-pencil" oncomplete="AreaDlg.show()" />
                    </p:column>
+                   <p:column style="width:65%"><p:message for="area" display="icon"  /> </p:column>
                 </p:row>   
                    
            </p:panelGrid> 
