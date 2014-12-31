@@ -28,6 +28,7 @@ import sistema.modelos.server.facade.empresa.InsumoFacade;
 import sistema.modelos.server.facade.empresa.TipoActivoFacade;
 import sistema.modelos.vista.controlador.modelo.ProductoModeloControlador;
 import sistema.modelos.vista.controlador.util.UsuarioControlador;
+import sistema.modelos.vista.controlador.util.Utilitario;
 
 /**
  *
@@ -169,10 +170,10 @@ public class ActivoControlador implements Serializable {
     public void agregar(){
         currentActivo = new Activo();
         RequestContext context = RequestContext.getCurrentInstance();  
-        clear("cruForm:nombre");
-        clear("cruForm:codigo");
-        clear("cruForm:tipo");
-        clear("cruForm:area");
+        Utilitario.clear("cruForm:nombre");
+        Utilitario.clear("cruForm:codigo");
+        Utilitario.clear("cruForm:tipo");
+        Utilitario.clear("cruForm:area");
         
         context.update("miform:tablaActivo");
         context.update("cruForm:panelcrud");
@@ -182,10 +183,10 @@ public class ActivoControlador implements Serializable {
     public void editar(){
         currentActivo = activoFacade.find(currentActivo.getIdActivo());
         RequestContext context = RequestContext.getCurrentInstance();  
-        clear("cruForm:nombre");
-        clear("cruForm:codigo");
-        clear("cruForm:tipo");
-        clear("cruForm:area");
+        Utilitario.clear("cruForm:nombre");
+        Utilitario.clear("cruForm:codigo");
+        Utilitario.clear("cruForm:tipo");
+        Utilitario.clear("cruForm:area");
         context.update("miform:tablaActivo");
         context.update("cruForm:panelcrud");
         
@@ -193,23 +194,7 @@ public class ActivoControlador implements Serializable {
         
     } 
     
-    public String clear(final String parentComponentId) {
-        UIViewRoot view = FacesContext.getCurrentInstance().getViewRoot();
-        UIComponent fc = view.findComponent(parentComponentId);
-                if (fc instanceof UIInput) {
-                    UIInput input = (UIInput) fc;
-                    // JSF 1.1+ 
-//                input.setSubmittedValue(null);
-//                input.setValue(null);
-//                input.setLocalValueSet(false);
-//                input.setValid(true);
-                    // JSF 1.2+
-                    input.resetValue();
-                }
-                
-            
-        return null;
-    }
+    
     
     public void eliminar(){
         currentActivo = activoFacade.find(currentActivo.getIdActivo());

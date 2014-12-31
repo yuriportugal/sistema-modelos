@@ -18,6 +18,7 @@ import sistema.modelos.server.entidades.empresa.Producto;
 import sistema.modelos.server.facade.empresa.EmpresaFacade;
 import sistema.modelos.server.facade.empresa.ProductoFacade;
 import sistema.modelos.vista.controlador.util.UsuarioControlador;
+import sistema.modelos.vista.controlador.util.Utilitario;
 
 /**
  *
@@ -70,21 +71,7 @@ public class ProductoControlador implements Serializable {
     
     public void persist(){
         
-             String mensaje = "";
-             System.out.println(currentProducto.getNombre());
-             currentProducto.setEmpresa(empresaFacade.find(getUsuarioControlador().getCurrentUsuario().getEmpresa().getIdEmpresa()));
-             if (currentProducto.getNombre().equals(""))
-                mensaje += "Debe ingresar el nombre del Producto <br/>";
-             if (currentProducto.getCodigo().equals(""))
-                mensaje += "Debe ingresar el código del Producto <br/>";
-             if (currentProducto.getDescripcion().equals(""))
-                mensaje += "Debe ingresar la descripcion del Producto <br/>";
-             
-             if (!mensaje.equals("")){    
-                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,mensaje,""));  
-                return;
-             }
-             
+                          
              if (productoFacade.countActivoByCode(currentProducto.getCodigo(),currentProducto.getIdproducto())>0){
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Ya se encuentra registrado un producto con el mismo código",""));  
                 return;
@@ -123,7 +110,9 @@ public class ProductoControlador implements Serializable {
     }
 
     public void agregar(){        
-        System.out.println(" ENTRO A AGREGAR PRODUCTO");
+        Utilitario.clear("cruForm:nombre");
+        Utilitario.clear("cruForm:codigo");
+        Utilitario.clear("cruForm:descripcion");
         currentProducto = new Producto();
         RequestContext context = RequestContext.getCurrentInstance();  
         context.update("miform:tablaProducto");
@@ -131,7 +120,9 @@ public class ProductoControlador implements Serializable {
     }
     
     public void editar(){
-        System.out.println(" ENTRO A EDITAR PRODUCTO");
+        Utilitario.clear("cruForm:nombre");
+        Utilitario.clear("cruForm:codigo");
+        Utilitario.clear("cruForm:descripcion");
         currentProducto = productoFacade.find(currentProducto.getIdproducto());
         RequestContext context = RequestContext.getCurrentInstance();  
         context.update("miform:tablaInsumo");

@@ -58,20 +58,20 @@
                                               
                 <p:row>   
                     <p:column style="width:15%"><h:outputLabel value="Nombre : *" ></h:outputLabel></p:column>  
-                    <p:column style="width:5%"></p:column>
-                    <p:column style="width:80%"><p:inputText id="nombre"  value="#{productoControlador.producto.nombre}" size="30"></p:inputText></p:column>
+                    <p:column style="width:20%"><p:inputText id="nombre" required="true" requiredMessage="El Nombre es obligatorio" value="#{productoControlador.producto.nombre}" size="30"></p:inputText></p:column>
+                    <p:column style="width:65%"><p:message  for="nombre" display="icon" /></p:column>
                 </p:row>
                  
                 <p:row>   
                     <p:column style="width:15%"><h:outputLabel  value="Código : *" ></h:outputLabel></p:column>  
-                    <p:column style="width:5%"></p:column>
-                    <p:column style="width:80%"><p:inputText  id="codigo" value="#{productoControlador.producto.codigo}" size="30" ></p:inputText></p:column>
+                    <p:column style="width:20%"><p:inputText  id="codigo" requiredMessage="El Código es obligatorio" required="true" value="#{productoControlador.producto.codigo}" size="30" ></p:inputText></p:column>
+                     <p:column style="width:65%"><p:message  for="codigo" display="icon" /></p:column>
                 </p:row> 
                  
                 <p:row>    
                    <p:column style="width:15%"><h:outputLabel value="Descripción : *" ></h:outputLabel></p:column>
-                   <p:column style="width:5%"></p:column>
-                   <p:column style="width:80%"><p:inputTextarea id="descripcion"  value="#{productoControlador.producto.descripcion}" rows="8" cols="50" ></p:inputTextarea></p:column>
+                   <p:column style="width:20%"><p:inputTextarea id="descripcion" requiredMessage="La descripción es obligatoría" required="true"  value="#{productoControlador.producto.descripcion}" rows="8" cols="50" ></p:inputTextarea></p:column>
+                   <p:column style="width:65%"><p:message  for="descripcion" display="icon" /></p:column>
                 </p:row>
                      
              </p:panelGrid> 
