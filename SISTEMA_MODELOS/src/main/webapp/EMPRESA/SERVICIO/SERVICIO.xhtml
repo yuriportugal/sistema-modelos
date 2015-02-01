@@ -60,27 +60,27 @@
                    
                 <p:row>   
                     <p:column style="width:15%"><h:outputLabel  value="Nombre : *"></h:outputLabel></p:column>  
-                    <p:column style="width:5%"></p:column>
-                    <p:column style="width:80%" colspan="2"><p:inputText id="nombre" value="#{servicioControlador.currentServicio.nombre}" size="30"></p:inputText></p:column>
+                    <p:column style="width:20%" colspan="2"><p:inputText id="nombre" value="#{servicioControlador.currentServicio.nombre}" required="true" requiredMessage="El Nombre es obligatorio" size="30"></p:inputText></p:column>
+                     <p:column style="width:65%"><p:message  for="nombre" display="icon" /></p:column>
                 </p:row>
                 
                 <p:row>   
                     <p:column style="width:15%"><h:outputLabel value="Código : *" ></h:outputLabel></p:column>  
-                    <p:column style="width:5%"></p:column>  
-                    <p:column style="width:80%" colspan="2"><p:inputText id="codigo"  value="#{servicioControlador.currentServicio.codigo}" size="30"></p:inputText></p:column>
+                    <p:column style="width:20%" colspan="2"><p:inputText id="codigo"  value="#{servicioControlador.currentServicio.codigo}" requiredMessage="El Código es obligatorio" required="true" size="30"></p:inputText></p:column>
+                     <p:column style="width:65%"><p:message  for="codigo" display="icon" /></p:column>    
                 </p:row>
                 
                 <p:row>    
                    <p:column style="width:15%"><h:outputLabel value="Area : *" ></h:outputLabel></p:column>
-                   <p:column style="width:5%"><p:message for="area" display="icon"  /> </p:column>
-                   <p:column style="width:20%"><p:selectOneMenu id="area" requiredMessage="El Area es obligatorio" value="#{servicioControlador.currentServicio.area.idArea}">
+                   <p:column style="width:10%"><p:selectOneMenu id="area" required="true" requiredMessage="El Area es obligatorio" value="#{servicioControlador.currentServicio.area.idArea}">
                            <f:selectItem  itemLabel="Seleccione un area" itemValue="#{null}"></f:selectItem>
                            <f:selectItems value="#{servicioControlador.lstArea}" var="area" itemLabel="#{area.nombre}" itemValue="#{area.idArea}"></f:selectItems>
                        </p:selectOneMenu>
                    </p:column>  
-                    <p:column style="width:60%;" >    
+                    <p:column style="width:10%;" >    
                         <p:commandButton icon="ui-icon-pencil" oncomplete="AreaDlg.show()" />
                    </p:column>
+                   <p:column style="width:65%"><p:message  for="area" display="icon" /></p:column>
                 </p:row>   
                    
            </p:panelGrid> 

@@ -26,6 +26,7 @@ import sistema.modelos.server.facade.empresa.InsumoFacade;
 import sistema.modelos.server.facade.empresa.ServicioFacade;
 import sistema.modelos.server.facade.empresa.TipoActivoFacade;
 import sistema.modelos.vista.controlador.util.UsuarioControlador;
+import sistema.modelos.vista.controlador.util.Utilitario;
 
 /**
  *
@@ -101,22 +102,8 @@ public class ServicioControlador implements Serializable {
     }
     
      public void persist(){
-             String mensaje = "";
-            currentServicio.setEmpresa(empresaFacade.find(getUsuarioControlador().getCurrentUsuario().getEmpresa().getIdEmpresa()));
-            if (currentServicio.getNombre().equals(""))
-                mensaje += "Debe ingresar el nombre del Servicio <br/>";
-            if (currentServicio.getCodigo().equals(""))
-                mensaje += "Debe ingresar el código del Servicio<br/>";
-            
-            if (currentServicio.getArea().getIdArea() == null)
-                mensaje += "Debe seleccionar un Area<br/>";
-        
-            if (!mensaje.equals("")){    
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,mensaje,""));  
-    
-            return;
-        }
-        
+             
+        currentServicio.setEmpresa(empresaFacade.find(getUsuarioControlador().getCurrentUsuario().getEmpresa().getIdEmpresa()));     
         if (servicioFacade.countActivoByCode(currentServicio.getCodigo(),currentServicio.getIdServicio())>0){
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Ya se encuentra registrado un servicio con el mismo código",""));  
             return;
@@ -143,6 +130,9 @@ public class ServicioControlador implements Serializable {
     }
     
     public void agregar(){
+        Utilitario.clear("cruForm:nombre");
+        Utilitario.clear("cruForm:codigo");
+        Utilitario.clear("cruForm:area");
         currentServicio = new Servicio();
         RequestContext context = RequestContext.getCurrentInstance();  
         context.update("miform:tablaServicio");
@@ -151,6 +141,9 @@ public class ServicioControlador implements Serializable {
     }
      
     public void editar(){
+         Utilitario.clear("cruForm:nombre");
+        Utilitario.clear("cruForm:codigo");
+        Utilitario.clear("cruForm:area");
         currentServicio = servicioFacade.find(currentServicio.getIdServicio());
         RequestContext context = RequestContext.getCurrentInstance();  
         context.update("miform:tablaServicio");

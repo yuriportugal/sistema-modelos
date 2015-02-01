@@ -17,6 +17,7 @@ import sistema.modelos.server.entidades.empresa.Insumo;
 import sistema.modelos.server.facade.empresa.EmpresaFacade;
 import sistema.modelos.server.facade.empresa.InsumoFacade;
 import sistema.modelos.vista.controlador.util.UsuarioControlador;
+import sistema.modelos.vista.controlador.util.Utilitario;
 
 /**
  *
@@ -67,27 +68,12 @@ public class InsumoControlador implements Serializable {
     }
     
     public void persist(){
-        
-        String mensaje = "";
-             System.out.println(currentInsumo.getNombre());
-             currentInsumo.setEmpresa(empresaFacade.find(getUsuarioControlador().getCurrentUsuario().getEmpresa().getIdEmpresa()));
-             if (currentInsumo.getCodigo().equals(""))
-                mensaje += "Debe ingresar el código del Insumo <br/>";
-             if (currentInsumo.getNombre().equals(""))
-                mensaje += "Debe ingresar el nombre del Insumo <br/>";
-             if (currentInsumo.getDescripcion().equals(""))
-                mensaje += "Debe ingresar la descripcion del Insumo <br/>";
-             
-             if (!mensaje.equals("")){    
-                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,mensaje,""));  
-                return;
-             }
-             
-             if (insumoFacade.countActivoByCode(currentInsumo.getCodigo(),currentInsumo.getIdInsumo())>0){
+        currentInsumo.setEmpresa(empresaFacade.find(getUsuarioControlador().getCurrentUsuario().getEmpresa().getIdEmpresa()));     
+        if (insumoFacade.countActivoByCode(currentInsumo.getCodigo(),currentInsumo.getIdInsumo())>0){
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Ya se encuentra registrado un insumo con el mismo código",""));  
                 return;
              }
-            
+            System.out.println("Entramos veremos que pasa");
             if (currentInsumo.getIdInsumo()==null) {
                 insumoFacade.create(currentInsumo);
             }
@@ -122,6 +108,10 @@ public class InsumoControlador implements Serializable {
     }
     
     public void agregar(){
+        
+        Utilitario.clear("cruForm:nombre");
+        Utilitario.clear("cruForm:codigo");
+        Utilitario.clear("cruForm:descripcion");
         currentInsumo = new Insumo();
         RequestContext context = RequestContext.getCurrentInstance();  
         context.update("miform:tablaInsumo");
@@ -130,6 +120,9 @@ public class InsumoControlador implements Serializable {
     }
     
     public void editar(){
+        Utilitario.clear("cruForm:nombre");
+        Utilitario.clear("cruForm:codigo");
+        Utilitario.clear("cruForm:descripcion");
         currentInsumo = insumoFacade.find(currentInsumo.getIdInsumo());
         RequestContext context = RequestContext.getCurrentInstance();  
         context.update("miform:tablaInsumo");

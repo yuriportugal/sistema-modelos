@@ -71,7 +71,8 @@ public class ProductoControlador implements Serializable {
     
     public void persist(){
         
-                          
+        currentProducto.setEmpresa(empresaFacade.find(getUsuarioControlador().getCurrentUsuario().getEmpresa().getIdEmpresa()));     
+        
              if (productoFacade.countActivoByCode(currentProducto.getCodigo(),currentProducto.getIdproducto())>0){
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Ya se encuentra registrado un producto con el mismo código",""));  
                 return;
