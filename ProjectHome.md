@@ -1,0 +1,1 @@
+Un sistema para modelar las variables economicas y no economicas de empresas industriales
