@@ -16,6 +16,7 @@ import sistema.modelos.server.entidades.modelo.ProductoModeloDetalle;
 import sistema.modelos.server.entidades.resultado.ActivoResultado;
 import sistema.modelos.server.entidades.resultado.InsumoResultado;
 import sistema.modelos.server.entidades.resultado.PersonalResultado;
+import sistema.modelos.server.entidades.resultado.PrestamoResultado;
 import sistema.modelos.server.entidades.resultado.Resultado;
 import sistema.modelos.server.entidades.resultado.VariacionesPeriodo;
 import sistema.modelos.vista.controlador.util.ColumnModel;
@@ -114,7 +115,16 @@ public class ResultadoControlador {
     PersonalResultado personalResultado;
     
     InsumoResultado insumoResultado;
+    
+    ActivoResultado activoResultado;
 
+    PrestamoResultado prestamoResultado;
+    
+    public ActivoResultado getActivoResultado() {
+        return activoResultado;
+    }
+    
+    
     public PersonalResultado getPersonalResultado() {
         return personalResultado;
     }
@@ -137,6 +147,21 @@ public class ResultadoControlador {
         this.insumoResultado = insumoResultado;
     }
 
+    public void setActivoResultado(ActivoResultado activoResultado) {
+        this.activoResultado = activoResultado;
+    }
+
+    public void setPrestamoResultado(PrestamoResultado prestamoResultado) {
+        this.prestamoResultado = prestamoResultado;
+    }
+
+    public PrestamoResultado getPrestamoResultado() {
+        return prestamoResultado;
+    }
+    
+    
+    
+
     public void generarResultado(Modelo modelo){
           
           //Generacion de Variaciones
@@ -146,12 +171,19 @@ public class ResultadoControlador {
           InsumoResultado insumoResultado2 = new InsumoResultado(variacionesPeriodo.getVarProyPrecioCompra(),modelo.getLstInsumoModeloDetalle());
          insumoResultado2.generarInsumoResultado(modelo.getAno().getIdAno().intValue(),modelo.getHorizonte().intValue());
           setInsumoResultado(insumoResultado2);
+          //OK YA SE PROBO
           PersonalResultado personalResultado2 = new PersonalResultado(variacionesPeriodo.getVarProyPersonal(),modelo.getLstCargoModeloDetalle(),variacionesPeriodo.getVarProySalarial());
           personalResultado2.generarPersonalResultado(modelo.getAno().getIdAno().intValue(),modelo.getHorizonte().intValue());
           setPersonalResultado(personalResultado2);
-          
-          
-          //insumoResultado.generarInsumoFor
+          //Probando personal
+          ActivoResultado activoResultado2 = new ActivoResultado(modelo.getLstActivoModeloDetalle());
+          activoResultado2.generarActivoResultado(modelo.getAno().getIdAno().intValue(),modelo.getHorizonte().intValue());
+          setActivoResultado(activoResultado2);
+          //Prestamo
+          PrestamoResultado prestamoResultado2 = new PrestamoResultado(modelo.getLstPrestamoModeloDetalle());
+          prestamoResultado2.generarPrestamoResultado(modelo.getAno().getIdAno().intValue(),modelo.getHorizonte().intValue()); 
+          setPrestamoResultado(prestamoResultado2);
+//insumoResultado.generarInsumoFor
           //aCTIVOS
          // ActivoResultado
 //        generarColumna(Integer.valueOf(modelo.getHorizonte().toString()));
@@ -238,6 +270,11 @@ public class ResultadoControlador {
         return "/RESULTADO/PERSONAL";
     }
     
+     public String mostrarActivoDetalle(){
+        detalle = true;
+        return "/RESULTADO/ACTIVO";
+    }
+    
     public String mostrarPlanVentasDetalle(){
         detalle = true;
         return "/RESULTADO/PLANVENTAS";
@@ -258,4 +295,8 @@ public class ResultadoControlador {
         return "/RESULTADO/PLANCOMPRAS";
     }
     
+   public String mostrarPrestamoDetalle(){
+        detalle = true;
+        return "/RESULTADO/PRESTAMO";
+    }
 }

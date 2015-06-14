@@ -5,8 +5,10 @@
 package sistema.modelos.server.entidades.resultado;
 
 import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import sistema.modelos.server.entidades.modelo.CargoModeloDetalle;
 import sistema.modelos.server.entidades.modelo.InsumoModeloDetalle;
 import sistema.modelos.server.entidades.util.ConstantesGenerales;
@@ -38,6 +40,7 @@ public class PersonalResultado extends ResultadoGeneral{
    int mesesxAnio;
    
     public List<CargoModeloDetalle> getLstCargoModeloDet() {
+       
         return lstCargoModeloDet;
     }
 
@@ -46,6 +49,9 @@ public class PersonalResultado extends ResultadoGeneral{
     }
 
     public PersonalResultado(double [] VarProyPersonal,List<CargoModeloDetalle> lstCargoModeloDet,double [] VarProySalarial) {
+        NumberFormat nf = NumberFormat.getNumberInstance(Locale.US);
+        this.df = (DecimalFormat)nf;
+        df.applyPattern("###,###");
         this.VarProyPersonal = VarProyPersonal;
         this.lstCargoModeloDet = lstCargoModeloDet;
         this.VarProySalarial = VarProySalarial;
@@ -91,7 +97,7 @@ public class PersonalResultado extends ResultadoGeneral{
     }
 
     public List<TablaResultado> getVariacionSueldoUnitarioAnual() {
-        return variacionSueldoUnitarioAnual;
+        return variacionSueldoUnitarioAnual; 
     }
 
     public List<TablaResultado> getVariacionSueldoUnitarioMensual() {
@@ -147,7 +153,7 @@ public class PersonalResultado extends ResultadoGeneral{
        generarProyeccion(anio, horizonte, true, 2);
        variacionSueldoUnitarioMensual = lstResultadoProyectado;
        variacionSueldoUnitarioAnual = proyectarTabla(variacionSueldoUnitarioMensual, 3);
-       //lstResultadoProyectado = new ArrayList<TablaResultado>();
+       lstResultadoProyectado = new ArrayList<TablaResultado>();
         
 //        //generarColumna(anio,horizonte);
 //        variacionPersonalxPeriodo = new ArrayList<TablaResultado>();
@@ -189,7 +195,7 @@ public class PersonalResultado extends ResultadoGeneral{
     }
 
     @Override
-    protected void generarColumna(int anio, int horizonte) {
+    protected void generarColumna(int anio, int horizonte, int numTabla) {
        columnaTabla = new ArrayList<ColumnModel>();
         for (int i = 0; i <= horizonte; i++){
             ColumnModel column = new ColumnModel();
@@ -227,10 +233,10 @@ public class PersonalResultado extends ResultadoGeneral{
     }
 
     @Override
-    public double obtenerTipoProyeccion(double[] valores, int i, int j, int numTabla) {
+    public double obtenerTipoProyeccion(double[] valores, int i, int j, int numTabla, Object objetoProy) {
         switch(numTabla){
             case 2  :
-            case 1  : return valores[j-1]*(1+arrVariacionProyeccion[j]/100);
+            case 1  : return valores[j-1]*(1+arrVariacionProyeccion[j]/100.0);
             default : return 0d;    
         }
     }
@@ -258,7 +264,11 @@ public class PersonalResultado extends ResultadoGeneral{
 
     @Override
     public double obtenerValorProyectado(double valor) {
-        return valor*(mesesxAnio+2)*(1+ConstantesGenerales.PORC_ESSALUD/100.00);
+        return valor*(mesesxAnio+2)*(1+1.0/mesesxAnio+ConstantesGenerales.PORC_ESSALUD/100.00);
     }
    
+        @Override
+    public double obtenerValorSumado(double d1, double d2) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

@@ -19,9 +19,12 @@
                 <p:menuitem value="Detalle" action="#{resultadoControlador.mostrarPersonalDetalle()}" />  
                 <p:menuitem value="Resumen" url="#" />  
             </p:submenu>  
-           
+           <p:submenu label="Prestamo" icon="ui-icon-contact">  
+                <p:menuitem value="Detalle" action="#{resultadoControlador.mostrarPrestamoDetalle()}" />  
+                <p:menuitem value="Resumen" url="#" />  
+            </p:submenu>  
             <p:submenu label="Activos" icon="ui-icon-contact">  
-                <p:menuitem value="Detalle" action="#{resultadoControlador.mostrarPlanProduccionDetalle()}" />  
+                <p:menuitem value="Detalle" action="#{resultadoControlador.mostrarActivoDetalle()}" />  
                 <p:menuitem value="Resumen" url="#" />  
             </p:submenu>  
             <p:submenu label="Insumo" icon="ui-icon-contact">  

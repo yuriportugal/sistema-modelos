@@ -128,6 +128,11 @@ public class ActivoModeloDetalle implements Serializable{
         this.idActivoModelo = idActivoModelo;
     }
 
+    @Override
+    public String toString() {
+        return getActivo().getNombre(); //To change body of generated methods, choose Tools | Templates.
+    }
+
     
     
     

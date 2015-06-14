@@ -70,7 +70,7 @@ public class InsumoResultado extends ResultadoGeneral{
     }
 
     @Override
-    protected void generarColumna(int anio, int horizonte) {
+    protected void generarColumna(int anio, int horizonte, int numTabla) {
         columnaTabla = new ArrayList<ColumnModel>();
         for (int i = 0; i <= horizonte; i++){
             ColumnModel column = new ColumnModel();
@@ -138,7 +138,7 @@ public class InsumoResultado extends ResultadoGeneral{
     }
 
     @Override
-    public double obtenerTipoProyeccion(double[] valores, int i, int j, int numTabla) {
+    public double obtenerTipoProyeccion(double[] valores, int i, int j, int numTabla, Object objetoProy) {
         return valores[0]*(1+arrVariacionProyeccion[j]/100);
     }
 
@@ -156,5 +156,12 @@ public class InsumoResultado extends ResultadoGeneral{
     public double obtenerValorProyectado(double valor) {
         return 0d;
     }
+
+    @Override
+    public double obtenerValorSumado(double d1, double d2) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+  
     
 }

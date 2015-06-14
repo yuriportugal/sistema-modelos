@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+    
+    <ui:composition template="/templateResultado.xhtml"> 
+        
+        <ui:define name="showresultado">
+           
+           Depreciación de Activos Fijos
+            
+           <p:dataTable  id="idTabPDepreciacionActivoFijo" var="result" value="#{resultadoControlador.activoResultado.depreciacionActivoFijo}" >                      
+               <p:columns   value="#{resultadoControlador.activoResultado.lstColumnasTabla.get(0)}" var="column" columnIndexVar="indice">  
+                    <f:facet name="header">  
+                        #{column.header}
+                    </f:facet>      
+                    <h:outputText rendered="#{indice == 0}" value="#{result.objeto}" /> 
+                    <h:outputText rendered="#{indice > 0}" value=" #{result.valValores[indice-1]}" /> 
+                 </p:columns>  
+            </p:dataTable> 
+           <br/>
+           <p:dataTable  id="idTabPDepreciacionActivoFijoNoRel" var="result" value="#{resultadoControlador.activoResultado.depreciacionActivoFijoNoProd}" >                      
+               <p:columns   value="#{resultadoControlador.activoResultado.lstColumnasTabla.get(1)}" var="column" columnIndexVar="indice">  
+                    <f:facet name="header">  
+                        #{column.header}
+                    </f:facet>      
+                    <h:outputText rendered="#{indice == 0}" value="#{result.objeto}" /> 
+                    <h:outputText rendered="#{indice > 0}" value=" #{result.valValores[indice-1]}" /> 
+                 </p:columns>  
+            </p:dataTable> 
+            <br/>
+            Depreciación de Activos Intangibles
+            <p:dataTable  id="idTabPDepreciacionActivoIntangible" var="result" value="#{resultadoControlador.activoResultado.depreciacionActivoIntangible}" >                      
+               <p:columns   value="#{resultadoControlador.activoResultado.lstColumnasTabla.get(2)}" var="column" columnIndexVar="indice">  
+                    <f:facet name="header">  
+                        #{column.header}
+                    </f:facet>      
+                    <h:outputText rendered="#{indice == 0}" value="#{result.objeto}" /> 
+                    <h:outputText rendered="#{indice > 0}" value=" #{result.valValores[indice-1]}" /> 
+                 </p:columns>  
+            </p:dataTable> 
+            <br/>
+            Depreciación Acumulada de Activos Fijos
+            <p:dataTable  id="idTabPDepreciacionAcumuladaActivoFijoRel" var="result" value="#{resultadoControlador.activoResultado.depreciacionAcumuladaActivoFijo}" >                      
+               <p:columns   value="#{resultadoControlador.activoResultado.lstColumnasTabla.get(3)}" var="column" columnIndexVar="indice">  
+                    <f:facet name="header">  
+                        #{column.header}
+                    </f:facet>      
+                    <h:outputText rendered="#{indice == 0}" value="#{result.objeto}" /> 
+                    <h:outputText rendered="#{indice > 0}" value=" #{result.valValores[indice-1]}" /> 
+                 </p:columns>  
+            </p:dataTable> 
+             <br/>
+            <p:dataTable  id="idTabPDepreciacionAcumuladaActivoFijonORel" var="result" value="#{resultadoControlador.activoResultado.depreciacionAcumuladaActivoFijoNoProd}" >                      
+               <p:columns   value="#{resultadoControlador.activoResultado.lstColumnasTabla.get(4)}" var="column" columnIndexVar="indice">  
+                    <f:facet name="header">  
+                        #{column.header}
+                    </f:facet>      
+                    <h:outputText rendered="#{indice == 0}" value="#{result.objeto}" /> 
+                    <h:outputText rendered="#{indice > 0}" value=" #{result.valValores[indice-1]}" /> 
+                 </p:columns>  
+            </p:dataTable> 
+            
+        </ui:define>
+            
+
+    </ui:composition>
+</html>
+
